@@ -1,4 +1,4 @@
-package com.ordems.os.gui;
+package interfaceOS;
 
 import javax.swing.JFrame;
 

@@ -1,4 +1,4 @@
-package com.ordems.os.gui;
+package interfaceOS;
 
 //Importando os componentes
 import java.awt.BorderLayout;
