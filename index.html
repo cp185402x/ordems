@@ -1,0 +1,67 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<?php
+
+
+$db = mysqli_connect('localhost:3307', 'root','','ordems_db');
+   if(!$db)
+   {
+	    echo 'Nao deu para se conectar ao banco de dados8';
+		exit;
+   }
+
+
+
+?>
+
+<!DOCTYPE html>
+<head>
+
+    
+</head>
+<body>
+
+<form class="form-horizontal">
+<fieldset>
+<div class="panel panel-primary">
+    <div class="panel-heading">Busca</div>
+    
+    <div class="panel-body">
+<div class="form-group">
+
+
+
+
+<div class="form-group">
+  <label class="col-md-2 control-label" for="Nome">Busca <h11>*</h11></label>  
+  <div class="col-md-8">
+  <input id="Titulo" name="Titulo" placeholder="" class="form-control input-md" required="" type="text">
+  </div>
+</div>
+
+  
+<div class="form-group">
+  <label class="col-md-2 control-label" for="Cadastrar"></label>
+  <div class="col-md-8">
+    <button id="Cadastrar" name="Cadastrar" class="btn btn-success" type="Submit">Pesquisar</button>
+   
+
+   
+  </div>
+</div>
+
+</div>
+</div>
+
+
+<textarea rows="10" cols="120" maxlength="500"></textarea>
+
+
+</fieldset>
+</form>
+
+</body>
+</html>
