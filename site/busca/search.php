@@ -27,7 +27,7 @@ if(mysqli_num_rows($result) > 0)
   <div class="table-responsive">
    <table class="table table bordered">
     <tr>
-	<th>O.S.</th>
+    <th>O.S.</th>
      <th>DATA</th>
      <th>CLIENTE</th>
      <th>TIPO</th>
@@ -39,7 +39,7 @@ if(mysqli_num_rows($result) > 0)
  {
   $output .= '
    <tr>
-	<td><font size="2px"><a href="#?recordID='.$row["id_os"].'">'.$row["id_os"].'</font></td>
+    <td><font size="2px"><a href="#?recordID='.$row["id_os"].'">'.$row["id_os"].'</font></td>
     <td><font size="2px">'.$row["data_os"].'</font></td>
     <td><font size="2px">'.$row["nm_cliente"].'</font></td>
     <td><font size="2px">'.$row["tipo"].'</font></td>
