@@ -1,6 +1,9 @@
 <?php
 
-$connect = mysqli_connect("localhost", "root", "", "ordems_db");
+require_once "conexao.php";
+
+// $connect = mysqli_connect("localhost", "root", "", "ordems_db");
+
 $output = '';
 if(isset($_POST["query"]))
 {
