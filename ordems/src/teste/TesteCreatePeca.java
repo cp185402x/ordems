@@ -1,9 +1,10 @@
-
-package peca.view;
+package teste;
 
 import javax.swing.JFrame;
 
-public class CreatePeca {
+import view.PecaView;
+
+public class TesteCreatePeca {
     
     public static void main(String[] args) {
     	PecaView PecaView = new PecaView ();

@@ -1,4 +1,4 @@
-package peca.view;
+package view;
 
 //Importando os componentes
 import java.awt.BorderLayout;
@@ -14,9 +14,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JOptionPane;
 //Declarando a classe na janela
-public class PecaView extends JFrame{
+public class FornecedorView extends JFrame{
     
-    public PecaView() { // construtor da view OS.
+    public FornecedorView() { // construtor da view OS.
         super("OrdemS : Cadastro de Orden de Serviço");
         
         criaFormulario();

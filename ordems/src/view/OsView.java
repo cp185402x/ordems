@@ -1,9 +1,12 @@
-package interfaceOS;
+package view;
 
 //Importando os componentes
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -11,9 +14,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 //Declarando a classe na janela
-public class ViewOs extends JFrame{
+public class OsView extends JFrame{
 	
-	public ViewOs() { // construtor da view OS.
+	public OsView() { // construtor da view OS.
 		super("OrdemS : Cadastro de Ordens de Serviços");
 		
 		criaFormulario();
@@ -111,6 +114,55 @@ public class ViewOs extends JFrame{
 		
 		painelBotoes.add(botaoSalvar);
 		painelBotoes.add(botaoCancelar);
+		
+		
+		  botaoSalvar.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					System.out.println("cliquei no botao salvar");
+					//Documento
+					String doc = documentoField.getText();
+					System.out.println(doc);
+					//Cliente
+					String nomec = nomeField.getText();
+					System.out.println(nomec);
+					//usuario
+					String usuario =usuarioField  .getText();
+					System.out.println(usuario);
+					//status
+					String stats  = statusField .getText();
+					System.out.println(stats);
+					//datap
+					String data   = dataPrevisaoField .getText();
+					System.out.println(data);
+					//datar
+					String datar   = dataRetiradaField .getText();
+					System.out.println(datar);
+					//garantia
+					String garantia   = garantiaField.getText();
+					System.out.println(garantia);
+					//tipo
+					String tipo = tipoField .getText();
+					System.out.println(tipo);
+					//Modelo
+					String  modelo = modeloField .getText();
+					System.out.println(modelo);
+					//marca
+					String marca  = marcaField .getText();
+					System.out.println(marca);
+					//cor
+					String cor =corField .getText();
+					System.out.println(cor);
+					//serie
+					String serie   =serieField .getText();
+					System.out.println(serie);
+					
+				
+				}
+	        	
+	        });
 		
 //Adicionando os paineis em suas respectivas posições		
 		add(painelTitulo, BorderLayout.NORTH);

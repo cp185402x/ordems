@@ -3,35 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mvc.model.com;
+package model;
 
 /**
  *
  * @author Client
  */
 
-public class cliente {
+public class Cliente {
     //atributos
     private String nome;
     private String documento;
     private String telefonecel;
     private String pessoa;
-    private String endereco;
-    private String bairro;
-    private String cidade;
-    private String estado;
-    private String complemento;
-    private String cep;
     private String rgie;
     private String email;
-    private String numero;
     private int dataNascimento;
+    private Endereco endereco;
     
     
     
     //construtor
-    public cliente(){
-        
+    public Cliente(){
+        this.endereco=new Endereco();
     
     }
 
@@ -85,75 +79,7 @@ public class cliente {
 
 
 
-	private String getEndereco() {
-		return endereco;
-	}
-
-
-
-	private void setEndereco(String endereco) {
-		this.endereco = endereco;
-	}
-
-
-
-	private String getBairro() {
-		return bairro;
-	}
-
-
-
-	private void setBairro(String bairro) {
-		this.bairro = bairro;
-	}
-
-
-
-	private String getCidade() {
-		return cidade;
-	}
-
-
-
-	private void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
-
-
-
-	private String getEstado() {
-		return estado;
-	}
-
-
-
-	private void setEstado(String estado) {
-		this.estado = estado;
-	}
-
-
-
-	private String getComplemento() {
-		return complemento;
-	}
-
-
-
-	private void setComplemento(String complemento) {
-		this.complemento = complemento;
-	}
-
-
-
-	private String getCep() {
-		return cep;
-	}
-
-
-
-	private void setCep(String cep) {
-		this.cep = cep;
-	}
+	
 
 
 
@@ -179,17 +105,6 @@ public class cliente {
 		this.email = email;
 	}
 
-
-
-	private String getNumero() {
-		return numero;
-	}
-
-
-
-	private void setNumero(String numero) {
-		this.numero = numero;
-	}
 
 
 

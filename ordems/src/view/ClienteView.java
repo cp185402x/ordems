@@ -1,5 +1,5 @@
 
-package mvc.view.cliente.gui;
+package view;
 
 //Importando os componentes
 import java.awt.BorderLayout;
@@ -174,6 +174,8 @@ public class ClienteView extends JFrame{
 				//Data de nascimento
 				String dtn = tipoField3 .getText();
 				System.out.println(dtn);
+				
+				
 			
 			}
         	

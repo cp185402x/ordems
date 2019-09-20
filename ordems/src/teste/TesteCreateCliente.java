@@ -1,8 +1,10 @@
-package mvc.view.cliente.gui;
+package teste;
 
 import javax.swing.JFrame;
 
-public class CreateCliente {
+import view.ClienteView;
+
+public class TesteCreateCliente {
     
     public static void main(String[] args) {
     	ClienteView ClienteView = new ClienteView ();

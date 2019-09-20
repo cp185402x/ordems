@@ -1,11 +1,13 @@
-package interfaceOS;
+package teste;
 
 import javax.swing.JFrame;
 
-public class CreateOs {
+import view.OsView;
+
+public class TesteCreateOs {
 	
 	public static void main(String[] args) {
-		ViewOs ViewOs = new ViewOs();
+		OsView ViewOs = new OsView();
 		
 		ViewOs.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ViewOs.setSize(1024, 500);

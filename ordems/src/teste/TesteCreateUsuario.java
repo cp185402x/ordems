@@ -1,11 +1,13 @@
-package com.ordems.usuario.gui;
+package teste;
 
 import javax.swing.JFrame;
 
-public class CreateUsuario {
+import view.UsuarioView;
+
+public class TesteCreateUsuario {
     
     public static void main(String[] args) {
-        ViewUsuario ViewUsuario = new ViewUsuario();
+        UsuarioView ViewUsuario = new UsuarioView();
         
         ViewUsuario.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ViewUsuario.setSize(1024, 500);
@@ -14,4 +16,3 @@ public class CreateUsuario {
     }
 
 }
-
