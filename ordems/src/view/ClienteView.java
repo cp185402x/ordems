@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
 public class ClienteView extends JFrame{
     
     public ClienteView() { // construtor da view OS.
-        super("OrdemS : Cadastro de Orden de Serviço");
+        super("Cadastro de cliente");
         
         criaFormulario();
     	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,7 +36,7 @@ public class ClienteView extends JFrame{
         JPanel painelTitulo = new JPanel();
         painelTitulo.setLayout(new FlowLayout());
         
-        JLabel titulo = new JLabel("Cadastrar de Cliente");
+        JLabel titulo = new JLabel("Cadastro de Cliente");
         titulo.setFont(new Font("Arial", Font.BOLD, 14));
         
         painelTitulo.add(titulo);
@@ -50,71 +50,70 @@ public class ClienteView extends JFrame{
         painelCadastro.add(nomeLabel);
         painelCadastro.add(nomeField);
         
-        
         JLabel usuarioLabel = new JLabel("Documento");
         JTextField usuarioField = new JTextField(20);
         painelCadastro.add(usuarioLabel);
         painelCadastro.add(usuarioField);
         
-        JLabel statuaLabel = new JLabel("Telefone Celular");
-        JTextField statusField = new JTextField(20);
-        painelCadastro.add(statuaLabel);
-        painelCadastro.add(statusField);
+        JLabel rgieLabel = new JLabel("RG/IE");
+        JTextField rgieField = new JTextField(20);
+        painelCadastro.add(rgieLabel);
+        painelCadastro.add(rgieField);
         
-        JLabel dataIniLabel = new JLabel("Pessoa de Contato");
-        JTextField dataIniField = new JTextField(20);
-        painelCadastro.add(dataIniLabel);
-        painelCadastro.add(dataIniField);
+        JLabel datanascLabel = new JLabel("Data de nascimento");
+        JTextField datanascField = new JTextField(20);
+        painelCadastro.add(datanascLabel);
+        painelCadastro.add(datanascField);
         
-        JLabel dataFinLabel = new JLabel("Endereço");
-        JTextField dataFinField = new JTextField(20);
-        painelCadastro.add(dataFinLabel);
-        painelCadastro.add(dataFinField);
+        JLabel celularLabel = new JLabel("Telefone Celular");
+        JTextField celularField = new JTextField(20);
+        painelCadastro.add(celularLabel);
+        painelCadastro.add(celularField);
         
-        JLabel tipoLabel1 = new JLabel("Bairro");
-        JTextField tipoField1 = new JTextField(20);
-        painelCadastro.add(tipoLabel1);
-        painelCadastro.add(tipoField1);
+        JLabel emailLabel = new JLabel("Email");
+        JTextField emailField = new JTextField(20);
+        painelCadastro.add(emailLabel);
+        painelCadastro.add(emailField);
         
-        JLabel tipoLabel11 = new JLabel("Cidade");
-        JTextField tipoField11 = new JTextField(20);
-        painelCadastro.add(tipoLabel11);
-        painelCadastro.add(tipoField11);
+        JLabel pescontatoLabel = new JLabel("Pessoa de Contato");
+        JTextField pescontatoField = new JTextField(20);
+        painelCadastro.add(pescontatoLabel);
+        painelCadastro.add(pescontatoField);
         
-        JLabel tipoLabel12 = new JLabel("Estado");
-        JTextField tipoField12 = new JTextField(20);
-        painelCadastro.add(tipoLabel11);
-        painelCadastro.add(tipoField11);
+        JLabel cepLabel = new JLabel("CEP");
+        JTextField cepField = new JTextField(20);
+        painelCadastro.add(cepLabel);
+        painelCadastro.add(cepField);
         
-        JLabel tipoLabel111 = new JLabel("Complemento");
-        JTextField tipoField111 = new JTextField(20);
-        painelCadastro.add(tipoLabel111);
-        painelCadastro.add(tipoField111);
+        JLabel enderecoLabel = new JLabel("Endereço");
+        JTextField enderecoField = new JTextField(20);
+        painelCadastro.add(enderecoLabel);
+        painelCadastro.add(enderecoField);
         
-        JLabel garantiaLabel = new JLabel("CEP");
-        JTextField garantiaField = new JTextField(20);
-        painelCadastro.add(garantiaLabel);
-        painelCadastro.add(garantiaField);
+        JLabel numeroLabel = new JLabel("Numero");
+        JTextField numeroField = new JTextField(20);
+        painelCadastro.add(numeroLabel);
+        painelCadastro.add(numeroField);
         
-        JLabel tipoLabel = new JLabel("RgE");
-        JTextField tipoField = new JTextField(20);
-        painelCadastro.add(tipoLabel);
-        painelCadastro.add(tipoField);
+        JLabel complementoLabel = new JLabel("Complemento");
+        JTextField complementoField = new JTextField(20);
+        painelCadastro.add(complementoLabel);
+        painelCadastro.add(complementoField);
         
-        JLabel tipoLabel1111 = new JLabel("Email");
-        JTextField tipoField1111 = new JTextField(20);
-        painelCadastro.add(tipoLabel1111);
-        painelCadastro.add(tipoField1111);
+        JLabel bairroLabel = new JLabel("Bairro");
+        JTextField bairroField = new JTextField(20);
+        painelCadastro.add(bairroLabel);
+        painelCadastro.add(bairroField);
         
-        JLabel tipoLabel11111 = new JLabel("Numero");
-        JTextField tipoField11111 = new JTextField(20);
-        painelCadastro.add(tipoLabel11111);
-        painelCadastro.add(tipoField11111);
+        JLabel cidadeLabel = new JLabel("Cidade");
+        JTextField cidadeField = new JTextField(20);
+        painelCadastro.add(cidadeLabel);
+        painelCadastro.add(cidadeField);
         
-        JLabel tipoLabel3 = new JLabel("Data de nascimento");
-        JTextField tipoField3 = new JTextField(20);
-        painelCadastro.add(tipoLabel11111);
-        painelCadastro.add(tipoField11111);
+        JLabel estadoLabel = new JLabel("Estado");
+        JTextField estadoField = new JTextField(20);
+        painelCadastro.add(estadoLabel);
+        painelCadastro.add(estadoField);
         
 // Inicia o painel dos botoes
         JPanel painelBotoes = new JPanel();
@@ -130,50 +129,63 @@ public class ClienteView extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				
 				System.out.println("cliquei no botao salvar");
 				//nome
-				String name = nomeField.getText();
-				System.out.println(name);
+				String nome = nomeField.getText();
+				System.out.println(nome);
+				
 				//documento
 				String doc = usuarioField.getText();
 				System.out.println(doc);
-				//telefone
-				String tel  = statusField .getText();
-				System.out.println(tel);
-				//pessoa
-				String pe  = dataIniField .getText();
-				System.out.println(pe);
-				//endereço
-				String ende   = dataFinField .getText();
-				System.out.println(ende);
-				//bairro
-				String ba   = tipoField1 .getText();
-				System.out.println(ba);
-				//cidade
-				String cid   = tipoField11.getText();
-				System.out.println(cid);
-				//estado
-				String es   = tipoField12 .getText();
-				System.out.println(es);
-				//complemento
-				String  cn  = tipoField111 .getText();
-				System.out.println(cn);
-				//CEP
-				String  cep  = garantiaField .getText();
-				System.out.println(cep);
-				//RGE
-				String  rge  =tipoField .getText();
-				System.out.println(rge);
-				//Email
-				String email   =tipoField1111 .getText();
-				System.out.println(email);
-				//Numero
-				String num = tipoField11111 .getText();
-				System.out.println(num);
+				
+				//RGIE
+				String  rgie  = rgieField .getText();
+				System.out.println(rgie);
+				
 				//Data de nascimento
-				String dtn = tipoField3 .getText();
-				System.out.println(dtn);
+				String datanasc = datanascField .getText();
+				System.out.println(datanasc);
+				
+				//telefone
+				String tel  = celularField .getText();
+				System.out.println(tel);
+				
+				//Email
+				String email  = emailField .getText();
+				System.out.println(email);
+				
+				//pessoa
+				String pes  = pescontatoField .getText();
+				System.out.println(pes);
+				
+				//CEP
+				String  cep  = cepField .getText();
+				System.out.println(cep);
+				
+				//endereço
+				String end   = enderecoField .getText();
+				System.out.println(end);
+				
+				//Numero
+				String num = numeroField .getText();
+				System.out.println(num);
+				
+				//complemento
+				String  comp  = complementoField .getText();
+				System.out.println(comp);
+				
+				//bairro
+				String bar   = bairroField .getText();
+				System.out.println(bar);
+				
+				//cidade
+				String cid   = cidadeField .getText();
+				System.out.println(cid);
+				
+				//estado
+				String uf   = estadoField .getText();
+				System.out.println(uf);
 				
 				
 			
