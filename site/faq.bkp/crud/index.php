@@ -1,8 +1,4 @@
-
-
-
-
- <html>
+<html>
 	<head>
 		<title>Ordem-S : Cadastro de FAQ</title>
 		<script src="js/jquery.min.js"></script>
@@ -56,7 +52,7 @@
 
 <div id="userModal" class="modal fade">
 	<div class="modal-dialog">
-		<form method="post" id="faq_form" enctype="multipart/form-data">
+		<form method="post" id="user_form" enctype="multipart/form-data">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -64,17 +60,17 @@
 				</div>
 				<div class="modal-body">
 					<label>Digite o título</label>
-					<input type="text" name="titulo" id="titulo" class="form-control" />
+					<input type="text" name="first_name" id="first_name" class="form-control" />
 					<br />
 					<label>Digite o texto</label>
-					<input type="text" name="descricao" id="descricao" class="form-control" />
+					<input type="text" name="last_name" id="last_name" class="form-control" />
 					<br />
 					<label>Selecionar uma imagem</label>
-					<input type="file" name="image" id="image" />
-					<span id="image"></span>
+					<input type="file" name="user_image" id="user_image" />
+					<span id="user_uploaded_image"></span>
 				</div>
 				<div class="modal-footer">
-					<input type="hidden" name="id_faq" id="id_faq" />
+					<input type="hidden" name="user_id" id="user_id" />
 					<input type="hidden" name="operation" id="operation" />
 					<input type="submit" name="action" id="action" class="btn btn-success" value="Add" />
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -87,7 +83,7 @@
 <script type="text/javascript" language="javascript" >
 $(document).ready(function(){
 	$('#add_button').click(function(){
-		$('#faq_form')[0].reset();
+		$('#user_form')[0].reset();
 		$('.modal-title').text("Cadastrar novo FAQ");
 		$('#action').val("Salvar");
 		$('#operation').val("Add");
@@ -111,11 +107,11 @@ $(document).ready(function(){
 
 	});
 
-	$(document).on('submit', '#faq_form', function(event){
+	$(document).on('submit', '#user_form', function(event){
 		event.preventDefault();
-		var titulo = $('#titulo').val();
-		var descricao = $('#descricao').val();
-		var extension = $('#image').val().split('.').pop().toLowerCase();
+		var firstName = $('#first_name').val();
+		var lastName = $('#last_name').val();
+		var extension = $('#user_image').val().split('.').pop().toLowerCase();
 		if(extension != '')
 		{
 			if(jQuery.inArray(extension, ['png','jpg','jpeg']) == -1)
@@ -125,7 +121,7 @@ $(document).ready(function(){
 				return false;
 			}
 		}	
-		if(titulo != '' && descricao != '')
+		if(firstName != '' && lastName != '')
 		{
 			$.ajax({
 				url:"insert.php",
@@ -136,7 +132,7 @@ $(document).ready(function(){
 				success:function(data)
 				{
 					alert(data);
-					$('#faq_form')[0].reset();
+					$('#user_form')[0].reset();
 					$('#userModal').modal('hide');
 					dataTable.ajax.reload();
 				}
@@ -149,19 +145,19 @@ $(document).ready(function(){
 	});
 	
 	$(document).on('click', '.update', function(){
-		var faq_id = $(this).attr("id_faq");
+		var user_id = $(this).attr("id");
 		$.ajax({
 			url:"fetch_single.php",
 			method:"POST",
-			data:{faq_id:faq_id},
+			data:{user_id:user_id},
 			dataType:"json",
 			success:function(data)
 			{
 				$('#userModal').modal('show');
-				$('#titulo').val(data.titulo);
-				$('#descricao').val(data.descricao);
+				$('#first_name').val(data.first_name);
+				$('#last_name').val(data.last_name);
 				$('.modal-title').text("Editar este FAQ");
-				$('#id_faq').val(faq_id);
+				$('#user_id').val(user_id);
 				$('#user_uploaded_image').html(data.user_image);
 				$('#action').val("Salvar");
 				$('#operation').val("Edit");
@@ -170,13 +166,13 @@ $(document).ready(function(){
 	});
 	
 	$(document).on('click', '.delete', function(){
-		var faq_id = $(this).attr("id_faq");
+		var user_id = $(this).attr("id");
 		if(confirm("Tem certeza que deseja deletar este FAQ?"))
 		{
 			$.ajax({
 				url:"delete.php",
 				method:"POST",
-				data:{faq_id:faq_id},
+				data:{user_id:user_id},
 				success:function(data)
 				{
 					alert(data);

@@ -12,10 +12,10 @@ function upload_image()
 	}
 }
 
-function get_image_name($id_faq)
+function get_image_name($user_id)
 {
-	include('../bd_conectar.php');
-	$statement = $connection->prepare("SELECT * FROM faq WHERE id_faq = '$id_faq'");
+	include('db.php');
+	$statement = $connection->prepare("SELECT image FROM users WHERE id = '$user_id'");
 	$statement->execute();
 	$result = $statement->fetchAll();
 	foreach($result as $row)
@@ -26,8 +26,8 @@ function get_image_name($id_faq)
 
 function get_total_all_records()
 {
-	include('../bd_conectar.php');
-	$statement = $connection->prepare("SELECT * FROM faq");
+	include('db.php');
+	$statement = $connection->prepare("SELECT * FROM users");
 	$statement->execute();
 	$result = $statement->fetchAll();
 	return $statement->rowCount();

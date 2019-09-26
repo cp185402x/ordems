@@ -1,22 +1,23 @@
 <?php
-include('../bd_conectar.php');
+include('db.php');
 include('function.php');
 if(isset($_POST["operation"]))
 {
 	if($_POST["operation"] == "Add")
 	{
 		$image = '';
-		if($_FILES["image"]["name"] != '')
+		if($_FILES["user_image"]["name"] != '')
 		{
 			$image = upload_image();
 		}
 		$statement = $connection->prepare("
-			INSERT INTO faq (titulo, descricao, image) 
-			VALUES (:titulo,:descricao, :image)");
+			INSERT INTO users (first_name, last_name, image) 
+			VALUES (:first_name, :last_name, :image)
+		");
 		$result = $statement->execute(
 			array(
-				':titulo'	=>	$_POST["titulo"],
-				':descricao'	=>	$_POST["descricao"],
+				':first_name'	=>	$_POST["first_name"],
+				':last_name'	=>	$_POST["last_name"],
 				':image'		=>	$image
 			)
 		);
@@ -28,26 +29,26 @@ if(isset($_POST["operation"]))
 	if($_POST["operation"] == "Edit")
 	{
 		$image = '';
-		if($_FILES["image"]["name"] != '')
+		if($_FILES["user_image"]["name"] != '')
 		{
 			$image = upload_image();
 		}
 		else
 		{
-			$image = $_POST["hidden_image"];
+			$image = $_POST["hidden_user_image"];
 		}
 		$statement = $connection->prepare(
-			"UPDATE faq
-			SET titulo = :titulo, descricao= :descricao, image = :image  
-			WHERE id_faq = :id_faq
+			"UPDATE users 
+			SET first_name = :first_name, last_name = :last_name, image = :image  
+			WHERE id = :id
 			"
 		);
 		$result = $statement->execute(
 			array(
-				':titulo'	=>	$_POST["titulo"],
-				':descricao'	=>	$_POST["descricao"],
+				':first_name'	=>	$_POST["first_name"],
+				':last_name'	=>	$_POST["last_name"],
 				':image'		=>	$image,
-				':id_faq'			=>	$_POST["id_faq"]
+				':id'			=>	$_POST["user_id"]
 			)
 		);
 		if(!empty($result))

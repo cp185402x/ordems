@@ -6,7 +6,7 @@ require_once "i_topo.php";
 require_once "bd_conectar.php";
 
 
-//require_once "i_busca.php"
+require_once "i_busca.php"
 ?>
 
 

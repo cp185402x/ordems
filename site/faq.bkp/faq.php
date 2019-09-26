@@ -6,7 +6,7 @@ require_once "i_topo.php";
 require_once "bd_conectar.php";
 
 
-//require_once "i_busca.php"
+require_once "i_busca.php"
 ?>
 
 
@@ -61,7 +61,7 @@ require_once "bd_conectar.php";
 			
 
 		<ul id="mobile" class="cd-faq__group">
-			<li class="cd-faq__title"><h2>Ordem de serviço</h2></li>
+			<li class="cd-faq__title"><h2>Ordem de sistema</h2></li>
 
 			<?php
 
