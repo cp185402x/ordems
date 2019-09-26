@@ -14,7 +14,7 @@ public class Conexao {
 		try {
 			//Class.forName(driverName);
 			
-			String serverName = "localhost";
+			String serverName = "localhost:3307";
 			
 			String mydatabase = "ordems_db";
 			

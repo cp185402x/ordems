@@ -3,6 +3,7 @@ package view;
 
 //Importando os componentes
 import java.awt.BorderLayout;
+import controller.ClienteController;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -15,15 +16,19 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 //Declarando a classe na janela
 public class ClienteView extends JFrame{
+	private ClienteController clienteController;
 
 	public ClienteView() { // construtor da view OS.
         super("Cadastro de cliente");
+        
+        
         
         criaFormulario();
     	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	this.setSize(1024, 500);
     	this.setVisible(true);
     	this.setLocationRelativeTo(null);
+    	clienteController=new ClienteController();
 
     }
     
@@ -186,7 +191,21 @@ public class ClienteView extends JFrame{
 				String uf   = estadoField .getText();
 				System.out.println(uf);
 				
-				
+			/* clienteController.validaCampos(nome);
+				clienteController.validaCampos(documento);
+				clienteController.validaCampos(rg);
+				clienteController.validaCampos(data);
+				clienteController.validaCampos(celular);
+				clienteController.validaCampos(email);
+				clienteController.validaCampos(contato);
+				clienteController.validaCampos(cep);
+				clienteController.validaCampos(endereco);
+				clienteController.validaCampos(numero);
+				clienteController.validaCampos(complemento);
+				clienteController.validaCampos(bairro);
+				clienteController.validaCampos(cidade);
+				clienteController.validaCampos(estado);
+			*/
 			
 			}
         	

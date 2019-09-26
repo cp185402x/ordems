@@ -6,5 +6,7 @@ public class ClienteDAO {
 	//deletar 
 	//atualizar
 	//metodos sempre recebem objeto
+	
+	
 
 }
