@@ -18,7 +18,7 @@ Inicialmente neste README iremos tratar basicamente do desenvolvimento Java.
 
 1 - Baixe o projeto atravéz do Git.
 	1.1 - Importe o banco dados usando o arquivo ordems.sql.
-			ao importar o arquivo sql será criado o banco de dados "oerdems_db"
+			ao importar o arquivo sql será criado o banco de dados "ordems_db"
 	1.2 - Usuário "root" e senha "" vazia.
 	
 2 - 

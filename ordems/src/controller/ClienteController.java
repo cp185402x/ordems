@@ -7,7 +7,7 @@ public class ClienteController {
 	//Metodo para receber os dados,tratar e chamar o metodo insere do ClienteDAO
 	private Conexao bd;
 	public void ClienteContoller() {
-		bd = new Conexao();
+		setBd(new Conexao());
 	}
 	
 	
@@ -27,6 +27,16 @@ public class ClienteController {
 		System.out.println("contoller" + cidade);
 		System.out.println("contoller" + estado);
 		
+	}
+
+
+	public Conexao getBd() {
+		return bd;
+	}
+
+
+	public void setBd(Conexao bd) {
+		this.bd = bd;
 	}
 
 }

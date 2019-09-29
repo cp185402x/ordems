@@ -14,13 +14,21 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import controller.UsuarioController;
 //Declarando a classe na janela
 public class UsuarioView extends JFrame{
+	private UsuarioController usuarioController;
   
-  public UsuarioView() { // construtor da view OS.
-      super("OrdemS : Cadastro de Orden de Serviço");
+	public UsuarioView() { // construtor da view OS.
+		super("Cadastro de usuário");
       
-      criaFormulario();
+    criaFormulario();
+  	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  	this.setSize(1024, 500);
+  	this.setVisible(true);
+  	this.setLocationRelativeTo(null);
+  	usuarioController=new UsuarioController();
+      
   }
   
   private void criaFormulario() {

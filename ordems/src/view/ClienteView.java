@@ -1,9 +1,7 @@
-
 package view;
 
 //Importando os componentes
 import java.awt.BorderLayout;
-import controller.ClienteController;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -13,14 +11,16 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
 import javax.swing.JTextField;
+
+import controller.ClienteController;
 //Declarando a classe na janela
 public class ClienteView extends JFrame{
 	private ClienteController clienteController;
 
-	public ClienteView() { // construtor da view OS.
+	public ClienteView() { // construtor da view Cliente.
         super("Cadastro de cliente");
-        
         
         
         criaFormulario();
@@ -54,7 +54,7 @@ public class ClienteView extends JFrame{
         painelCadastro.add(nomeLabel);
         painelCadastro.add(nomeField);
         
-        JLabel usuarioLabel = new JLabel("Documento");
+        JLabel usuarioLabel = new JLabel("CPF/CNPJ");
         JTextField usuarioField = new JTextField(20);
         painelCadastro.add(usuarioLabel);
         painelCadastro.add(usuarioField);
@@ -190,22 +190,6 @@ public class ClienteView extends JFrame{
 				//estado
 				String uf   = estadoField .getText();
 				System.out.println(uf);
-				
-			/* clienteController.validaCampos(nome);
-				clienteController.validaCampos(documento);
-				clienteController.validaCampos(rg);
-				clienteController.validaCampos(data);
-				clienteController.validaCampos(celular);
-				clienteController.validaCampos(email);
-				clienteController.validaCampos(contato);
-				clienteController.validaCampos(cep);
-				clienteController.validaCampos(endereco);
-				clienteController.validaCampos(numero);
-				clienteController.validaCampos(complemento);
-				clienteController.validaCampos(bairro);
-				clienteController.validaCampos(cidade);
-				clienteController.validaCampos(estado);
-			*/
 			
 			}
         	
@@ -215,9 +199,10 @@ public class ClienteView extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				System.out.println("Cliquei no botao cancelar");
+				
+				//System.out.println("Cliquei no botao cancelar");
 			}
+				
         	
         });
 //Adicionando os paineis em suas respectivas posições        

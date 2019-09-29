@@ -24,8 +24,10 @@ public class PrincipalView extends JFrame implements ActionListener{
 		this.construirUsuario();
 		this.setJMenuBar(menuBar);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(1366,768);
-		this.setVisible(true);		
+		//setExtendedState(MAXIMIZED_BOTH);
+		this.setSize(1024,500);
+		this.setVisible(true);
+	  	this.setLocationRelativeTo(null);
 	}
 	
 	//método para inicializar
