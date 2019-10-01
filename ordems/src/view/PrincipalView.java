@@ -15,13 +15,16 @@ public class PrincipalView extends JFrame implements ActionListener{
 	JMenu menu;
 	JMenuItem menuCliente;
 	JMenuItem menuUsuario;
+	JMenuItem menuOs;
 	
 	//construtor
 	public PrincipalView() {
 		this.inicializarCliente();
 		this.inicializarUsuario();
+		this.inicializarOs();
 		this.construirCliente();
 		this.construirUsuario();
+		this.construirOs();
 		this.setJMenuBar(menuBar);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//setExtendedState(MAXIMIZED_BOTH);
@@ -48,6 +51,15 @@ public class PrincipalView extends JFrame implements ActionListener{
 		
 	}
 	
+	public void inicializarOs() {
+		menuBar = new JMenuBar();
+		menu = new JMenu("Cadastro");
+		menuOs = new JMenuItem("Ordem de Serviço");
+		menuOs.addActionListener(this);
+		menuOs.setActionCommand("cadastrarOs");
+		
+	}
+	
 	//método para construir os menus na janela
 	public void construirCliente() {
 		
@@ -58,6 +70,12 @@ public class PrincipalView extends JFrame implements ActionListener{
 	public void construirUsuario() {
 		
 		menu.add(menuUsuario);
+		menuBar.add(menu);
+	}	
+	
+	public void construirOs() {
+		
+		menu.add(menuOs);
 		menuBar.add(menu);
 	}
 
@@ -77,6 +95,14 @@ public class PrincipalView extends JFrame implements ActionListener{
 			UsuarioView uv = new UsuarioView();
 			this.getContentPane().removeAll();
 			this.getContentPane().add(uv);
+			this.revalidate();
+		    this.repaint();
+		}
+
+		if(e.getActionCommand().equals("cadastrarOs")) {
+			OsView os = new OsView();
+			this.getContentPane().removeAll();
+			this.getContentPane().add(os);
 			this.revalidate();
 		    this.repaint();
 		}

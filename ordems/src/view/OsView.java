@@ -17,7 +17,7 @@ import javax.swing.JTextField;
 public class OsView extends JFrame{
 	
 	public OsView() { // construtor da view OS.
-		super("OrdemS : Cadastro de Ordens de Serviços");
+		super("Cadastro de Ordens de Serviços");
 		
 		criaFormulario();
 	}
