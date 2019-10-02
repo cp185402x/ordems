@@ -17,11 +17,11 @@ if(isset($_POST["id_faq"]))
 		$output["descricao"] = $row["descricao"];
 		if($row["image"] != '')
 		{
-			$output['user_image'] = '<img src="upload/'.$row["image"].'" class="img-thumbnail" width="50" height="35" /><input type="hidden" name="hidden_user_image" value="'.$row["image"].'" />';
+			$output['image'] = '<img src="upload/'.$row["image"].'" class="img-thumbnail" width="50" height="35" /><input type="hidden" name="hidden_image" value="'.$row["image"].'" />';
 		}
 		else
 		{
-			$output['user_image'] = '<input type="hidden" name="hidden_user_image" value="" />';
+			$output['image'] = '<input type="hidden" name="hidden_image" value="" />';
 		}
 	}
 	echo json_encode($output);

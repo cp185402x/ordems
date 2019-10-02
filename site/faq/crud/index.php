@@ -37,7 +37,7 @@
 					<button type="button" id="add_button" data-toggle="modal" data-target="#userModal" class="btn btn-info btn-lg">+ Adicionar FAQ</button>
 				</div>
 				<br /><br />
-				<table id="user_data" class="table table-bordered table-striped">
+				<table id="data_user" class="table table-bordered table-striped">
 					<thead>
 						<tr>
 							<th width="10%">#ID</th>
@@ -94,20 +94,21 @@ $(document).ready(function(){
 		$('#user_uploaded_image').html('');
 	});
 	
-	var dataTable = $('#user_data').DataTable({
+	var dataTable = $('#data_user').DataTable({
 		"processing":true,
 		"serverSide":true,
 		"order":[],
 		"ajax":{
 			url:"fetch.php",
 			type:"POST"
-		},
-		"columnDefs":[
-			{
-				"targets":[0, 3, 4],
-				"orderable":false,
-			},
-		],
+		}
+		//,
+		//"columnDefs":[
+		//	{
+		//		"targets":[0, 3, 4],
+		//		"orderable":false,
+		//	},
+		//],
 
 	});
 
@@ -121,7 +122,7 @@ $(document).ready(function(){
 			if(jQuery.inArray(extension, ['png','jpg','jpeg']) == -1)
 			{
 				alert("Arquivo de imagem inválido!");
-				$('#user_image').val('');
+				$('#image').val('');
 				return false;
 			}
 		}	
@@ -149,11 +150,11 @@ $(document).ready(function(){
 	});
 	
 	$(document).on('click', '.update', function(){
-		var faq_id = $(this).attr("id_faq");
+		var id_faq = $(this).attr("id_faq");
 		$.ajax({
 			url:"fetch_single.php",
 			method:"POST",
-			data:{faq_id:faq_id},
+			data:{id_faq:id_faq},
 			dataType:"json",
 			success:function(data)
 			{
@@ -161,8 +162,8 @@ $(document).ready(function(){
 				$('#titulo').val(data.titulo);
 				$('#descricao').val(data.descricao);
 				$('.modal-title').text("Editar este FAQ");
-				$('#id_faq').val(faq_id);
-				$('#user_uploaded_image').html(data.user_image);
+				$('#id_faq').val(id_faq);
+				$('#user_uploaded_image').html(data.image);
 				$('#action').val("Salvar");
 				$('#operation').val("Edit");
 			}
@@ -170,13 +171,13 @@ $(document).ready(function(){
 	});
 	
 	$(document).on('click', '.delete', function(){
-		var faq_id = $(this).attr("id_faq");
+		var id_faq = $(this).attr("id_faq");
 		if(confirm("Tem certeza que deseja deletar este FAQ?"))
 		{
 			$.ajax({
 				url:"delete.php",
 				method:"POST",
-				data:{faq_id:faq_id},
+				data:{id_faq:id_faq},
 				success:function(data)
 				{
 					alert(data);
