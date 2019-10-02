@@ -1,28 +1,32 @@
 <?php
 
-include('db.php');
+include('../bd_conectar.php');
 include("function.php");
 
-if(isset($_POST["user_id"]))
+if(isset($_POST["id_faq"]))
 {
-	$image = get_image_name($_POST["user_id"]);
+	$image = get_image_name($_POST["id_faq"]);
 	if($image != '')
 	{
 		unlink("upload/" . $image);
 	}
+	echo "aqui";
+	exit;
 	$statement = $connection->prepare(
-		"DELETE FROM users WHERE id = :id"
+		"DELETE FROM faq WHERE id_faq = :id_faq"
 	);
 	$result = $statement->execute(
 		array(
-			':id'	=>	$_POST["user_id"]
+			':id_faq'	=>	$_POST["id_faq"]
 		)
 	);
 	
 	if(!empty($result))
 	{
-		echo 'Data Deleted';
+		echo 'Faq Deletada';
+		
 	}
+	else echo 'Nao foi possivel deletar';
 }
 
 

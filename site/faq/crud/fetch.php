@@ -1,4 +1,7 @@
 <?php
+
+
+
 include('../bd_conectar.php');
 include('function.php');
 $query = '';
@@ -17,10 +20,14 @@ else
 {
 	$query .= 'ORDER BY id_faq DESC ';
 }
-if($_POST["length"] != -1)
+if(isset($_POST["length"]) != -1)
 {
-	$query .= 'LIMIT ' . $_POST['start'] . ', ' . $_POST['length'];
+	//$query .= 'LIMIT ' . $_POST['start'] . ', ' . $_POST['length'];
 }
+
+
+
+
 $statement = $connection->prepare($query);
 $statement->execute();
 $result = $statement->fetchAll();
