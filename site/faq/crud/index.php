@@ -1,16 +1,12 @@
-
-
-
-
- <html>
+<html>
 	<head>
-		<title>Ordem-S : Cadastro de FAQ</title>
-		<script src="js/jquery.min.js"></script>
-		<link rel="stylesheet" href="css/bootstrap.min.css" />		
-		<link rel="css/dataTables.bootstrap.min.css" />
-		<script src="js/jquery.dataTables.min.js"></script>
-		<script src="js/dataTables.bootstrap.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
+		<title>FAQ PROJETO ORDEMS</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+		<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+		<script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>		
+		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 		<style>
 			body
 			{
@@ -31,18 +27,22 @@
 	</head>
 	<body>
 		<div class="container box">
-			<h1 align="center">ORDEM-S FAQ</h1>
+			<h2 align="center">FAQ PROJETO ORDEMS</h2>
+			<br />
 			<div class="table-responsive">
+				<br />
 				<div align="right">
-					<button type="button" id="add_button" data-toggle="modal" data-target="#userModal" class="btn btn-info btn-lg">+ Adicionar FAQ</button>
+					<button type="button" id="add_button" data-toggle="modal" data-target="#faqModal" class="btn btn-info btn-lg"> + Novo FAQ</button>
 				</div>
 				<br /><br />
-				<table id="data_user" class="table table-bordered table-striped">
+				<table id="faq_data" class="table table-bordered table-striped">
 					<thead>
 						<tr>
-							<th width="10%">#ID</th>
-							<th width="35%">TITULO</th>
+							<th width="10%">IMAGEM</th>
+							<th width="10%">DATA</th>
+							<th width="35%">TÍTULO</th>
 							<th width="35%">DESCRIÇÃO</th>
+							<th width="10%">TIPO</th>
 							<th width="10%">EDITAR</th>
 							<th width="10%">DELETAR</th>
 						</tr>
@@ -54,27 +54,44 @@
 	</body>
 </html>
 
-<div id="userModal" class="modal fade">
+<div id="faqModal" class="modal fade">
 	<div class="modal-dialog">
-		<form method="post" id="faq_form" enctype="multipart/form-data">
+		<form method="post" id="user_form" enctype="multipart/form-data">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Adicionar novo FAQ</h4>
+					<h4 class="modal-title">Cadastar novo FAQ</h4>
 				</div>
 				<div class="modal-body">
-					<label>Digite o título</label>
+					<label>Tipo</label>
+					<select id="tipoFaq" class="custom-select custom-select-lg mb-3">
+					  <option selected>Selecione um tipo</option>
+					  <option value="1">Atendimento</option>
+					  <option value="2">Cliente</option>
+					  <option value="3">Fornecedor</option>
+					  <option value="4">OS</option>
+					  <option value="5">Usuários</option>
+					</select>
+					<br />
+					<label>Título</label>
 					<input type="text" name="titulo" id="titulo" class="form-control" />
 					<br />
-					<label>Digite o texto</label>
-					<input type="text" name="descricao" id="descricao" class="form-control" />
+					<label>Descrição</label>
+					<textarea class="form-control" name="descricao" id="descricao" rows="4"></textarea>
+					<!-- <input type="textarea" name="descricao" id="descricao" class="form-control" /> -->
 					<br />
-					<label>Selecionar uma imagem</label>
-					<input type="file" name="image" id="image" />
-					<span id="image"></span>
+					<label>Imagem</label>
+					<div class="custom-file">
+					  <input type="file" class="custom-file-input" name="faq_image" id="faq_uploaded_image">
+					  <label class="custom-file-label" for="customFile">Selecione uma imagem</label>
+					</div>
+					<!--
+					<input type="file" name="faq_image" id="faq_image" />
+					<span id="faq_uploaded_image"></span>
+					-->
 				</div>
 				<div class="modal-footer">
-					<input type="hidden" name="id_faq" id="id_faq" />
+					<input type="hidden" name="faq_id" id="faq_id" />
 					<input type="hidden" name="operation" id="operation" />
 					<input type="submit" name="action" id="action" class="btn btn-success" value="Add" />
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -87,42 +104,42 @@
 <script type="text/javascript" language="javascript" >
 $(document).ready(function(){
 	$('#add_button').click(function(){
-		$('#faq_form')[0].reset();
-		$('.modal-title').text("Cadastrar novo FAQ");
+		$('#user_form')[0].reset();
+		$('.modal-title').text("Adicionar FAQ");
 		$('#action').val("Salvar");
 		$('#operation').val("Add");
-		$('#user_uploaded_image').html('');
+		$('#faq_uploaded_image').html('');
 	});
 	
-	var dataTable = $('#data_user').DataTable({
+	var dataTable = $('#faq_data').DataTable({
 		"processing":true,
 		"serverSide":true,
 		"order":[],
 		"ajax":{
 			url:"fetch.php",
 			type:"POST"
-		}
-		//,
-		//"columnDefs":[
-		//	{
-		//		"targets":[0, 3, 4],
-		//		"orderable":false,
-		//	},
-		//],
+		},
+		"columnDefs":[
+			{
+				"targets":[0, 3, 4],
+				"orderable":false,
+			},
+		],
 
 	});
 
 	$(document).on('submit', '#faq_form', function(event){
 		event.preventDefault();
+		var tipoFaq = $('#tipoFaq').val();
 		var titulo = $('#titulo').val();
 		var descricao = $('#descricao').val();
-		var extension = $('#image').val().split('.').pop().toLowerCase();
+		var extension = $('#faq_image').val().split('.').pop().toLowerCase();
 		if(extension != '')
 		{
 			if(jQuery.inArray(extension, ['png','jpg','jpeg']) == -1)
 			{
-				alert("Arquivo de imagem inválido!");
-				$('#image').val('');
+				alert("Arquuivo de imagem inválido!");
+				$('#faq_image').val('');
 				return false;
 			}
 		}	
@@ -138,46 +155,46 @@ $(document).ready(function(){
 				{
 					alert(data);
 					$('#faq_form')[0].reset();
-					$('#userModal').modal('hide');
+					$('#faqModal').modal('hide');
 					dataTable.ajax.reload();
 				}
 			});
 		}
 		else
 		{
-			alert("Todos os campos são obrigatórios!");
+			alert("Campos obrigatórios");
 		}
 	});
 	
 	$(document).on('click', '.update', function(){
-		var id_faq = $(this).attr("id_faq");
+		var faq_id = $(this).attr("id");
 		$.ajax({
 			url:"fetch_single.php",
 			method:"POST",
-			data:{id_faq:id_faq},
+			data:{faq_id:faq_id},
 			dataType:"json",
 			success:function(data)
 			{
-				$('#userModal').modal('show');
+				$('#faqModal').modal('show');
 				$('#titulo').val(data.titulo);
 				$('#descricao').val(data.descricao);
-				$('.modal-title').text("Editar este FAQ");
-				$('#id_faq').val(id_faq);
-				$('#user_uploaded_image').html(data.image);
-				$('#action').val("Salvar");
+				$('.modal-title').text("Editar FAQ");
+				$('#faq_id').val(faq_id);
+				$('#faq_uploaded_image').html(data.faq_image);
+				$('#action').val("Editar");
 				$('#operation').val("Edit");
 			}
 		})
 	});
 	
 	$(document).on('click', '.delete', function(){
-		var id_faq = $(this).attr("id_faq");
+		var faq_id = $(this).attr("id");
 		if(confirm("Tem certeza que deseja deletar este FAQ?"))
 		{
 			$.ajax({
 				url:"delete.php",
 				method:"POST",
-				data:{id_faq:id_faq},
+				data:{faq_id:faq_id},
 				success:function(data)
 				{
 					alert(data);

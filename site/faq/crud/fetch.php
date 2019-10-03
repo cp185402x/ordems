@@ -1,8 +1,5 @@
 <?php
-
-
-
-include('../bd_conectar.php');
+include('db.php');
 include('function.php');
 $query = '';
 $output = array();
@@ -20,14 +17,10 @@ else
 {
 	$query .= 'ORDER BY id_faq DESC ';
 }
-if(isset($_POST["length"]) != -1)
+if($_POST["length"] != -1)
 {
-	//$query .= 'LIMIT ' . $_POST['start'] . ', ' . $_POST['length'];
+	$query .= 'LIMIT ' . $_POST['start'] . ', ' . $_POST['length'];
 }
-
-
-
-
 $statement = $connection->prepare($query);
 $statement->execute();
 $result = $statement->fetchAll();
@@ -46,10 +39,12 @@ foreach($result as $row)
 	}
 	$sub_array = array();
 	$sub_array[] = $image;
+	$sub_array[] = $row["data"];
 	$sub_array[] = $row["titulo"];
 	$sub_array[] = $row["descricao"];
-	$sub_array[] = '<button type="button" name="update" id="'.$row["id_faq"].'" class="btn btn-warning btn-xs update">Update</button>';
-	$sub_array[] = '<button type="button" name="delete" id="'.$row["id_faq"].'" class="btn btn-danger btn-xs delete">Delete</button>';
+	$sub_array[] = $row["tipo_faq"];
+	$sub_array[] = '<button type="button" name="update" id="'.$row["id"].'" class="btn btn-warning btn-xs update">Editar</button>';
+	$sub_array[] = '<button type="button" name="delete" id="'.$row["id"].'" class="btn btn-danger btn-xs delete">Deletar</button>';
 	$data[] = $sub_array;
 }
 $output = array(

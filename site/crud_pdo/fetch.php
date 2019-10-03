@@ -6,8 +6,8 @@ $output = array();
 $query .= "SELECT * FROM users ";
 if(isset($_POST["search"]["value"]))
 {
-	$query .= 'WHERE first_name LIKE "%'.$_POST["search"]["value"].'%" ';
-	$query .= 'OR last_name LIKE "%'.$_POST["search"]["value"].'%" ';
+	$query .= 'WHERE titulo LIKE "%'.$_POST["search"]["value"].'%" ';
+	$query .= 'OR descricao LIKE "%'.$_POST["search"]["value"].'%" ';
 }
 if(isset($_POST["order"]))
 {
@@ -39,10 +39,10 @@ foreach($result as $row)
 	}
 	$sub_array = array();
 	$sub_array[] = $image;
-	$sub_array[] = $row["first_name"];
-	$sub_array[] = $row["last_name"];
-	$sub_array[] = '<button type="button" name="update" id="'.$row["id"].'" class="btn btn-warning btn-xs update">Update</button>';
-	$sub_array[] = '<button type="button" name="delete" id="'.$row["id"].'" class="btn btn-danger btn-xs delete">Delete</button>';
+	$sub_array[] = $row["titulo"];
+	$sub_array[] = $row["descricao"];
+	$sub_array[] = '<button type="button" name="update" id="'.$row["id"].'" class="btn btn-warning btn-xs update">Editar</button>';
+	$sub_array[] = '<button type="button" name="delete" id="'.$row["id"].'" class="btn btn-danger btn-xs delete">Deletar</button>';
 	$data[] = $sub_array;
 }
 $output = array(

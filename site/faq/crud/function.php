@@ -2,20 +2,20 @@
 
 function upload_image()
 {
-	if(isset($_FILES["image"]))
+	if(isset($_FILES["faq_image"]))
 	{
-		$extension = explode('.', $_FILES['image']['name']);
+		$extension = explode('.', $_FILES['faq_image']['name']);
 		$new_name = rand() . '.' . $extension[1];
 		$destination = './upload/' . $new_name;
-		move_uploaded_file($_FILES['image']['tmp_name'], $destination);
+		move_uploaded_file($_FILES['faq_image']['tmp_name'], $destination);
 		return $new_name;
 	}
 }
 
-function get_image_name($id_faq)
+function get_image_name($faq_id)
 {
-	include('../bd_conectar.php');
-	$statement = $connection->prepare("SELECT * FROM faq WHERE id_faq = '$id_faq'");
+	include('db.php');
+	$statement = $connection->prepare("SELECT image FROM faq WHERE id_faq = '$faq_id'");
 	$statement->execute();
 	$result = $statement->fetchAll();
 	foreach($result as $row)
@@ -26,7 +26,7 @@ function get_image_name($id_faq)
 
 function get_total_all_records()
 {
-	include('../bd_conectar.php');
+	include('db.php');
 	$statement = $connection->prepare("SELECT * FROM faq");
 	$statement->execute();
 	$result = $statement->fetchAll();

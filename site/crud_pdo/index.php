@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>Webslesson Demo - PHP PDO Ajax CRUD with Data Tables and Bootstrap Modals</title>
+		<title>FAQ PROJETO ORDEMS</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 		<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
@@ -27,15 +27,15 @@
 	</head>
 	<body>
 		<div class="container box">
-			<h1 align="center">FAQ PROJETO ORDEMS</h1>
+			<h2 align="center">FAQ PROJETO ORDEMS</h2>
 			<br />
 			<div class="table-responsive">
 				<br />
 				<div align="right">
-					<button type="button" id="add_button" data-toggle="modal" data-target="#userModal" class="btn btn-info btn-lg">Adicionar</button>
+					<button type="button" id="add_button" data-toggle="modal" data-target="#faqModal" class="btn btn-info btn-lg">Adicionar</button>
 				</div>
 				<br /><br />
-				<table id="user_data" class="table table-bordered table-striped">
+				<table id="faq_data" class="table table-bordered table-striped">
 					<thead>
 						<tr>
 							<th width="10%">IMAGE</th>
@@ -52,9 +52,9 @@
 	</body>
 </html>
 
-<div id="userModal" class="modal fade">
+<div id="faqModal" class="modal fade">
 	<div class="modal-dialog">
-		<form method="post" id="user_form" enctype="multipart/form-data">
+		<form method="post" id="faq_form" enctype="multipart/form-data">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -62,17 +62,17 @@
 				</div>
 				<div class="modal-body">
 					<label>Titulo</label>
-					<input type="text" name="first_name" id="first_name" class="form-control" />
+					<input type="text" name="titulo" id="titulo" class="form-control" />
 					<br />
 					<label>Descrição</label>
-					<input type="text" name="last_name" id="last_name" class="form-control" />
+					<input type="text" name="descricao" id="descricao" class="form-control" />
 					<br />
 					<label>Imagem</label>
-					<input type="file" name="user_image" id="user_image" />
-					<span id="user_uploaded_image"></span>
+					<input type="file" name="faq_image" id="faq_image" />
+					<span id="faq_uploaded_image"></span>
 				</div>
 				<div class="modal-footer">
-					<input type="hidden" name="user_id" id="user_id" />
+					<input type="hidden" name="faq_id" id="faq_id" />
 					<input type="hidden" name="operation" id="operation" />
 					<input type="submit" name="action" id="action" class="btn btn-success" value="Add" />
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -85,14 +85,14 @@
 <script type="text/javascript" language="javascript" >
 $(document).ready(function(){
 	$('#add_button').click(function(){
-		$('#user_form')[0].reset();
+		$('#faq_form')[0].reset();
 		$('.modal-title').text("Adicionar FAQ");
 		$('#action').val("Salvar");
 		$('#operation').val("Add");
-		$('#user_uploaded_image').html('');
+		$('#faq_uploaded_image').html('');
 	});
 	
-	var dataTable = $('#user_data').DataTable({
+	var dataTable = $('#faq_data').DataTable({
 		"processing":true,
 		"serverSide":true,
 		"order":[],
@@ -109,17 +109,17 @@ $(document).ready(function(){
 
 	});
 
-	$(document).on('submit', '#user_form', function(event){
+	$(document).on('submit', '#faq_form', function(event){
 		event.preventDefault();
-		var firstName = $('#first_name').val();
-		var lastName = $('#last_name').val();
-		var extension = $('#user_image').val().split('.').pop().toLowerCase();
+		var firstName = $('#titulo').val();
+		var lastName = $('#descricao').val();
+		var extension = $('#faq_image').val().split('.').pop().toLowerCase();
 		if(extension != '')
 		{
 			if(jQuery.inArray(extension, ['png','jpg','jpeg']) == -1)
 			{
 				alert("Arquuivo de imagem inválido!");
-				$('#user_image').val('');
+				$('#faq_image').val('');
 				return false;
 			}
 		}	
@@ -134,8 +134,8 @@ $(document).ready(function(){
 				success:function(data)
 				{
 					alert(data);
-					$('#user_form')[0].reset();
-					$('#userModal').modal('hide');
+					$('#faq_form')[0].reset();
+					$('#faqModal').modal('hide');
 					dataTable.ajax.reload();
 				}
 			});
@@ -147,20 +147,20 @@ $(document).ready(function(){
 	});
 	
 	$(document).on('click', '.update', function(){
-		var user_id = $(this).attr("id");
+		var faq_id = $(this).attr("id");
 		$.ajax({
 			url:"fetch_single.php",
 			method:"POST",
-			data:{user_id:user_id},
+			data:{faq_id:faq_id},
 			dataType:"json",
 			success:function(data)
 			{
-				$('#userModal').modal('show');
-				$('#first_name').val(data.first_name);
-				$('#last_name').val(data.last_name);
+				$('#faqModal').modal('show');
+				$('#titulo').val(data.titulo);
+				$('#descricao').val(data.descricao);
 				$('.modal-title').text("Editar FAQ");
-				$('#user_id').val(user_id);
-				$('#user_uploaded_image').html(data.user_image);
+				$('#faq_id').val(faq_id);
+				$('#faq_uploaded_image').html(data.faq_image);
 				$('#action').val("Editar");
 				$('#operation').val("Edit");
 			}
@@ -168,13 +168,13 @@ $(document).ready(function(){
 	});
 	
 	$(document).on('click', '.delete', function(){
-		var user_id = $(this).attr("id");
+		var faq_id = $(this).attr("id");
 		if(confirm("Tem certeza que deseja deletar este FAQ?"))
 		{
 			$.ajax({
 				url:"delete.php",
 				method:"POST",
-				data:{user_id:user_id},
+				data:{faq_id:faq_id},
 				success:function(data)
 				{
 					alert(data);

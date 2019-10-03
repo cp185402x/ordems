@@ -1,15 +1,16 @@
 <?php
+// Incluindo arquivo de conexão
+require_once "../conexao/conecta.php";
 
-$connect = mysqli_connect("localhost", "root", "", "ordems_db");
+//$connect = mysqli_connect("localhost", "root", "", "ordems_db");
 $output = '';
 if(isset($_POST["query"]))
 {
  $search = mysqli_real_escape_string($connect, $_POST["query"]);
  $query = "
-  SELECT os.id_os, os.data_os, os.tipo, os.modelo, os.info_cliente, cliente.nm_cliente, os_status.status FROM os JOIN cliente, os_status 
+  SELECT os.id_os, os.data_os, os.tipo, os.modelo, os.info_cliente, cliente.nm_cliente, os_status.status FROM os INNER JOIN cliente, os_status 
   WHERE id_os = '".$search."'
-  OR modelo LIKE '%".$search."%' 
-  OR info_cliente LIKE '%".$search."%'
+  OR rg_ie LIKE '%".$search."%'
   ORDER BY id_os DESC
   LIMIT 10
  ";

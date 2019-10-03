@@ -1,12 +1,12 @@
 <?php
-include('../bd_conectar.php');
+include('db.php');
 include('function.php');
-if(isset($_POST["id_faq"]))
+if(isset($_POST["faq_id"]))
 {
 	$output = array();
 	$statement = $connection->prepare(
-		"SELECT * FROM faq
-		WHERE id_faq = '".$_POST["id_faq"]."' 
+		"SELECT * FROM users 
+		WHERE id = '".$_POST["faq_id"]."' 
 		LIMIT 1"
 	);
 	$statement->execute();
@@ -17,11 +17,11 @@ if(isset($_POST["id_faq"]))
 		$output["descricao"] = $row["descricao"];
 		if($row["image"] != '')
 		{
-			$output['image'] = '<img src="upload/'.$row["image"].'" class="img-thumbnail" width="50" height="35" /><input type="hidden" name="hidden_image" value="'.$row["image"].'" />';
+			$output['faq_image'] = '<img src="upload/'.$row["image"].'" class="img-thumbnail" width="50" height="35" /><input type="hidden" name="hidden_faq_image" value="'.$row["image"].'" />';
 		}
 		else
 		{
-			$output['image'] = '<input type="hidden" name="hidden_image" value="" />';
+			$output['faq_image'] = '<input type="hidden" name="hidden_faq_image" value="" />';
 		}
 	}
 	echo json_encode($output);

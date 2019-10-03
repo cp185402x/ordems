@@ -1,12 +1,8 @@
 <?php
 
 require_once "i_topo.php";
-
-
-require_once "bd_conectar-mysqli.php";
-
-
-//require_once "i_busca.php"
+require_once "bd_conectar.php";
+require_once "i_busca.php"
 ?>
 
 
@@ -14,11 +10,11 @@ require_once "bd_conectar-mysqli.php";
 <section class="cd-faq js-cd-faq container max-width-md margin-top-lg margin-bottom-lg">
 	<ul class="cd-faq__categories">
 		<li><a class="cd-faq__category cd-faq__category-selected truncate" href="#basics">Atendimento</a></li>
-		<li><a class="cd-faq__category truncate" href="#mobile">OS</a></li>
-		<li><a class="cd-faq__category truncate" href="#account">Usuarios</a></li>
-		<li><a class="cd-faq__category truncate" href="#payments">Clientes</a></li>
-		<li><a class="cd-faq__category truncate" href="#privacy">Frequentes</a></li>
-		<li><a class="cd-faq__category truncate" href="#delivery">Visualizacao</a></li>
+		<li><a class="cd-faq__category truncate" href="#os">OS</a></li>
+		<li><a class="cd-faq__category truncate" href="#usuario">Usuários</a></li>
+		<li><a class="cd-faq__category truncate" href="#cliente">Clientes</a></li>
+		<li><a class="cd-faq__category truncate" href="#frequente">Frequentes</a></li>
+		<li><a class="cd-faq__category truncate" href="#visualizacao">Visualização</a></li>
 	</ul> <!-- cd-faq__categories -->
 
 	<div class="cd-faq__items">
@@ -60,7 +56,7 @@ require_once "bd_conectar-mysqli.php";
 </ul> <!-- cd-faq__group -->
 			
 
-		<ul id="mobile" class="cd-faq__group">
+		<ul id="os" class="cd-faq__group">
 			<li class="cd-faq__title"><h2>Ordem de serviço</h2></li>
 
 			<?php
@@ -98,7 +94,7 @@ require_once "bd_conectar-mysqli.php";
 			
 		</ul> <!-- cd-faq__group -->
 
-		<ul id="account" class="cd-faq__group">
+		<ul id="usuario" class="cd-faq__group">
 			<li class="cd-faq__title"><h2>Usuarios</h2></li>
 			
 			<?php
@@ -132,7 +128,7 @@ require_once "bd_conectar-mysqli.php";
 
 				?>
 
-		<ul id="payments" class="cd-faq__group">
+		<ul id="cliente" class="cd-faq__group">
 			<li class="cd-faq__title"><h2>Clientes</h2></li>
 			<?php
 
@@ -165,7 +161,7 @@ require_once "bd_conectar-mysqli.php";
 
 				?>
 
-		<ul id="privacy" class="cd-faq__group">
+		<ul id="frequente" class="cd-faq__group">
 			<li class="cd-faq__title"><h2>Frequentes</h2></li>
 			<?php
 
@@ -199,7 +195,7 @@ require_once "bd_conectar-mysqli.php";
 				?>
 
 
-		<ul id="delivery" class="cd-faq__group">
+		<ul id="visualizacao" class="cd-faq__group">
 			<li class="cd-faq__title"><h2>Visualizacao</h2></li>
 			<?php
 
