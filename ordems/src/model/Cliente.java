@@ -6,11 +6,13 @@ public class Cliente {
     private String nome;
     private String documento;
     private String telefonecel;
+    private String telefoneres;
     private String pessoa;
     private String rgie;
     private String email;
     private int dataNascimento;
     private Endereco endereco;
+    private int tipo;
     
     //Construtor
     public Cliente(){
@@ -18,61 +20,87 @@ public class Cliente {
     
     }
 
-	private String getNome() {
+	public String getNome() {
 		return nome;
 	}
 
-	private void setNome(String nome) {
+	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-	private String getDocumento() {
+	public String getDocumento() {
 		return documento;
 	}
 
-	private void setDocumento(String documento) {
+	public void setDocumento(String documento) {
 		this.documento = documento;
 	}
 
-	private String getTelefonecel() {
+	public String getTelefonecel() {
 		return telefonecel;
 	}
 
-	private void setTelefonecel(String telefonecel) {
+	public void setTelefonecel(String telefonecel) {
 		this.telefonecel = telefonecel;
 	}
 
-	private String getPessoa() {
+	public String getPessoa() {
 		return pessoa;
 	}
 
-	private void setPessoa(String pessoa) {
+	public void setPessoa(String pessoa) {
 		this.pessoa = pessoa;
 	}
 
-	private String getRgie() {
+	public String getRgie() {
 		return rgie;
 	}
 
-	private void setRgie(String rgie) {
+	public void setRgie(String rgie) {
 		this.rgie = rgie;
 	}
 
-	private String getEmail() {
+	public String getEmail() {
 		return email;
 	}
 
-	private void setEmail(String email) {
+	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	private int getDataNascimento() {
+	public int getDataNascimento() {
 		return dataNascimento;
 	}
 
-	private void setDataNascimento(int dataNascimento) {
+	public void setDataNascimento(int dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+	public int getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(int tipo) {
+		this.tipo = tipo;
+	}
+
+	public String getTelefoneres() {
+		return telefoneres;
+	}
+
+	public void setTelefoneres(String telefoneres) {
+		this.telefoneres = telefoneres;
+	}
+	
+	
     
 }
 

@@ -1,6 +1,12 @@
 package controller;
 
+import java.sql.SQLException;
+
+import javax.swing.JOptionPane;
+
+import dao.ClienteDAO;
 import dao.Conexao;
+import model.Cliente;
 
 
 public class ClienteController {
@@ -37,6 +43,22 @@ public class ClienteController {
 
 	public void setBd(Conexao bd) {
 		this.bd = bd;
+	}
+
+
+	public boolean cadastrarCliente(Cliente c) throws SQLException {
+		// toda validação dos campos
+		if(true) {
+			ClienteDAO clienteDAO = new ClienteDAO();
+			clienteDAO.inserir(c);
+			
+			return true;
+		}
+		else {
+			return false;
+		}
+		
+		
 	}
 
 }
