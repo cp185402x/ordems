@@ -1,5 +1,6 @@
 package dao;
 
+import java.awt.List;
 import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
@@ -53,11 +54,62 @@ public class ClienteDAO {
 		st.execute();
 		
 		conn.close();
-		
+	//----------------	
 		
 	}
 	
+	//metodo consultar
 	
-
-
+	public List<Cliente> getCliente() {
+        Connection conn = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+        ArrayList<Cliente> cliente = new ArrayList<Cliente>();
+        try {
+            conn = Conexao.getConexao();
+            pstm = conn.prepareStatement(LIST);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                Cliente cliente = new Cliente();
+ 
+                cliente.setId(rs.getInt("id_cliente"));
+                cliente.setNome(rs.getString("nm_cliente"));
+                cliente.setCelular(rs.getString("celular"));
+                cliente.setEmail(rs.getString("email"));
+                cliente.add(cliente);
+            }
+            Conexao.fechaConexao(conn, pstm, rs);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao listar Cliente" + e.getMessage());
+        }
+        return cliente;
+    }
+	
+	
+ 
+    public Cliente getClienteById(int id_cliente) {
+        Connection conn = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+        Cliente cliente = new Cliente();
+        try {
+            conn = Conexao.getConexao();
+            pstm = conn.prepareStatement(LISTBYID);
+            pstm.setInt(1, id_cliente);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                cliente.setId(rs.getInt("id_cliente"));
+                cliente.setNome(rs.getString("nm_cliente"));
+                cliente.setCelular(rs.getString("celular"));
+                cliente.setEmail(rs.getString("email"));
+            }
+            Conexao.fechaConexao(conn, pstm, rs);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao listar cliente" + e.getMessage());
+        }
+        return cliente;
+    }
 }
+
+
+
