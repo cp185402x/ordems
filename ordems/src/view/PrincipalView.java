@@ -14,73 +14,62 @@ public class PrincipalView extends JFrame implements ActionListener{
 	JMenuBar menuBar;
 	JMenu menu;
 	JMenuItem menuCliente;
-	JMenuItem menuUsuario;
+	JMenuItem menuFornecedor;
 	JMenuItem menuOs;
+	JMenuItem menuPeca;
+	JMenuItem menuUsuario;
 	
 	//construtor
 	public PrincipalView() {
-		this.inicializarCliente();
-		this.inicializarUsuario();
-		this.inicializarOs();
-		this.construirCliente();
-		this.construirUsuario();
-		this.construirOs();
+		this.inicializarCadastro();
+		this.construirCadastro();
 		this.setJMenuBar(menuBar);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//setExtendedState(MAXIMIZED_BOTH);
-		this.setSize(1024,500);
-		this.setVisible(true);
+		this.setSize(1024,700);
 	  	this.setLocationRelativeTo(null);
+		this.setVisible(true);
 	}
 	
 	//método para inicializar
-	public void inicializarCliente() {
+	public void inicializarCadastro() {
 		menuBar = new JMenuBar();
 		menu = new JMenu("Cadastro");
+		
 		menuCliente = new JMenuItem("Cliente");
 		menuCliente.addActionListener(this);
 		menuCliente.setActionCommand("cadastrarCliente");
-	}
-		
-	public void inicializarUsuario() {
-		menuBar = new JMenuBar();
-		menu = new JMenu("Cadastro");
+	
+		menuFornecedor = new JMenuItem("Fornecedor");
+		menuFornecedor.addActionListener(this);
+		menuFornecedor.setActionCommand("cadastrarFornecedor");
+	
+		menuOs = new JMenuItem("Ordem de Serviço");
+		menuOs.addActionListener(this);
+		menuOs.setActionCommand("cadastrarOs");
+	
+		menuPeca = new JMenuItem("Peça");
+		menuPeca.addActionListener(this);
+		menuPeca.setActionCommand("cadastrarPeca");
+	
 		menuUsuario = new JMenuItem("Usuário");
 		menuUsuario.addActionListener(this);
 		menuUsuario.setActionCommand("cadastrarUsuario");
 		
 	}
 	
-	public void inicializarOs() {
-		menuBar = new JMenuBar();
-		menu = new JMenu("Cadastro");
-		menuOs = new JMenuItem("Ordem de Serviço");
-		menuOs.addActionListener(this);
-		menuOs.setActionCommand("cadastrarOs");
-		
-	}
-	
 	//método para construir os menus na janela
-	public void construirCliente() {
+	public void construirCadastro() {
 		
 		menu.add(menuCliente);
-		menuBar.add(menu);
-	}	
-	
-	public void construirUsuario() {
-		
-		menu.add(menuUsuario);
-		menuBar.add(menu);
-	}	
-	
-	public void construirOs() {
-		
+		menu.add(menuFornecedor);
 		menu.add(menuOs);
+		menu.add(menuPeca);
+		menu.add(menuUsuario);
 		menuBar.add(menu);
 	}
 
-
-	//Evoca os formularios
+	//Evocar os formularios
 	public void actionPerformed(ActionEvent e) {
 
 		if(e.getActionCommand().equals("cadastrarCliente")) {
@@ -91,18 +80,34 @@ public class PrincipalView extends JFrame implements ActionListener{
 		    this.repaint();
 		}
 
-		if(e.getActionCommand().equals("cadastrarUsuario")) {
-			UsuarioView uv = new UsuarioView();
+		if(e.getActionCommand().equals("cadastrarFornecedor")) {
+			FornecedorView fv = new FornecedorView();
 			this.getContentPane().removeAll();
-			this.getContentPane().add(uv);
+			this.getContentPane().add(fv);
 			this.revalidate();
 		    this.repaint();
 		}
 
 		if(e.getActionCommand().equals("cadastrarOs")) {
-			OsView os = new OsView();
+			OsView ov = new OsView();
 			this.getContentPane().removeAll();
-			this.getContentPane().add(os);
+			this.getContentPane().add(ov);
+			this.revalidate();
+		    this.repaint();
+		}
+
+		if(e.getActionCommand().equals("cadastrarPeca")) {
+			PecaView pv = new PecaView();
+			this.getContentPane().removeAll();
+			this.getContentPane().add(pv);
+			this.revalidate();
+		    this.repaint();
+		}
+
+		if(e.getActionCommand().equals("cadastrarUsuario")) {
+			UsuarioView uv = new UsuarioView();
+			this.getContentPane().removeAll();
+			this.getContentPane().add(uv);
 			this.revalidate();
 		    this.repaint();
 		}

@@ -7,12 +7,12 @@ import view.OsView;
 public class TesteCreateOs {
 	
 	public static void main(String[] args) {
-		OsView ViewOs = new OsView();
+		OsView OsView = new OsView();
 		
-		ViewOs.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ViewOs.setSize(1024, 500);
-		ViewOs.setVisible(true);
-		ViewOs.setLocationRelativeTo(null);
+		OsView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		OsView.setSize(1024, 500);
+		OsView.setVisible(true);
+		OsView.setLocationRelativeTo(null);
 	}
 
 }

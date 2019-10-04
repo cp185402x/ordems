@@ -17,11 +17,11 @@ import javax.swing.JOptionPane;
 public class PecaView extends JFrame{
     
     public PecaView() { // construtor da view OS.
-        super("OrdemS : Cadastro de peças");
+        super("Cadastro de peças");
         
         criaFormulario();
-    	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    	this.setSize(1024, 500);
+    	this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    	this.setSize(580, 600);
     	this.setVisible(true);
     	this.setLocationRelativeTo(null);
 
@@ -35,7 +35,7 @@ public class PecaView extends JFrame{
         JPanel painelTitulo = new JPanel();
         painelTitulo.setLayout(new FlowLayout());
         
-        JLabel titulo = new JLabel("Cadastrar nova peça");
+        JLabel titulo = new JLabel("Cadastrar de peças");
         titulo.setFont(new Font("Arial", Font.BOLD, 14));
         
         painelTitulo.add(titulo);
@@ -44,24 +44,19 @@ public class PecaView extends JFrame{
         JPanel painelCadastro = new JPanel();
         painelCadastro.setLayout(new FlowLayout());
         
-        JLabel dtLabel = new JLabel("Data de cadastro");
-        JTextField dtField = new JTextField(20);
-        painelCadastro.add(dtLabel);
-        painelCadastro.add(dtField);
         
-        
-        JLabel idLabel = new JLabel("Código da Peça");
-        JTextField idField = new JTextField(20);
-        painelCadastro.add(idLabel);
-        painelCadastro.add(idField);
+        JLabel nomeLabel = new JLabel("Nome da Peça");
+        JTextField nomeField = new JTextField(40);
+        painelCadastro.add(nomeLabel);
+        painelCadastro.add(nomeField);
         
         JLabel vlcLabel = new JLabel("Valor de Custo");
-        JTextField vlcField = new JTextField(20);
+        JTextField vlcField = new JTextField(10);
         painelCadastro.add(vlcLabel);
         painelCadastro.add(vlcField);
         
         JLabel vlvLabel = new JLabel("Valor de Venda");
-        JTextField vlvField= new JTextField(20);
+        JTextField vlvField= new JTextField(10);
         painelCadastro.add(vlvLabel);
         painelCadastro.add(vlvField);
         
@@ -83,18 +78,15 @@ public class PecaView extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				System.out.println("Cliquei no botao salvar");
-				//Data de cadastro
-				String data = dtField.getText();
-				System.out.println(data);
 				//Numero
-				String id_peca =idField .getText();
-				System.out.println(id_peca);
-				//Valor venda
-				String valor  =vlvField  .getText();
-				System.out.println(valor);
+				String nm_peca =nomeField .getText();
+				System.out.println(nm_peca);
 				//valor custo
 				String valorcusto  = vlcField .getText();
 				System.out.println(valorcusto);
+				//Valor venda
+				String valorVenda  =vlvField  .getText();
+				System.out.println(valorVenda);
 				
 			
 			}

@@ -1,25 +1,18 @@
 package view;
 
-//Importando os componentes*
+//Importando os componentes
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
-import controller.ClienteController;
-import controller.UsuarioController;
-import model.Cliente;
-import model.Usuario;
+import javax.swing.JOptionPane;
 //Declarando a classe na janela
 public class UsuarioView extends JFrame implements ActionListener{
 	//atributos globais da classe
@@ -28,12 +21,12 @@ public class UsuarioView extends JFrame implements ActionListener{
 		JLabel titulo;
 	    JLabel usuarioLabel;
 	    JTextField usuarioField;
-	    JLabel cargLabel;
-	    JTextField cargField;
-	    JLabel depLabel;
-	    JTextField dpField;
-	    JLabel MatriculaLabel;
-	    JTextField MatriculaField;
+	    JLabel cargoLabel;
+	    JTextField cargoField;
+	    JLabel deptoLabel;
+	    JTextField deptoField;
+	    JLabel matriculaLabel;
+	    JTextField matriculaField;
 	    JLabel loginLabel;
 	    JTextField loginField;
 	    JLabel senhaLabel;
@@ -49,8 +42,8 @@ public class UsuarioView extends JFrame implements ActionListener{
 			
 		                
 		        criaFormulario();
-		    	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		    	this.setSize(1024, 500);
+		    	this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		    	this.setSize(580, 600);
 		    	this.setVisible(true);
 		    	this.setLocationRelativeTo(null);
   
@@ -67,10 +60,8 @@ public class UsuarioView extends JFrame implements ActionListener{
       painelTitulo = new JPanel();
       painelTitulo.setLayout(new FlowLayout());
       
-      titulo = new JLabel("Cadastro de Usuario");
+      titulo = new JLabel("Cadastro de Usuário");
       titulo.setFont(new Font("Arial", Font.BOLD, 14));
-      
-      painelTitulo.add(titulo);
       
       painelTitulo.add(titulo);
       
@@ -82,33 +73,33 @@ public class UsuarioView extends JFrame implements ActionListener{
       painelCadastro = new JPanel();
       painelCadastro.setLayout(new FlowLayout());
       
-      usuarioLabel = new JLabel("Usuario");
-      usuarioField = new JTextField(20);
+      usuarioLabel = new JLabel("Nome do Usuário");
+      usuarioField = new JTextField(40);
       painelCadastro.add(usuarioLabel);
       painelCadastro.add(usuarioField);
       
-      cargLabel = new JLabel("Usuario");
-      cargField = new JTextField(20);
-      painelCadastro.add(cargLabel);
-      painelCadastro.add(cargField);
+      cargoLabel = new JLabel("Cargo");
+      cargoField = new JTextField(20);
+      painelCadastro.add(cargoLabel);
+      painelCadastro.add(cargoField);
       
-      depLabel = new JLabel("Departamento");
-      dpField = new JTextField(20);
-      painelCadastro.add(depLabel);
-      painelCadastro.add(dpField);
+      deptoLabel = new JLabel("Departamento");
+      deptoField = new JTextField(20);
+      painelCadastro.add(deptoLabel);
+      painelCadastro.add(deptoField);
       
-      MatriculaLabel = new JLabel("Matricula");
-      MatriculaField = new JTextField(20);
-      painelCadastro.add(MatriculaLabel);
-      painelCadastro.add(MatriculaField);
+      matriculaLabel = new JLabel("Matrícula");
+      matriculaField = new JTextField(20);
+      painelCadastro.add(matriculaLabel);
+      painelCadastro.add(matriculaField);
       
-      loginLabel = new JLabel("login");
-      loginField = new JTextField(20);
+      loginLabel = new JLabel("Login");
+      loginField = new JTextField(10);
       painelCadastro.add(loginLabel);
       painelCadastro.add(loginField);
       
-      senhaLabel = new JLabel("senha");
-      senhaField = new JTextField(20);
+      senhaLabel = new JLabel("Senha");
+      senhaField = new JTextField(10);
       painelCadastro.add(senhaLabel);
       painelCadastro.add(senhaField);
       
@@ -135,7 +126,7 @@ public class UsuarioView extends JFrame implements ActionListener{
       add(painelCadastro, BorderLayout.CENTER);
       add(painelBotoes, BorderLayout.SOUTH);
   }
-
+/*
 			@Override
 			public void actionPerformed1(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -160,11 +151,11 @@ public class UsuarioView extends JFrame implements ActionListener{
 					//senha
 					u.setSenha( senhaField.getText());
 				
-					
+					*/
 				
 			
       
-      ClienteController controleCliente = new ClienteController();
+      UsuarioController controleUsuario = new UsuarioController();
 		try {
 			if(controleUsuario.cadastrarUsuario(u) == true) {
 				JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
@@ -175,7 +166,7 @@ public class UsuarioView extends JFrame implements ActionListener{
 			JOptionPane.showMessageDialog(null, "Erro ao realizar cadastro!");
 		}
 	}
-	else if(e.getActionCommand().equalsIgnoreCase("cancelar")) {
+	else if(e.getActionCommand().equalsIgnoreCase("Cancelar")) {
 		//tratar a ação de cancelar 
 			}
       	

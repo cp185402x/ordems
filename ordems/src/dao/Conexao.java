@@ -14,7 +14,7 @@ public class Conexao {
 		try {
 			//Class.forName(driverName);
 			
-			String serverName = "localhost:3307";
+			String serverName = "localhost";
 			
 			String mydatabase = "ordems_db";
 			
@@ -33,14 +33,9 @@ public class Conexao {
 			}
 			return conn;
 			
-		} //catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			//System.out.println("Driver não encontrador");
-			
-			//return null;
-		//}
+		} 
 		catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			System.out.println("Problema ao conectar com o banco de dados.");
 			
 			return null;
@@ -51,8 +46,4 @@ public class Conexao {
 	
 	
 }
-	
-	//Classe para criar conexao
-	//Metodos estaticos
-	
 
