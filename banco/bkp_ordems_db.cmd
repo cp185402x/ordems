@@ -18,7 +18,7 @@ set hh=%%i
 set ss=%%j
 )
  
-set dirName=%yy%%mm%%dd%-%hh%%ss%
+set dirName=%yy%%mm%%dd%%hh%%ss%
  
 pushd %mysqlDataDir%
  
@@ -30,8 +30,11 @@ mkdir %backupDir%\%dirName%
  
 %mysqldump% --host="localhost" --user=%dbUser% --password=%dbPassword% --single-transaction --add-drop-table --databases %%f > %backupDir%\%dirName%\%%f.sql
  
-%zip% a -tgzip %backupDir%\%dirName%\%%f.sql.gz %backupDir%\%dirName%\%%f.sql
+%zip% a -tgzip %backupDir%\%dirName%\%%f.gz %backupDir%\%dirName%\%%f.sql
  
 del %backupDir%\%dirName%\%%f.sql
+del %backupDir%\%dirName%\performance_schema.gz
+del %backupDir%\%dirName%\phpmyadmin.gz
+del %backupDir%\%dirName%\mysql.gz
  
 )
