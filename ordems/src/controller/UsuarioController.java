@@ -1,6 +1,10 @@
 package controller;
 
+import java.sql.SQLException;
+
+import dao.ClienteDAO;
 import dao.Conexao;
+import model.Cliente;
 
 public class UsuarioController  {
 	//Metodo para receber os dados,tratar e chamar o metodo insere do ClienteDAO
@@ -29,5 +33,17 @@ public class UsuarioController  {
 	public void setBd(Conexao bd) {
 		this.bd = bd;
 	}
+	public boolean cadastrarUsuario(Cliente u) throws SQLException {
+		// toda validação dos campos
+		if(true) {
+			ClienteDAO clienteDAO = new ClienteDAO();
+			clienteDAO.inserir(c);
+			
+			return true;
+		}
+		else {
+			return false;
 
+}
+	}
 }
