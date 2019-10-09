@@ -3,9 +3,9 @@
 include('db.php');
 include("function.php");
 
-if(isset($_POST["faq_id"]))
+if(isset($_POST["user_id"]))
 {
-	$image = get_image_name($_POST["faq_id"]);
+	$image = get_image_name($_POST["user_id"]);
 	if($image != '')
 	{
 		unlink("upload/" . $image);
@@ -15,13 +15,13 @@ if(isset($_POST["faq_id"]))
 	);
 	$result = $statement->execute(
 		array(
-			':id'	=>	$_POST["faq_id"]
+			':id'	=>	$_POST["user_id"]
 		)
 	);
 	
 	if(!empty($result))
 	{
-		echo 'Dados deletador com sucesso!';
+		echo 'Faq deletado com sucesso!';
 	}
 }
 

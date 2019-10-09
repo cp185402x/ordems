@@ -1,12 +1,12 @@
 <?php
 include('db.php');
 include('function.php');
-if(isset($_POST["faq_id"]))
+if(isset($_POST["user_id"]))
 {
 	$output = array();
 	$statement = $connection->prepare(
 		"SELECT * FROM faq 
-		WHERE id = '".$_POST["faq_id"]."' 
+		WHERE id = '".$_POST["user_id"]."' 
 		LIMIT 1"
 	);
 	$statement->execute();
@@ -17,11 +17,11 @@ if(isset($_POST["faq_id"]))
 		$output["descricao"] = $row["descricao"];
 		if($row["image"] != '')
 		{
-			$output['faq_image'] = '<img src="upload/'.$row["image"].'" class="img-thumbnail" width="50" height="35" /><input type="hidden" name="hidden_faq_image" value="'.$row["image"].'" />';
+			$output['user_image'] = '<img src="upload/'.$row["image"].'" class="img-thumbnail" width="50" height="35" /><input type="hidden" name="hidden_user_image" value="'.$row["image"].'" />';
 		}
 		else
 		{
-			$output['faq_image'] = '<input type="hidden" name="hidden_faq_image" value="" />';
+			$output['user_image'] = '<input type="hidden" name="hidden_user_image" value="" />';
 		}
 	}
 	echo json_encode($output);

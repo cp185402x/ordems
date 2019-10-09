@@ -6,17 +6,16 @@ if(isset($_POST["operation"]))
 	if($_POST["operation"] == "Add")
 	{
 		$image = '';
-		if($_FILES["faq_image"]["name"] != '')
+		if($_FILES["user_image"]["name"] != '')
 		{
 			$image = upload_image();
 		}
 		$statement = $connection->prepare("
-			INSERT INTO faq (tipo_faq_id, titulo, descricao, image) 
-			VALUES (:tipo_faq_id, :titulo, :descricao, :image)
+			INSERT INTO faq (titulo, descricao, image) 
+			VALUES (:titulo, :descricao, :image)
 		");
 		$result = $statement->execute(
 			array(
-				':tipo_faq_id'	=>	$_POST["tipo_faq_id"],
 				':titulo'	=>	$_POST["titulo"],
 				':descricao'	=>	$_POST["descricao"],
 				':image'		=>	$image
@@ -24,22 +23,22 @@ if(isset($_POST["operation"]))
 		);
 		if(!empty($result))
 		{
-			echo 'Dados cadastrados com sucesso!';
+			echo 'FAQ cadastrado com sucesso! ';
 		}
 	}
 	if($_POST["operation"] == "Edit")
 	{
 		$image = '';
-		if($_FILES["faq_image"]["name"] != '')
+		if($_FILES["user_image"]["name"] != '')
 		{
 			$image = upload_image();
 		}
 		else
 		{
-			$image = $_POST["hidden_faq_image"];
+			$image = $_POST["hidden_user_image"];
 		}
 		$statement = $connection->prepare(
-			"UPDATE users 
+			"UPDATE faq 
 			SET titulo = :titulo, descricao = :descricao, image = :image  
 			WHERE id = :id
 			"
@@ -49,12 +48,12 @@ if(isset($_POST["operation"]))
 				':titulo'	=>	$_POST["titulo"],
 				':descricao'	=>	$_POST["descricao"],
 				':image'		=>	$image,
-				':id'			=>	$_POST["faq_id"]
+				':id'			=>	$_POST["user_id"]
 			)
 		);
 		if(!empty($result))
 		{
-			echo 'Dados atualizados com sucesso!';
+			echo 'FAQ atualizado com sucesso!';
 		}
 	}
 }

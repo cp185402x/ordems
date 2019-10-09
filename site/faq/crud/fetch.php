@@ -15,7 +15,7 @@ if(isset($_POST["order"]))
 }
 else
 {
-	$query .= 'ORDER BY id_faq DESC ';
+	$query .= 'ORDER BY id DESC ';
 }
 if($_POST["length"] != -1)
 {
@@ -35,16 +35,14 @@ foreach($result as $row)
 	}
 	else
 	{
-		$image = '';
+		$image = '<img src="upload/noimage.png" class="img-thumbnail" width="50" height="35">';
 	}
 	$sub_array = array();
 	$sub_array[] = $image;
-	$sub_array[] = $row["data"];
 	$sub_array[] = $row["titulo"];
 	$sub_array[] = $row["descricao"];
-	$sub_array[] = $row["tipo_faq"];
-	$sub_array[] = '<button type="button" name="update" id="'.$row["id"].'" class="btn btn-warning btn-xs update">Editar</button>';
-	$sub_array[] = '<button type="button" name="delete" id="'.$row["id"].'" class="btn btn-danger btn-xs delete">Deletar</button>';
+	$sub_array[] = '<button type="button" name="update" id="'.$row["id"].'" class="btn btn-warning btn-xs update">&#x0270E;</button>';
+	$sub_array[] = '<button type="button" name="delete" id="'.$row["id"].'" class="btn btn-danger btn-xs delete">&#x02718;</button>';
 	$data[] = $sub_array;
 }
 $output = array(

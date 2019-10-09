@@ -1,8 +1,7 @@
 <?php
 
-require_once "i_topo.php";
-require_once "bd_conectar.php";
-require_once "i_busca.php"
+require_once "topo.php";
+require_once "db.php";
 ?>
 
 
@@ -196,7 +195,7 @@ require_once "i_busca.php"
 
 
 		<ul id="visualizacao" class="cd-faq__group">
-			<li class="cd-faq__title"><h2>Visualizacao</h2></li>
+			<li class="cd-faq__title"><h2>Visualização</h2></li>
 			<?php
 
 							

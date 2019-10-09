@@ -2,7 +2,7 @@
 	<head>
 		<title>FAQ PROJETO ORDEMS</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="assents/css/bootstrap.min.css" />
 		<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
 		<script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>		
 		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />
@@ -16,35 +16,33 @@
 			}
 			.box
 			{
-				width:1270px;
+				width:1260px;
 				padding:20px;
 				background-color:#fff;
-				border:1px solid #ccc;
+				border:1px solid #f1f1f1;
 				border-radius:5px;
-				margin-top:25px;
+				margin-top:10px;
 			}
 		</style>
 	</head>
 	<body>
 		<div class="container box">
-			<h2 align="center">FAQ PROJETO ORDEMS</h2>
+			<h1 align="center">ATUALIZAÇÃO DE FAQ</h1>
 			<br />
 			<div class="table-responsive">
 				<br />
 				<div align="right">
-					<button type="button" id="add_button" data-toggle="modal" data-target="#faqModal" class="btn btn-info btn-lg"> + Novo FAQ</button>
+					<button type="button" id="add_button" data-toggle="modal" data-target="#userModal" class="btn btn-info btn-lg">+ Adicionar novo FAQ</button>
 				</div>
 				<br /><br />
-				<table id="faq_data" class="table table-bordered table-striped">
+				<table id="user_data" class="table table-bordered table-striped">
 					<thead>
 						<tr>
-							<th width="10%">IMAGEM</th>
-							<th width="10%">DATA</th>
-							<th width="35%">TÍTULO</th>
-							<th width="35%">DESCRIÇÃO</th>
-							<th width="10%">TIPO</th>
-							<th width="10%">EDITAR</th>
-							<th width="10%">DELETAR</th>
+							<th width="10%">Image</th>
+							<th width="35%">Titulo</th>
+							<th width="35%">Descrição</th>
+							<th width="10%">Editar</th>
+							<th width="10%">Deletar</th>
 						</tr>
 					</thead>
 				</table>
@@ -54,44 +52,27 @@
 	</body>
 </html>
 
-<div id="faqModal" class="modal fade">
+<div id="userModal" class="modal fade">
 	<div class="modal-dialog">
 		<form method="post" id="user_form" enctype="multipart/form-data">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Cadastar novo FAQ</h4>
+					<h4 class="modal-title">Adicionar novo FAQ</h4>
 				</div>
 				<div class="modal-body">
-					<label>Tipo</label>
-					<select id="tipoFaq" class="custom-select custom-select-lg mb-3">
-					  <option selected>Selecione um tipo</option>
-					  <option value="1">Atendimento</option>
-					  <option value="2">Cliente</option>
-					  <option value="3">Fornecedor</option>
-					  <option value="4">OS</option>
-					  <option value="5">Usuários</option>
-					</select>
-					<br />
 					<label>Título</label>
 					<input type="text" name="titulo" id="titulo" class="form-control" />
 					<br />
 					<label>Descrição</label>
-					<textarea class="form-control" name="descricao" id="descricao" rows="4"></textarea>
-					<!-- <input type="textarea" name="descricao" id="descricao" class="form-control" /> -->
+					<input type="text" name="descricao" id="descricao" class="form-control" />
 					<br />
 					<label>Imagem</label>
-					<div class="custom-file">
-					  <input type="file" class="custom-file-input" name="faq_image" id="faq_uploaded_image">
-					  <label class="custom-file-label" for="customFile">Selecione uma imagem</label>
-					</div>
-					<!--
-					<input type="file" name="faq_image" id="faq_image" />
-					<span id="faq_uploaded_image"></span>
-					-->
+					<input type="file" name="user_image" id="user_image" />
+					<span id="user_uploaded_image"></span>
 				</div>
 				<div class="modal-footer">
-					<input type="hidden" name="faq_id" id="faq_id" />
+					<input type="hidden" name="user_id" id="user_id" />
 					<input type="hidden" name="operation" id="operation" />
 					<input type="submit" name="action" id="action" class="btn btn-success" value="Add" />
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -105,13 +86,13 @@
 $(document).ready(function(){
 	$('#add_button').click(function(){
 		$('#user_form')[0].reset();
-		$('.modal-title').text("Adicionar FAQ");
+		$('.modal-title').text(" + Adicionar novo FAQ");
 		$('#action').val("Salvar");
 		$('#operation').val("Add");
-		$('#faq_uploaded_image').html('');
+		$('#user_uploaded_image').html('');
 	});
 	
-	var dataTable = $('#faq_data').DataTable({
+	var dataTable = $('#user_data').DataTable({
 		"processing":true,
 		"serverSide":true,
 		"order":[],
@@ -128,22 +109,21 @@ $(document).ready(function(){
 
 	});
 
-	$(document).on('submit', '#faq_form', function(event){
+	$(document).on('submit', '#user_form', function(event){
 		event.preventDefault();
-		var tipoFaq = $('#tipoFaq').val();
-		var titulo = $('#titulo').val();
-		var descricao = $('#descricao').val();
-		var extension = $('#faq_image').val().split('.').pop().toLowerCase();
+		var firstName = $('#titulo').val();
+		var lastName = $('#descricao').val();
+		var extension = $('#user_image').val().split('.').pop().toLowerCase();
 		if(extension != '')
 		{
-			if(jQuery.inArray(extension, ['png','jpg','jpeg']) == -1)
+			if(jQuery.inArray(extension, ['png','jpg']) == -1)
 			{
-				alert("Arquuivo de imagem inválido!");
-				$('#faq_image').val('');
+				alert("Tipo de arquivo inválido!");
+				$('#user_image').val('');
 				return false;
 			}
 		}	
-		if(titulo != '' && descricao != '')
+		if(firstName != '' && lastName != '')
 		{
 			$.ajax({
 				url:"insert.php",
@@ -154,33 +134,33 @@ $(document).ready(function(){
 				success:function(data)
 				{
 					alert(data);
-					$('#faq_form')[0].reset();
-					$('#faqModal').modal('hide');
+					$('#user_form')[0].reset();
+					$('#userModal').modal('hide');
 					dataTable.ajax.reload();
 				}
 			});
 		}
 		else
 		{
-			alert("Campos obrigatórios");
+			alert("Todos os campos são obrigatório!");
 		}
 	});
 	
 	$(document).on('click', '.update', function(){
-		var faq_id = $(this).attr("id");
+		var user_id = $(this).attr("id");
 		$.ajax({
 			url:"fetch_single.php",
 			method:"POST",
-			data:{faq_id:faq_id},
+			data:{user_id:user_id},
 			dataType:"json",
 			success:function(data)
 			{
-				$('#faqModal').modal('show');
+				$('#userModal').modal('show');
 				$('#titulo').val(data.titulo);
 				$('#descricao').val(data.descricao);
 				$('.modal-title').text("Editar FAQ");
-				$('#faq_id').val(faq_id);
-				$('#faq_uploaded_image').html(data.faq_image);
+				$('#user_id').val(user_id);
+				$('#user_uploaded_image').html(data.user_image);
 				$('#action').val("Editar");
 				$('#operation').val("Edit");
 			}
@@ -188,13 +168,13 @@ $(document).ready(function(){
 	});
 	
 	$(document).on('click', '.delete', function(){
-		var faq_id = $(this).attr("id");
+		var user_id = $(this).attr("id");
 		if(confirm("Tem certeza que deseja deletar este FAQ?"))
 		{
 			$.ajax({
 				url:"delete.php",
 				method:"POST",
-				data:{faq_id:faq_id},
+				data:{user_id:user_id},
 				success:function(data)
 				{
 					alert(data);
