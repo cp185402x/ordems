@@ -1,7 +1,7 @@
 # OrdemS - Sistema para Controle de Ordens de Serviços
 
 	Este Projeto esta sendo desenvolvido pelos alunos no 3º Semestre do curso TDS(Tecnico em Desenvolvimento de Sistemas).
-	Equipe: VEC Systens
+	Equipe: VEC Systems
 	Membros: Carlos Cristiano, Edilson Barros, Vinícius Lazarini
 	Projeto: OrdemS
 	Professores: André Bordignon, Joice Mendes, Pedro Fantinatti, Rafael Muniz
