@@ -14,15 +14,17 @@ public class Conexao {
 		try {
 			//Class.forName(driverName);
 			
-			String serverName = "localhost";
+			/*String serverName = "localhost:3307";*/
+			
+			String serverName = "35.247.221.35:3306";
 			
 			String mydatabase = "ordems_db";
 			
 			String url = "jdbc:mysql://" + serverName + "/" + mydatabase;
 			
-			String userName = "root";
+			String userName = "ordems";
 			
-			String password = "";
+			String password = "100";
 			
 			conn = DriverManager.getConnection(url,userName,password);
 			

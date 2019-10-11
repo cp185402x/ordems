@@ -18,6 +18,7 @@ public class ClienteController {
 	
 	
 	public void validaCampos (String nome, int documento, int rg, int data, int celular, String email, String contato, int cep, String endereco, int numero, String complemento, String bairro, String cidade, String estado) {
+		
 		System.out.println("contoller" + nome);
 		System.out.println("contoller" + documento);
 		System.out.println("contoller" + rg);

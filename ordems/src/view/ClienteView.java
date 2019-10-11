@@ -204,6 +204,27 @@ public class ClienteView extends JFrame implements ActionListener{
 			c.setDocumento(usuarioField.getText());			
 			//RGIE
 			c.setRgie(rgieField .getText());
+			//celular
+			c.setCelular(celularField.getText());
+			//email
+			c.setEmail(emailField .getText());
+			//pessoa contato
+			c.setPescontato(pescontatoField .getText());
+			//cep
+			c.setCep(cepField .getText());
+			//endereço
+			c.setEndereco(enderecoField .getText());
+			//numero
+			c.setNumero(numeroField .getText());
+			//complemento
+			c.setComplemento(complementoField .getText());
+			//bairro
+			c.setBairro(bairroField .getText());
+			//cidade
+			c.setCidade(cidadeField .getText());
+			//estado
+			c.setEstado(estadoField .getText());
+			
 			
 			ClienteController controleCliente = new ClienteController();
 			try {

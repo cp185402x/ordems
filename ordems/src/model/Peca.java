@@ -1,8 +1,8 @@
 package model;
 
-public class Fornecedor {
+public class Peca {
 	
-	//AtributFornecedor
+	//Atributos
     private String nome;
     private String documento;
     private String telefonecel;
@@ -15,7 +15,7 @@ public class Fornecedor {
     private int tipo;
     
     //Construtor
-    public Fornecedor(){
+    public Peca(){
         this.endereco = new Endereco();
     
     }

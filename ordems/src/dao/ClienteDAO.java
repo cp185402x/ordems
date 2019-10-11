@@ -1,6 +1,7 @@
 package dao;
 
 import java.awt.List;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
@@ -58,8 +59,41 @@ public class ClienteDAO {
 		
 	}
 	
-	//metodo consultar
 	
+	public void consultar() throws SQLException {
+		
+		conn = (Connection) Conexao.getConexao();
+		
+		if(conn != null) {
+			st = (PreparedStatement) conn.prepareStatement(
+					"SELECT * FROM cliente");
+		}
+		
+
+		
+		ResultSet rs = st.executeQuery();
+		
+		while (rs.next()) {
+            Cliente cliente = new Cliente();
+            System.out.println(rs.getInt("id_cliente"));
+            System.out.println(rs.getString("nm_cliente"));
+
+           /* cliente.setId(rs.getInt("id_cliente"));
+            cliente.setNome(rs.getString("nm_cliente"));
+            cliente.setCelular(rs.getString("celular"));
+            cliente.setEmail(rs.getString("email"));
+            cliente.add(cliente);
+           */
+        }
+		
+		System.out.println("Resultado da consulta" + rs);
+		
+		conn.close();
+	//----------------	
+		
+	}
+	//metodo consultar
+	/*
 	public List<Cliente> getCliente() {
         Connection conn = null;
         PreparedStatement pstm = null;
@@ -109,6 +143,8 @@ public class ClienteDAO {
         }
         return cliente;
     }
+    
+*/
 }
 
 
