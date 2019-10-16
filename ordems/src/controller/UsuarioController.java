@@ -33,11 +33,11 @@ public class UsuarioController  {
 	public void setBd(Conexao bd) {
 		this.bd = bd;
 	}
-	public boolean cadastrarUsuario(Cliente u) throws SQLException {
+	public boolean cadastrarUsuario(Usuario u) throws SQLException {
 		// toda validação dos campos
 		if(true) {
-			ClienteDAO clienteDAO = new ClienteDAO();
-			clienteDAO.inserir(c);
+			UsuarioDAO usuarioDAO = new UsuarioDAO();
+			usuairoDAO.inserir(u);
 			
 			return true;
 		}

@@ -36,14 +36,14 @@ public class ClienteDAO {
 		}
 		
 		st.setInt(1, 1006); //mudar aqui para associar o id do usuário		
-		st.setString(2, cliente.getNome());
+		st.setString(2, cliente.getNm_cliente());
 		st.setInt(3, cliente.getTipo());
-		st.setString(4, cliente.getDocumento());
-		st.setString(5, cliente.getRgie());
-		st.setString(6, cliente.getTelefonecel());
-		st.setString(7, cliente.getTelefoneres());
+		st.setString(4, cliente.getDoc_num());
+		st.setString(5, cliente.getRg_ie());
+		st.setString(6, cliente.getCelular());
+		st.setString(7, cliente.getFone_re());
 		st.setString(8, cliente.getEmail());
-		st.setString(9, cliente.getPessoa());
+		st.setString(9, cliente.getPes_contato());
 		st.setString(10, cliente.getEndereco().getCep());
 		st.setString(11, cliente.getEndereco().getLogradouro());
 		st.setString(12, cliente.getEndereco().getNumero());

@@ -23,26 +23,26 @@ public class ClienteView extends JFrame implements ActionListener{
 	JPanel painelCadastro;
 	JLabel titulo;
 	
-    JLabel nomeLabel;
-    JTextField nomeField;
+    JLabel nmLabel;
+    JTextField nmField;
     
-    JLabel usuarioLabel;
-    JTextField usuarioField;
+    JLabel docLabel;
+    JTextField docField;
     
     JLabel rgieLabel;
     JTextField rgieField;
     
-    JLabel datanascLabel;
-    JTextField datanascField;
-    
     JLabel celularLabel;
     JTextField celularField;
+    
+    JLabel fone_reLabel;
+    JTextField fone_reField;
     
     JLabel emailLabel;
     JTextField emailField;
     
-    JLabel pescontatoLabel;
-    JTextField pescontatoField;
+    JLabel pes_contatoLabel;
+    JTextField pes_contatoField;
     
     JLabel cepLabel;
     JTextField cepField;
@@ -97,40 +97,40 @@ public class ClienteView extends JFrame implements ActionListener{
         painelCadastro = new JPanel();
         painelCadastro.setLayout(new FlowLayout());
         
-        nomeLabel = new JLabel("Nome");
-        nomeField = new JTextField(40);
-        painelCadastro.add(nomeLabel);
-        painelCadastro.add(nomeField);
+        nmLabel = new JLabel("Nome");
+        nmField = new JTextField(40);
+        painelCadastro.add(nmLabel);
+        painelCadastro.add(nmField);
         
-        usuarioLabel = new JLabel("CPF/CNPJ");
-        usuarioField = new JTextField(20);
-        painelCadastro.add(usuarioLabel);
-        painelCadastro.add(usuarioField);
+        docLabel = new JLabel("CPF/CNPJ");
+        docField = new JTextField(20);
+        painelCadastro.add(docLabel);
+        painelCadastro.add(docField);
         
         rgieLabel = new JLabel("RG/IE");
         rgieField = new JTextField(20);
         painelCadastro.add(rgieLabel);
         painelCadastro.add(rgieField);
         
-        datanascLabel = new JLabel("Data de nascimento");
-        datanascField = new JTextField(20);
-        painelCadastro.add(datanascLabel);
-        painelCadastro.add(datanascField);
-        
-        celularLabel = new JLabel("Celular");
+        celularLabel = new JLabel("Data de nascimento");
         celularField = new JTextField(20);
         painelCadastro.add(celularLabel);
         painelCadastro.add(celularField);
+        
+        fone_reLabel = new JLabel("Celular");
+        fone_reField = new JTextField(20);
+        painelCadastro.add(fone_reLabel);
+        painelCadastro.add(fone_reField);
         
         emailLabel = new JLabel("Email");
         emailField = new JTextField(40);
         painelCadastro.add(emailLabel);
         painelCadastro.add(emailField);
         
-        pescontatoLabel = new JLabel("Pessoa de Contato");
-        pescontatoField = new JTextField(20);
-        painelCadastro.add(pescontatoLabel);
-        painelCadastro.add(pescontatoField);
+        pes_contatoLabel = new JLabel("Pessoa de Contato");
+        pes_contatoField = new JTextField(20);
+        painelCadastro.add(pes_contatoLabel);
+        painelCadastro.add(pes_contatoField);
         
         cepLabel = new JLabel("CEP");
         cepField = new JTextField(10);
@@ -199,31 +199,31 @@ public class ClienteView extends JFrame implements ActionListener{
 			
 			//System.out.println("cliquei no botao salvar");
 			//nome
-			c.setNome(nomeField.getText());			
+			c.setNm_cliente(nmField.getText());			
 			//documento
-			c.setDocumento(usuarioField.getText());			
+			c.setDoc_num(docField.getText());			
 			//RGIE
-			c.setRgie(rgieField .getText());
+			c.setRg_ie(rgieField .getText());
 			//celular
 			c.setCelular(celularField.getText());
 			//email
 			c.setEmail(emailField .getText());
 			//pessoa contato
-			c.setPescontato(pescontatoField .getText());
+			c.setPes_contato(pes_contatoField .getText());
 			//cep
 			c.setCep(cepField .getText());
 			//endereço
-			c.setEndereco(enderecoField .getText());
+			//c.setEndereco(enderecoField .getText());
 			//numero
-			c.setNumero(numeroField .getText());
+			//c.setNumero(numeroField .getText());
 			//complemento
-			c.setComplemento(complementoField .getText());
+			//c.setComplemento(complementoField .getText());
 			//bairro
-			c.setBairro(bairroField .getText());
+			//c.setBairro(bairroField .getText());
 			//cidade
-			c.setCidade(cidadeField .getText());
+			//c.setCidade(cidadeField .getText());
 			//estado
-			c.setEstado(estadoField .getText());
+			//c.setEstado(estadoField .getText());
 			
 			
 			ClienteController controleCliente = new ClienteController();
