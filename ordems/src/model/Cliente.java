@@ -10,7 +10,7 @@ public class Cliente {
     private String fone_re;
     private String email;
     private String pes_contato;
-    private String cep;
+    //private String cep;
     private Endereco endereco;
     private int tipo;
     
@@ -61,15 +61,15 @@ public class Cliente {
 
 	public void setPes_contato(String pes_contato) {
 		this.pes_contato = pes_contato;
-	}
+	//}
 
-	public String getCep() {
-		return cep;
-	}
+	//public String getCep() {
+		//return cep;
+	//}
 
 
-	public void setCep(String cep) {
-		this.cep = cep;
+	//public void setCep(String cep) {
+		//this.cep = cep;
 	}
 
 

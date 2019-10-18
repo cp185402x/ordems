@@ -9,6 +9,7 @@ import com.mysql.jdbc.PreparedStatement;
 
 import controller.ClienteController;
 import model.Cliente;
+import model.Usuario;
 import dao.Conexao;
 
 public class UsuarioDAO {
@@ -34,13 +35,12 @@ public class UsuarioDAO {
 		}
 		
 		st.setInt(1, 1006); //mudar aqui para associar o id do usuário		
-		st.setString(2, cliente.getUsuario());
-		st.setInt(3, cliente.getCargo());
-		st.setString(4, cliente.getDepartamento());
-		st.setString(5, cliente.getMatricula());
-		st.setString(6, cliente.getLogin());
-		st.setString(7, cliente.getSenha());
-		st.setString(8, cliente.getEmail());
+		st.setString(2, usuario.getNm_usuario());
+		st.setString(3, usuario.getCargo());
+		st.setString(4, usuario.getDepartamento());
+		st.setInt(5, usuario.getMatricula());
+		st.setString(6, usuario.getLogin());
+		st.setString(7, usuario.getSenha());
 		
 		
 		st.execute();

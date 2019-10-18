@@ -211,7 +211,7 @@ public class ClienteView extends JFrame implements ActionListener{
 			//pessoa contato
 			c.setPes_contato(pes_contatoField .getText());
 			//cep
-			c.setCep(cepField .getText());
+			//c.setCep(cepField .getText());
 			//endereço
 			//c.setEndereco(enderecoField .getText());
 			//numero

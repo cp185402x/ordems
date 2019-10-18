@@ -3,19 +3,21 @@ package model;
 public class Usuario {
 	
 	//Atributos
-    private String usuario;
+    private String nm_usuario;
 	private String cargo;
     private String departamento;
-    private String matricula;
+    private int matricula;
     private String login;
     private String senha;
-    
-    //Construtor
-    public String getUsuario() {
-		return usuario;
+	public String getnm_usuario() {
+		return nm_usuario;
+		
 	}
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
+	public String getNm_usuario() {
+		return nm_usuario;
+	}
+	public void setNm_usuario(String nm_usuario) {
+		this.nm_usuario = nm_usuario;
 	}
 	public String getCargo() {
 		return cargo;
@@ -29,10 +31,10 @@ public class Usuario {
 	public void setDepartamento(String departamento) {
 		this.departamento = departamento;
 	}
-	public String getMatricula() {
+	public int getMatricula() {
 		return matricula;
 	}
-	public void setMatricula(String matricula) {
+	public void setMatricula(int matricula) {
 		this.matricula = matricula;
 	}
 	public String getLogin() {
@@ -47,4 +49,12 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-    }
+	
+}
+
+    
+    //Construtor
+   
+		
+	
+    

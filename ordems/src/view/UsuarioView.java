@@ -6,12 +6,18 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import controller.UsuarioController;
+import model.Usuario;
+
 import javax.swing.JOptionPane;
 //Declarando a classe na janela
 public class UsuarioView extends JFrame implements ActionListener{
@@ -19,16 +25,22 @@ public class UsuarioView extends JFrame implements ActionListener{
 		JPanel painelTitulo;
 		JPanel painelCadastro;
 		JLabel titulo;
-	    JLabel usuarioLabel;
-	    JTextField usuarioField;
+		
+	    JLabel nm_usuarioLabel;
+	    JTextField nm_usuarioField;
+	    
 	    JLabel cargoLabel;
 	    JTextField cargoField;
-	    JLabel deptoLabel;
-	    JTextField deptoField;
+	    
+	    JLabel departamentoLabel;
+	    JTextField departamentoField;
+	    
 	    JLabel matriculaLabel;
 	    JTextField matriculaField;
+	    
 	    JLabel loginLabel;
 	    JTextField loginField;
+	    
 	    JLabel senhaLabel;
 	    JTextField senhaField;
 	    
@@ -73,22 +85,22 @@ public class UsuarioView extends JFrame implements ActionListener{
       painelCadastro = new JPanel();
       painelCadastro.setLayout(new FlowLayout());
       
-      usuarioLabel = new JLabel("Nome do Usuário");
-      usuarioField = new JTextField(40);
-      painelCadastro.add(usuarioLabel);
-      painelCadastro.add(usuarioField);
+      nm_usuarioLabel = new JLabel("Nome do Usuário");
+      nm_usuarioField = new JTextField(40);
+      painelCadastro.add(nm_usuarioLabel);
+      painelCadastro.add(nm_usuarioField);
       
       cargoLabel = new JLabel("Cargo");
       cargoField = new JTextField(20);
       painelCadastro.add(cargoLabel);
       painelCadastro.add(cargoField);
       
-      deptoLabel = new JLabel("Departamento");
-      deptoField = new JTextField(20);
-      painelCadastro.add(deptoLabel);
-      painelCadastro.add(deptoField);
+      departamentoLabel = new JLabel("Departamento");
+      departamentoField = new JTextField(20);
+      painelCadastro.add(departamentoLabel);
+      painelCadastro.add(departamentoField);
       
-      matriculaLabel = new JLabel("Matrícula");
+      matriculaLabel = new JLabel("matrícula");
       matriculaField = new JTextField(20);
       painelCadastro.add(matriculaLabel);
       painelCadastro.add(matriculaField);
@@ -126,24 +138,24 @@ public class UsuarioView extends JFrame implements ActionListener{
       add(painelCadastro, BorderLayout.CENTER);
       add(painelBotoes, BorderLayout.SOUTH);
   }
-/*
+
 			@Override
-			public void actionPerformed1(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				if(e.getActionCommand().equalsIgnoreCase("salvar")) {
 					Usuario u = new Usuario();
 					System.out.println("cliquei no botao salvar");
 					//usuario
-					u.setUsuario(usuarioField.getText());
+					u.setNm_usuario(nm_usuarioField.getText());
 					
 					//cargo
-					u.setCargo(cargField.getText());
+					u.setCargo(cargoField.getText());
 					
 					//departamento
-					u.setDepartamento(dpField.getText());
+					u.setDepartamento(departamentoField.getText());
 					
 					//matricula
-					u.setMatricula( MatriculaField.getText());
+					u.setMatricula( matriculaField.getText());
 					
 					//login
 					u.setLogin( loginField.getText());
@@ -151,7 +163,7 @@ public class UsuarioView extends JFrame implements ActionListener{
 					//senha
 					u.setSenha( senhaField.getText());
 				
-					*/
+					
 				
 			
       

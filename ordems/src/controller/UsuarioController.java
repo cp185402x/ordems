@@ -4,7 +4,9 @@ import java.sql.SQLException;
 
 import dao.ClienteDAO;
 import dao.Conexao;
+import dao.UsuarioDAO;
 import model.Cliente;
+import model.Usuario;
 
 public class UsuarioController  {
 	//Metodo para receber os dados,tratar e chamar o metodo insere do ClienteDAO
@@ -14,8 +16,8 @@ public class UsuarioController  {
 	}
 	
 	
-	public void validaCampos (String usuario, String cargo, String departamento, String matricula, String login, String senha) {
-		System.out.println("contoller" + usuario);
+	public void validaCampos (String nmusuario, String cargo, String departamento, int matricula, String login, String senha) {
+		System.out.println("contoller" + nmusuario);
 		System.out.println("contoller" + cargo);
 		System.out.println("contoller" + departamento);
 		System.out.println("contoller" + matricula);
@@ -37,7 +39,7 @@ public class UsuarioController  {
 		// toda validação dos campos
 		if(true) {
 			UsuarioDAO usuarioDAO = new UsuarioDAO();
-			usuairoDAO.inserir(u);
+			usuarioDAO.inserir(u);
 			
 			return true;
 		}
