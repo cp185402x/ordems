@@ -23,7 +23,7 @@ require_once "db.php";
 			<?php
 
 							
-				$query = "select * from Faq where tipo_faq_id = 1";
+				$query = "select * from Faq where id = 6";
 				$result = mysqli_query($db,$query);
 
 
@@ -61,7 +61,7 @@ require_once "db.php";
 			<?php
 
 							
-				$query = "select * from Faq where tipo_faq_id = 2";
+				$query = "select * from Faq where id = 7";
 				$result = mysqli_query($db,$query);
 
 
@@ -99,7 +99,7 @@ require_once "db.php";
 			<?php
 
 							
-				$query = "select * from Faq where tipo_faq_id = 3";
+				$query = "select * from Faq id = 7";
 				$result = mysqli_query($db,$query);
 
 
@@ -132,7 +132,7 @@ require_once "db.php";
 			<?php
 
 							
-				$query = "select * from Faq where tipo_faq_id = 4";
+				$query = "select * from Faq where id = 9";
 				$result = mysqli_query($db,$query);
 
 
@@ -199,7 +199,7 @@ require_once "db.php";
 			<?php
 
 							
-				$query = "select * from Faq where tipo_faq_id = 6";
+				$query = "select * from Faq where tipo_faq_id = 8";
 				$result = mysqli_query($db,$query);
 
 
