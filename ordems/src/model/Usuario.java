@@ -6,13 +6,12 @@ public class Usuario {
     private String nm_usuario;
 	private String cargo;
     private String departamento;
-    private int matricula;
+    private String matricula;
     private String login;
     private String senha;
-	public String getnm_usuario() {
-		return nm_usuario;
+    private String status;
 		
-	}
+	
 	public String getNm_usuario() {
 		return nm_usuario;
 	}
@@ -31,12 +30,11 @@ public class Usuario {
 	public void setDepartamento(String departamento) {
 		this.departamento = departamento;
 	}
-	public int getMatricula() {
+	public String getMatricula() {
 		return matricula;
 	}
-	public void setMatricula(int matricula) {
-		this.matricula = matricula;
-	}
+	
+	
 	public String getLogin() {
 		return login;
 	}
@@ -49,6 +47,17 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
+	}
+	
+	
 	
 }
 

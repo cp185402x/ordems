@@ -44,6 +44,9 @@ public class UsuarioView extends JFrame implements ActionListener{
 	    JLabel senhaLabel;
 	    JTextField senhaField;
 	    
+	    JLabel statusLabel;
+	    JTextField statusField;
+	    
 	  //Inicia o painel dos botoes
 	    JPanel painelBotoes;
 	    JButton botaoSalvar;
@@ -115,6 +118,10 @@ public class UsuarioView extends JFrame implements ActionListener{
       painelCadastro.add(senhaLabel);
       painelCadastro.add(senhaField);
       
+      statusLabel = new JLabel("Status");
+      statusField = new JTextField(10);
+      painelCadastro.add(statusLabel);
+      painelCadastro.add(statusField);
       
       
                   
@@ -162,8 +169,8 @@ public class UsuarioView extends JFrame implements ActionListener{
 				
 					//senha
 					u.setSenha( senhaField.getText());
-				
-					
+					//status
+					u.setStatus( statusField.getText());
 				
 			
       

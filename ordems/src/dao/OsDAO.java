@@ -29,28 +29,28 @@ public class OsDAO {
 		if(conn != null) {
 			st = (PreparedStatement) conn.prepareStatement(
 					"INSERT INTO Os"
-					+ "(usuario_id, nm_Os, tipo_Os, doc_num, rg_ie, celular, fone_re, email, pes_contato, cep, endereco, numero, complemento, bairro, cidade, estado) "
+					+ "(cliente_id, usuario_id, data_previsao, data_pronto, data_entrega, tipo, modelo, marca, cor, serie, garantia, info_cliente, info_tecnico, info_entrega, info_interna, status_id) "
 					+ "VALUES "
-					+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+					+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		}
 		
 		st.setInt(1, 1006); //mudar aqui para associar o id do usuário		
-		st.setString(2, Os.getNome());
-		st.setInt(3, Os.getTipo());
-		st.setString(4, Os.getDocumento());
-		st.setString(5, Os.getRgie());
-		st.setString(6, Os.getTelefonecel());
-		st.setString(7, Os.getTelefoneres());
-		st.setString(8, Os.getEmail());
-		st.setString(9, Os.getPessoa());
-		st.setString(10, Os.getEndereco().getCep());
-		st.setString(11, Os.getEndereco().getLogradouro());
-		st.setString(12, Os.getEndereco().getNumero());
-		st.setString(13, Os.getEndereco().getComplemento());
-		st.setString(14, Os.getEndereco().getBairro());
-		st.setString(15, Os.getEndereco().getCidade());
-		st.setString(16, Os.getEndereco().getEstado());
-		
+		st.setInt(2, Os.getCliente_id());
+		st.setInt(3, Os.getUsuario_id());
+		st.setString(4, Os.getData_previsao());
+		st.setString(5, Os.getData_pronto());
+		st.setString(6, Os.getData_entrega());
+		st.setString(7, Os.getTipo());
+		st.setString(8, Os.getModelo());
+		st.setString(9, Os.getMarca());
+		st.setString(10, Os.getCor());
+		st.setString(11, Os.getSerie());
+		st.setInt(12, Os.getGarantia());
+		st.setString(13, Os.getInfo_cliente());
+		st.setString(14, Os.getInfo_tecnico());
+		st.setString(15, Os.getInfo_entrega());
+		st.setString(16, Os.getInfo_interna());
+		st.setString(17, Os.getStatus_id());
 		st.execute();
 		
 		conn.close();
@@ -60,53 +60,53 @@ public class OsDAO {
 	
 	//metodo consultar
 	
-	public List<Os> getOs() {
-        Connection conn = null;
-        PreparedStatement pstm = null;
-        ResultSet rs = null;
-        ArrayList<Os> Os = new ArrayList<Os>();
-        try {
-            conn = Conexao.getConexao();
-            pstm = conn.prepareStatement(LIST);
-            rs = pstm.executeQuery();
-            while (rs.next()) {
-                Os Os = new Os();
- 
-                Os.setId(rs.getInt("id_Os"));
-                Os.setNome(rs.getString("nm_Os"));
-                Os.setCelular(rs.getString("celular"));
-                Os.setEmail(rs.getString("email"));
-                Os.add(Os);
-            }
-            Conexao.fechaConexao(conn, pstm, rs);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao listar Os" + e.getMessage());
-        }
-        return Os;
-    }
+	//public List<Os> getOs() {
+	//   Connection conn = null;
+	//  PreparedStatement pstm = null;
+	//  ResultSet rs = null;
+	// ArrayList<Os> Os = new ArrayList<Os>();
+        // try {
+	//   conn = Conexao.getConexao();
+	// pstm = conn.prepareStatement(LIST);
+	//   rs = pstm.executeQuery();
+	//      while (rs.next()) {
+	//          Os Os = new Os();
+	//
+	//          Os.setId(rs.getInt("id_Os"));
+	//          Os.setNome(rs.getString("nm_Os"));
+	//          Os.setCelular(rs.getString("celular"));
+	//          Os.setEmail(rs.getString("email"));
+	//          Os.add(Os);
+	//      }
+	//      Conexao.fechaConexao(conn, pstm, rs);
+	//  } catch (Exception e) {
+	//     JOptionPane.showMessageDialog(null, "Erro ao listar Os" + e.getMessage());
+	//  }
+	//  return Os;
+	//  }
 	
 	
  
-    public Os getOsById(int id_Os) {
-        Connection conn = null;
-        PreparedStatement pstm = null;
-        ResultSet rs = null;
-        Os Os = new Os();
-        try {
-            conn = Conexao.getConexao();
-            pstm = conn.prepareStatement(LISTBYID);
-            pstm.setInt(1, id_Os);
-            rs = pstm.executeQuery();
-            while (rs.next()) {
-                Os.setId(rs.getInt("id_Os"));
-                Os.setNome(rs.getString("nm_Os"));
-                Os.setCelular(rs.getString("celular"));
-                Os.setEmail(rs.getString("email"));
-            }
-            Conexao.fechaConexao(conn, pstm, rs);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao listar Os" + e.getMessage());
-        }
-        return Os;
+	// public Os getOsById(int id_Os) {
+	//    Connection conn = null;
+	//    PreparedStatement pstm = null;
+	//    ResultSet rs = null;
+	//   Os Os = new Os();
+	//   try {
+	//      conn = Conexao.getConexao();
+	//     pstm = conn.prepareStatement(LISTBYID);
+	////     pstm.setInt(1, id_Os);
+	//   //   rs = pstm.executeQuery();
+	////   while (rs.next()) {
+	//      Os.setId(rs.getInt("id_Os"));
+	//       //       Os.setNome(rs.getString("nm_Os"));
+	//     Os.setCelular(rs.getString("celular"));
+	//     Os.setEmail(rs.getString("email"));
+	// }
+	//    Conexao.fechaConexao(conn, pstm, rs);
+	// } catch (Exception e) {
+	//    JOptionPane.showMessageDialog(null, "Erro ao listar Os" + e.getMessage());
+	// }
+	//return Os;
     }
 }

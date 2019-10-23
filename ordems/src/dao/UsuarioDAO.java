@@ -1,5 +1,8 @@
 package dao;
 
+
+import java.awt.List;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
@@ -7,8 +10,7 @@ import javax.swing.JOptionPane;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
-import controller.ClienteController;
-import model.Cliente;
+import controller.UsuarioController;
 import model.Usuario;
 import dao.Conexao;
 
@@ -29,19 +31,19 @@ public class UsuarioDAO {
 		if(conn != null) {
 			st = (PreparedStatement) conn.prepareStatement(
 					"INSERT INTO usuario"
-					+ "(nm_usuario,cargo, departamento, matricula, login, senha) "
+					+ "(nm_usuario,cargo, departamento, matricula, login, senha, status) "
 					+ "VALUES "
-					+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+					+ "(?, ?, ?, ?, ?, ?, ?, ?)");
 		}
 		
 		st.setInt(1, 1006); //mudar aqui para associar o id do usuário		
 		st.setString(2, usuario.getNm_usuario());
 		st.setString(3, usuario.getCargo());
 		st.setString(4, usuario.getDepartamento());
-		st.setInt(5, usuario.getMatricula());
+		st.setString(5, usuario.getMatricula());
 		st.setString(6, usuario.getLogin());
 		st.setString(7, usuario.getSenha());
-		
+		st.setString(8, usuario.getStatus());
 		
 		st.execute();
 		
