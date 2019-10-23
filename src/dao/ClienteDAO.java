@@ -61,7 +61,7 @@ public class ClienteDAO {
 	}
 	
 	
-	/*public void consultar() throws SQLException {
+	public void consultar() throws SQLException {
 		
 		conn = (Connection) Conexao.getConexao();
 		
@@ -86,8 +86,8 @@ public class ClienteDAO {
             cliente.setNome(rs.getString("nm_cliente"));
             cliente.setTelefonecel(rs.getString("celular"));
             cliente.setEmail(rs.getString("email"));
-            cliente.setDocumento(rs.getString("documento"));
-            cliente.getEndereco().set
+            //cliente.setDocumento(rs.getString("documento"));
+           // cliente.setEndereco(rs.getSrin)
             cliente.add(cliente);
            
         }
@@ -97,7 +97,7 @@ public class ClienteDAO {
 		conn.close();
 	//----------------	
 		
-	}*/
+	}
 	
 	
 	//metodo consultar

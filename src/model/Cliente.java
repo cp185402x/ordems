@@ -108,6 +108,11 @@ public class Cliente {
 	public void setId(int id) {
 		this.id = id;
 	}
+
+	public void add(Cliente cliente) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 	
