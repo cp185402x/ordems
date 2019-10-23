@@ -3,6 +3,7 @@ package dao;
 import java.awt.List;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
@@ -93,21 +94,21 @@ public class ClienteDAO {
 		
 	}
 	//metodo consultar
-	/*
-	public List<Cliente> getCliente() {
-        Connection conn = null;
+	
+/*	public List getCliente() {
+        java.sql.Connection conn = null;
         PreparedStatement pstm = null;
         ResultSet rs = null;
         ArrayList<Cliente> cliente = new ArrayList<Cliente>();
         try {
             conn = Conexao.getConexao();
-            pstm = conn.prepareStatement(LIST);
+            pstm = conn.prepareStatement();
             rs = pstm.executeQuery();
             while (rs.next()) {
                 Cliente cliente = new Cliente();
  
                 cliente.setId(rs.getInt("id_cliente"));
-                cliente.setNome(rs.getString("nm_cliente"));
+                cliente.setNm_cliente(rs.getString("nm_cliente"));
                 cliente.setCelular(rs.getString("celular"));
                 cliente.setEmail(rs.getString("email"));
                 cliente.add(cliente);

@@ -62,4 +62,9 @@ public class ClienteController {
 		
 	}
 
+
+	public void consultarCliente() {
+		
+	}
+
 }
