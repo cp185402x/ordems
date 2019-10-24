@@ -4,7 +4,7 @@
 $db = mysqli_connect('localhost', 'root','','ordems_db');
    if(!$db)
    {
-	    echo 'Nao deu para se conectar ao banco de dados';
+	    echo 'Erro ao conectar ao banco de dados';
 		exit;
    }
 

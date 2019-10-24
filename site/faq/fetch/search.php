@@ -1,25 +1,36 @@
+<?php include_once("db.php");?>
 <?php
-$hostdb = "localhost";// Geralmente Localhost
-$userdb = "root";//usuário do seu banco de dados
-$passdb = "";// senha do banco de dados
-$tabledb = "ordems_db";// tabela do banco de dados
 
-$conecta = mysql_connect($hostdb, $userdb, $passdb) or die (mysql_error());
-@mysql_select_db($tabledb, $conecta) or die ("Erro ao conectar com o banco de dados");
+$busca = $_GET['b'];//salva na variável o que foi buscado
+//$busca = mysql_real_escape_string($busca);//mysql_real_escape_string() para evitar erros no MySQL
 
-$busca = $_POST['palavra'];// palavra que o usuario digitou
-
-$busca_query = mysql_query("SELECT * FROM os WHERE id_os LIKE '$busca'")or die(mysql_error());//faz a busca com as palavras enviadas
-
-if (empty($busca_query)) { //Se nao achar nada, lança essa mensagem
-echo "Nenhum registro encontrado.";
+//Verifica se a busca estiver vazia
+//Se estiver, redireciona para a index
+if($busca == null){
+header("location: index.php");
 }
 
-// quando existir algo em '$busca_query' ele realizará o script abaixo.
-while ($dados = mysql_fetch_array($busca_query)) {
-echo "ID: $dados[id_os]<br />";
-echo "Marca: $dados[modelo]<br />";
-echo "Descrição: $dados[descricao]<br />";
-echo "<hr>";
+
+$query = "SELECT * FROM os WHERE id_os LIKE '%".$busca."%' ORDER BY id_os DESC";
+$sql = mysqli_query($db, $query);
+//Procura no banco registros que contenham no texto número da OS relacionadas à busca
+
+$cont = mysqli_num_rows($sql);//Conta quantos registros existem no BD
+
+//Se não houver registros:
+if($cont == 0){
+	echo "Não há OS relacionadas à ".$busca."";//Mensagem de erro, caso não ache nada
+}
+
+//Caso haja resultados: 
+else{
+	echo "<ul>";
+	while($os = mysqli_fetch_array($sql))
+	{
+
+		echo "<li><a href=os.php?id='".$os['id_os']."'>".$os['id_os']."</a>".$os['modelo']." | ".$os['info_cliente']." | ".$os['info_tecnico']."</li>";//Escreve a informações do cliente
+		
+	}
+	echo "</ul>";
 }
 ?>

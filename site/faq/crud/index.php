@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>FAQ PROJETO ORDEMS</title>
+		<title>:. OrdemS .:. Administração de FAQ´s</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 		<link rel="stylesheet" href="assents/css/bootstrap.min.css" />
 		<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
@@ -27,7 +27,7 @@
 	</head>
 	<body>
 		<div class="container box">
-			<h1 align="center">ATUALIZAÇÃO DE FAQ</h1>
+			<h1 align="center">Administração de FAQ´s</h1>
 			<br />
 			<div class="table-responsive">
 				<br />
@@ -38,7 +38,7 @@
 				<table id="user_data" class="table table-bordered table-striped">
 					<thead>
 						<tr>
-							<th width="10%">Image</th>
+							<th width="10%">Imagem</th>
 							<th width="35%">Titulo</th>
 							<th width="35%">Descrição</th>
 							<th width="10%">Editar</th>
@@ -58,7 +58,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Adicionar novo FAQ</h4>
+					<h4 class="modal-title"> + Cadastar novo FAQ</h4>
 				</div>
 				<div class="modal-body">
 					<label>Título</label>
