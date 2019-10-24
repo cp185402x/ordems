@@ -2,11 +2,14 @@ package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+
+import controller.ClienteController;
 
 public class PrincipalView extends JFrame implements ActionListener{
 
@@ -18,6 +21,7 @@ public class PrincipalView extends JFrame implements ActionListener{
 	JMenuItem menuOs;
 	JMenuItem menuPeca;
 	JMenuItem menuUsuario;
+	JMenuItem menuConsultar;
 	
 	//construtor
 	public PrincipalView() {
@@ -56,7 +60,12 @@ public class PrincipalView extends JFrame implements ActionListener{
 		menuUsuario.addActionListener(this);
 		menuUsuario.setActionCommand("cadastrarUsuario");
 		
+		menuConsultar = new JMenuItem("Consultar cliente");
+		menuConsultar.addActionListener(this);
+		menuConsultar.setActionCommand("consultarCliente");
+		
 	}
+	
 	
 	//método para construir os menus na janela
 	public void construirCadastro() {
@@ -66,6 +75,7 @@ public class PrincipalView extends JFrame implements ActionListener{
 		menu.add(menuOs);
 		menu.add(menuPeca);
 		menu.add(menuUsuario);
+		menu.add(menuConsultar);
 		menuBar.add(menu);
 	}
 
@@ -110,6 +120,12 @@ public class PrincipalView extends JFrame implements ActionListener{
 			this.getContentPane().add(uv);
 			this.revalidate();
 		    this.repaint();
+		}
+		
+		if(e.getActionCommand().equals("consultarCliente")) {
+			//System.out.println("Cliquei no botao consulta");
+			ClienteController controleCliente = new ClienteController();
+			controleCliente.consultarCliente();
 		}
 		
 	}
