@@ -129,10 +129,26 @@ public class Cliente {
 		this.endereco = endereco;
 	}
 
+
+	public void add(Cliente cliente) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void setId(int int1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	
+	}
+
 	
 	
 	
     
-}
+
 
 

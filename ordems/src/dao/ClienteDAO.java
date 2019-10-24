@@ -3,6 +3,7 @@ package dao;
 import java.awt.List;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
@@ -35,7 +36,7 @@ public class ClienteDAO {
 					+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		}
 		
-		st.setInt(1, 1006); //mudar aqui para associar o id do usuário		
+		st.setInt(1, 1006); //mudar aqui para associar o id do us		
 		st.setString(2, cliente.getNm_cliente());
 		st.setInt(3, cliente.getTipo());
 		st.setString(4, cliente.getDoc_num());
@@ -55,97 +56,162 @@ public class ClienteDAO {
 		st.execute();
 		
 		conn.close();
-	//----------------	
-		
 	}
-	
-	
-	public void consultar() throws SQLException {
-		
-		conn = (Connection) Conexao.getConexao();
-		
-		if(conn != null) {
-			st = (PreparedStatement) conn.prepareStatement(
-					"SELECT * FROM cliente");
+	//----------------	
+		public void consultar() throws SQLException {
+			
+			conn = (Connection) Conexao.getConexao();
+			
+			if(conn != null) {
+				st = (PreparedStatement) conn.prepareStatement(
+						"SELECT * FROM cliente");
+			}
+			
+
+			
+			ResultSet rs = st.executeQuery();
+			
+			while (rs.next()) {
+	            Cliente cliente = new Cliente();
+	            
+	            
+	            
+	            System.out.println(rs.getInt("id_cliente"));
+	            System.out.println(rs.getString("nm_cliente"));
+
+	          //  cliente.setId(rs.getInt("id_cliente"));
+	            cliente.setNm_cliente(rs.getString("nm_cliente"));
+	            cliente.setCelular(rs.getString("celular"));
+	            cliente.setEmail(rs.getString("email"));
+	            cliente.setDoc_num(rs.getString("documento"));
+	           // cliente.setEndereco(rs.getSrin)
+	            cliente.add(cliente);
+	           
+	        }
+			
+			System.out.println("Resultado da consulta" + rs);
+			
+			conn.close();
+		//----------------	
+			
 		}
 		
+		
+		//metodo consultar
+		public ArrayList<Cliente> getClientes() {
+	        Connection conn = null;
+	        PreparedStatement st = null;
+	        ResultSet rs = null;
+	        ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
+	        try {
+	            conn = (Connection) Conexao.getConexao();
+	            
+	            if(conn != null) {
+	    			st = (PreparedStatement) conn.prepareStatement(
+	    					"SELECT * FROM cliente");
+	    			
+	    			rs = st.executeQuery();
+	                while (rs.next()) {
+	                    Cliente cliente = new Cliente();
+	     
+	                    cliente.setId(rs.getInt("id_cliente"));
+	                    cliente.setNm_cliente(rs.getString("nm_cliente"));
+	                    cliente.setCelular(rs.getString("celular"));
+	                    cliente.setEmail(rs.getString("email"));
+	                    
+	                    listaClientes.add(cliente);
+	                }
+	                conn.close();
+	    		}
+	            else {
+	            	System.out.println("Conexão falhou!");
+	            }
+	            
+	        } catch (Exception e) {
+	            JOptionPane.showMessageDialog(null, "Erro ao listar Cliente" + e.getMessage());
+	        }
+	        return listaClientes;
+	    }
+		
+		
+	 
+	    public Cliente getClienteById(int id_cliente) {
+	    	Connection conn = null;
+	        PreparedStatement st = null;
+	        ResultSet rs = null;
+	        Cliente cliente = null;
+	        
+	        try {
+	            conn = (Connection) Conexao.getConexao();
+	            
+	            if(conn != null) {
+	    			st = (PreparedStatement) conn.prepareStatement(
+	    					"SELECT * FROM cliente WHERE id_cliente = ?");
+	    			st.setInt(1, id_cliente);
+	    			
+	    			rs = st.executeQuery();
+	                while (rs.next()) {
+	                    cliente = new Cliente();
+	     
+	                    //PREENCHER TODOS OS DADOS DO CLIENTE
+	                  //  cliente.setId(rs.getInt("id_cliente"));
+	                    cliente.setNm_cliente(rs.getString("nm_cliente"));
+	                    cliente.setCelular(rs.getString("celular"));
+	                    cliente.setEmail(rs.getString("email"));
+	                    
+	                }
+	                conn.close();
+	    		}
+	            else {
+	            	System.out.println("Conexão falhou!");
+	            }
+	            
+	        } catch (Exception e) {
+	            JOptionPane.showMessageDialog(null, "Erro ao listar Cliente" + e.getMessage());
+	        }
+	        return cliente;
+	    }
+	    
+	    public Cliente getClienteByDocumento(int documento) {
+	    	Connection conn = null;
+	        PreparedStatement st = null;
+	        ResultSet rs = null;
+	        Cliente cliente = null;
+	        
+	        try {
+	            conn = (Connection) Conexao.getConexao();
+	            
+	            if(conn != null) {
+	    			st = (PreparedStatement) conn.prepareStatement(
+	    					"SELECT * FROM cliente WHERE documento = ?");
+	    			st.setInt(1, documento);
+	    			
+	    			rs = st.executeQuery();
+	                while (rs.next()) {
+	                    cliente = new Cliente();
+	     
+	                    
+	                    //PREENCHER TODOS OS DADOS DO CLIENTE
+	                    //cliente.setid(rs.getInt("id_cliente"));
+	                    cliente.setNm_cliente(rs.getString("nm_cliente"));
+	                    cliente.setCelular(rs.getString("celular"));
+	                    cliente.setEmail(rs.getString("email"));
+	                    
+	                }
+	                conn.close();
+	    		}
+	            else {
+	            	System.out.println("Conexão falhou!");
+	            }
+	            
+	        } catch (Exception e) {
+	            JOptionPane.showMessageDialog(null, "Erro ao listar Cliente" + e.getMessage());
+	        }
+	        return cliente;
+	    }
+	    
 
-		
-		ResultSet rs = st.executeQuery();
-		
-		while (rs.next()) {
-            Cliente cliente = new Cliente();
-            System.out.println(rs.getInt("id_cliente"));
-            System.out.println(rs.getString("nm_cliente"));
-
-           /* cliente.setId(rs.getInt("id_cliente"));
-            cliente.setNome(rs.getString("nm_cliente"));
-            cliente.setCelular(rs.getString("celular"));
-            cliente.setEmail(rs.getString("email"));
-            cliente.add(cliente);
-           */
-        }
-		
-		System.out.println("Resultado da consulta" + rs);
-		
-		conn.close();
-	//----------------	
-		
 	}
-	//metodo consultar
-	/*
-	public List<Cliente> getCliente() {
-        Connection conn = null;
-        PreparedStatement pstm = null;
-        ResultSet rs = null;
-        ArrayList<Cliente> cliente = new ArrayList<Cliente>();
-        try {
-            conn = Conexao.getConexao();
-            pstm = conn.prepareStatement(LIST);
-            rs = pstm.executeQuery();
-            while (rs.next()) {
-                Cliente cliente = new Cliente();
- 
-                cliente.setId(rs.getInt("id_cliente"));
-                cliente.setNome(rs.getString("nm_cliente"));
-                cliente.setCelular(rs.getString("celular"));
-                cliente.setEmail(rs.getString("email"));
-                cliente.add(cliente);
-            }
-            Conexao.fechaConexao(conn, pstm, rs);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao listar Cliente" + e.getMessage());
-        }
-        return cliente;
-    }
-	
-	
- 
-    public Cliente getClienteById(int id_cliente) {
-        Connection conn = null;
-        PreparedStatement pstm = null;
-        ResultSet rs = null;
-        Cliente cliente = new Cliente();
-        try {
-            conn = Conexao.getConexao();
-            pstm = conn.prepareStatement(LISTBYID);
-            pstm.setInt(1, id_cliente);
-            rs = pstm.executeQuery();
-            while (rs.next()) {
-                cliente.setId(rs.getInt("id_cliente"));
-                cliente.setNome(rs.getString("nm_cliente"));
-                cliente.setCelular(rs.getString("celular"));
-                cliente.setEmail(rs.getString("email"));
-            }
-            Conexao.fechaConexao(conn, pstm, rs);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao listar cliente" + e.getMessage());
-        }
-        return cliente;
-    }
-    
-*/
-}
 
 
 

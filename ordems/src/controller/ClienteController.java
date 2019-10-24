@@ -62,4 +62,10 @@ public class ClienteController {
 		
 	}
 
+
+	public void consultarCliente() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

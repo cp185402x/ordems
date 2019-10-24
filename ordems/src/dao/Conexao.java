@@ -45,6 +45,11 @@ public class Conexao {
 		
 		
 	}
+
+	public static void fechaConexao(com.mysql.jdbc.Connection conn) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 }
