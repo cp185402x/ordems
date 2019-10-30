@@ -52,12 +52,29 @@ public class Cliente {
 	public void setFone_re(String fone_re) {
 		this.fone_re = fone_re;
 	}
+	
+	
+	public String getCelular() {
+		return celular;
+	}
 
+	public void setCelular(String celular) {
+		this.celular = celular;
+	}
 
+	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	
 	public String getPes_contato() {
 		return pes_contato;
 	}
-
 
 	public void setPes_contato(String pes_contato) {
 		this.pes_contato = pes_contato;
@@ -73,16 +90,6 @@ public class Cliente {
 	}
 
 
-	public String getCelular() {
-		return celular;
-	}
-
-
-
-	public String getEmail() {
-		return email;
-	}
-
 
 	public Cliente(Endereco endereco) {
 		this.endereco = endereco;
@@ -94,11 +101,6 @@ public class Cliente {
         this.endereco = new Endereco();
     
     }
-
-	
-	public void setEmail(String email) {
-		this.email = email;
-	}
 	
 
 	public int getTipo() {
@@ -108,17 +110,6 @@ public class Cliente {
 	public void setTipo(int tipo) {
 		this.tipo = tipo;
 	}
-
-	public void setCelular(String text) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void setPescontato(String text) {
-		// TODO Auto-generated method stub
-		
-	}
-
 
 	public Endereco getEndereco() {
 		return endereco;
@@ -131,16 +122,8 @@ public class Cliente {
 
 
 	public void add(Cliente cliente) {
-		// TODO Auto-generated method stub
 		
 	}
-
-
-	public void setId(int int1) {
-		// TODO Auto-generated method stub
-		
-	}
-
 
 	
 	}

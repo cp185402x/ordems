@@ -1,105 +1,28 @@
 package model;
 
 public class Peca {
-	
+
 	//Atributos
-    private String nome;
-    private String documento;
-    private String telefonecel;
-    private String telefoneres;
-    private String pessoa;
-    private String rgie;
-    private String email;
-    private int dataNascimento;
-    private Endereco endereco;
-    private int tipo;
-    
-    //Construtor
-    public Peca(){
-        this.endereco = new Endereco();
-    
-    }
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getDocumento() {
-		return documento;
-	}
-
-	public void setDocumento(String documento) {
-		this.documento = documento;
-	}
-
-	public String getTelefonecel() {
-		return telefonecel;
-	}
-
-	public void setTelefonecel(String telefonecel) {
-		this.telefonecel = telefonecel;
-	}
-
-	public String getPessoa() {
-		return pessoa;
-	}
-
-	public void setPessoa(String pessoa) {
-		this.pessoa = pessoa;
-	}
-
-	public String getRgie() {
-		return rgie;
-	}
-
-	public void setRgie(String rgie) {
-		this.rgie = rgie;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public int getDataNascimento() {
-		return dataNascimento;
-	}
-
-	public void setDataNascimento(int dataNascimento) {
-		this.dataNascimento = dataNascimento;
-	}
-
-	public Endereco getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
-
-	public int getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(int tipo) {
-		this.tipo = tipo;
-	}
-
-	public String getTelefoneres() {
-		return telefoneres;
-	}
-
-	public void setTelefoneres(String telefoneres) {
-		this.telefoneres = telefoneres;
-	}
+    private String nm_peca;
+    private String vl_custo;
+    private String vl_venda;
 	
-	
-    
+	public  String getNm_peca() {
+		return nm_peca;
+	}
+	public void setNm_peca(String nm_peca) {
+		this.nm_peca = nm_peca;
+	}
+	public String getVl_custo() {
+		return vl_custo;
+	}
+	public void setVl_custo(String vl_custo) {
+		this.vl_custo = vl_custo;
+	}
+	public String getVl_venda() {
+		return vl_venda;
+	}
+	public void setVl_venda(String vl_venda) {
+		this.vl_venda = vl_venda;
+	}
 }

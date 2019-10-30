@@ -57,7 +57,11 @@ public class ClienteDAO {
 		
 		conn.close();
 	}
-	//----------------	
+	
+	
+	//----------------
+	//Consulta Cliente
+	
 		public void consultar() throws SQLException {
 			
 			conn = (Connection) Conexao.getConexao();
@@ -73,31 +77,32 @@ public class ClienteDAO {
 			
 			while (rs.next()) {
 	            Cliente cliente = new Cliente();
-	            
-	            
-	            
-	            System.out.println(rs.getInt("id_cliente"));
-	            System.out.println(rs.getString("nm_cliente"));
 
-	          //  cliente.setId(rs.getInt("id_cliente"));
-	            cliente.setNm_cliente(rs.getString("nm_cliente"));
-	            cliente.setCelular(rs.getString("celular"));
-	            cliente.setEmail(rs.getString("email"));
-	            cliente.setDoc_num(rs.getString("documento"));
-	           // cliente.setEndereco(rs.getSrin)
-	            cliente.add(cliente);
+	            
+	           System.out.println(rs.getInt("id_cliente"));
+	           System.out.println(rs.getString("nm_cliente"));
+	           System.out.println(rs.getString("email"));
+	           System.out.println(rs.getString("celular"));
+	           System.out.println(rs.getString("fone_re"));
+	           System.out.println(rs.getString("doc_num"));
+	           System.out.println(rs.getString("rg_ie"));
+	           System.out.println(rs.getString("pes_contato"));
+
 	           
 	        }
 			
 			System.out.println("Resultado da consulta" + rs);
 			
 			conn.close();
+			
+			
 		//----------------	
 			
 		}
 		
 		
 		//metodo consultar
+		
 		public ArrayList<Cliente> getClientes() {
 	        Connection conn = null;
 	        PreparedStatement st = null;
@@ -114,7 +119,7 @@ public class ClienteDAO {
 	                while (rs.next()) {
 	                    Cliente cliente = new Cliente();
 	     
-	                    cliente.setId(rs.getInt("id_cliente"));
+	                    //cliente.setId(rs.getInt("id_cliente"));
 	                    cliente.setNm_cliente(rs.getString("nm_cliente"));
 	                    cliente.setCelular(rs.getString("celular"));
 	                    cliente.setEmail(rs.getString("email"));
@@ -133,7 +138,7 @@ public class ClienteDAO {
 	        return listaClientes;
 	    }
 		
-		
+		/*
 	 
 	    public Cliente getClienteById(int id_cliente) {
 	    	Connection conn = null;
@@ -154,7 +159,7 @@ public class ClienteDAO {
 	                    cliente = new Cliente();
 	     
 	                    //PREENCHER TODOS OS DADOS DO CLIENTE
-	                  //  cliente.setId(rs.getInt("id_cliente"));
+	                    cliente.setId(rs.getInt("id_cliente"));
 	                    cliente.setNm_cliente(rs.getString("nm_cliente"));
 	                    cliente.setCelular(rs.getString("celular"));
 	                    cliente.setEmail(rs.getString("email"));
@@ -192,7 +197,7 @@ public class ClienteDAO {
 	     
 	                    
 	                    //PREENCHER TODOS OS DADOS DO CLIENTE
-	                    //cliente.setid(rs.getInt("id_cliente"));
+	                    cliente.setId(rs.getInt("id_cliente"));
 	                    cliente.setNm_cliente(rs.getString("nm_cliente"));
 	                    cliente.setCelular(rs.getString("celular"));
 	                    cliente.setEmail(rs.getString("email"));
@@ -208,10 +213,12 @@ public class ClienteDAO {
 	            JOptionPane.showMessageDialog(null, "Erro ao listar Cliente" + e.getMessage());
 	        }
 	        return cliente;
+	        
+	        */
 	    }
 	    
 
-	}
-
+	 
+	
 
 

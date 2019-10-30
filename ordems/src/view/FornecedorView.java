@@ -183,7 +183,7 @@ public class FornecedorView extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				System.out.println("cliquei no botao cancelar");
+				dispose();
 			}
         	
         });

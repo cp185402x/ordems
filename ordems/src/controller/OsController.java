@@ -1,3 +1,5 @@
+package controller;
+
 import java.sql.SQLException;
 
 import dao.OsDAO;
@@ -43,16 +45,10 @@ public class OsController {
 
 
 	public boolean cadastrarCliente(Os o) throws SQLException {
-		// toda validação dos campos
-		if(true) {
-			OsDAO osDAO = new OsDAO();
-			osDAO.inserir(o);
-			
-			return true;
-		}
-		else {
-			return false;
-		}
+		OsDAO osDAO = new OsDAO();
+		osDAO.inserir(o);
+		
+		return true;
 		
 		
 	}

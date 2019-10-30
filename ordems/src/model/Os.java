@@ -3,8 +3,8 @@ package model;
 public class Os {
 	
 	//Atributos
-	 private int cliente_id;
-	 private int usuario_id;
+	private int cliente_id;
+	private int usuario_id;
     private String data_previsao;
     private String data_pronto;
     private String data_entrega;

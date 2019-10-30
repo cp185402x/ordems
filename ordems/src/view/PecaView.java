@@ -97,8 +97,8 @@ public class PecaView extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				System.out.println("cliquei no botao cancelar");
+				 
+				dispose();
 			}
         	
         });

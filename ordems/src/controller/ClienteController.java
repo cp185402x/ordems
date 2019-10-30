@@ -17,12 +17,13 @@ public class ClienteController {
 	}
 	
 	
-	public void validaCampos (String nome, int documento, int rg, int data, int celular, String email, String contato, int cep, String endereco, int numero, String complemento, String bairro, String cidade, String estado) {
+	public void validaCampos (String nome, String documento, String rgie, String data, String fone_re, String celular, String email, String contato, String cep, String endereco, String numero, String complemento, String bairro, String cidade, String estado) {
 		
 		System.out.println("contoller" + nome);
 		System.out.println("contoller" + documento);
-		System.out.println("contoller" + rg);
+		System.out.println("contoller" + rgie);
 		System.out.println("contoller" + data);
+		System.out.println("contoller" + fone_re);
 		System.out.println("contoller" + celular);
 		System.out.println("contoller" + email);
 		System.out.println("contoller" + contato);
@@ -48,23 +49,23 @@ public class ClienteController {
 
 
 	public boolean cadastrarCliente(Cliente c) throws SQLException {
-		// toda validação dos campos
-		if(true) {
-			ClienteDAO clienteDAO = new ClienteDAO();
-			clienteDAO.inserir(c);
-			
-			return true;
-		}
-		else {
-			return false;
-		}
+		ClienteDAO clienteDAO = new ClienteDAO();
+		clienteDAO.inserir(c);
+		
+		return true;
 		
 		
 	}
 
 
-	public void consultarCliente() {
-		// TODO Auto-generated method stub
+	public Cliente consultarCliente() throws SQLException {
+		System.out.println("Cheguei no consultar cliente");
+		Cliente cliente;
+		ClienteDAO clienteDAO = new ClienteDAO();
+		clienteDAO.consultar();
+		cliente = new Cliente();
+		
+		return cliente;
 		
 	}
 

@@ -186,7 +186,9 @@ public class UsuarioView extends JFrame implements ActionListener{
 		}
 	}
 	else if(e.getActionCommand().equalsIgnoreCase("Cancelar")) {
-		//tratar a ação de cancelar 
+		 
+			dispose();
+		
 			}
       	
 
