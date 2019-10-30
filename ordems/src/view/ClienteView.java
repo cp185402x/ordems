@@ -15,10 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import controller.ClienteController;
 import model.Cliente;
-import javax.swing.JTabbedPane;
 import javax.swing.JRadioButton;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import javax.swing.SwingConstants;
 import javax.swing.JTable;
 import javax.swing.GroupLayout;
@@ -26,12 +23,9 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableModel;
-import java.awt.Window.Type;
-import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.ScrollPaneConstants;
-import java.awt.SystemColor;
 
 //Declarando a classe na janela
 public class ClienteView extends JFrame implements ActionListener{
