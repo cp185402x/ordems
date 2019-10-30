@@ -1,0 +1,21 @@
+-- Atualizações feitas na tabela Fornecedores 
+
+ALTER TABLE `ordems_db`.`fornecedor` 
+DROP FOREIGN KEY `fk_fornecedor_usuario`;
+ALTER TABLE `ordems_db`.`fornecedor` 
+ADD COLUMN `data_nasc` VARCHAR(20) NULL DEFAULT NULL AFTER `data_cad`,
+ADD COLUMN `tipo_fornecedor` INT(1) NULL DEFAULT '1' AFTER `nm_fornecedor`,
+CHANGE COLUMN `email` `email` VARCHAR(60) NULL DEFAULT NULL AFTER `fone_re`,
+CHANGE COLUMN `usuario_id` `usuario_id` INT(11) NULL DEFAULT NULL ,
+CHANGE COLUMN `num_documento` `doc_num` VARCHAR(14) NULL DEFAULT NULL ,
+CHANGE COLUMN `ie` `rg_ie` VARCHAR(15) NULL DEFAULT NULL ,
+CHANGE COLUMN `fone_fixo` `fone_re` VARCHAR(15) NULL DEFAULT NULL ;
+ALTER TABLE `ordems_db`.`fornecedor` 
+ADD CONSTRAINT `fk_fornecedor_usuario`
+  FOREIGN KEY (`usuario_id`)
+  REFERENCES `ordems_db`.`usuario` (`id_usuario`);
+  
+-- Atualização feita na tabela cliente
+
+  ALTER TABLE `ordems_db`.`cliente` 
+CHANGE COLUMN `data_nasc` `data_nasc` VARCHAR(20) NULL DEFAULT NULL ;
