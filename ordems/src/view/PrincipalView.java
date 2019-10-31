@@ -10,9 +10,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import controller.ClienteController;
-import javax.swing.KeyStroke;
-import java.awt.event.KeyEvent;
-import java.awt.event.InputEvent;
 
 public class PrincipalView extends JFrame implements ActionListener{
 

@@ -13,8 +13,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import controller.ClienteController;
-import model.Cliente;
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 import javax.swing.JTable;
@@ -26,6 +24,9 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.ScrollPaneConstants;
+
+import controller.ClienteController;
+import model.Cliente;
 
 //Declarando a classe na janela
 public class ClienteView extends JFrame implements ActionListener{
@@ -82,6 +83,7 @@ public class ClienteView extends JFrame implements ActionListener{
     JPanel painelBotoes;
     JButton botaoSalvar;
     JButton botaoCancelar;
+    
     private JTable clienteTable;
     private JTextField buscarField;
 
@@ -349,15 +351,15 @@ public class ClienteView extends JFrame implements ActionListener{
 			//documento
 			c.setDoc_num(docField.getText());			
 			//RGIE
-			c.setRg_ie(rgieField .getText());
+			c.setRg_ie(rgieField.getText());
 			//fone fixo
-			c.setFone_re(fone_reField .getText());
+			c.setFone_re(fone_reField.getText());
 			//celular
 			c.setCelular(celularField.getText());
 			//email
-			c.setEmail(emailField .getText());
+			c.setEmail(emailField.getText());
 			//pessoa contato
-			c.setPes_contato(pes_contatoField .getText());
+			c.setPes_contato(pes_contatoField.getText());
 			//endereço
 			//c.setEndereco(enderecoField .getText());
 			//numero

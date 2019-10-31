@@ -1,6 +1,5 @@
 package dao;
 
-import java.awt.List;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -10,7 +9,6 @@ import javax.swing.JOptionPane;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
-import controller.ClienteController;
 import model.Cliente;
 import dao.Conexao;
 

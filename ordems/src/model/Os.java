@@ -118,10 +118,6 @@ public class Os {
 	public void setStatus_id(String status_id) {
 		this.status_id = status_id;
 	}
-
-    
-    //Construtor
-
     
     }
 

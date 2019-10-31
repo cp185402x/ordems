@@ -1,15 +1,10 @@
 package dao;
 
-import java.awt.List;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import javax.swing.JOptionPane;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
-import controller.OsController;
 import model.Os;
 import dao.Conexao;
 

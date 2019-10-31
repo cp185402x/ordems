@@ -2,12 +2,9 @@ package dao;
 
 import java.sql.SQLException;
 
-import javax.swing.JOptionPane;
-
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
-import controller.PecaController;
 import model.Peca;
 import dao.Conexao;
 
@@ -33,9 +30,9 @@ public class PecaDAO {
 					+ "(?, ?, ?)");
 		}
 		
-		st.setString(1, Peca.getNm_peca());
-		st.setString(2, Peca.getVl_custo());
-		st.setString(3, Peca.getVl_venda());
+		st.setString(1, peca.getNm_peca());
+		st.setString(2, peca.getVl_custo());
+		st.setString(3, peca.getVl_venda());
 		
 		st.execute();
 		

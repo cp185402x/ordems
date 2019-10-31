@@ -44,7 +44,7 @@ public class OsController {
 	}
 
 
-	public boolean cadastrarCliente(Os o) throws SQLException {
+	public boolean cadastrarOs(Os o) throws SQLException {
 		OsDAO osDAO = new OsDAO();
 		osDAO.inserir(o);
 		

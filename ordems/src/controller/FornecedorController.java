@@ -2,10 +2,8 @@ package controller;
 
 import java.sql.SQLException;
 
-import javax.swing.JOptionPane;
-
-import dao.FornecedorDAO;
 import dao.Conexao;
+import dao.FornecedorDAO;
 import model.Fornecedor;
 
 
@@ -59,7 +57,7 @@ public class FornecedorController {
 
 
 	public Fornecedor consultarFornecedor() throws SQLException {
-		System.out.println("Cheguei no consultar fornecedor");
+		//System.out.println("Cheguei no consultar fornecedor");
 		Fornecedor fornecedor;
 		FornecedorDAO fornecedorDAO = new FornecedorDAO();
 		fornecedorDAO.consultar();

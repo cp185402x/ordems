@@ -25,4 +25,5 @@ public class Peca {
 	public void setVl_venda(String vl_venda) {
 		this.vl_venda = vl_venda;
 	}
+
 }

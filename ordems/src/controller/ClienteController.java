@@ -2,8 +2,6 @@ package controller;
 
 import java.sql.SQLException;
 
-import javax.swing.JOptionPane;
-
 import dao.ClienteDAO;
 import dao.Conexao;
 import model.Cliente;
@@ -59,7 +57,7 @@ public class ClienteController {
 
 
 	public Cliente consultarCliente() throws SQLException {
-		System.out.println("Cheguei no consultar cliente");
+		//System.out.println("Cheguei no consultar cliente");
 		Cliente cliente;
 		ClienteDAO clienteDAO = new ClienteDAO();
 		clienteDAO.consultar();

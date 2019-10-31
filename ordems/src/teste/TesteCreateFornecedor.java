@@ -1,8 +1,6 @@
 
 package teste;
 
-import javax.swing.JFrame;
-
 import view.FornecedorView;
 
 public class TesteCreateFornecedor {
