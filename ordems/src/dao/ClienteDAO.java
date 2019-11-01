@@ -60,7 +60,7 @@ public class ClienteDAO {
 	//----------------
 	//Consulta Cliente
 	
-		public void consultar() throws SQLException {
+		public ArrayList<Cliente> consultar() throws SQLException {
 			
 			conn = (Connection) Conexao.getConexao();
 			
@@ -70,28 +70,39 @@ public class ClienteDAO {
 			}
 			
 
-			
+			ArrayList<Cliente> lista = new ArrayList<Cliente>();
 			ResultSet rs = st.executeQuery();
 			
 			while (rs.next()) {
 	            Cliente cliente = new Cliente();
 
-	            
-	           System.out.println(rs.getInt("id_cliente"));
-	           System.out.println(rs.getString("nm_cliente"));
-	           System.out.println(rs.getString("email"));
-	           System.out.println(rs.getString("celular"));
-	           System.out.println(rs.getString("fone_re"));
-	           System.out.println(rs.getString("doc_num"));
-	           System.out.println(rs.getString("rg_ie"));
-	           System.out.println(rs.getString("pes_contato"));
+	           cliente.setId(rs.getInt("id_cliente"));
+	           cliente.setNm_cliente(rs.getString("nm_cliente"));
+	           cliente.setEmail(rs.getString("email"));
+	           cliente.setCelular(rs.getString("celular"));
+	           cliente.setFone_re(rs.getString("fone_re"));
+	           cliente.setDoc_num(rs.getString("doc_num"));
+	           cliente.setRg_ie(rs.getString("rg_ie"));
+	           cliente.setPes_contato(rs.getString("pes_contato"));
+	           cliente.setTipo_cliente(rs.getInt("tipo_cliente"));
+	         
+	           cliente.getEndereco().setCep(rs.getString("cep"));
+	           cliente.getEndereco().setLogradouro(rs.getString("endereco"));
+	           cliente.getEndereco().setBairro(rs.getString("Bairro"));
+	           cliente.getEndereco().setCidade(rs.getString("Cidade"));
+	           cliente.getEndereco().setEstado(rs.getString("Estado"));
+	           cliente.getEndereco().setNumero(rs.getString("Numero"));
+	           cliente.getEndereco().setLogradouro(rs.getString("Logradouro"));
+	           lista.add(cliente);
 
 	           
 	        }
 			
-			System.out.println("Resultado da consulta" + rs);
+			//System.out.println("Resultado da consulta" + rs);
 			
 			conn.close();
+			
+			return lista;
 			
 			
 		//----------------	
@@ -101,7 +112,7 @@ public class ClienteDAO {
 		
 		//metodo consultar
 		
-		public ArrayList<Cliente> getClientes() {
+		/*public ArrayList<Cliente> getClientes() {
 	        Connection conn = null;
 	        PreparedStatement st = null;
 	        ResultSet rs = null;

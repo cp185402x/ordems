@@ -33,17 +33,16 @@ public class UsuarioDAO {
 					"INSERT INTO usuario"
 					+ "(nm_usuario,cargo, departamento, matricula, login, senha, status) "
 					+ "VALUES "
-					+ "(?, ?, ?, ?, ?, ?, ?, ?)");
+					+ "(?, ?, ?, ?, ?, ?, ?)");
 		}
 		
-		st.setInt(1, 1006); //mudar aqui para associar o id do usuário		
-		st.setString(2, usuario.getNm_usuario());
-		st.setString(3, usuario.getCargo());
-		st.setString(4, usuario.getDepartamento());
-		st.setString(5, usuario.getMatricula());
-		st.setString(6, usuario.getLogin());
-		st.setString(7, usuario.getSenha());
-		st.setString(8, usuario.getStatus());
+		st.setString(1, usuario.getNm_usuario());
+		st.setString(2, usuario.getCargo());
+		st.setString(3, usuario.getDepartamento());
+		st.setString(4, usuario.getMatricula());
+		st.setString(5, usuario.getLogin());
+		st.setString(6, usuario.getSenha());
+		st.setString(7, usuario.getStatus());
 		
 		st.execute();
 		

@@ -1,6 +1,7 @@
 package controller;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import dao.ClienteDAO;
 import dao.Conexao;
@@ -56,14 +57,11 @@ public class ClienteController {
 	}
 
 
-	public Cliente consultarCliente() throws SQLException {
+	public ArrayList<Cliente> consultarCliente() throws SQLException {
 		//System.out.println("Cheguei no consultar cliente");
-		Cliente cliente;
 		ClienteDAO clienteDAO = new ClienteDAO();
-		clienteDAO.consultar();
-		cliente = new Cliente();
+		return clienteDAO.consultar();
 		
-		return cliente;
 		
 	}
 

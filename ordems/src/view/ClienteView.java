@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 import javax.swing.JTable;
+import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
@@ -27,6 +28,7 @@ import javax.swing.ScrollPaneConstants;
 
 import controller.ClienteController;
 import model.Cliente;
+import model.TabelaCliente;
 
 //Declarando a classe na janela
 public class ClienteView extends JFrame implements ActionListener{
@@ -34,6 +36,10 @@ public class ClienteView extends JFrame implements ActionListener{
 	JPanel painelTitulo;
 	JPanel painelCadastro;
 	JLabel titulo;
+	
+	JRadioButton cnpjRadio;
+	JRadioButton cpfRadio;
+	ButtonGroup tipoGrupo;
 	
     JLabel nm_clienteLabel;
     JTextField nm_clienteField;
@@ -79,12 +85,15 @@ public class ClienteView extends JFrame implements ActionListener{
     JLabel estadoLabel;
     JTextField estadoField;
     
+    
     //Inicia o painel dos botoes
     JPanel painelBotoes;
     JButton botaoSalvar;
     JButton botaoCancelar;
     
     private JTable clienteTable;
+    TabelaCliente tabelaCliente;
+    
     private JTextField buscarField;
 
 	public ClienteView() { // construtor da view Cliente.
@@ -141,15 +150,20 @@ public class ClienteView extends JFrame implements ActionListener{
         emailLabel.setBounds(10, 126, 368, 14);
         clientePainel.add(emailLabel);
         
-        JRadioButton cpfRadio = new JRadioButton("CPF");
+        cpfRadio = new JRadioButton("CPF");
+        cpfRadio.setSelected(true);
         cpfRadio.setHorizontalAlignment(SwingConstants.RIGHT);
         cpfRadio.setBounds(6, 7, 50, 23);
-        clientePainel.add(cpfRadio);
-        
-        JRadioButton cnpjRadio = new JRadioButton("CNPJ");
+        clientePainel.add(cpfRadio);        
+        cnpjRadio = new JRadioButton("CNPJ");
         cnpjRadio.setHorizontalAlignment(SwingConstants.RIGHT);
         cnpjRadio.setBounds(58, 7, 56, 23);
         clientePainel.add(cnpjRadio);
+        tipoGrupo = new ButtonGroup();
+        
+        tipoGrupo.add(cpfRadio);
+        tipoGrupo.add(cnpjRadio);
+        
         
         docField = new JTextField(20);
         docField.setBounds(114, 8, 199, 20);
@@ -250,6 +264,7 @@ public class ClienteView extends JFrame implements ActionListener{
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         
+        
         JButton editarBtn = new JButton("Editar");
         
         JButton excluirBtn = new JButton("Excluir");
@@ -301,27 +316,12 @@ public class ClienteView extends JFrame implements ActionListener{
         			.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 188, GroupLayout.PREFERRED_SIZE)
         			.addContainerGap())
         );
+
         
-        clienteTable = new JTable();
-        clienteTable.setModel(new DefaultTableModel(
-        	new Object[][] {
-        	},
-        	new String[] {
-        		"Cod", "Nome", "Documento", "Celular", "E-Mail"
-        	}
-        ) {
-        	Class[] columnTypes = new Class[] {
-        		Integer.class, String.class, String.class, String.class, Object.class
-        	};
-        	public Class getColumnClass(int columnIndex) {
-        		return columnTypes[columnIndex];
-        	}
-        });
-        clienteTable.getColumnModel().getColumn(0).setPreferredWidth(40);
-        clienteTable.getColumnModel().getColumn(1).setPreferredWidth(200);
-        clienteTable.getColumnModel().getColumn(2).setPreferredWidth(100);
-        clienteTable.getColumnModel().getColumn(3).setPreferredWidth(100);
-        clienteTable.getColumnModel().getColumn(4).setPreferredWidth(200);
+        tabelaCliente = new TabelaCliente();
+        clienteTable = new JTable(tabelaCliente);
+        
+             
         scrollPane.setViewportView(clienteTable);
         
         painelCadastro.setLayout(gl_painelCadastro);
@@ -342,10 +342,22 @@ public class ClienteView extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		
 		if(e.getActionCommand().equalsIgnoreCase("salvar")) {
+			
+			}
+			
 			Cliente c = new Cliente();
 			
 			//Tratar a ação de salvar o cliente
 			
+			//Trata o radio do tipo de cliente
+			if(cpfRadio.isSelected()) {
+				c.setTipo(0);
+			}
+			else {
+				c.setTipo(1);
+			}
+			//Tipo
+			System.out.println("Tipo: " +c.getTipo());
 			//nome
 			c.setNm_cliente(nm_clienteField.getText());			
 			//documento
@@ -360,24 +372,27 @@ public class ClienteView extends JFrame implements ActionListener{
 			c.setEmail(emailField.getText());
 			//pessoa contato
 			c.setPes_contato(pes_contatoField.getText());
-			//endereço
-			//c.setEndereco(enderecoField .getText());
+			//Logradouro
+			c.getEndereco().setCep(cepField .getText());
+			//Logradouro
+			c.getEndereco().setLogradouro(enderecoField .getText());
 			//numero
-			//c.setNumero(numeroField .getText());
+			c.getEndereco().setNumero(numeroField .getText());
 			//complemento
-			//c.setComplemento(complementoField .getText());
+			c.getEndereco().setComplemento(complementoField .getText());
 			//bairro
-			//c.setBairro(bairroField .getText());
+			c.getEndereco().setBairro(bairroField .getText());
 			//cidade
-			//c.setCidade(cidadeField .getText());
+			c.getEndereco().setCidade(cidadeField .getText());
 			//estado
-			//c.setEstado(estadoField .getText());
+			c.getEndereco().setEstado(estadoField .getText());
 			
 			
 			ClienteController controleCliente = new ClienteController();
 			try {
 				if(controleCliente.cadastrarCliente(c) == true) {
 					JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
+					tabelaCliente.addLinha(c);
 				}
 			} catch (SQLException e1) {
 				e1.printStackTrace();

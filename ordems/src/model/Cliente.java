@@ -3,6 +3,7 @@ package model;
 public class Cliente {
 	
 	//Atributos
+	private int id;
     private String nm_cliente;
     private String doc_num;
     private String rg_ie;
@@ -10,11 +11,32 @@ public class Cliente {
     private String fone_re;
     private String email;
     private String pes_contato;
-    //private String cep;
     private Endereco endereco;
-    private int tipo;
+    private int tipo_cliente;
     
-    public String getNm_cliente() {
+    
+    
+    public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+	public int getTipo_cliente() {
+		return tipo_cliente;
+	}
+
+
+	public void setTipo_cliente(int tipo_cliente) {
+		this.tipo_cliente = tipo_cliente;
+	}
+
+
+	public String getNm_cliente() {
 		return nm_cliente;
 	}
 
@@ -78,15 +100,6 @@ public class Cliente {
 
 	public void setPes_contato(String pes_contato) {
 		this.pes_contato = pes_contato;
-	//}
-
-	//public String getCep() {
-		//return cep;
-	//}
-
-
-	//public void setCep(String cep) {
-		//this.cep = cep;
 	}
 
 
@@ -104,11 +117,11 @@ public class Cliente {
 	
 
 	public int getTipo() {
-		return tipo;
+		return tipo_cliente;
 	}
 
 	public void setTipo(int tipo) {
-		this.tipo = tipo;
+		this.tipo_cliente = tipo;
 	}
 
 	public Endereco getEndereco() {
