@@ -176,7 +176,7 @@ public class PrincipalView extends JFrame implements ActionListener{
 		if(e.getActionCommand().equals("cadastrarCliente")) {
 			ClienteView cv = new ClienteView();
 			this.getContentPane().removeAll();
-			this.getContentPane().add(cv);
+			//this.getContentPane().add(cv);
 			this.revalidate();
 		    this.repaint();
 		}
@@ -184,7 +184,7 @@ public class PrincipalView extends JFrame implements ActionListener{
 		if(e.getActionCommand().equals("cadastrarFornecedor")) {
 			FornecedorView fv = new FornecedorView();
 			this.getContentPane().removeAll();
-			this.getContentPane().add(fv);
+			//this.getContentPane().add(fv);
 			this.revalidate();
 		    this.repaint();
 		}
@@ -192,7 +192,7 @@ public class PrincipalView extends JFrame implements ActionListener{
 		if(e.getActionCommand().equals("cadastrarOs")) {
 			OsView ov = new OsView();
 			this.getContentPane().removeAll();
-			this.getContentPane().add(ov);
+			//this.getContentPane().add(ov);
 			this.revalidate();
 		    this.repaint();
 		}

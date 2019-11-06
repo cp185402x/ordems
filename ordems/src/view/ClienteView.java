@@ -343,7 +343,7 @@ public class ClienteView extends JFrame implements ActionListener{
 		
 		if(e.getActionCommand().equalsIgnoreCase("salvar")) {
 			
-			}
+			
 			
 			Cliente c = new Cliente();
 			
@@ -386,7 +386,7 @@ public class ClienteView extends JFrame implements ActionListener{
 			c.getEndereco().setCidade(cidadeField .getText());
 			//estado
 			c.getEndereco().setEstado(estadoField .getText());
-			
+	
 			
 			ClienteController controleCliente = new ClienteController();
 			try {
@@ -394,13 +394,15 @@ public class ClienteView extends JFrame implements ActionListener{
 					JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
 					tabelaCliente.addLinha(c);
 				}
-			} catch (SQLException e1) {
+				}
+			 catch (SQLException e1) {
 				e1.printStackTrace();
 				JOptionPane.showMessageDialog(null, "Erro ao realizar cadastro!");
 			}
-		}
-		else if(e.getActionCommand().equalsIgnoreCase("cancelar")) {
- 
+	
+	}
+			else if (e.getActionCommand().equalsIgnoreCase("cancelar")) {
+	
 			dispose();
 		}
 	}
