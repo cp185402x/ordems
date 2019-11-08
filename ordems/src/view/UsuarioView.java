@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import controller.UsuarioController;
 import model.Usuario;
@@ -90,6 +91,10 @@ public class UsuarioView extends JFrame implements ActionListener{
       
       nm_usuarioLabel = new JLabel("Nome do Usuário");
       nm_usuarioField = new JTextField(40);
+      
+      nm_usuarioRadio.setHorizontalAlignment(SwingConstants.RIGHT);
+      nm_usuarioRadio.setBounds(6, 7, 50, 23);
+      
       painelCadastro.add(nm_usuarioLabel);
       painelCadastro.add(nm_usuarioField);
       
