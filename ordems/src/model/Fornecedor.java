@@ -3,16 +3,27 @@ package model;
 public class Fornecedor {
 	
 	//Atributos
+	private int id;
     private String nm_fornecedor;
     private String doc_num;
-    private String rg_ie;
+	private String rg_ie;
     private String celular;
     private String fone_re;
     private String email;
     private String pes_contato;
-    //private String cep;
     private Endereco endereco;
     private int tipo;
+    
+    public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
     
     public String getNm_fornecedor() {
 		return nm_fornecedor;
@@ -78,19 +89,8 @@ public class Fornecedor {
 
 	public void setPes_contato(String pes_contato) {
 		this.pes_contato = pes_contato;
-	//}
 
-	//public String getCep() {
-		//return cep;
-	//}
-
-
-	//public void setCep(String cep) {
-		//this.cep = cep;
 	}
-
-
-
 	public Fornecedor(Endereco endereco) {
 		this.endereco = endereco;
 	}

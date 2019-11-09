@@ -92,6 +92,7 @@ public class ClienteDAO {
 	           cliente.getEndereco().setCidade(rs.getString("Cidade"));
 	           cliente.getEndereco().setEstado(rs.getString("Estado"));
 	           cliente.getEndereco().setNumero(rs.getString("Numero"));
+	           cliente.getEndereco().setLogradouro(rs.getString("Logradouro"));
 	           lista.add(cliente);
 
 	           

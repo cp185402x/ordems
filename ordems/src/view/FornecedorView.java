@@ -13,12 +13,15 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
 import controller.FornecedorController;
 import model.Fornecedor;
+import model.TabelaFornecedor;
 
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 import javax.swing.JTable;
+import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
@@ -28,12 +31,17 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.ScrollPaneConstants;
 
+
 //Declarando a classe na janela
 public class FornecedorView extends JFrame implements ActionListener{
 	//atributos globais da classe
 	JPanel painelTitulo;
 	JPanel painelCadastro;
 	JLabel titulo;
+	
+	JRadioButton cnpjRadio;
+	JRadioButton cpfRadio;
+	ButtonGroup tipoGrupo;
 	
     JLabel nm_fornecedorLabel;
     JTextField nm_fornecedorField;
@@ -61,8 +69,8 @@ public class FornecedorView extends JFrame implements ActionListener{
     JLabel cepLabel;
     JTextField cepField;
     
-    JLabel enderecoLabel;
-    JTextField enderecoField;
+    JLabel logradouroLabel;
+    JTextField logradouroField;
     
     JLabel numeroLabel;
     JTextField numeroField;
@@ -85,6 +93,7 @@ public class FornecedorView extends JFrame implements ActionListener{
     JButton botaoCancelar;
     private JTable fornecedorTable;
     private JTextField buscarField;
+	private TabelaFornecedor tabelaFornecedor;
 
 	public FornecedorView() { // construtor da view fornecedor.
         super("Cadastro de Fornecedor");
@@ -98,7 +107,8 @@ public class FornecedorView extends JFrame implements ActionListener{
     	this.setLocationRelativeTo(null);
     }
     
-    private void criaFormulario() {
+   
+	private void criaFormulario() {
         
         getContentPane().setLayout(new BorderLayout());
         
@@ -141,15 +151,20 @@ public class FornecedorView extends JFrame implements ActionListener{
         emailLabel.setBounds(10, 126, 368, 14);
         fornecedorPainel.add(emailLabel);
         
-        JRadioButton cpfRadio = new JRadioButton("CPF");
+        cpfRadio = new JRadioButton("CPF");
+        cpfRadio.setSelected(true);
         cpfRadio.setHorizontalAlignment(SwingConstants.RIGHT);
         cpfRadio.setBounds(6, 7, 50, 23);
-        fornecedorPainel.add(cpfRadio);
+        fornecedorPainel.add(cpfRadio);        
         
-        JRadioButton cnpjRadio = new JRadioButton("CNPJ");
+        cnpjRadio = new JRadioButton("CNPJ");
         cnpjRadio.setHorizontalAlignment(SwingConstants.RIGHT);
         cnpjRadio.setBounds(58, 7, 56, 23);
         fornecedorPainel.add(cnpjRadio);
+        tipoGrupo = new ButtonGroup();
+        
+        tipoGrupo.add(cpfRadio);
+        tipoGrupo.add(cnpjRadio);
         
         docField = new JTextField(20);
         docField.setBounds(114, 8, 199, 20);
@@ -202,12 +217,12 @@ public class FornecedorView extends JFrame implements ActionListener{
         cepLabel.setBounds(10, 11, 86, 14);
         panel.add(cepLabel);
         
-        enderecoField = new JTextField(40);
-        enderecoField.setBounds(106, 25, 369, 20);
-        panel.add(enderecoField);        
-        enderecoLabel = new JLabel("Endereço");
-        enderecoLabel.setBounds(106, 11, 369, 14);
-        panel.add(enderecoLabel);
+        logradouroField = new JTextField(40);
+        logradouroField.setBounds(106, 25, 369, 20);
+        panel.add(logradouroField);        
+        logradouroLabel = new JLabel("Logradouro");
+        logradouroLabel.setBounds(106, 11, 369, 14);
+        panel.add(logradouroLabel);
         
         numeroField = new JTextField(10);
         numeroField.setBounds(485, 25, 65, 20);
@@ -302,26 +317,10 @@ public class FornecedorView extends JFrame implements ActionListener{
         			.addContainerGap())
         );
         
-        fornecedorTable = new JTable();
-        fornecedorTable.setModel(new DefaultTableModel(
-        	new Object[][] {
-        	},
-        	new String[] {
-        		"Cod", "Nome", "Documento", "Celular", "E-Mail"
-        	}
-        ) {
-        	Class[] columnTypes = new Class[] {
-        		Integer.class, String.class, String.class, String.class, Object.class
-        	};
-        	public Class getColumnClass(int columnIndex) {
-        		return columnTypes[columnIndex];
-        	}
-        });
-        fornecedorTable.getColumnModel().getColumn(0).setPreferredWidth(40);
-        fornecedorTable.getColumnModel().getColumn(1).setPreferredWidth(200);
-        fornecedorTable.getColumnModel().getColumn(2).setPreferredWidth(100);
-        fornecedorTable.getColumnModel().getColumn(3).setPreferredWidth(100);
-        fornecedorTable.getColumnModel().getColumn(4).setPreferredWidth(200);
+        tabelaFornecedor = new TabelaFornecedor();
+        fornecedorTable = new JTable(tabelaFornecedor);
+        
+             
         scrollPane.setViewportView(fornecedorTable);
         
         painelCadastro.setLayout(gl_painelCadastro);
@@ -345,7 +344,13 @@ public class FornecedorView extends JFrame implements ActionListener{
 			Fornecedor f = new Fornecedor();
 			
 			//Tratar a ação de salvar o fornecedor
-			
+			if(cpfRadio.isSelected()) {
+				f.setTipo(0);
+			}
+			else {
+				f.setTipo(1);
+			}
+			System.out.println("Tipo: " +f.getTipo());
 			//nome
 			f.setNm_fornecedor(nm_fornecedorField.getText());			
 			//documento
@@ -360,19 +365,19 @@ public class FornecedorView extends JFrame implements ActionListener{
 			f.setEmail(emailField .getText());
 			//pessoa contato
 			f.setPes_contato(pes_contatoField .getText());
-			//endereço
-			//c.setEndereco(enderecoField .getText());
+			f.getEndereco().setCep(cepField .getText());
+			//Logradouro
+			f.getEndereco().setLogradouro(logradouroField .getText());
 			//numero
-			//c.setNumero(numeroField .getText());
+			f.getEndereco().setNumero(numeroField .getText());
 			//complemento
-			//c.setComplemento(complementoField .getText());
+			f.getEndereco().setComplemento(complementoField .getText());
 			//bairro
-			//c.setBairro(bairroField .getText());
+			f.getEndereco().setBairro(bairroField .getText());
 			//cidade
-			//c.setCidade(cidadeField .getText());
+			f.getEndereco().setCidade(cidadeField .getText());
 			//estado
-			//c.setEstado(estadoField .getText());
-			
+			f.getEndereco().setEstado(estadoField .getText());
 			
 			FornecedorController fornecedorController = new FornecedorController();
 			try {

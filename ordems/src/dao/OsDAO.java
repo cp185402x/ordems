@@ -1,13 +1,10 @@
 package dao;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
-import model.Cliente;
 import model.Os;
 import dao.Conexao;
 
@@ -54,59 +51,61 @@ public class OsDAO {
 		st.execute();
 		
 		conn.close();
+	//----------------	
 		
 	}
-
-		//Consulta OS
-		
-			public ArrayList<Os> consultar() throws SQLException {
-				
-				conn = (Connection) Conexao.getConexao();
-				
-				if(conn != null) {
-					st = (PreparedStatement) conn.prepareStatement(
-							"SELECT * FROM os order by id_os desc limit 10");
-				}
-				
-
-				ArrayList<Os> lista = new ArrayList<Os>();
-				ResultSet rs = st.executeQuery();
-				
-				while (rs.next()) {
-		            Os os = new Os();
-		            
-		    		os.setCliente_id(rs.getInt("cliente_id"));
-		    		os.setUsuario_id(rs.getInt("usuario_id"));
-		    		os.setData_previsao(rs.getString("data_previsao"));
-		    		os.setData_pronto(rs.getString("data_pronto"));
-		    		os.setData_entrega(rs.getString("data_entrega"));
-		    		os.setTipo(rs.getString("tipo"));
-		    		os.setModelo(rs.getString("modelo"));
-		    		os.setMarca(rs.getString("marca"));
-		    		os.setCor(rs.getString("cor"));
-		    		os.setSerie(rs.getString("serie"));
-		    		os.setGarantia(rs.getInt("garantia"));
-		    		os.setInfo_cliente(rs.getString("info_cliente"));
-		    		os.setInfo_tecnico(rs.getString("info_tecnico"));
-		    		os.setInfo_entrega(rs.getString("info_entrega"));
-		    		os.setInfo_interna(rs.getString("info_interna"));
-		    		os.setStatus_id(rs.getString("status_id"));
-		    		
-		           lista.add(os);
-
-		           
-		        }
-				
-				//System.out.println("Resultado da consulta" + rs);
-				
-				conn.close();
-				
-				return lista;
-				
-				
-			//----------------	
-				
-			}
-			
+	
 }
+	
+	//metodo consultar
+	
+	//public List<Os> getOs() {
+	//   Connection conn = null;
+	//  PreparedStatement pstm = null;
+	//  ResultSet rs = null;
+	// ArrayList<Os> Os = new ArrayList<Os>();
+        // try {
+	//   conn = Conexao.getConexao();
+	// pstm = conn.prepareStatement(LIST);
+	//   rs = pstm.executeQuery();
+	//      while (rs.next()) {
+	//          Os Os = new Os();
+	//
+	//          Os.setId(rs.getInt("id_Os"));
+	//          Os.setNome(rs.getString("nm_Os"));
+	//          Os.setCelular(rs.getString("celular"));
+	//          Os.setEmail(rs.getString("email"));
+	//          Os.add(Os);
+	//      }
+	//      Conexao.fechaConexao(conn, pstm, rs);
+	//  } catch (Exception e) {
+	//     JOptionPane.showMessageDialog(null, "Erro ao listar Os" + e.getMessage());
+	//  }
+	//  return Os;
+	//  }
+	
+	
+ 
+//	 public Os getOsById(int id_Os) {
+//	    Connection conn = null;
+//	    PreparedStatement pstm = null;
+//	    ResultSet rs = null;
+//	   Os Os = new Os();
+//	   try {
+//	      conn = (Connection) Conexao.getConexao();
+//	    pstm = conn.prepareStatement(LISTBYID);
+//	     pstm.setInt(1, id_Os);
+//	   rs = pstm.executeQuery();
+//	   while (rs.next()) {
+//	      Os.setId(rs.getInt("id_Os"));
+//	            Os.setNome(rs.getString("nm_Os"));
+//	     Os.setCelular(rs.getString("celular"));
+//	     Os.setEmail(rs.getString("email"));
+//	 }
+//	    Conexao.fechaConexao(conn, pstm, rs);
+//	 } catch (Exception e) {
+//    JOptionPane.showMessageDialog(null, "Erro ao listar Os" + e.getMessage());
+// }
+//	return Os;
+  //  }
 

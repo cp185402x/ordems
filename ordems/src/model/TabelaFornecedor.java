@@ -1,12 +1,12 @@
 package model;
-
 import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
 
-public class TabelaCliente extends AbstractTableModel{
+public class TabelaFornecedor extends AbstractTableModel {
 
-	private ArrayList<Cliente> listaCliente = new ArrayList<Cliente>();
+
+	private ArrayList<Fornecedor> listaCliente = new ArrayList<Fornecedor>();
 	private String [] colunas = {
 			
 			"Cod", "Nome", "Documento", "Celular", "E-Mail"
@@ -34,7 +34,7 @@ public class TabelaCliente extends AbstractTableModel{
 		// TODO Auto-generated method stub
 		switch(columnIndex) {
 			case 0: return listaCliente.get(rowIndex).getId();
-			case 1: return listaCliente.get(rowIndex).getNm_cliente();
+			case 1: return listaCliente.get(rowIndex).getNm_fornecedor();
 			case 2: return listaCliente.get(rowIndex).getDoc_num();
 			case 3: return listaCliente.get(rowIndex).getCelular();
 			case 4: return listaCliente.get(rowIndex).getEmail();
@@ -44,21 +44,22 @@ public class TabelaCliente extends AbstractTableModel{
 	}
 	
 	
-	public void addLinha(Cliente c) {
+	public void addLinha(Fornecedor f) {
 		
-		listaCliente.add(c);
+		listaCliente.add(f);
 		
 		this.fireTableDataChanged();
 	
 		
 	}
-	public void addTodos(ArrayList<Cliente> c) {
+	public void addTodos(ArrayList<Fornecedor> f) {
 		this.listaCliente.clear();
 		
-		for(Cliente x : c) {
+		for(Fornecedor x : f) {
 			addLinha(x);
 			
 		}
 	}
+
 
 }

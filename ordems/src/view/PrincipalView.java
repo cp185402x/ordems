@@ -91,11 +91,11 @@ public class PrincipalView extends JFrame implements ActionListener{
 		menuUsuario = new JMenuItem("Usuário");
 		menuUsuario.addActionListener(this);
 		menuUsuario.setActionCommand("cadastrarUsuario");
-		/*//era un teste
+		
 		menuConsultar = new JMenuItem("Consultar cliente");
 		menuConsultar.addActionListener(this);
 		menuConsultar.setActionCommand("consultarCliente");
-		*/
+		
 	}
 	
 	//Métodos para inicializar os relatórios
@@ -149,7 +149,7 @@ public class PrincipalView extends JFrame implements ActionListener{
 		menuCadastro.add(menuOs);
 		menuCadastro.add(menuPeca);
 		menuCadastro.add(menuUsuario);
-		//menuCadastro.add(menuConsultar);
+		menuCadastro.add(menuConsultar);
 	}
 	public void construirRelatorio() {
 
@@ -174,7 +174,7 @@ public class PrincipalView extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 
 		if(e.getActionCommand().equals("cadastrarCliente")) {
-			new ClienteView();
+			ClienteView cv = new ClienteView();
 			this.getContentPane().removeAll();
 			//this.getContentPane().add(cv);
 			this.revalidate();
@@ -182,7 +182,7 @@ public class PrincipalView extends JFrame implements ActionListener{
 		}
 
 		if(e.getActionCommand().equals("cadastrarFornecedor")) {
-			new FornecedorView();
+			FornecedorView fv = new FornecedorView();
 			this.getContentPane().removeAll();
 			//this.getContentPane().add(fv);
 			this.revalidate();
@@ -190,7 +190,7 @@ public class PrincipalView extends JFrame implements ActionListener{
 		}
 
 		if(e.getActionCommand().equals("cadastrarOs")) {
-			new OsView();
+			OsView ov = new OsView();
 			this.getContentPane().removeAll();
 			//this.getContentPane().add(ov);
 			this.revalidate();
@@ -198,25 +198,25 @@ public class PrincipalView extends JFrame implements ActionListener{
 		}
 
 		if(e.getActionCommand().equals("cadastrarPeca")) {
-			new PecaView();
+			PecaView pv = new PecaView();
 			this.getContentPane().removeAll();
-			//this.getContentPane().add(pv);
+			this.getContentPane().add(pv);
 			this.revalidate();
 		    this.repaint();
 		}
 
 		if(e.getActionCommand().equals("cadastrarUsuario")) {
-			new UsuarioView();
+			UsuarioView uv = new UsuarioView();
 			this.getContentPane().removeAll();
-			//this.getContentPane().add(uv);
+			this.getContentPane().add(uv);
 			this.revalidate();
 		    this.repaint();
 		}		
 		
 		if(e.getActionCommand().equals("sobreSistema")) {
-			new SobreView();
+			SobreView sov = new SobreView();
 			this.getContentPane().removeAll();
-			//this.getContentPane().add(sov);
+			this.getContentPane().add(sov);
 			this.revalidate();
 		    this.repaint();
 		}

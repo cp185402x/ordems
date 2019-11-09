@@ -15,16 +15,15 @@ public class FornecedorController {
 	}
 	
 	
-	public void validaCampos (String nome, String documento, String rgie, String data, String fone_re, String celular, String email, String contato, String cep, String endereco, String numero, String complemento, String bairro, String cidade, String estado) {
+	public void validaCampos (String nm_fornecedor, String doc_num, String rg_ie, String data, String fone_re, String celular, String email, String contato, String cep, String endereco, String numero, String complemento, String bairro, String cidade, String estado) {
 		
-		System.out.println("contoller" + nome);
-		System.out.println("contoller" + documento);
-		System.out.println("contoller" + rgie);
+		System.out.println("contoller" + nm_fornecedor);
+		System.out.println("contoller" + doc_num);
+		System.out.println("contoller" + rg_ie);
 		System.out.println("contoller" + data);
 		System.out.println("contoller" + fone_re);
 		System.out.println("contoller" + celular);
 		System.out.println("contoller" + email);
-		System.out.println("contoller" + contato);
 		System.out.println("contoller" + cep);
 		System.out.println("contoller" + endereco);
 		System.out.println("contoller" + numero);

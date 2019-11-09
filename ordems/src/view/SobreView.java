@@ -55,7 +55,7 @@ public class SobreView extends JFrame implements ActionListener{
       painelSobre.setLayout(null);
       
       ordemsLabel = new JLabel("Ordem-S Sistema de Gerenciamento de ordens de servi\u00E7os");
-      ordemsLabel.setBounds(210, 35, 286, 41);
+      ordemsLabel.setBounds(49, 35, 504, 41);
       painelSobre.add(ordemsLabel);
       
       
@@ -72,23 +72,23 @@ public class SobreView extends JFrame implements ActionListener{
       getContentPane().add(painelTitulo, BorderLayout.NORTH);
       getContentPane().add(painelSobre, BorderLayout.CENTER);
       
-      JLabel VersaoLabel = new JLabel("Versão 1.3 ( Compilação 68)");
-      VersaoLabel.setBounds(210, 87, 286, 41);
+      JLabel VersaoLabel = new JLabel("Vers\u00E3o 1.3 ( Compila\u00E7\u00E3o 62)");
+      VersaoLabel.setBounds(49, 87, 504, 41);
       painelSobre.add(VersaoLabel);
       
       JLabel copyrightLabel = new JLabel("Copyright (C) 2019 VEC System. Todos o direitos reservados.");
-      copyrightLabel.setBounds(49, 139, 447, 41);
+      copyrightLabel.setBounds(49, 139, 504, 41);
       painelSobre.add(copyrightLabel);
       
-      JLabel projetoLabel = new JLabel("O projeto é uma criação dos alunos do curso TDS (Té9cnico em Desenvolvimento de Sistemas)");
+      JLabel projetoLabel = new JLabel("O projeto \u00E9 uma cria\u00E7\u00E3o dos alunos do curso TDS (T\u00E9cnico em Desenvolvimento de Sistemas)");
       projetoLabel.setBounds(49, 180, 504, 41);
       painelSobre.add(projetoLabel);
       
-      JLabel ifspLabel = new JLabel("em conjunto com o time de docentes da instituiço de ensino IFSP Campus Campinas Amarais.");
-      ifspLabel.setBounds(46, 207, 460, 41);
+      JLabel ifspLabel = new JLabel("em conjunto com o time de docentes da institui\u00E7\u00E3o de ensino IFSP campus Campinas Amarais.");
+      ifspLabel.setBounds(49, 207, 504, 41);
       painelSobre.add(ifspLabel);
       
-      JLabel licencaLabel = new JLabel("Este projeto ainda não tem definido um termo de licença.");
+      JLabel licencaLabel = new JLabel("Este projeto ainda n\u00E3o tem definido um termo de licen\u00E7a.");
       licencaLabel.setBounds(49, 297, 504, 41);
       painelSobre.add(licencaLabel);
       
@@ -98,7 +98,7 @@ public class SobreView extends JFrame implements ActionListener{
 @Override
 public void actionPerformed(ActionEvent e) {
 	
-
+	
 }
 
 

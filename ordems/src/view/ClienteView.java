@@ -343,6 +343,8 @@ public class ClienteView extends JFrame implements ActionListener{
 		
 		if(e.getActionCommand().equalsIgnoreCase("salvar")) {
 			
+			
+			
 			Cliente c = new Cliente();
 			
 			//Tratar a ação de salvar o cliente
@@ -390,8 +392,7 @@ public class ClienteView extends JFrame implements ActionListener{
 			try {
 				if(controleCliente.cadastrarCliente(c) == true) {
 					JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
-					tabelaCliente.addTodos();
-					this.repaint();
+					tabelaCliente.addLinha(c);
 				}
 				}
 			 catch (SQLException e1) {
