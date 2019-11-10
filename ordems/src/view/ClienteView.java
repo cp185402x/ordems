@@ -97,7 +97,7 @@ public class ClienteView extends JFrame implements ActionListener{
     private JTextField buscarField;
 
 	public ClienteView() { // construtor da view Cliente.
-        super("Cadastro de Clientes");
+        super("Cadastro de Cliente");
         setType(Type.UTILITY);
                 
         criaFormulario();

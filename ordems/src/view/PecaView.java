@@ -58,7 +58,7 @@ public class PecaView extends JFrame implements ActionListener{
     private JTextField buscarField;
     
     public PecaView() { // construtor da view OS.
-        super("Cadastro de peças");
+        super("Cadastro de peça");
         setType(Type.UTILITY);
         
         criaFormulario();

@@ -19,6 +19,11 @@ import controller.UsuarioController;
 import model.Usuario;
 
 import javax.swing.JOptionPane;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
+import java.awt.SystemColor;
+import javax.swing.JScrollPane;
+import javax.swing.JPasswordField;
 //Declarando a classe na janela
 public class UsuarioView extends JFrame implements ActionListener{
 	//atributos globais da classe
@@ -42,7 +47,7 @@ public class UsuarioView extends JFrame implements ActionListener{
 	    JTextField loginField;
 	    
 	    JLabel senhaLabel;
-	    JTextField senhaField;
+	    JTextField senhaaaaaField;
 	    
 	    JLabel statusLabel;
 	    JTextField statusField;
@@ -51,6 +56,9 @@ public class UsuarioView extends JFrame implements ActionListener{
 	    JPanel painelBotoes;
 	    JButton botaoSalvar;
 	    JButton botaoCancelar;
+	    private JPanel painelCadastro_1;
+	    private JTextField textField;
+	    private JPasswordField senhaField;
 
 	    public UsuarioView() { // construtor da view Usuario.
 			super("Cadastro de usuário");
@@ -58,18 +66,15 @@ public class UsuarioView extends JFrame implements ActionListener{
 		                
 		        criaFormulario();
 		    	this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		    	this.setSize(580, 600);
+		    	this.setSize(630, 600);
 		    	this.setVisible(true);
 		    	this.setLocationRelativeTo(null);
-  
-	
- 
-      
+    
   }
   
   private void criaFormulario() {
       
-      setLayout(new BorderLayout());
+      getContentPane().setLayout(new BorderLayout());
       
 //Inicia o painel de título        
       painelTitulo = new JPanel();
@@ -85,43 +90,8 @@ public class UsuarioView extends JFrame implements ActionListener{
       painelCadastro.setLayout(new FlowLayout());
       
                   
-      painelCadastro = new JPanel();
-      painelCadastro.setLayout(new FlowLayout());
-      
-      nm_usuarioLabel = new JLabel("Nome do Usuário");
-      nm_usuarioField = new JTextField(40);
-      painelCadastro.add(nm_usuarioLabel);
-      painelCadastro.add(nm_usuarioField);
-      
-      cargoLabel = new JLabel("Cargo");
-      cargoField = new JTextField(20);
-      painelCadastro.add(cargoLabel);
-      painelCadastro.add(cargoField);
-      
-      departamentoLabel = new JLabel("Departamento");
-      departamentoField = new JTextField(20);
-      painelCadastro.add(departamentoLabel);
-      painelCadastro.add(departamentoField);
-      
-      matriculaLabel = new JLabel("matrícula");
-      matriculaField = new JTextField(20);
-      painelCadastro.add(matriculaLabel);
-      painelCadastro.add(matriculaField);
-      
-      loginLabel = new JLabel("Login");
-      loginField = new JTextField(10);
-      painelCadastro.add(loginLabel);
-      painelCadastro.add(loginField);
-      
-      senhaLabel = new JLabel("Senha");
-      senhaField = new JTextField(10);
-      painelCadastro.add(senhaLabel);
-      painelCadastro.add(senhaField);
-      
-      statusLabel = new JLabel("Status");
-      statusField = new JTextField(10);
-      painelCadastro.add(statusLabel);
-      painelCadastro.add(statusField);
+      painelCadastro_1 = new JPanel();
+      painelCadastro_1.setLayout(null);
       
       
                   
@@ -141,9 +111,91 @@ public class UsuarioView extends JFrame implements ActionListener{
       botaoCancelar.addActionListener(this);
       botaoCancelar.setActionCommand("cancelar");
       
-      add(painelTitulo, BorderLayout.NORTH);
-      add(painelCadastro, BorderLayout.CENTER);
-      add(painelBotoes, BorderLayout.SOUTH);
+      getContentPane().add(painelTitulo, BorderLayout.NORTH);
+      getContentPane().add(painelCadastro_1, BorderLayout.CENTER);
+      
+      JPanel panel = new JPanel();
+      panel.setBounds(10, 11, 594, 150);
+      panel.setBorder(new LineBorder(Color.LIGHT_GRAY));
+      painelCadastro_1.add(panel);
+      panel.setLayout(null);
+      
+      nm_usuarioLabel = new JLabel("Nome");
+      nm_usuarioLabel.setBounds(76, 11, 326, 14);
+      panel.add(nm_usuarioLabel);
+      nm_usuarioField = new JTextField(40);
+      nm_usuarioField.setBounds(76, 26, 326, 20);
+      panel.add(nm_usuarioField);
+      matriculaField = new JTextField(20);
+      matriculaField.setBounds(412, 26, 166, 20);
+      panel.add(matriculaField);
+      
+      matriculaLabel = new JLabel("Matrícula");
+      matriculaLabel.setBounds(412, 11, 166, 14);
+      panel.add(matriculaLabel);
+      statusField = new JTextField(10);
+      statusField.setBounds(412, 71, 166, 20);
+      panel.add(statusField);
+      
+      statusLabel = new JLabel("Status");
+      statusLabel.setBounds(412, 57, 86, 14);
+      panel.add(statusLabel);
+      cargoField = new JTextField(20);
+      cargoField.setBounds(76, 71, 166, 20);
+      panel.add(cargoField);
+      
+      cargoLabel = new JLabel("Cargo");
+      cargoLabel.setBounds(76, 57, 166, 14);
+      panel.add(cargoLabel);
+      
+      departamentoLabel = new JLabel("Departamento");
+      departamentoLabel.setBounds(252, 57, 150, 14);
+      panel.add(departamentoLabel);
+      departamentoField = new JTextField(20);
+      departamentoField.setBounds(252, 71, 150, 20);
+      panel.add(departamentoField);
+      
+      loginLabel = new JLabel("Login");
+      loginLabel.setBounds(76, 102, 86, 14);
+      panel.add(loginLabel);
+      loginField = new JTextField(10);
+      loginField.setBounds(76, 116, 166, 20);
+      panel.add(loginField);
+      
+      senhaaaaaField = new JTextField(10);
+      senhaaaaaField.setBounds(428, 116, 150, 20);
+      panel.add(senhaaaaaField);
+      
+      senhaLabel = new JLabel("Senha");
+      senhaLabel.setBounds(252, 102, 86, 14);
+      panel.add(senhaLabel);      
+      senhaField = new JPasswordField(10);
+      senhaField.setEchoChar('*');
+      senhaField.setBounds(252, 116, 150, 20);
+      panel.add(senhaField);
+      
+      textField = new JTextField();
+      textField.setBounds(10, 172, 285, 26);
+      textField.setForeground(SystemColor.info);
+      textField.setColumns(10);
+      painelCadastro_1.add(textField);
+      
+      JButton button = new JButton("Buscar");
+      button.setBounds(305, 173, 90, 25);
+      painelCadastro_1.add(button);
+      
+      JButton button_1 = new JButton("Editar");
+      button_1.setBounds(414, 173, 90, 25);
+      painelCadastro_1.add(button_1);
+      
+      JButton button_2 = new JButton("Excluir");
+      button_2.setBounds(514, 173, 90, 25);
+      painelCadastro_1.add(button_2);
+      
+      JScrollPane scrollPane = new JScrollPane();
+      scrollPane.setBounds(10, 209, 594, 281);
+      painelCadastro_1.add(scrollPane);
+      getContentPane().add(painelBotoes, BorderLayout.SOUTH);
   }
 
 			@Override
@@ -151,7 +203,7 @@ public class UsuarioView extends JFrame implements ActionListener{
 				// TODO Auto-generated method stub
 				if(e.getActionCommand().equalsIgnoreCase("salvar")) {
 					Usuario u = new Usuario();
-					System.out.println("cliquei no botao salvar");
+					
 					//usuario
 					u.setNm_usuario(nm_usuarioField.getText());
 					
@@ -195,10 +247,6 @@ public class UsuarioView extends JFrame implements ActionListener{
 	
 	
 }
-  
-
-
-
 }
 	
 

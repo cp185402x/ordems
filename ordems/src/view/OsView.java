@@ -92,7 +92,7 @@ public class OsView extends JFrame implements ActionListener{
     private JTextField buscarField;
 
 	public OsView() { // construtor da view Cliente.
-        super("Cadastro de Ordens de Serviços");
+        super("Cadastro de Ordem de Serviço");
         setType(Type.UTILITY);
                 
         criaFormulario();
@@ -287,8 +287,8 @@ public class OsView extends JFrame implements ActionListener{
         info_clienteLabel.setBounds(10, 45, 300, 14);
         equipamentoPanel.add(info_clienteLabel);        
         JTextArea info_clienteTA = new JTextArea(3, 200);
-        info_clienteTA.setForeground(SystemColor.info);
-        info_clienteTA.setEditable(false);
+        info_clienteTA.setForeground(Color.DARK_GRAY);
+        info_clienteTA.setEditable(true);
         info_clienteTA.setBounds(10, 60, 300, 60);
         equipamentoPanel.add(info_clienteTA);
         
@@ -296,8 +296,7 @@ public class OsView extends JFrame implements ActionListener{
         info_tecnicoLabel.setBounds(322, 45, 302, 14);
         equipamentoPanel.add(info_tecnicoLabel);        
         JTextArea info_tecnicoTA = new JTextArea(3, 200);
-        info_tecnicoTA.setForeground(SystemColor.info);
-        info_tecnicoTA.setEditable(false);
+        info_tecnicoTA.setForeground(Color.DARK_GRAY);
         info_tecnicoTA.setBounds(322, 60, 300, 60);
         equipamentoPanel.add(info_tecnicoTA);
         
@@ -305,7 +304,7 @@ public class OsView extends JFrame implements ActionListener{
         info_entregaLabel.setBounds(10, 134, 310, 14);
         equipamentoPanel.add(info_entregaLabel);        
         JTextArea info_entregaTA = new JTextArea(3, 200);
-        info_entregaTA.setEditable(false);
+        info_entregaTA.setForeground(Color.DARK_GRAY);
         info_entregaTA.setBounds(10, 150, 300, 60);
         equipamentoPanel.add(info_entregaTA);
         
@@ -313,7 +312,7 @@ public class OsView extends JFrame implements ActionListener{
         info_internaLabel.setBounds(322, 134, 300, 14);
         equipamentoPanel.add(info_internaLabel);        
         JTextArea info_internaTA = new JTextArea(3, 200);
-        info_internaTA.setEditable(false);
+        info_internaTA.setForeground(Color.DARK_GRAY);
         info_internaTA.setBounds(322, 150, 300, 60);
         equipamentoPanel.add(info_internaTA);
         

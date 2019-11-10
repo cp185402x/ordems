@@ -10,6 +10,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import controller.ClienteController;
+import javax.swing.JButton;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
 
 public class PrincipalView extends JFrame implements ActionListener{
 
@@ -45,7 +48,7 @@ public class PrincipalView extends JFrame implements ActionListener{
 	
 	//Construtores
 	public PrincipalView() {
-		setTitle(":. Ordem-S .::. v1.3.62");
+		setTitle(":. Ordem-S .::. v1.3.71");
 		this.inicializarCadastro();
 		this.inicializarRelatorio();
 		this.inicializarAjuda();
@@ -63,6 +66,7 @@ public class PrincipalView extends JFrame implements ActionListener{
 		//setExtendedState(MAXIMIZED_BOTH);
 		this.setSize(1024,700);
 	  	this.setLocationRelativeTo(null);
+	  	getContentPane().setLayout(null);
 		this.setVisible(true);
 	}
 
@@ -91,11 +95,12 @@ public class PrincipalView extends JFrame implements ActionListener{
 		menuUsuario = new JMenuItem("Usuário");
 		menuUsuario.addActionListener(this);
 		menuUsuario.setActionCommand("cadastrarUsuario");
-		
+		/*
+		//Teste de consulta via console
 		menuConsultar = new JMenuItem("Consultar cliente");
 		menuConsultar.addActionListener(this);
 		menuConsultar.setActionCommand("consultarCliente");
-		
+		*/
 	}
 	
 	//Métodos para inicializar os relatórios
@@ -149,7 +154,7 @@ public class PrincipalView extends JFrame implements ActionListener{
 		menuCadastro.add(menuOs);
 		menuCadastro.add(menuPeca);
 		menuCadastro.add(menuUsuario);
-		menuCadastro.add(menuConsultar);
+		//menuCadastro.add(menuConsultar);
 	}
 	public void construirRelatorio() {
 
@@ -200,7 +205,7 @@ public class PrincipalView extends JFrame implements ActionListener{
 		if(e.getActionCommand().equals("cadastrarPeca")) {
 			PecaView pv = new PecaView();
 			this.getContentPane().removeAll();
-			this.getContentPane().add(pv);
+			//this.getContentPane().add(pv);
 			this.revalidate();
 		    this.repaint();
 		}
@@ -208,7 +213,7 @@ public class PrincipalView extends JFrame implements ActionListener{
 		if(e.getActionCommand().equals("cadastrarUsuario")) {
 			UsuarioView uv = new UsuarioView();
 			this.getContentPane().removeAll();
-			this.getContentPane().add(uv);
+			//this.getContentPane().add(uv);
 			this.revalidate();
 		    this.repaint();
 		}		
@@ -216,11 +221,12 @@ public class PrincipalView extends JFrame implements ActionListener{
 		if(e.getActionCommand().equals("sobreSistema")) {
 			SobreView sov = new SobreView();
 			this.getContentPane().removeAll();
-			this.getContentPane().add(sov);
+			//this.getContentPane().add(sov);
 			this.revalidate();
 		    this.repaint();
 		}
-		
+		/*
+		//Teste consultar cliente via console
 		if(e.getActionCommand().equals("consultarCliente")) {
 			//System.out.println("Cliquei no botao consulta");
 			ClienteController controleCliente = new ClienteController();
@@ -230,7 +236,6 @@ public class PrincipalView extends JFrame implements ActionListener{
 				e1.printStackTrace();
 			}
 		}
-		
+		*/
 	}
-
 }
