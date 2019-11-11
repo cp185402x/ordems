@@ -134,9 +134,15 @@ public class Cliente {
 	}
 
 
-	public void add(Cliente cliente) {
-		
+	@Override
+	public String toString() {
+		return "Cliente [id=" + id + ", nm_cliente=" + nm_cliente + ", doc_num=" + doc_num + ", rg_ie=" + rg_ie
+				+ ", celular=" + celular + ", fone_re=" + fone_re + ", email=" + email + ", pes_contato=" + pes_contato
+				+ ", endereco=" + endereco + ", tipo_cliente=" + tipo_cliente + "]";
 	}
+
+
+	
 
 	
 	}

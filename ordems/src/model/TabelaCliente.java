@@ -1,8 +1,11 @@
 package model;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.table.AbstractTableModel;
+
+import dao.ClienteDAO;
 
 public class TabelaCliente extends AbstractTableModel{
 
@@ -11,6 +14,12 @@ public class TabelaCliente extends AbstractTableModel{
 			
 			"Cod", "Nome", "Documento", "Celular", "E-Mail"
 	};
+	
+	
+	//construtor
+	public TabelaCliente() {
+		addTodos();
+	}
 	
 	@Override
 	public String getColumnName(int column) {
@@ -44,21 +53,19 @@ public class TabelaCliente extends AbstractTableModel{
 	}
 	
 	
-	public void addLinha(Cliente c) {
-		
-		listaCliente.add(c);
-		
-		this.fireTableDataChanged();
-	
-		
-	}
-	public void addTodos(ArrayList<Cliente> c) {
+	public void addTodos() {
 		this.listaCliente.clear();
-		
-		for(Cliente x : c) {
-			addLinha(x);
-			
+		ClienteDAO cd = new ClienteDAO();
+		try {
+			this.listaCliente.addAll(cd.consultar());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		System.out.println("Tam" + listaCliente.size());
+		
 	}
 
 }
+
+//

@@ -66,7 +66,7 @@ public class ClienteDAO {
 			
 			if(conn != null) {
 				st = (PreparedStatement) conn.prepareStatement(
-						"SELECT * FROM cliente order by id_cliente desc limit 10");
+						"SELECT * FROM cliente order by id_cliente desc");
 			}
 			
 
@@ -92,7 +92,6 @@ public class ClienteDAO {
 	           cliente.getEndereco().setCidade(rs.getString("Cidade"));
 	           cliente.getEndereco().setEstado(rs.getString("Estado"));
 	           cliente.getEndereco().setNumero(rs.getString("Numero"));
-	           cliente.getEndereco().setLogradouro(rs.getString("Logradouro"));
 	           lista.add(cliente);
 
 	           

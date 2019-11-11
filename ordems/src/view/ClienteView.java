@@ -97,7 +97,7 @@ public class ClienteView extends JFrame implements ActionListener{
     private JTextField buscarField;
 
 	public ClienteView() { // construtor da view Cliente.
-        super("Cadastro de Cliente");
+        super("Cadastro de Clientes");
         setType(Type.UTILITY);
                 
         criaFormulario();
@@ -343,8 +343,6 @@ public class ClienteView extends JFrame implements ActionListener{
 		
 		if(e.getActionCommand().equalsIgnoreCase("salvar")) {
 			
-			
-			
 			Cliente c = new Cliente();
 			
 			//Tratar a ação de salvar o cliente
@@ -392,7 +390,8 @@ public class ClienteView extends JFrame implements ActionListener{
 			try {
 				if(controleCliente.cadastrarCliente(c) == true) {
 					JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
-					tabelaCliente.addLinha(c);
+					tabelaCliente.addTodos();
+					this.repaint();
 				}
 				}
 			 catch (SQLException e1) {
@@ -407,4 +406,5 @@ public class ClienteView extends JFrame implements ActionListener{
 		}
 	}
 }
+//
 
