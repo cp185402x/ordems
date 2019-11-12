@@ -29,7 +29,6 @@ public class UsuarioView extends JFrame implements ActionListener{
 	//atributos globais da classe
 		JPanel painelTitulo;
 		JPanel painelCadastro;
-		JLabel titulo;
 		
 	    JLabel nm_usuarioLabel;
 	    JTextField nm_usuarioField;
@@ -80,11 +79,6 @@ public class UsuarioView extends JFrame implements ActionListener{
       painelTitulo = new JPanel();
       painelTitulo.setLayout(new FlowLayout());
       
-      titulo = new JLabel("Cadastro de Usuário");
-      titulo.setFont(new Font("Arial", Font.BOLD, 14));
-      
-      painelTitulo.add(titulo);
-      
 //Inicia o painel dos campos digitáveis        
       JPanel painelCadastro = new JPanel();
       painelCadastro.setLayout(new FlowLayout());
@@ -121,57 +115,57 @@ public class UsuarioView extends JFrame implements ActionListener{
       panel.setLayout(null);
       
       nm_usuarioLabel = new JLabel("Nome");
-      nm_usuarioLabel.setBounds(76, 11, 326, 14);
+      nm_usuarioLabel.setBounds(42, 11, 326, 14);
       panel.add(nm_usuarioLabel);
       nm_usuarioField = new JTextField(40);
-      nm_usuarioField.setBounds(76, 26, 326, 20);
+      nm_usuarioField.setBounds(42, 26, 326, 20);
       panel.add(nm_usuarioField);
       matriculaField = new JTextField(20);
-      matriculaField.setBounds(412, 26, 166, 20);
+      matriculaField.setBounds(378, 26, 166, 20);
       panel.add(matriculaField);
       
       matriculaLabel = new JLabel("Matrícula");
-      matriculaLabel.setBounds(412, 11, 166, 14);
+      matriculaLabel.setBounds(378, 11, 166, 14);
       panel.add(matriculaLabel);
       statusField = new JTextField(10);
-      statusField.setBounds(412, 71, 166, 20);
+      statusField.setBounds(378, 71, 166, 20);
       panel.add(statusField);
       
       statusLabel = new JLabel("Status");
-      statusLabel.setBounds(412, 57, 86, 14);
+      statusLabel.setBounds(378, 57, 86, 14);
       panel.add(statusLabel);
       cargoField = new JTextField(20);
-      cargoField.setBounds(76, 71, 166, 20);
+      cargoField.setBounds(42, 71, 166, 20);
       panel.add(cargoField);
       
       cargoLabel = new JLabel("Cargo");
-      cargoLabel.setBounds(76, 57, 166, 14);
+      cargoLabel.setBounds(42, 57, 166, 14);
       panel.add(cargoLabel);
       
       departamentoLabel = new JLabel("Departamento");
-      departamentoLabel.setBounds(252, 57, 150, 14);
+      departamentoLabel.setBounds(218, 57, 150, 14);
       panel.add(departamentoLabel);
       departamentoField = new JTextField(20);
-      departamentoField.setBounds(252, 71, 150, 20);
+      departamentoField.setBounds(218, 71, 150, 20);
       panel.add(departamentoField);
       
       loginLabel = new JLabel("Login");
-      loginLabel.setBounds(76, 102, 86, 14);
+      loginLabel.setBounds(42, 102, 86, 14);
       panel.add(loginLabel);
       loginField = new JTextField(10);
-      loginField.setBounds(76, 116, 166, 20);
+      loginField.setBounds(42, 116, 166, 20);
       panel.add(loginField);
       
       senhaaaaaField = new JTextField(10);
-      senhaaaaaField.setBounds(428, 116, 150, 20);
+      senhaaaaaField.setBounds(394, 116, 150, 20);
       panel.add(senhaaaaaField);
       
       senhaLabel = new JLabel("Senha");
-      senhaLabel.setBounds(252, 102, 86, 14);
+      senhaLabel.setBounds(218, 102, 86, 14);
       panel.add(senhaLabel);      
       senhaField = new JPasswordField(10);
       senhaField.setEchoChar('*');
-      senhaField.setBounds(252, 116, 150, 20);
+      senhaField.setBounds(218, 116, 150, 20);
       panel.add(senhaField);
       
       textField = new JTextField();

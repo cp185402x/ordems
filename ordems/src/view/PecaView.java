@@ -26,6 +26,8 @@ import controller.ClienteController;
 import controller.PecaController;
 import model.Cliente;
 import model.Peca;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
 
 //Declarando a classe na janela
 public class PecaView extends JFrame implements ActionListener{
@@ -76,11 +78,6 @@ public class PecaView extends JFrame implements ActionListener{
         //Inicia o painel de título        
         JPanel painelTitulo = new JPanel();
         painelTitulo.setLayout(new FlowLayout());
-        
-        JLabel titulo = new JLabel("Cadastro de peça");
-        titulo.setFont(new Font("Arial", Font.BOLD, 14));
-        
-        painelTitulo.add(titulo);
 
  
         //Inicia o painel dos botoes
@@ -93,31 +90,7 @@ public class PecaView extends JFrame implements ActionListener{
         
         //Inicia o painel dos campos digitáveis        
         JPanel painelCadastro = new JPanel();
-        
-        JLabel nm_pecaLabel = new JLabel("Nome da Peça");
-        nm_pecaLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-        nm_pecaLabel.setBounds(23, 14, 100, 17);
-        JTextField nm_pecaField = new JTextField(40);
-        nm_pecaField.setBounds(133, 11, 421, 20);
         painelCadastro.setLayout(null);
-        painelCadastro.add(nm_pecaLabel);
-        painelCadastro.add(nm_pecaField);
-        
-        JLabel vl_custoLabel = new JLabel("Valor de Custo");
-        vl_custoLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-        vl_custoLabel.setBounds(23, 98, 100, 17);
-        JTextField vl_custoField = new JTextField(10);
-        vl_custoField.setBounds(133, 96, 100, 20);
-        painelCadastro.add(vl_custoLabel);
-        painelCadastro.add(vl_custoField);
-        
-        JLabel vl_vendaLabel = new JLabel("Valor de Venda");
-        vl_vendaLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-        vl_vendaLabel.setBounds(243, 98, 106, 17);
-        JTextField vl_vendaField= new JTextField(10);
-        vl_vendaField.setBounds(359, 96, 100, 20);
-        painelCadastro.add(vl_vendaLabel);
-        painelCadastro.add(vl_vendaField);
         
 
         //Adicionando os paineis em suas respectivas posições        
@@ -143,8 +116,8 @@ public class PecaView extends JFrame implements ActionListener{
         scrollPane.setViewportView(pecaTable);
         
         buscaField = new JTextField();
-        buscaField.setForeground(SystemColor.info);
         buscaField.setBounds(10, 151, 285, 26);
+        buscaField.setForeground(SystemColor.info);
         painelCadastro.add(buscaField);
         buscaField.setColumns(10);
         
@@ -160,19 +133,49 @@ public class PecaView extends JFrame implements ActionListener{
         excluirBnt.setBounds(514, 152, 90, 25);
         painelCadastro.add(excluirBnt);
         
-        skuField = new JTextField();
-        skuField.setBounds(133, 54, 162, 20);
-        painelCadastro.add(skuField);
-        skuField.setColumns(10);
+        JPanel panel = new JPanel();
+        panel.setBorder(new LineBorder(Color.LIGHT_GRAY));
+        panel.setBounds(10, 11, 594, 130);
+        painelCadastro.add(panel);
+        panel.setLayout(null);
+        JTextField vl_custoField_1 = new JTextField(10);
+        vl_custoField_1.setBounds(120, 96, 100, 20);
+        panel.add(vl_custoField_1);
         
-        JLabel skuLabel = new JLabel("SKU");
-        skuLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-        skuLabel.setBounds(45, 56, 78, 17);
-        painelCadastro.add(skuLabel);
+        JLabel vl_custoLabel_1 = new JLabel("Valor de Custo");
+        vl_custoLabel_1.setBounds(10, 98, 100, 17);
+        panel.add(vl_custoLabel_1);
+        vl_custoLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
+        
+        JLabel vl_vendaLabel_1 = new JLabel("Valor de Venda");
+        vl_vendaLabel_1.setBounds(230, 98, 106, 17);
+        panel.add(vl_vendaLabel_1);
+        vl_vendaLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
+        JTextField vl_vendaField_1= new JTextField(10);
+        vl_vendaField_1.setBounds(346, 96, 100, 20);
+        panel.add(vl_vendaField_1);
         
         JCheckBox skuCheckBox = new JCheckBox("Produto controlado");
-        skuCheckBox.setBounds(305, 53, 154, 23);
-        painelCadastro.add(skuCheckBox);
+        skuCheckBox.setBounds(292, 53, 154, 23);
+        panel.add(skuCheckBox);
+        
+        skuField = new JTextField();
+        skuField.setBounds(120, 54, 162, 20);
+        panel.add(skuField);
+        skuField.setColumns(10);
+        
+        JLabel skuLabel_1 = new JLabel("SKU");
+        skuLabel_1.setBounds(32, 56, 78, 17);
+        panel.add(skuLabel_1);
+        skuLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
+        
+        JLabel nm_pecaLabel = new JLabel("Nome da Peça");
+        nm_pecaLabel.setBounds(10, 14, 100, 17);
+        panel.add(nm_pecaLabel);
+        nm_pecaLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+        JTextField nm_pecaField_1 = new JTextField(40);
+        nm_pecaField_1.setBounds(120, 11, 421, 20);
+        panel.add(nm_pecaField_1);
         
        
         getContentPane().add(painelBotoes, BorderLayout.SOUTH);
@@ -215,5 +218,4 @@ public class PecaView extends JFrame implements ActionListener{
 			dispose();
 		} 
 	 }
-
 }

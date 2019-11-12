@@ -56,8 +56,6 @@ public class ClienteDAO {
 		conn.close();
 	}
 	
-	
-	//----------------
 	//Consulta Cliente
 	
 		public ArrayList<Cliente> consultar() throws SQLException {
@@ -66,7 +64,7 @@ public class ClienteDAO {
 			
 			if(conn != null) {
 				st = (PreparedStatement) conn.prepareStatement(
-						"SELECT * FROM cliente order by id_cliente desc");
+						"SELECT * FROM cliente order by id_cliente desc limit 25");
 			}
 			
 
@@ -97,133 +95,13 @@ public class ClienteDAO {
 	           
 	        }
 			
-			//System.out.println("Resultado da consulta" + rs);
-			
 			conn.close();
 			
 			return lista;
 			
-			
-		//----------------	
-			
 		}
-		
-		
-		//metodo consultar
-		
-		/*public ArrayList<Cliente> getClientes() {
-	        Connection conn = null;
-	        PreparedStatement st = null;
-	        ResultSet rs = null;
-	        ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
-	        try {
-	            conn = (Connection) Conexao.getConexao();
-	            
-	            if(conn != null) {
-	    			st = (PreparedStatement) conn.prepareStatement(
-	    					"SELECT * FROM cliente");
-	    			
-	    			rs = st.executeQuery();
-	                while (rs.next()) {
-	                    Cliente cliente = new Cliente();
-	     
-	                    //cliente.setId(rs.getInt("id_cliente"));
-	                    cliente.setNm_cliente(rs.getString("nm_cliente"));
-	                    cliente.setCelular(rs.getString("celular"));
-	                    cliente.setEmail(rs.getString("email"));
-	                    
-	                    listaClientes.add(cliente);
-	                }
-	                conn.close();
-	    		}
-	            else {
-	            	System.out.println("Conexão falhou!");
-	            }
-	            
-	        } catch (Exception e) {
-	            JOptionPane.showMessageDialog(null, "Erro ao listar Cliente" + e.getMessage());
-	        }
-	        return listaClientes;
-	    }
-		
-		/*
-	 
-	    public Cliente getClienteById(int id_cliente) {
-	    	Connection conn = null;
-	        PreparedStatement st = null;
-	        ResultSet rs = null;
-	        Cliente cliente = null;
-	        
-	        try {
-	            conn = (Connection) Conexao.getConexao();
-	            
-	            if(conn != null) {
-	    			st = (PreparedStatement) conn.prepareStatement(
-	    					"SELECT * FROM cliente WHERE id_cliente = ?");
-	    			st.setInt(1, id_cliente);
-	    			
-	    			rs = st.executeQuery();
-	                while (rs.next()) {
-	                    cliente = new Cliente();
-	     
-	                    //PREENCHER TODOS OS DADOS DO CLIENTE
-	                    cliente.setId(rs.getInt("id_cliente"));
-	                    cliente.setNm_cliente(rs.getString("nm_cliente"));
-	                    cliente.setCelular(rs.getString("celular"));
-	                    cliente.setEmail(rs.getString("email"));
-	                    
-	                }
-	                conn.close();
-	    		}
-	            else {
-	            	System.out.println("Conexão falhou!");
-	            }
-	            
-	        } catch (Exception e) {
-	            JOptionPane.showMessageDialog(null, "Erro ao listar Cliente" + e.getMessage());
-	        }
-	        return cliente;
-	    }
-	    
-	    public Cliente getClienteByDocumento(int documento) {
-	    	Connection conn = null;
-	        PreparedStatement st = null;
-	        ResultSet rs = null;
-	        Cliente cliente = null;
-	        
-	        try {
-	            conn = (Connection) Conexao.getConexao();
-	            
-	            if(conn != null) {
-	    			st = (PreparedStatement) conn.prepareStatement(
-	    					"SELECT * FROM cliente WHERE documento = ?");
-	    			st.setInt(1, documento);
-	    			
-	    			rs = st.executeQuery();
-	                while (rs.next()) {
-	                    cliente = new Cliente();
-	     
-	                    
-	                    //PREENCHER TODOS OS DADOS DO CLIENTE
-	                    cliente.setId(rs.getInt("id_cliente"));
-	                    cliente.setNm_cliente(rs.getString("nm_cliente"));
-	                    cliente.setCelular(rs.getString("celular"));
-	                    cliente.setEmail(rs.getString("email"));
-	                    
-	                }
-	                conn.close();
-	    		}
-	            else {
-	            	System.out.println("Conexão falhou!");
-	            }
-	            
-	        } catch (Exception e) {
-	            JOptionPane.showMessageDialog(null, "Erro ao listar Cliente" + e.getMessage());
-	        }
-	        return cliente;
-	        
-	        */
-	    }
+
+}
 	    
 
 	 

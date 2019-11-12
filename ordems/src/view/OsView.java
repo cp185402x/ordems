@@ -197,7 +197,7 @@ public class OsView extends JFrame implements ActionListener{
         cliente_idLabel.setBounds(10, 11, 47, 14);        
         cilente_idField = new JTextField(6);
         clientePainel.add(cliente_idLabel);
-        cilente_idField.setBounds(10, 24, 54, 20);
+        cilente_idField.setBounds(10, 24, 64, 20);
         clientePainel.add(cilente_idField);
         
         nm_clienteLabel = new JLabel("Nome do Cliente");
@@ -208,10 +208,10 @@ public class OsView extends JFrame implements ActionListener{
         clientePainel.add(nm_cilenteField);
         
         usuario_idLabel = new JLabel("Usuário");
-        usuario_idLabel.setBounds(420, 11, 49, 14);        
+        usuario_idLabel.setBounds(420, 11, 99, 14);        
         usuario_idField = new JTextField(6);
         clientePainel.add(usuario_idLabel);
-        usuario_idField.setBounds(420, 24, 54, 20);
+        usuario_idField.setBounds(420, 24, 99, 20);
         clientePainel.add(usuario_idField);
         
         data_previsaoLabel = new JLabel("Data Prevista");
@@ -222,7 +222,7 @@ public class OsView extends JFrame implements ActionListener{
         clientePainel.add(data_previsaoField);
        
         data_prontoLabel = new JLabel("Data Pronto");
-        data_prontoLabel.setBounds(110, 55, 85, 15);
+        data_prontoLabel.setBounds(105, 55, 85, 15);
         clientePainel.add(data_prontoLabel);
         data_prontoField = new JTextField(10);
         data_prontoField.setSize(85, 20);
@@ -231,7 +231,7 @@ public class OsView extends JFrame implements ActionListener{
         clientePainel.add(data_prontoField);
        
         data_entregaLabel = new JLabel("Data Entrega");
-        data_entregaLabel.setBounds(210, 55, 85, 15);
+        data_entregaLabel.setBounds(200, 55, 85, 15);
         clientePainel.add(data_entregaLabel);
         data_entregaField = new JTextField(10);
         data_entregaField.setSize(85, 20);
@@ -240,7 +240,7 @@ public class OsView extends JFrame implements ActionListener{
         clientePainel.add(data_entregaField);
         
         garantiaLabel = new JLabel("Garantia");
-        garantiaLabel.setBounds(310, 55, 85, 15);
+        garantiaLabel.setBounds(301, 55, 85, 15);
         clientePainel.add(garantiaLabel);
         garantiaField = new JTextField(4);
         garantiaField.setSize(85, 20);

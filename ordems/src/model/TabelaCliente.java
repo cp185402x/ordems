@@ -20,27 +20,23 @@ public class TabelaCliente extends AbstractTableModel{
 	public TabelaCliente() {
 		addTodos();
 	}
-	
-	@Override
+
 	public String getColumnName(int column) {
-		// TODO Auto-generated method stub
+
 		return colunas[column];
 	}
 	
 	public int getColumnCount() {
-		// TODO Auto-generated method stub
+
 		return colunas.length;
 	}
 
-	@Override
 	public int getRowCount() {
-		// TODO Auto-generated method stub
+		
 		return listaCliente.size();
 	}
-
-	@Override
+	
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		// TODO Auto-generated method stub
 		switch(columnIndex) {
 			case 0: return listaCliente.get(rowIndex).getId();
 			case 1: return listaCliente.get(rowIndex).getNm_cliente();
@@ -59,7 +55,7 @@ public class TabelaCliente extends AbstractTableModel{
 		try {
 			this.listaCliente.addAll(cd.consultar());
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		System.out.println("Tam" + listaCliente.size());
