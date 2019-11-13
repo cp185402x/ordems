@@ -1,3 +1,10 @@
+<<<<<<< HEAD
 /model/
 /dao/
+=======
+/controller/
+/dao/
+/model/
+/teste/
+>>>>>>> 4e4aa765d91f302c4db379a7494a1637db7d827d
 /view/

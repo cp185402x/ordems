@@ -2,6 +2,11 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="src" path="src"/>
+<<<<<<< HEAD
+=======
+	<classpathentry kind="lib" path="C:/Users/Aluno/ordems/ordems/jgoodies-forms-1.8.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Aluno/ordems/ordems/miglayout15-swing.jar"/>
+>>>>>>> 4e4aa765d91f302c4db379a7494a1637db7d827d
 	<classpathentry kind="lib" path="C:/Users/Aluno/ordems/banco/mysql-connector-java-5.1.15-bin.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
