@@ -9,7 +9,6 @@ import javax.swing.JOptionPane;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
-import model.Cliente;
 import model.Fornecedor;
 import dao.Conexao;
 
@@ -21,7 +20,7 @@ public class FornecedorDAO {
 	//metodos sempre recebem objeto
 	Connection conn = null;
 	PreparedStatement st = null;
-	private Fornecedor fornecedor;
+	
 	
 	
 	public void inserir(Fornecedor fornecedor) throws SQLException {
@@ -31,14 +30,14 @@ public class FornecedorDAO {
 		if(conn != null) {
 			st = (PreparedStatement) conn.prepareStatement(
 					"INSERT INTO fornecedor"
-					+ "(id_fornecedor, nm_fornecedor, tipo_fornecedor, doc_num, rg_ie, celular, fone_re, email, pes_contato, cep, endereco, numero, complemento, bairro, cidade, estado) "
+					+ "(usuario_id, nm_fornecedor, tipo_fornecedor, doc_num, rg_ie, celular, fone_re, email, pes_contato, cep, endereco, numero, complemento, bairro, cidade, estado) "
 					+ "VALUES "
 					+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		}
 		
 		st.setInt(1, 1006); //mudar aqui para associar o id do us		
 		st.setString(2, fornecedor.getNm_fornecedor());
-		st.setInt(3, fornecedor.getTipo_fornecedor());
+		st.setInt(3, fornecedor.getTipo());
 		st.setString(4, fornecedor.getDoc_num());
 		st.setString(5, fornecedor.getRg_ie());
 		st.setString(6, fornecedor.getCelular());
@@ -68,7 +67,7 @@ public class FornecedorDAO {
 		
 		if(conn != null) {
 			st = (PreparedStatement) conn.prepareStatement(
-					"SELECT * FROM cliente order by id_cliente desc limit 25");
+					"SELECT * FROM fornecedor order by id_fornecedor desc limit 25");
 		}
 		
 
@@ -76,24 +75,24 @@ public class FornecedorDAO {
 		ResultSet rs = st.executeQuery();
 		
 		while (rs.next()) {
-            Cliente cliente = new Cliente();
+            Fornecedor fornecedor = new Fornecedor();
 
-           cliente.setId(rs.getInt("id_cliente"));
-           cliente.setNm_cliente(rs.getString("nm_cliente"));
-           cliente.setEmail(rs.getString("email"));
-           cliente.setCelular(rs.getString("celular"));
-           cliente.setFone_re(rs.getString("fone_re"));
-           cliente.setDoc_num(rs.getString("doc_num"));
-           cliente.setRg_ie(rs.getString("rg_ie"));
-           cliente.setPes_contato(rs.getString("pes_contato"));
-           cliente.setTipo_cliente(rs.getInt("tipo_cliente"));
+           fornecedor.setId(rs.getInt("id_fornecedor"));
+           fornecedor.setNm_fornecedor(rs.getString("nm_fornecedor"));
+           fornecedor.setEmail(rs.getString("email"));
+           fornecedor.setCelular(rs.getString("celular"));
+           fornecedor.setFone_re(rs.getString("fone_re"));
+           fornecedor.setDoc_num(rs.getString("doc_num"));
+           fornecedor.setRg_ie(rs.getString("rg_ie"));
+           fornecedor.setPes_contato(rs.getString("pes_contato"));
+           fornecedor.setTipo_fornecedor(rs.getInt("tipo_fornecedor"));
          
-           cliente.getEndereco().setCep(rs.getString("cep"));
-           cliente.getEndereco().setLogradouro(rs.getString("endereco"));
-           cliente.getEndereco().setBairro(rs.getString("Bairro"));
-           cliente.getEndereco().setCidade(rs.getString("Cidade"));
-           cliente.getEndereco().setEstado(rs.getString("Estado"));
-           cliente.getEndereco().setNumero(rs.getString("Numero"));
+           fornecedor.getEndereco().setCep(rs.getString("cep"));
+           fornecedor.getEndereco().setLogradouro(rs.getString("endereco"));
+           fornecedor.getEndereco().setBairro(rs.getString("Bairro"));
+           fornecedor.getEndereco().setCidade(rs.getString("Cidade"));
+           fornecedor.getEndereco().setEstado(rs.getString("Estado"));
+           fornecedor.getEndereco().setNumero(rs.getString("Numero"));
            lista.add(fornecedor);
 
            

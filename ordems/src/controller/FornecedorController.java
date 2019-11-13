@@ -3,10 +3,8 @@ package controller;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import dao.ClienteDAO;
-import dao.Conexao;
 import dao.FornecedorDAO;
-import model.Cliente;
+import dao.Conexao;
 import model.Fornecedor;
 
 
