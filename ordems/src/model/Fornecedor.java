@@ -12,7 +12,7 @@ public class Fornecedor {
     private String email;
     private String pes_contato;
     private Endereco endereco;
-    private int tipo;
+    private int tipo_fornecedor;
     
     public int getId() {
 		return id;
@@ -97,33 +97,53 @@ public class Fornecedor {
 
 	
     //Construtor
-    public Fornecedor(){
-        this.endereco = new Endereco();
-    
-    }
-	
-
-	public int getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(int tipo) {
-		this.tipo = tipo;
-	}
-
-	public Endereco getEndereco() {
-		return endereco;
-	}
-
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
-
-
-	public void add(Fornecedor fornecedor) {
+	 public Fornecedor(){
+	        this.endereco = new Endereco();
+	    
+	    }
 		
+		public int getTipo_fornecedor() {
+		return tipo_fornecedor;
 	}
 
-	
+
+	public void setTipo_fornecedor(int tipo_fornecedor) {
+		this.tipo_fornecedor = tipo_fornecedor;
 	}
+
+
+		public int getTipo() {
+			return tipo_fornecedor;
+		}
+
+		public void setTipo(int tipo) {
+			this.tipo_fornecedor = tipo;
+		}
+
+		public Endereco getEndereco() {
+			return endereco;
+		}
+
+		public void setEndereco(Endereco endereco) {
+			this.endereco = endereco;
+		}
+
+	public String toString() {
+		
+		return "Cliente [id=" + id + ", nm_fornecedor=" + nm_fornecedor + ", doc_num=" + doc_num + ", rg_ie=" + rg_ie
+				+ ", celular=" + celular + ", fone_re=" + fone_re + ", email=" + email + ", pes_contato=" + pes_contato
+				+ ", endereco=" + endereco + ", tipo_fornecedor=" + tipo_fornecedor + "]";
+	}
+
+
+
+
+
+	
+	
+	 
+		
+	
+
+	}
+	

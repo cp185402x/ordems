@@ -1,4 +1,4 @@
-package dao;
+ package dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
+import model.Cliente;
 import model.Fornecedor;
 import dao.Conexao;
 
@@ -20,6 +21,7 @@ public class FornecedorDAO {
 	//metodos sempre recebem objeto
 	Connection conn = null;
 	PreparedStatement st = null;
+	private Fornecedor fornecedor;
 	
 	
 	public void inserir(Fornecedor fornecedor) throws SQLException {
@@ -36,7 +38,7 @@ public class FornecedorDAO {
 		
 		st.setInt(1, 1006); //mudar aqui para associar o id do us		
 		st.setString(2, fornecedor.getNm_fornecedor());
-		st.setInt(3, fornecedor.getTipo());
+		st.setInt(3, fornecedor.getTipo_fornecedor());
 		st.setString(4, fornecedor.getDoc_num());
 		st.setString(5, fornecedor.getRg_ie());
 		st.setString(6, fornecedor.getCelular());
@@ -60,78 +62,49 @@ public class FornecedorDAO {
 	//----------------
 	//Consulta Fornecedor
 	
-		public void consultar() throws SQLException {
-			
-			conn = (Connection) Conexao.getConexao();
-			
-			if(conn != null) {
-				st = (PreparedStatement) conn.prepareStatement(
-						"SELECT * FROM fornecedor");
-			}
-			
+	public ArrayList<Fornecedor> consultar() throws SQLException {
+		
+		conn = (Connection) Conexao.getConexao();
+		
+		if(conn != null) {
+			st = (PreparedStatement) conn.prepareStatement(
+					"SELECT * FROM cliente order by id_cliente desc limit 25");
+		}
+		
 
-			
-			ResultSet rs = st.executeQuery();
-			
-			while (rs.next()) {
-	            Fornecedor fornecedor = new Fornecedor();
+		ArrayList<Fornecedor> lista = new ArrayList<Fornecedor>();
+		ResultSet rs = st.executeQuery();
+		
+		while (rs.next()) {
+            Cliente cliente = new Cliente();
 
-	            
-	           System.out.println(rs.getInt("id_fornecedor"));
-	           System.out.println(rs.getString("nm_fornecedor"));
-	           System.out.println(rs.getString("email"));
-	           System.out.println(rs.getString("celular"));
-	           System.out.println(rs.getString("fone_re"));
-	           System.out.println(rs.getString("doc_num"));
-	           System.out.println(rs.getString("rg_ie"));
-	           System.out.println(rs.getString("pes_contato"));
+           cliente.setId(rs.getInt("id_cliente"));
+           cliente.setNm_cliente(rs.getString("nm_cliente"));
+           cliente.setEmail(rs.getString("email"));
+           cliente.setCelular(rs.getString("celular"));
+           cliente.setFone_re(rs.getString("fone_re"));
+           cliente.setDoc_num(rs.getString("doc_num"));
+           cliente.setRg_ie(rs.getString("rg_ie"));
+           cliente.setPes_contato(rs.getString("pes_contato"));
+           cliente.setTipo_cliente(rs.getInt("tipo_cliente"));
+         
+           cliente.getEndereco().setCep(rs.getString("cep"));
+           cliente.getEndereco().setLogradouro(rs.getString("endereco"));
+           cliente.getEndereco().setBairro(rs.getString("Bairro"));
+           cliente.getEndereco().setCidade(rs.getString("Cidade"));
+           cliente.getEndereco().setEstado(rs.getString("Estado"));
+           cliente.getEndereco().setNumero(rs.getString("Numero"));
+           lista.add(fornecedor);
 
-	           
-	        }
-			
-			System.out.println("Resultado da consulta" + rs);
-			
-			conn.close();	
-			
+           
+        }
+		conn.close();
+		
+		return lista;
 		}
 		
 		
-		//metodo consultar
 		
-		public ArrayList<Fornecedor> getFornecedor() {
-	        Connection conn = null;
-	        PreparedStatement st = null;
-	        ResultSet rs = null;
-	        ArrayList<Fornecedor> listafornecedor = new ArrayList<Fornecedor>();
-	        try {
-	            conn = (Connection) Conexao.getConexao();
-	            
-	            if(conn != null) {
-	    			st = (PreparedStatement) conn.prepareStatement(
-	    					"SELECT * FROM fornecedor");
-	    			
-	    			rs = st.executeQuery();
-	                while (rs.next()) {
-	                    Fornecedor fornecedor = new Fornecedor();
-	     
-	                    //Fornecedor.setId(rs.getInt("id_Fornecedor"));
-	                    fornecedor.setNm_fornecedor(rs.getString("nm_Fornecedor"));
-	                    fornecedor.setCelular(rs.getString("celular"));
-	                    fornecedor.setEmail(rs.getString("email"));
-	                    
-	                    listafornecedor.add(fornecedor);
-	                }
-	                conn.close();
-	    		}
-	            else {
-	            	System.out.println("Conexão falhou!");
-	            }
-	            
-	        } catch (Exception e) {
-	            JOptionPane.showMessageDialog(null, "Erro ao listar fornecedor" + e.getMessage());
-	        }
-	        return listafornecedor;
-	    }
 		
 	    }
 	    
