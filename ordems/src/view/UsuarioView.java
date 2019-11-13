@@ -7,244 +7,400 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
-import controller.UsuarioController;
-import model.Usuario;
-
-import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
+import javax.swing.SwingConstants;
+import javax.swing.JTable;
+import javax.swing.ButtonGroup;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JScrollPane;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
-import java.awt.SystemColor;
-import javax.swing.JScrollPane;
-import javax.swing.JPasswordField;
+import javax.swing.ScrollPaneConstants;
+
+import controller.ClienteController;
+import model.Cliente;
+import model.TabelaCliente;
+
 //Declarando a classe na janela
 public class UsuarioView extends JFrame implements ActionListener{
 	//atributos globais da classe
-		JPanel painelTitulo;
-		JPanel painelCadastro;
-		
-	    JLabel nm_usuarioLabel;
-	    JTextField nm_usuarioField;
-	    
-	    JLabel cargoLabel;
-	    JTextField cargoField;
-	    
-	    JLabel departamentoLabel;
-	    JTextField departamentoField;
-	    
-	    JLabel matriculaLabel;
-	    JTextField matriculaField;
-	    
-	    JLabel loginLabel;
-	    JTextField loginField;
-	    
-	    JLabel senhaLabel;
-	    JTextField senhaaaaaField;
-	    
-	    JLabel statusLabel;
-	    JTextField statusField;
-	    
-	  //Inicia o painel dos botoes
-	    JPanel painelBotoes;
-	    JButton botaoSalvar;
-	    JButton botaoCancelar;
-	    private JPanel painelCadastro_1;
-	    private JTextField textField;
-	    private JPasswordField senhaField;
-
-	    public UsuarioView() { // construtor da view Usuario.
-			super("Cadastro de usuário");
-			
-		                
-		        criaFormulario();
-		    	this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		    	this.setSize(630, 600);
-		    	this.setVisible(true);
-		    	this.setLocationRelativeTo(null);
+	JPanel painelTitulo;
+	JPanel painelCadastro;
+	JLabel titulo;
+	
+	JRadioButton cnpjRadio;
+	JRadioButton cpfRadio;
+	ButtonGroup tipoGrupo;
+	
+    JLabel nm_clienteLabel;
+    JTextField nm_clienteField;
     
-  }
-  
-  private void criaFormulario() {
-      
-      getContentPane().setLayout(new BorderLayout());
-      
-//Inicia o painel de título        
-      painelTitulo = new JPanel();
-      painelTitulo.setLayout(new FlowLayout());
-      
-//Inicia o painel dos campos digitáveis        
-      JPanel painelCadastro = new JPanel();
-      painelCadastro.setLayout(new FlowLayout());
-      
-                  
-      painelCadastro_1 = new JPanel();
-      painelCadastro_1.setLayout(null);
-      
-      
-                  
-      
-//Inicia o painel dos botoes
-      painelBotoes = new JPanel();
-      painelBotoes.setLayout(new FlowLayout());
-      
-      botaoSalvar = new JButton("Salvar");
-      botaoCancelar = new JButton("Cancelar");
-      
-      painelBotoes.add(botaoSalvar);
-      painelBotoes.add(botaoCancelar);
-      
-      botaoSalvar.addActionListener(this);
-      botaoSalvar.setActionCommand("salvar");
-      botaoCancelar.addActionListener(this);
-      botaoCancelar.setActionCommand("cancelar");
-      
-      getContentPane().add(painelTitulo, BorderLayout.NORTH);
-      getContentPane().add(painelCadastro_1, BorderLayout.CENTER);
-      
-      JPanel panel = new JPanel();
-      panel.setBounds(10, 11, 594, 150);
-      panel.setBorder(new LineBorder(Color.LIGHT_GRAY));
-      painelCadastro_1.add(panel);
-      panel.setLayout(null);
-      
-      nm_usuarioLabel = new JLabel("Nome");
-      nm_usuarioLabel.setBounds(42, 11, 326, 14);
-      panel.add(nm_usuarioLabel);
-      nm_usuarioField = new JTextField(40);
-      nm_usuarioField.setBounds(42, 26, 326, 20);
-      panel.add(nm_usuarioField);
-      matriculaField = new JTextField(20);
-      matriculaField.setBounds(378, 26, 166, 20);
-      panel.add(matriculaField);
-      
-      matriculaLabel = new JLabel("Matrícula");
-      matriculaLabel.setBounds(378, 11, 166, 14);
-      panel.add(matriculaLabel);
-      statusField = new JTextField(10);
-      statusField.setBounds(378, 71, 166, 20);
-      panel.add(statusField);
-      
-      statusLabel = new JLabel("Status");
-      statusLabel.setBounds(378, 57, 86, 14);
-      panel.add(statusLabel);
-      cargoField = new JTextField(20);
-      cargoField.setBounds(42, 71, 166, 20);
-      panel.add(cargoField);
-      
-      cargoLabel = new JLabel("Cargo");
-      cargoLabel.setBounds(42, 57, 166, 14);
-      panel.add(cargoLabel);
-      
-      departamentoLabel = new JLabel("Departamento");
-      departamentoLabel.setBounds(218, 57, 150, 14);
-      panel.add(departamentoLabel);
-      departamentoField = new JTextField(20);
-      departamentoField.setBounds(218, 71, 150, 20);
-      panel.add(departamentoField);
-      
-      loginLabel = new JLabel("Login");
-      loginLabel.setBounds(42, 102, 86, 14);
-      panel.add(loginLabel);
-      loginField = new JTextField(10);
-      loginField.setBounds(42, 116, 166, 20);
-      panel.add(loginField);
-      
-      senhaaaaaField = new JTextField(10);
-      senhaaaaaField.setBounds(394, 116, 150, 20);
-      panel.add(senhaaaaaField);
-      
-      senhaLabel = new JLabel("Senha");
-      senhaLabel.setBounds(218, 102, 86, 14);
-      panel.add(senhaLabel);      
-      senhaField = new JPasswordField(10);
-      senhaField.setEchoChar('*');
-      senhaField.setBounds(218, 116, 150, 20);
-      panel.add(senhaField);
-      
-      textField = new JTextField();
-      textField.setBounds(10, 172, 285, 26);
-      textField.setForeground(SystemColor.info);
-      textField.setColumns(10);
-      painelCadastro_1.add(textField);
-      
-      JButton button = new JButton("Buscar");
-      button.setBounds(305, 173, 90, 25);
-      painelCadastro_1.add(button);
-      
-      JButton button_1 = new JButton("Editar");
-      button_1.setBounds(414, 173, 90, 25);
-      painelCadastro_1.add(button_1);
-      
-      JButton button_2 = new JButton("Excluir");
-      button_2.setBounds(514, 173, 90, 25);
-      painelCadastro_1.add(button_2);
-      
-      JScrollPane scrollPane = new JScrollPane();
-      scrollPane.setBounds(10, 209, 594, 281);
-      painelCadastro_1.add(scrollPane);
-      getContentPane().add(painelBotoes, BorderLayout.SOUTH);
-  }
+    JLabel dataNascLabel;
+    JTextField dataNascField;
+    
+    JTextField docField;
+    
+    JLabel rgieLabel;
+    JTextField rgieField;
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				if(e.getActionCommand().equalsIgnoreCase("salvar")) {
-					Usuario u = new Usuario();
-					
-					//usuario
-					u.setNm_usuario(nm_usuarioField.getText());
-					
-					//cargo
-					u.setCargo(cargoField.getText());
-					
-					//departamento
-					u.setDepartamento(departamentoField.getText());
-					
-					//matricula
-					u.setMatricula( matriculaField.getText());
-					
-					//login
-					u.setLogin( loginField.getText());
-				
-					//senha
-					u.setSenha( senhaField.getText());
-					//status
-					u.setStatus( statusField.getText());
-				
+    JLabel celularLabel;
+    JTextField celularField;
+    
+    JLabel fone_reLabel;
+    JTextField fone_reField;
+        
+    JLabel emailLabel;
+    JTextField emailField;
+    
+    JLabel pes_contatoLabel;
+    JTextField pes_contatoField;
+    
+    JLabel cepLabel;
+    JTextField cepField;
+    
+    JLabel enderecoLabel;
+    JTextField enderecoField;
+    
+    JLabel numeroLabel;
+    JTextField numeroField;
+    
+    JLabel complementoLabel;
+    JTextField complementoField;
+    
+    JLabel bairroLabel;
+    JTextField bairroField;
+    
+    JLabel cidadeLabel;
+    JTextField cidadeField;
+    
+    JLabel estadoLabel;
+    JTextField estadoField;
+    
+    
+    //Inicia o painel dos botoes
+    JPanel painelBotoes;
+    JButton botaoSalvar;
+    JButton botaoCancelar;
+    
+    private JTable clienteTable;
+    TabelaCliente tabelaCliente;
+    
+    private JTextField buscarField;
+
+	public UsuarioView() { // construtor da view Usuario.
+        super("Cadastro de Usuario");
+        setType(Type.UTILITY);
+                
+        criaFormulario();
+    	this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    	this.setSize(680, 600);
+    	this.setVisible(true);
+    	this.setLocationRelativeTo(null);
+    }
+    
+    private void criaFormulario() {
+        
+        getContentPane().setLayout(new BorderLayout());
+        
+        //Inicia o painel de título    
+        painelTitulo = new JPanel();
+        painelTitulo.setLayout(new FlowLayout());
+        
+        titulo = new JLabel("Cadastro de Uusuario");
+        titulo.setFont(new Font("Arial", Font.BOLD, 14));
+        
+        painelTitulo.add(titulo);
+        
+        //Inicia o painel dos campos digitáveis        
+        painelCadastro = new JPanel();
+        
+        //Inicia o painel dos botoes
+        painelBotoes = new JPanel();
+        painelBotoes.setLayout(new FlowLayout());
+        
+        botaoSalvar = new JButton("Salvar");
+        botaoCancelar = new JButton("Cancelar");
+        
+        getContentPane().add(painelCadastro, BorderLayout.WEST);
+        
+        JPanel clientePainel = new JPanel();
+        clientePainel.setBorder(new LineBorder(Color.LIGHT_GRAY));
+        clientePainel.setLayout(null);
+        
+        pes_contatoField = new JTextField(20);
+        pes_contatoField.setBounds(447, 137, 186, 20);
+        clientePainel.add(pes_contatoField);        
+        pes_contatoLabel = new JLabel("Pessoa de Contato");
+        pes_contatoLabel.setBounds(447, 125, 166, 14);
+        clientePainel.add(pes_contatoLabel);
+        
+        emailField = new JTextField(40);
+        emailField.setBounds(10, 138, 427, 20);
+        clientePainel.add(emailField);        
+        emailLabel = new JLabel("Email");
+        emailLabel.setBounds(10, 126, 368, 14);
+        clientePainel.add(emailLabel);
+        
+        cpfRadio = new JRadioButton("CPF");
+        cpfRadio.setSelected(true);
+        cpfRadio.setHorizontalAlignment(SwingConstants.RIGHT);
+        cpfRadio.setBounds(6, 7, 50, 23);
+        clientePainel.add(cpfRadio);        
+        cnpjRadio = new JRadioButton("CNPJ");
+        cnpjRadio.setHorizontalAlignment(SwingConstants.RIGHT);
+        cnpjRadio.setBounds(58, 7, 56, 23);
+        clientePainel.add(cnpjRadio);
+        tipoGrupo = new ButtonGroup();
+        
+        tipoGrupo.add(cpfRadio);
+        tipoGrupo.add(cnpjRadio);
+        
+        
+        docField = new JTextField(20);
+        docField.setBounds(114, 8, 199, 20);
+        clientePainel.add(docField);
+        
+        rgieLabel = new JLabel("RG/IE");
+        rgieLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+        rgieLabel.setBounds(323, 10, 50, 14);
+        clientePainel.add(rgieLabel);
+        rgieField = new JTextField(20);
+        rgieField.setBounds(373, 7, 186, 20);
+        clientePainel.add(rgieField);
+        
+        nm_clienteLabel = new JLabel("Nome");
+        nm_clienteLabel.setBounds(10, 37, 338, 14);
+        clientePainel.add(nm_clienteLabel);
+        nm_clienteField = new JTextField(40);
+        nm_clienteField.setBounds(10, 51, 427, 20);
+        clientePainel.add(nm_clienteField);
+        
+        dataNascField = new JTextField(20);
+        dataNascField.setBounds(447, 50, 186, 20);
+        clientePainel.add(dataNascField);        
+        dataNascLabel = new JLabel("Data Nascimento");
+        dataNascLabel.setBounds(447, 35, 156, 14);
+        clientePainel.add(dataNascLabel);
+               
+        fone_reField = new JTextField(20);
+        fone_reField.setBounds(10, 95, 186, 20);
+        clientePainel.add(fone_reField);        
+        JLabel fone_reLabel = new JLabel("Fone Fixo");
+        fone_reLabel.setBounds(10, 82, 166, 14);
+        clientePainel.add(fone_reLabel);
+        
+        celularField = new JTextField(20);
+        celularField.setBounds(206, 95, 186, 20);
+        clientePainel.add(celularField);        
+        celularLabel = new JLabel("Celular");
+        celularLabel.setBounds(206, 82, 162, 14);
+        clientePainel.add(celularLabel);
+        
+        JPanel panel = new JPanel();
+        panel.setBorder(new LineBorder(Color.LIGHT_GRAY));
+        panel.setLayout(null); 
+        
+        cepField = new JTextField(10);
+        cepField.setBounds(10, 25, 155, 20);
+        panel.add(cepField);        
+        cepLabel = new JLabel("CEP");
+        cepLabel.setBounds(10, 11, 86, 14);
+        panel.add(cepLabel);
+        
+        enderecoField = new JTextField(40);
+        enderecoField.setBounds(175, 25, 369, 20);
+        panel.add(enderecoField);        
+        enderecoLabel = new JLabel("Endereço");
+        enderecoLabel.setBounds(175, 11, 369, 14);
+        panel.add(enderecoLabel);
+        
+        numeroField = new JTextField(10);
+        numeroField.setBounds(554, 25, 79, 20);
+        panel.add(numeroField);        
+        numeroLabel = new JLabel("Número");
+        numeroLabel.setBounds(554, 11, 65, 14);
+        panel.add(numeroLabel);
+        
+        complementoField = new JTextField(20);
+        complementoField.setBounds(10, 69, 155, 20);
+        panel.add(complementoField);        
+        complementoLabel = new JLabel("Complemento");
+        complementoLabel.setBounds(10, 56, 127, 14);
+        panel.add(complementoLabel);
+        
+        bairroField = new JTextField(20);
+        bairroField.setBounds(175, 69, 180, 20);
+        panel.add(bairroField);               
+        bairroLabel = new JLabel("Bairro");
+        bairroLabel.setBounds(175, 56, 166, 14);
+        panel.add(bairroLabel);
+        
+        cidadeField = new JTextField(20);
+        cidadeField.setBounds(365, 69, 179, 20);
+        panel.add(cidadeField);        
+        cidadeLabel = new JLabel("Cidade");
+        cidadeLabel.setBounds(365, 56, 166, 14);
+        panel.add(cidadeLabel);
+        
+        estadoLabel = new JLabel("Estado");
+        estadoLabel.setBounds(554, 56, 65, 14);
+        panel.add(estadoLabel);
+        estadoField = new JTextField(10);
+        estadoField.setBounds(554, 69, 79, 20);
+        panel.add(estadoField);
+        
+        //Criando a Tabela com os dados do banco
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setViewportBorder(new LineBorder(Color.LIGHT_GRAY));
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        
+        
+        JButton editarBtn = new JButton("Editar");
+        
+        JButton excluirBtn = new JButton("Excluir");
+        
+        buscarField = new JTextField();
+        buscarField.setBackground(new Color(250, 250, 210));
+        buscarField.setFont(new Font("Tahoma", Font.PLAIN, 12));
+        buscarField.setColumns(10);
+        
+        JButton buscarBtn = new JButton("Buscar");
+        
+        GroupLayout gl_painelCadastro = new GroupLayout(painelCadastro);
+        gl_painelCadastro.setHorizontalGroup(
+        	gl_painelCadastro.createParallelGroup(Alignment.TRAILING)
+        		.addGroup(gl_painelCadastro.createSequentialGroup()
+        			.addContainerGap()
+        			.addGroup(gl_painelCadastro.createParallelGroup(Alignment.LEADING)
+        				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
+        				.addComponent(scrollPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
+        				.addGroup(Alignment.TRAILING, gl_painelCadastro.createSequentialGroup()
+        					.addComponent(buscarField, GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
+        					.addGap(18)
+        					.addComponent(buscarBtn)
+        					.addGap(18)
+        					.addComponent(editarBtn)
+        					.addGap(18)
+        					.addComponent(excluirBtn))
+        				.addComponent(clientePainel, GroupLayout.PREFERRED_SIZE, 643, GroupLayout.PREFERRED_SIZE))
+        			.addGap(18))
+        );
+        gl_painelCadastro.setVerticalGroup(
+        	gl_painelCadastro.createParallelGroup(Alignment.TRAILING)
+        		.addGroup(gl_painelCadastro.createSequentialGroup()
+        			.addContainerGap()
+        			.addComponent(clientePainel, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addComponent(panel, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+        			.addPreferredGap(ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+        			.addGroup(gl_painelCadastro.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(buscarField, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(excluirBtn)
+        				.addComponent(editarBtn)
+        				.addComponent(buscarBtn))
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 188, GroupLayout.PREFERRED_SIZE)
+        			.addContainerGap())
+        );
+
+        
+        tabelaCliente = new TabelaCliente();
+        clienteTable = new JTable(tabelaCliente);
+        
+             
+        scrollPane.setViewportView(clienteTable);
+        
+        painelCadastro.setLayout(gl_painelCadastro);
+        
+        getContentPane().add(painelBotoes, BorderLayout.SOUTH);
+        
+        painelBotoes.add(botaoSalvar);
+        painelBotoes.add(botaoCancelar);
+        
+        botaoSalvar.addActionListener(this);
+        botaoSalvar.setActionCommand("salvar");
+        botaoCancelar.addActionListener(this);
+        botaoCancelar.setActionCommand("cancelar");
+
+    }
+    
+    
+	public void actionPerformed(ActionEvent e) {
+		
+		if(e.getActionCommand().equalsIgnoreCase("salvar")) {
 			
-      
-      UsuarioController controleUsuario = new UsuarioController();
-		try {
-			if(controleUsuario.cadastrarUsuario(u) == true) {
-				JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
+			Cliente c = new Cliente();
+			
+			//Tratar a ação de salvar o cliente
+			
+			//Trata o radio do tipo de cliente
+			if(cpfRadio.isSelected()) {
+				c.setTipo(0);
 			}
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Erro ao realizar cadastro!");
+			else {
+				c.setTipo(1);
+			}
+			//Tipo
+			System.out.println("Tipo: " +c.getTipo());
+			//nome
+			c.setNm_cliente(nm_clienteField.getText());			
+			//documento
+			c.setDoc_num(docField.getText());			
+			//RGIE
+			c.setRg_ie(rgieField.getText());
+			//fone fixo
+			c.setFone_re(fone_reField.getText());
+			//celular
+			c.setCelular(celularField.getText());
+			//email
+			c.setEmail(emailField.getText());
+			//pessoa contato
+			c.setPes_contato(pes_contatoField.getText());
+			//Logradouro
+			c.getEndereco().setCep(cepField.getText());
+			//Logradouro
+			c.getEndereco().setLogradouro(enderecoField.getText());
+			//numero
+			c.getEndereco().setNumero(numeroField.getText());
+			//complemento
+			c.getEndereco().setComplemento(complementoField.getText());
+			//bairro
+			c.getEndereco().setBairro(bairroField.getText());
+			//cidade
+			c.getEndereco().setCidade(cidadeField.getText());
+			//estado
+			c.getEndereco().setEstado(estadoField.getText());
+	
+			
+			ClienteController controleCliente = new ClienteController();
+			try {
+				if(controleCliente.cadastrarCliente(c) == true) {
+					JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
+					tabelaCliente.addTodos();
+					this.repaint();
+				}
+				}
+			 catch (SQLException e1) {
+				e1.printStackTrace();
+				JOptionPane.showMessageDialog(null, "Erro ao realizar cadastro!");
+			}
+	
+	}
+			else if (e.getActionCommand().equalsIgnoreCase("cancelar")) {
+	
+			dispose();
 		}
 	}
-	else if(e.getActionCommand().equalsIgnoreCase("Cancelar")) {
-		 
-			dispose();
-		
-			}
-      	
-
-	
-	
 }
-}
-	
-
-
-
-
+//
 

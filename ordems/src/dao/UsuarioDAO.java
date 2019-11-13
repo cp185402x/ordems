@@ -4,6 +4,7 @@ package dao;
 import java.awt.List;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
@@ -11,6 +12,7 @@ import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
 import controller.UsuarioController;
+import model.Cliente;
 import model.Usuario;
 import dao.Conexao;
 
@@ -51,7 +53,42 @@ public class UsuarioDAO {
 		
 	}
 	
+	//Consulta Usuario
 	
+			public ArrayList<Usuario> consultar() throws SQLException {
+				
+				conn = (Connection) Conexao.getConexao();
+				
+				if(conn != null) {
+					st = (PreparedStatement) conn.prepareStatement(
+							"SELECT * FROM usuario order by nm_usuario desc limit 25");
+				}
+				
+
+				ArrayList<Usuario> lista = new ArrayList<Usuario>();
+				ResultSet rs = st.executeQuery();
+				
+				while (rs.next()) {
+		            Usuario usuario = new Usuario();
+
+		           usuario.setNm_usuario(rs.getString("nm_usuario"));
+		           usuario.setMatricula(rs.getString("matricula"));
+		           usuario.setCargo(rs.getString("cargo"));
+		           usuario.setDepartamento(rs.getString("departamento"));
+		           usuario.setStatus(rs.getString("status"));
+		          
+		           lista.add(usuario);
+
+		           
+		        }
+				
+				conn.close();
+				
+				return lista;
+				
+			}
+
+	}
+		    
 
 
-}
