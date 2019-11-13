@@ -1,9 +1,12 @@
 package controller;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+import dao.ClienteDAO;
 import dao.Conexao;
 import dao.FornecedorDAO;
+import model.Cliente;
 import model.Fornecedor;
 
 
@@ -55,15 +58,14 @@ public class FornecedorController {
 	}
 
 
-	public Fornecedor consultarFornecedor() throws SQLException {
+	public ArrayList<Fornecedor> consultarCliente() throws SQLException {
 		//System.out.println("Cheguei no consultar fornecedor");
-		Fornecedor fornecedor;
 		FornecedorDAO fornecedorDAO = new FornecedorDAO();
-		fornecedorDAO.consultar();
-		fornecedor = new Fornecedor();
-		
-		return fornecedor;
+		return fornecedorDAO.consultar();
+	
 		
 	}
 
+
+	
 }
