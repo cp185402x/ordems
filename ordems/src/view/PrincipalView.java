@@ -48,7 +48,7 @@ public class PrincipalView extends JFrame implements ActionListener{
 	
 	//Construtores
 	public PrincipalView() {
-		setTitle(":. Ordem-S .::. v1.3.71");
+		setTitle(":. Ordem-S .::. v1.3.83");
 		this.inicializarCadastro();
 		this.inicializarRelatorio();
 		this.inicializarAjuda();

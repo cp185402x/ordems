@@ -21,12 +21,12 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
-import java.awt.SystemColor;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JTextArea;
 
 import controller.OsController;
 import model.Os;
+import javax.swing.JCheckBox;
 
 //Declarando a classe na janela
 public class OsView extends JFrame implements ActionListener{
@@ -54,7 +54,6 @@ public class OsView extends JFrame implements ActionListener{
     JTextField 	data_entregaField;
     
     JLabel 		garantiaLabel;
-    JTextField 	garantiaField;
     
     JLabel 		tipoLabel;
     JTextField 	tipoField;
@@ -208,10 +207,10 @@ public class OsView extends JFrame implements ActionListener{
         clientePainel.add(nm_cilenteField);
         
         usuario_idLabel = new JLabel("Usuário");
-        usuario_idLabel.setBounds(420, 11, 99, 14);        
+        usuario_idLabel.setBounds(504, 11, 99, 14);        
         usuario_idField = new JTextField(6);
         clientePainel.add(usuario_idLabel);
-        usuario_idField.setBounds(420, 24, 99, 20);
+        usuario_idField.setBounds(504, 24, 99, 20);
         clientePainel.add(usuario_idField);
         
         data_previsaoLabel = new JLabel("Data Prevista");
@@ -239,14 +238,17 @@ public class OsView extends JFrame implements ActionListener{
         data_entregaField.setBounds(202, 69, 86, 20);
         clientePainel.add(data_entregaField);
         
-        garantiaLabel = new JLabel("Garantia");
-        garantiaLabel.setBounds(301, 55, 85, 15);
+        garantiaLabel = new JLabel("Garantia?");
+        garantiaLabel.setBounds(311, 55, 85, 15);
         clientePainel.add(garantiaLabel);
-        garantiaField = new JTextField(4);
-        garantiaField.setSize(85, 20);
-        garantiaField.setLocation(310, 70);
-        garantiaField.setBounds(301, 69, 38, 20);
-        clientePainel.add(garantiaField);
+        
+        JButton listarBtn = new JButton("Listar");
+        listarBtn.setBounds(420, 22, 74, 25);
+        clientePainel.add(listarBtn);
+        
+        JCheckBox garantiaCkBox = new JCheckBox(" Sim");
+        garantiaCkBox.setBounds(311, 73, 52, 14);
+        clientePainel.add(garantiaCkBox);
         
         tipoLabel = new JLabel("Tipo Equipamento");
         tipoLabel.setBounds(11, 0, 164, 14);        
@@ -359,7 +361,7 @@ public class OsView extends JFrame implements ActionListener{
 			Os o = new Os();
 			
 			//Tratar a ação de salvar OS
-			
+						
 			//tipo
 			o.setTipo(tipoField.getText());			
 			//modelo
