@@ -1,5 +1,5 @@
 package teste;
-
+//Chama a janela de informações sobre o projeto
 import javax.swing.JFrame;
 
 import view.SobreView;

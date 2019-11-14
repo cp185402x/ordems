@@ -1,5 +1,5 @@
 package model;
-
+//Classe apenas do endereço
 public class Endereco {
 	private String logradouro;
     private String bairro;

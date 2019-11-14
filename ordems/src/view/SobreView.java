@@ -56,10 +56,7 @@ public class SobreView extends JFrame implements ActionListener{
       
       ordemsLabel = new JLabel("Ordem-S Sistema de Gerenciamento de ordens de servi\u00E7os");
       ordemsLabel.setBounds(49, 35, 504, 41);
-      painelSobre.add(ordemsLabel);
-      
-      
-                  
+      painelSobre.add(ordemsLabel);                  
       
 //Inicia o painel dos botoes
       painelBotoes = new JPanel();

@@ -1,5 +1,5 @@
 package teste;
-
+//Chama o menu principal
 import view.PrincipalView;
 
 public class TesteMenu {

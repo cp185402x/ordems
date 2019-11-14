@@ -7,7 +7,7 @@ import dao.Conexao;
 import model.Os;
 
 public class OsController {
-	//Metodo para receber os dados,tratar e chamar o metodo insere do ClienteDAO
+	///Metodo para receber os dados,tratar e chamar o metodo insere do ClienteDAO
 	private Conexao bd;
 	public void OsContoller() {
 		setBd(new Conexao());

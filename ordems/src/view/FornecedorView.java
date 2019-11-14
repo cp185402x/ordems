@@ -333,8 +333,7 @@ public class FornecedorView extends JFrame implements ActionListener{
         botaoCancelar.setActionCommand("cancelar");
 
     }
-    
-    
+   
 	public void actionPerformed(ActionEvent e) {
 		
 		if(e.getActionCommand().equalsIgnoreCase("salvar")) {

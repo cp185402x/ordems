@@ -2,7 +2,7 @@ package model;
 
 public class Cliente {
 	
-	//Atributos
+	///Atributos
 	private int id;
     private String nm_cliente;
     private String doc_num;

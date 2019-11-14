@@ -2,7 +2,7 @@ package model;
 
 public class Peca {
 
-	//Atributos
+	///Atributos
     private String nm_peca;
     private String vl_custo;
     private String vl_venda;

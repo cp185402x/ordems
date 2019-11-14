@@ -9,7 +9,7 @@ import model.Usuario;
 
 
 public class UsuarioController  {
-	//Metodo para receber os dados,tratar e chamar o metodo insere do ClienteDAO
+	///Metodo para receber os dados,tratar e chamar o metodo insere do ClienteDAO
 	private Conexao bd;
 	public void UsuarioContoller() {
 		setBd(new Conexao());

@@ -371,8 +371,6 @@ public class OsView extends JFrame implements ActionListener{
 			//serie
 			o.setSerie(serieField.getText());
 
-			
-			
 			OsController controleOs = new OsController();
 			try {
 				if(controleOs.cadastrarOs(o) == true) {

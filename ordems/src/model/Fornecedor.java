@@ -2,7 +2,7 @@ package model;
 
 public class Fornecedor {
 	
-	//Atributos
+	///Atributos
 	private int id;
     private String nm_fornecedor;
     private String doc_num;

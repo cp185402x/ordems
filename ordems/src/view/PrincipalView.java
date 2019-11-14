@@ -56,9 +56,7 @@ public class PrincipalView extends JFrame implements ActionListener{
 		this.construirRelatorio();
 		this.construirAjuda();
 		this.setJMenuBar(menuBar);
-		
-
-		
+				
 		menuSair = new JMenu("Sair");
 		menuBar.add(menuSair);
 		

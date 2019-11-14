@@ -9,7 +9,7 @@ import model.Peca;
 import dao.Conexao;
 
 public class PecaDAO {
-	//metodo inserir
+	//Metodo inserir
 	//metodo consultar
 	//deletar 
 	//atualizar

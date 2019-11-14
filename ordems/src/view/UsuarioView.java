@@ -85,7 +85,6 @@ public class UsuarioView extends JFrame implements ActionListener{
     JLabel estadoLabel;
     JTextField estadoField;
     
-    
     //Inicia o painel dos botoes
     JPanel painelBotoes;
     JButton botaoSalvar;

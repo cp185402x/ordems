@@ -7,7 +7,7 @@ import dao.PecaDAO;
 import model.Peca;
 
 public class PecaController {
-	//Metodo para receber os dados,tratar e chamar o metodo insere do ClienteDAO
+	///Metodo para receber os dados,tratar e chamar o metodo insere do ClienteDAO
 	private Conexao bd;
 	public void PecaContoller() {
 		setBd(new Conexao());

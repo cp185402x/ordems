@@ -1,5 +1,5 @@
 package teste;
-
+//Chama a janela cliente
 import view.ClienteView;
 
 public class TesteCreateCliente {

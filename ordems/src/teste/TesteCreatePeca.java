@@ -1,5 +1,5 @@
 package teste;
-
+//Chama a janela peça
 import javax.swing.JFrame;
 
 import view.PecaView;

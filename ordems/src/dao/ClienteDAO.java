@@ -13,7 +13,7 @@ import model.Cliente;
 import dao.Conexao;
 
 public class ClienteDAO {
-	//metodo inserir
+	//Metodo inserir
 	//metodo consultar
 	//deletar 
 	//atualizar

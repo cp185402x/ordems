@@ -17,7 +17,7 @@ import model.Usuario;
 import dao.Conexao;
 
 public class UsuarioDAO {
-	//metodo inserir
+	//Metodo inserir
 	//metodo consultar
 	//deletar 
 	//atualizar

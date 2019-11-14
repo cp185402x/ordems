@@ -9,7 +9,7 @@ public class Conexao {
 	public static Connection getConexao() throws SQLException {
 		Connection conn = null;
 		
-		//carregando o driver
+		///carregando o driver
 		String driverName = "conn.mysql.jdbc.Driver";
 		try {
 			//Class.forName(driverName);

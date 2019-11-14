@@ -9,7 +9,7 @@ import model.Os;
 import dao.Conexao;
 
 public class OsDAO {
-	//metodo inserir
+	//Metodo inserir
 	//metodo consultar
 	//deletar 
 	//atualizar

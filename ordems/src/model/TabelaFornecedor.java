@@ -16,7 +16,7 @@ public class TabelaFornecedor extends AbstractTableModel{
 	};
 	
 	
-	//construtor
+	///construtor
 	public TabelaFornecedor() {
 		addTodos();
 	}

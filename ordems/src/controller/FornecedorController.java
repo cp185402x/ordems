@@ -9,7 +9,7 @@ import model.Fornecedor;
 
 
 public class FornecedorController {
-	//Metodo para receber os dados,tratar e chamar o metodo insere do FornecedorDAO
+	///Metodo para receber os dados,tratar e chamar o metodo insere do FornecedorDAO
 	private Conexao bd;
 	public void FornecedorContoller() {
 		setBd(new Conexao());

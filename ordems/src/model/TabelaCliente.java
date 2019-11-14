@@ -16,7 +16,7 @@ public class TabelaCliente extends AbstractTableModel{
 	};
 	
 	
-	//construtor
+	///construtor
 	public TabelaCliente() {
 		addTodos();
 	}

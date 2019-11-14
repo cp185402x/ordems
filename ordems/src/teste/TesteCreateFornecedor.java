@@ -1,6 +1,5 @@
-
 package teste;
-
+//Chama a janela fornecedor
 import view.FornecedorView;
 
 public class TesteCreateFornecedor {

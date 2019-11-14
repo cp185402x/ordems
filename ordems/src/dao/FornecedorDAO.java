@@ -13,7 +13,7 @@ import model.Fornecedor;
 import dao.Conexao;
 
 public class FornecedorDAO {
-	//metodo inserir
+	//Metodo inserir
 	//metodo consultar
 	//deletar 
 	//atualizar

@@ -2,7 +2,7 @@ package model;
 
 public class Usuario {
 	
-	//Atributos
+	///Atributos
     private String nm_usuario;
 	private String cargo;
     private String departamento;

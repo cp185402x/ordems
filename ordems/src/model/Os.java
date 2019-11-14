@@ -2,7 +2,7 @@ package model;
 
 public class Os {
 	
-	//Atributos
+	///Atributos
 	private int cliente_id;
 	private int usuario_id;
     private String data_previsao;

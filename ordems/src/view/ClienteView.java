@@ -380,7 +380,6 @@ public class ClienteView extends JFrame implements ActionListener{
 			c.getEndereco().setCidade(cidadeField.getText());
 			//estado
 			c.getEndereco().setEstado(estadoField.getText());
-	
 			
 			ClienteController controleCliente = new ClienteController();
 			try {

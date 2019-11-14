@@ -49,8 +49,7 @@ public class PecaView extends JFrame implements ActionListener{
 	JTextField 	vl_custoField;
 	
 	JLabel		vl_vendaLabel;
-	JTextField 	vl_vendaField;
-	
+	JTextField 	vl_vendaField;	
 	
     //Inicia o painel dos botoes
     JPanel 	painelBotoes;
@@ -188,8 +187,7 @@ public class PecaView extends JFrame implements ActionListener{
         botaoCancelar.addActionListener(this);
         botaoCancelar.setActionCommand("cancelar");
     }
-    
-    
+       
 	public void actionPerformed(ActionEvent e) {
 		
 		if(e.getActionCommand().equalsIgnoreCase("salvar")) {
