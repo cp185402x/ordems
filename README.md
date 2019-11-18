@@ -26,8 +26,10 @@ Inicialmente neste README iremos tratar basicamente do desenvolvimento Java.
 # Java
 
 1 - Baixe o projeto atravéz do Git.
-	1.1 - Importe a pasta ordems, essa pasta comtém a estrutura, classes e métodos do projeto.
+	Se não tem conhecimento sobre git acesse: https://www.youtube.com/watch?v=vvn2ZKnT_e8
 	
-
-OBS. O projeto está em desenvolvimento, portanto ainda há muitos packages e classes " à deriva".	
+	1.1 - Importe, a pasta comtém a estrutura, classes e métodos do projeto.
+	1.2 - Nesta pasta você encontrará também outras partes e módulos do projeto. Porém para usar o módulo em Java, é necessário apenas a pasta ordems(pasta do projeto).
+	1.3 - Outra observação, na versão atual, o banco de dados foi instalado em nuvem(google cloud). para mais informações sobre o google cloud acesse o link a seguir. https://www.youtube.com/watch?v=77JMe-EHIU8 , a partir do minuto 18.
+	
 
