@@ -92,7 +92,6 @@ public class SobreView extends JFrame implements ActionListener{
       getContentPane().add(painelBotoes, BorderLayout.SOUTH);
   }
 
-@Override
 public void actionPerformed(ActionEvent e) {
 	
 	

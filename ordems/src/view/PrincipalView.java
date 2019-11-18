@@ -2,17 +2,10 @@ package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
-
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-
-import controller.ClienteController;
-import javax.swing.JButton;
-import javax.swing.ImageIcon;
-import javax.swing.SwingConstants;
 
 public class PrincipalView extends JFrame implements ActionListener{
 
@@ -26,9 +19,10 @@ public class PrincipalView extends JFrame implements ActionListener{
 	JMenuItem menuOs;
 	JMenuItem menuPeca;
 	JMenuItem menuUsuario;
+	JMenuItem menuSair;
 	
 	//Teste de para listar os clientes cadastrados
-	JMenuItem menuConsultar;
+	//JMenuItem menuConsultar;
 	
 	//Cria o menu Relatórios
 	JMenu menuRelatorios;
@@ -43,9 +37,6 @@ public class PrincipalView extends JFrame implements ActionListener{
 	JMenuItem menuitemFAQ;
 	JMenuItem menuitemSobre;
 	
-	//Cria botão sair na barra de menus
-	JMenu menuSair;
-	
 	//Construtores
 	public PrincipalView() {
 		setTitle(":. Ordem-S .::. v1.3.83");
@@ -57,8 +48,7 @@ public class PrincipalView extends JFrame implements ActionListener{
 		this.construirAjuda();
 		this.setJMenuBar(menuBar);
 				
-		menuSair = new JMenu("Sair");
-		menuBar.add(menuSair);
+
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//setExtendedState(MAXIMIZED_BOTH);
@@ -74,7 +64,6 @@ public class PrincipalView extends JFrame implements ActionListener{
 		menuCadastro = new JMenu("Cadastros");
 		
 		menuCliente = new JMenuItem("Cliente");
-		//menuCliente.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.ALT_MASK));
 		menuCliente.addActionListener(this);
 		menuCliente.setActionCommand("cadastrarCliente");
 	
@@ -93,6 +82,10 @@ public class PrincipalView extends JFrame implements ActionListener{
 		menuUsuario = new JMenuItem("Usuário");
 		menuUsuario.addActionListener(this);
 		menuUsuario.setActionCommand("cadastrarUsuario");
+		
+		menuSair = new JMenuItem("Sair");
+		menuSair.addActionListener(this);
+		menuSair.setActionCommand("sair");
 		/*
 		//Teste de consulta via console
 		menuConsultar = new JMenuItem("Consultar cliente");
@@ -142,7 +135,6 @@ public class PrincipalView extends JFrame implements ActionListener{
 		menuitemSobre.setActionCommand("sobreSistema");
 		
 	}
-	
 	//Métodos para construir os menus das janela
 	public void construirCadastro() {		
 
@@ -152,6 +144,7 @@ public class PrincipalView extends JFrame implements ActionListener{
 		menuCadastro.add(menuOs);
 		menuCadastro.add(menuPeca);
 		menuCadastro.add(menuUsuario);
+		menuCadastro.add(menuSair);
 		//menuCadastro.add(menuConsultar);
 	}
 	public void construirRelatorio() {
@@ -171,7 +164,6 @@ public class PrincipalView extends JFrame implements ActionListener{
 		menuAjuda.add(menuitemSobre);
 
 	}
-	
 
 	//Métodos para evocar os formularios (views)
 	public void actionPerformed(ActionEvent e) {
@@ -217,23 +209,18 @@ public class PrincipalView extends JFrame implements ActionListener{
 		}		
 		
 		if(e.getActionCommand().equals("sobreSistema")) {
-			SobreView sov = new SobreView();
+			SobreView ss = new SobreView();
 			this.getContentPane().removeAll();
 			//this.getContentPane().add(sov);
 			this.revalidate();
 		    this.repaint();
 		}
-		/*
-		//Teste consultar cliente via console
-		if(e.getActionCommand().equals("consultarCliente")) {
-			//System.out.println("Cliquei no botao consulta");
-			ClienteController controleCliente = new ClienteController();
-			try {
-				controleCliente.consultarCliente();
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
+
+		//Sair do sistema
+		if(e.getActionCommand().equals("sair")) {
+
+			dispose();	
+		
 		}
-		*/
 	}
 }

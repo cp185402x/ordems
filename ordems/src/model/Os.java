@@ -3,8 +3,10 @@ package model;
 public class Os {
 	
 	///Atributos
+
 	private int cliente_id;
 	private int usuario_id;
+    private String data_os;
     private String data_previsao;
     private String data_pronto;
     private String data_entrega;
@@ -19,9 +21,14 @@ public class Os {
     private String info_entrega;
     private String info_interna;
     private String status_id;
+    private int id_os;
     
-    
-    
+	public int getId_os() {
+		return id_os;
+	}
+	public void setId_os(int id_os) {
+		this.id_os = id_os;
+	}
 	public int getCliente_id() {
 		return cliente_id;
 	}
@@ -33,6 +40,12 @@ public class Os {
 	}
 	public void setUsuario_id(int usuario_id) {
 		this.usuario_id = usuario_id;
+	}
+	public String getData_os() {
+		return data_os;
+	}
+	public void setData_os(String data_os) {
+		this.data_os = data_os;
 	}
 	public String getData_previsao() {
 		return data_previsao;
