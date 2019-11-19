@@ -21,9 +21,6 @@ public class PrincipalView extends JFrame implements ActionListener{
 	JMenuItem menuUsuario;
 	JMenuItem menuSair;
 	
-	//Teste de para listar os clientes cadastrados
-	//JMenuItem menuConsultar;
-	
 	//Cria o menu Relatórios
 	JMenu menuRelatorios;
 	JMenuItem menuitemClienteRel;
@@ -39,7 +36,7 @@ public class PrincipalView extends JFrame implements ActionListener{
 	
 	//Construtores
 	public PrincipalView() {
-		setTitle(":. Ordem-S .::. v1.3.83");
+		setTitle(":. Ordem-S .::. v1.3.86");
 		this.inicializarCadastro();
 		this.inicializarRelatorio();
 		this.inicializarAjuda();
@@ -86,12 +83,7 @@ public class PrincipalView extends JFrame implements ActionListener{
 		menuSair = new JMenuItem("Sair");
 		menuSair.addActionListener(this);
 		menuSair.setActionCommand("sair");
-		/*
-		//Teste de consulta via console
-		menuConsultar = new JMenuItem("Consultar cliente");
-		menuConsultar.addActionListener(this);
-		menuConsultar.setActionCommand("consultarCliente");
-		*/
+
 	}
 	
 	//Métodos para inicializar os relatórios
@@ -145,7 +137,6 @@ public class PrincipalView extends JFrame implements ActionListener{
 		menuCadastro.add(menuPeca);
 		menuCadastro.add(menuUsuario);
 		menuCadastro.add(menuSair);
-		//menuCadastro.add(menuConsultar);
 	}
 	public void construirRelatorio() {
 
@@ -209,9 +200,9 @@ public class PrincipalView extends JFrame implements ActionListener{
 		}		
 		
 		if(e.getActionCommand().equals("sobreSistema")) {
-			SobreView ss = new SobreView();
+			SobreView sv = new SobreView();
 			this.getContentPane().removeAll();
-			//this.getContentPane().add(sov);
+			this.getContentPane().add(sv);
 			this.revalidate();
 		    this.repaint();
 		}

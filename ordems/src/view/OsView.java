@@ -346,7 +346,7 @@ public class OsView extends JFrame implements ActionListener{
     
     
 	private JTable JTable(TableModel tabelaOs) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
