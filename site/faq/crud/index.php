@@ -1,6 +1,12 @@
-<html>
-	<head>
+<!DOCTYPE html>
+    <html >
+    <head>
 		<title>:. OrdemS .:. Administração de FAQ´s</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 		<link rel="stylesheet" href="assents/css/bootstrap.min.css" />
 		<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
@@ -39,7 +45,7 @@
 					<thead>
 						<tr>
 							<th width="10%">Imagem</th>
-							<th width="35%">Titulo</th>
+							<th width="35%">Título</th>
 							<th width="35%">Descrição</th>
 							<th width="10%">Editar</th>
 							<th width="10%">Deletar</th>
@@ -58,7 +64,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title"> + Cadastar novo FAQ</h4>
+					<h5 class="modal-title"> + Cadastar novo FAQ</h5> <h5 class="modal-title"> Sair</h5>
 				</div>
 				<div class="modal-body">
 					<label>Título</label>
@@ -114,6 +120,7 @@ $(document).ready(function(){
 		var firstName = $('#titulo').val();
 		var lastName = $('#descricao').val();
 		var extension = $('#user_image').val().split('.').pop().toLowerCase();
+		
 		if(extension != '')
 		{
 			if(jQuery.inArray(extension, ['png','jpg']) == -1)

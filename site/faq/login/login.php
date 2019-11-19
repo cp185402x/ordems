@@ -12,14 +12,17 @@ $row = mysqli_fetch_array($result);
 
 if($senha == $row['senha']){
 	
-	echo "OK!";
+	//echo "OK!";
+	header("Location: ../crud/index.php");
 	
 }else {
-	echo "N OK";
+	
+	//echo "NOK!";
+	echo "<script>alert('Ops! Usuário ou senha são inválidos.'); history.back();</script>";
+	
 	
 	
 }
 
-var_dump ($row);
 
 ?>
