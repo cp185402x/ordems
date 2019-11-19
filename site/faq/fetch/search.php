@@ -19,7 +19,7 @@ $cont = mysqli_num_rows($sql);//Conta quantos registros existem no BD
 
 //Se não houver registros:
 if($cont == 0){
-	echo "Não há OS relacionadas à ".$busca."";//Mensagem de erro, caso não ache nada
+	echo "O número da O.S. digitado ( ".$busca." ), não foi localizado, tente novamente!  ";//Mensagem de erro, caso não ache nada
 }
 
 //Caso haja resultados: 
@@ -28,7 +28,7 @@ else{
 	while($os = mysqli_fetch_array($sql))
 	{
 
-		echo "<li><a href=os.php?id='".$os['id_os']."'>".$os['id_os']."</a>".$os['modelo']." | ".$os['info_cliente']." | ".$os['info_tecnico']."</li>";//Escreve a informações do cliente
+		echo "<li><a href=#?id='".$os['id_os']."'>".$os['id_os']."</a> | ".$os['modelo']." | ".$os['info_cliente']." | ".$os['info_tecnico']." | ".$os['status_id']."</li>";//Escreve a informações do cliente
 		
 	}
 	echo "</ul>";
