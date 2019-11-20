@@ -25,7 +25,7 @@ public class PrincipalView extends JFrame implements ActionListener{
 	JMenu menuRelatorios;
 	JMenuItem menuitemClienteRel;
 	JMenuItem menuitemFornecedorRel;
-	JMenuItem menuitemosRel;
+	JMenuItem menuitemOsRel;
 	JMenuItem menuitemPecaRel;
 	JMenuItem menuitemUsuarioRel;
 	
@@ -100,9 +100,9 @@ public class PrincipalView extends JFrame implements ActionListener{
 		menuitemFornecedorRel.addActionListener(this);
 		menuitemFornecedorRel.setActionCommand("relatorioFornecedor");
 		
-		menuitemosRel = new JMenuItem("Ordens de Serviços");
-		menuitemosRel.addActionListener(this);
-		menuitemosRel.setActionCommand("relatorioOs");
+		menuitemOsRel = new JMenuItem("Ordens de Serviços");
+		menuitemOsRel.addActionListener(this);
+		menuitemOsRel.setActionCommand("relatorioOs");
 		
 		menuitemPecaRel = new JMenuItem("Peças");
 		menuitemPecaRel.addActionListener(this);
@@ -143,7 +143,7 @@ public class PrincipalView extends JFrame implements ActionListener{
 		menuBar.add(menuRelatorios);
 		menuRelatorios.add(menuitemClienteRel);
 		menuRelatorios.add(menuitemFornecedorRel);
-		menuRelatorios.add(menuitemosRel);
+		menuRelatorios.add(menuitemOsRel);
 		menuRelatorios.add(menuitemPecaRel);
 		menuRelatorios.add(menuitemUsuarioRel);
 		
@@ -203,6 +203,29 @@ public class PrincipalView extends JFrame implements ActionListener{
 			SobreView sv = new SobreView();
 			this.getContentPane().removeAll();
 			this.getContentPane().add(sv);
+			this.revalidate();
+		    this.repaint();
+		}
+		
+		//Menu Relatórios
+		if(e.getActionCommand().equals("relatorioCliente")) {
+			RelClienteView rc = new RelClienteView();
+			//this.getContentPane().removeAll();
+			//this.getContentPane().add(rc);
+			//this.revalidate();
+		    //this.repaint();
+		}
+		if(e.getActionCommand().equals("relatorioFornecedor")) {
+			RelFornecedorView rf = new RelFornecedorView();
+			this.getContentPane().removeAll();
+			this.getContentPane().add(rf);
+			this.revalidate();
+		    this.repaint();
+		}
+		if(e.getActionCommand().equals("relatorioOs")) {
+			RelOsView ro = new RelOsView();
+			this.getContentPane().removeAll();
+			this.getContentPane().add(ro);
 			this.revalidate();
 		    this.repaint();
 		}

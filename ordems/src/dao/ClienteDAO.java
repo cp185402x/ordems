@@ -64,7 +64,7 @@ public class ClienteDAO {
 			
 			if(conn != null) {
 				st = (PreparedStatement) conn.prepareStatement(
-						"SELECT * FROM cliente order by id_cliente desc limit 25");
+						"SELECT * FROM cliente order by id_cliente desc limit 1000");
 			}
 			
 
