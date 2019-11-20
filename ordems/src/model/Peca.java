@@ -3,7 +3,8 @@ package model;
 public class Peca {
 
 	///Atributos
-    private String nm_peca;
+	private int id;
+	private String nm_peca;
     private String vl_custo;
     private String vl_venda;
 	
@@ -26,4 +27,15 @@ public class Peca {
 		this.vl_venda = vl_venda;
 	}
 
+	 public int getId() {
+			return id;
+		}
+		public void setId(int id) {
+			this.id = id;
+		}
+	
+public String toString() {
+		
+		return "Peca [id=" + id + ", nm_peca=" + nm_peca + ", vl_custo=" + vl_custo + ", vl_venda=" + vl_venda + "]";
+	}
 }

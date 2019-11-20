@@ -22,16 +22,18 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.ScrollPaneConstants;
 
-import controller.ClienteController;
-import model.Cliente;
-import model.TabelaCliente;
+import controller.UsuarioController;
+import model.TabelaUsuario;
+import model.Usuario;
 
 //Declarando a classe na janela
 public class UsuarioView extends JFrame implements ActionListener{
+	private static final TableModel TabelaUsuario = null;
 	//atributos globais da classe
 	JPanel painelTitulo;
 	JPanel painelCadastro;
@@ -41,59 +43,37 @@ public class UsuarioView extends JFrame implements ActionListener{
 	JRadioButton cpfRadio;
 	ButtonGroup tipoGrupo;
 	
-    JLabel nm_clienteLabel;
-    JTextField nm_clienteField;
+    JLabel nm_usuarioLabel;
+    JTextField nm_usuarioField;
     
-    JLabel dataNascLabel;
-    JTextField dataNascField;
+    JLabel cargoLabel;
+    JTextField cargoField;
     
-    JTextField docField;
+    JLabel matriculaLabel;
+    JTextField matriculaField;
     
-    JLabel rgieLabel;
-    JTextField rgieField;
+    JLabel departamentoLabel;
+    JTextField departamentoField;
 
-    JLabel celularLabel;
-    JTextField celularField;
+    JLabel loginLabel;
+    JTextField loginField;
     
-    JLabel fone_reLabel;
-    JTextField fone_reField;
+    JLabel senhaLabel;
+    JTextField senhaField;
         
-    JLabel emailLabel;
-    JTextField emailField;
     
-    JLabel pes_contatoLabel;
-    JTextField pes_contatoField;
-    
-    JLabel cepLabel;
-    JTextField cepField;
-    
-    JLabel enderecoLabel;
-    JTextField enderecoField;
-    
-    JLabel numeroLabel;
-    JTextField numeroField;
-    
-    JLabel complementoLabel;
-    JTextField complementoField;
-    
-    JLabel bairroLabel;
-    JTextField bairroField;
-    
-    JLabel cidadeLabel;
-    JTextField cidadeField;
-    
-    JLabel estadoLabel;
-    JTextField estadoField;
     
     //Inicia o painel dos botoes
     JPanel painelBotoes;
     JButton botaoSalvar;
     JButton botaoCancelar;
     
-    private JTable clienteTable;
-    TabelaCliente tabelaCliente;
+    private JTable usuarioTable;
+    TabelaUsuario tabelaUsuario;
     
     private JTextField buscarField;
+	private JTable usuarioTable;
+	private TabelaUsuario tabelaUsuario;
 
 	public UsuarioView() { // construtor da view Usuario.
         super("Cadastro de Usuario");
@@ -114,7 +94,7 @@ public class UsuarioView extends JFrame implements ActionListener{
         painelTitulo = new JPanel();
         painelTitulo.setLayout(new FlowLayout());
         
-        titulo = new JLabel("Cadastro de Uusuario");
+        titulo = new JLabel("Cadastro de Usuario");
         titulo.setFont(new Font("Arial", Font.BOLD, 14));
         
         painelTitulo.add(titulo);
@@ -131,131 +111,61 @@ public class UsuarioView extends JFrame implements ActionListener{
         
         getContentPane().add(painelCadastro, BorderLayout.WEST);
         
-        JPanel clientePainel = new JPanel();
-        clientePainel.setBorder(new LineBorder(Color.LIGHT_GRAY));
-        clientePainel.setLayout(null);
+        JPanel usuarioPainel = new JPanel();
+        usuarioPainel.setBorder(new LineBorder(Color.LIGHT_GRAY));
+        usuarioPainel.setLayout(null);
         
-        pes_contatoField = new JTextField(20);
-        pes_contatoField.setBounds(447, 137, 186, 20);
-        clientePainel.add(pes_contatoField);        
-        pes_contatoLabel = new JLabel("Pessoa de Contato");
-        pes_contatoLabel.setBounds(447, 125, 166, 14);
-        clientePainel.add(pes_contatoLabel);
+        nm_usuarioField = new JTextField(20);
+        nm_usuarioField.setBounds(447, 137, 186, 20);
+        usuarioPainel.add(nm_usuarioField);        
+        nm_usuarioLabel = new JLabel("Nome Usuario");
+        nm_usuarioLabel.setBounds(447, 125, 166, 14);
+        usuarioPainel.add(nm_usuarioLabel);
         
-        emailField = new JTextField(40);
-        emailField.setBounds(10, 138, 427, 20);
-        clientePainel.add(emailField);        
-        emailLabel = new JLabel("Email");
-        emailLabel.setBounds(10, 126, 368, 14);
-        clientePainel.add(emailLabel);
-        
-        cpfRadio = new JRadioButton("CPF");
-        cpfRadio.setSelected(true);
-        cpfRadio.setHorizontalAlignment(SwingConstants.RIGHT);
-        cpfRadio.setBounds(6, 7, 50, 23);
-        clientePainel.add(cpfRadio);        
-        cnpjRadio = new JRadioButton("CNPJ");
-        cnpjRadio.setHorizontalAlignment(SwingConstants.RIGHT);
-        cnpjRadio.setBounds(58, 7, 56, 23);
-        clientePainel.add(cnpjRadio);
-        tipoGrupo = new ButtonGroup();
-        
-        tipoGrupo.add(cpfRadio);
-        tipoGrupo.add(cnpjRadio);
+        cargoField = new JTextField(40);
+        cargoField.setBounds(10, 138, 427, 20);
+        usuarioPainel.add(cargoField);        
+        cargoLabel = new JLabel("cargo");
+        cargoLabel.setBounds(10, 126, 368, 14);
+        usuarioPainel.add(cargoLabel);
         
         
-        docField = new JTextField(20);
-        docField.setBounds(114, 8, 199, 20);
-        clientePainel.add(docField);
+       
+        departamentoLabel = new JLabel("departamento");
+        departamentoLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+        departamentoLabel.setBounds(323, 10, 50, 14);
+        usuarioPainel.add(departamentoLabel);
+        departamentoField = new JTextField(20);
+        departamentoField.setBounds(373, 7, 186, 20);
+        usuarioPainel.add(departamentoField);
         
-        rgieLabel = new JLabel("RG/IE");
-        rgieLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-        rgieLabel.setBounds(323, 10, 50, 14);
-        clientePainel.add(rgieLabel);
-        rgieField = new JTextField(20);
-        rgieField.setBounds(373, 7, 186, 20);
-        clientePainel.add(rgieField);
+        loginLabel = new JLabel("login");
+        loginLabel.setBounds(10, 37, 338, 14);
+        usuarioPainel.add(loginLabel);
+        loginField = new JTextField(40);
+        loginField.setBounds(10, 51, 427, 20);
+        usuarioPainel.add(loginField);
         
-        nm_clienteLabel = new JLabel("Nome");
-        nm_clienteLabel.setBounds(10, 37, 338, 14);
-        clientePainel.add(nm_clienteLabel);
-        nm_clienteField = new JTextField(40);
-        nm_clienteField.setBounds(10, 51, 427, 20);
-        clientePainel.add(nm_clienteField);
+        senhaField = new JTextField(20);
+        senhaField.setBounds(447, 50, 186, 20);
+        usuarioPainel.add(senhaField);        
+        senhaLabel = new JLabel("senha");
+        senhaLabel.setBounds(447, 35, 156, 14);
+        usuarioPainel.add(senhaLabel);
         
-        dataNascField = new JTextField(20);
-        dataNascField.setBounds(447, 50, 186, 20);
-        clientePainel.add(dataNascField);        
-        dataNascLabel = new JLabel("Data Nascimento");
-        dataNascLabel.setBounds(447, 35, 156, 14);
-        clientePainel.add(dataNascLabel);
+        matriculaField = new JTextField(20);
+        matriculaField.setBounds(447, 50, 186, 20);
+        usuarioPainel.add(matriculaField);        
+        matriculaLabel = new JLabel("Matricula");
+        matriculaLabel.setBounds(447, 35, 156, 14);
+        usuarioPainel.add(matriculaLabel);
                
-        fone_reField = new JTextField(20);
-        fone_reField.setBounds(10, 95, 186, 20);
-        clientePainel.add(fone_reField);        
-        JLabel fone_reLabel = new JLabel("Fone Fixo");
-        fone_reLabel.setBounds(10, 82, 166, 14);
-        clientePainel.add(fone_reLabel);
-        
-        celularField = new JTextField(20);
-        celularField.setBounds(206, 95, 186, 20);
-        clientePainel.add(celularField);        
-        celularLabel = new JLabel("Celular");
-        celularLabel.setBounds(206, 82, 162, 14);
-        clientePainel.add(celularLabel);
         
         JPanel panel = new JPanel();
         panel.setBorder(new LineBorder(Color.LIGHT_GRAY));
         panel.setLayout(null); 
         
-        cepField = new JTextField(10);
-        cepField.setBounds(10, 25, 155, 20);
-        panel.add(cepField);        
-        cepLabel = new JLabel("CEP");
-        cepLabel.setBounds(10, 11, 86, 14);
-        panel.add(cepLabel);
         
-        enderecoField = new JTextField(40);
-        enderecoField.setBounds(175, 25, 369, 20);
-        panel.add(enderecoField);        
-        enderecoLabel = new JLabel("Endereço");
-        enderecoLabel.setBounds(175, 11, 369, 14);
-        panel.add(enderecoLabel);
-        
-        numeroField = new JTextField(10);
-        numeroField.setBounds(554, 25, 79, 20);
-        panel.add(numeroField);        
-        numeroLabel = new JLabel("Número");
-        numeroLabel.setBounds(554, 11, 65, 14);
-        panel.add(numeroLabel);
-        
-        complementoField = new JTextField(20);
-        complementoField.setBounds(10, 69, 155, 20);
-        panel.add(complementoField);        
-        complementoLabel = new JLabel("Complemento");
-        complementoLabel.setBounds(10, 56, 127, 14);
-        panel.add(complementoLabel);
-        
-        bairroField = new JTextField(20);
-        bairroField.setBounds(175, 69, 180, 20);
-        panel.add(bairroField);               
-        bairroLabel = new JLabel("Bairro");
-        bairroLabel.setBounds(175, 56, 166, 14);
-        panel.add(bairroLabel);
-        
-        cidadeField = new JTextField(20);
-        cidadeField.setBounds(365, 69, 179, 20);
-        panel.add(cidadeField);        
-        cidadeLabel = new JLabel("Cidade");
-        cidadeLabel.setBounds(365, 56, 166, 14);
-        panel.add(cidadeLabel);
-        
-        estadoLabel = new JLabel("Estado");
-        estadoLabel.setBounds(554, 56, 65, 14);
-        panel.add(estadoLabel);
-        estadoField = new JTextField(10);
-        estadoField.setBounds(554, 69, 79, 20);
-        panel.add(estadoField);
         
         //Criando a Tabela com os dados do banco
         JScrollPane scrollPane = new JScrollPane();
@@ -291,14 +201,14 @@ public class UsuarioView extends JFrame implements ActionListener{
         					.addComponent(editarBtn)
         					.addGap(18)
         					.addComponent(excluirBtn))
-        				.addComponent(clientePainel, GroupLayout.PREFERRED_SIZE, 643, GroupLayout.PREFERRED_SIZE))
+        				.addComponent(usuarioPainel, GroupLayout.PREFERRED_SIZE, 643, GroupLayout.PREFERRED_SIZE))
         			.addGap(18))
         );
         gl_painelCadastro.setVerticalGroup(
         	gl_painelCadastro.createParallelGroup(Alignment.TRAILING)
         		.addGroup(gl_painelCadastro.createSequentialGroup()
         			.addContainerGap()
-        			.addComponent(clientePainel, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
+        			.addComponent(usuarioPainel, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(panel, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
@@ -313,11 +223,11 @@ public class UsuarioView extends JFrame implements ActionListener{
         );
 
         
-        tabelaCliente = new TabelaCliente();
-        clienteTable = new JTable(tabelaCliente);
+        tabelaUsuario = new TabelaUsuario();
+        usuarioTable = new JTable(TabelaUsuario);
         
              
-        scrollPane.setViewportView(clienteTable);
+        scrollPane.setViewportView(usuarioTable);
         
         painelCadastro.setLayout(gl_painelCadastro);
         
@@ -334,56 +244,37 @@ public class UsuarioView extends JFrame implements ActionListener{
     }
     
     
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e, Usuario u) {
 		
 		if(e.getActionCommand().equalsIgnoreCase("salvar")) {
 			
-			Cliente c = new Cliente();
+			Usuario u = new Usuario();
 			
 			//Tratar a ação de salvar o cliente
 			
 			//Trata o radio do tipo de cliente
-			if(cpfRadio.isSelected()) {
-				c.setTipo(0);
-			}
-			else {
-				c.setTipo(1);
-			}
-			//Tipo
-			System.out.println("Tipo: " +c.getTipo());
-			//nome
-			c.setNm_cliente(nm_clienteField.getText());			
-			//documento
-			c.setDoc_num(docField.getText());			
-			//RGIE
-			c.setRg_ie(rgieField.getText());
-			//fone fixo
-			c.setFone_re(fone_reField.getText());
-			//celular
-			c.setCelular(celularField.getText());
-			//email
-			c.setEmail(emailField.getText());
-			//pessoa contato
-			c.setPes_contato(pes_contatoField.getText());
-			//Logradouro
-			c.getEndereco().setCep(cepField.getText());
-			//Logradouro
-			c.getEndereco().setLogradouro(enderecoField.getText());
-			//numero
-			c.getEndereco().setNumero(numeroField.getText());
-			//complemento
-			c.getEndereco().setComplemento(complementoField.getText());
-			//bairro
-			c.getEndereco().setBairro(bairroField.getText());
-			//cidade
-			c.getEndereco().setCidade(cidadeField.getText());
-			//estado
-			c.getEndereco().setEstado(estadoField.getText());
-	
 			
-			ClienteController controleCliente = new ClienteController();
+			}
+			//nome
+			u.setNm_usuario(nm_usuarioField.getText());			
+			//documento
+			u.setCargo(cargoField.getText());			
+			//RGIE
+			u.setDepartamento(departamentoField.getText());
+			//fone fixo
+			
+			u.setDepartamento(matriculaField.getText());
+			
+			u.setLogin(loginField.getText());
+			//celular
+			u.setSenha(senhaField.getText());
+			
+			
+			
+			
+			UsuarioController controleUsuario = new UsuarioController();
 			try {
-				if(controleCliente.cadastrarCliente(c) == true) {
+				if(controleUsuario.cadastrarUsuario(u) == true) {
 					JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
 					tabelaCliente.addTodos();
 					this.repaint();
@@ -399,7 +290,16 @@ public class UsuarioView extends JFrame implements ActionListener{
 	
 			dispose();
 		}
+	
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
+	
 }
+}
+
 //
 

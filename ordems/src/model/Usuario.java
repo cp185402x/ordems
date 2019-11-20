@@ -9,7 +9,7 @@ public class Usuario {
     private String matricula;
     private String login;
     private String senha;
-    private String status;
+    private int status;
 		
 	
 	public String getNm_usuario() {
@@ -47,16 +47,17 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	public String getStatus() {
+	
+	public int getStatus() {
 		return status;
 	}
-	public void setStatus(String status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 	public void setMatricula(String matricula) {
 		this.matricula = matricula;
 	}
-	
+		
 	
 	
 }

@@ -56,7 +56,7 @@ public class FornecedorController {
 	}
 
 
-	public ArrayList<Fornecedor> consultarCliente() throws SQLException {
+	public ArrayList<Fornecedor> consultarFornecedor() throws SQLException {
 		//System.out.println("Cheguei no consultar fornecedor");
 		FornecedorDAO fornecedorDAO = new FornecedorDAO();
 		return fornecedorDAO.consultar();

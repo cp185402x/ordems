@@ -1,7 +1,6 @@
 package dao;
 
 
-import java.awt.List;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -11,8 +10,7 @@ import javax.swing.JOptionPane;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
-import controller.UsuarioController;
-import model.Cliente;
+
 import model.Usuario;
 import dao.Conexao;
 
@@ -33,18 +31,18 @@ public class UsuarioDAO {
 		if(conn != null) {
 			st = (PreparedStatement) conn.prepareStatement(
 					"INSERT INTO usuario"
-					+ "(nm_usuario,cargo, departamento, matricula, login, senha, status) "
+					+ "(id_usuario, nm_usuario,cargo, departamento, matricula, login, senha, status) "
 					+ "VALUES "
-					+ "(?, ?, ?, ?, ?, ?, ?)");
+					+ "(?, ?, ?, ?, ?, ?, ?, ?)");
 		}
-		
-		st.setString(1, usuario.getNm_usuario());
-		st.setString(2, usuario.getCargo());
-		st.setString(3, usuario.getDepartamento());
-		st.setString(4, usuario.getMatricula());
-		st.setString(5, usuario.getLogin());
-		st.setString(6, usuario.getSenha());
-		st.setString(7, usuario.getStatus());
+		st.setInt(1, 1006);
+		st.setString(2, usuario.getNm_usuario());
+		st.setString(3, usuario.getCargo());
+		st.setString(4, usuario.getDepartamento());
+		st.setString(5, usuario.getMatricula());
+		st.setString(6, usuario.getLogin());
+		st.setString(7, usuario.getSenha());
+		st.setInt(8, usuario.getStatus());
 		
 		st.execute();
 		
@@ -61,7 +59,7 @@ public class UsuarioDAO {
 				
 				if(conn != null) {
 					st = (PreparedStatement) conn.prepareStatement(
-							"SELECT * FROM usuario order by nm_usuario desc limit 25");
+							"SELECT * FROM usuario order by id_usuario desc limit 25");
 				}
 				
 
@@ -75,7 +73,7 @@ public class UsuarioDAO {
 		           usuario.setMatricula(rs.getString("matricula"));
 		           usuario.setCargo(rs.getString("cargo"));
 		           usuario.setDepartamento(rs.getString("departamento"));
-		           usuario.setStatus(rs.getString("status"));
+		           usuario.setStatus(rs.getInt("status"));
 		          
 		           lista.add(usuario);
 

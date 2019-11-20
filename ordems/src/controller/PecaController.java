@@ -1,6 +1,8 @@
 package controller;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+
 
 import dao.Conexao;
 import dao.PecaDAO;
@@ -40,5 +42,13 @@ public class PecaController {
 		
 		
 	}
+	public ArrayList<Peca> consultarPeca() throws SQLException {
+		//System.out.println("Cheguei no consultar peca");
+		PecaDAO pecaDAO = new PecaDAO();
+		return pecaDAO.consultar();
+		
+		
+	}
+
 
 }
