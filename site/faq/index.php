@@ -1,246 +1,108 @@
-<?php
+<!DOCTYPE html>
 
-require_once "topo.php";
-require_once "db.php";
-?>
+<?php 
 
+include_once("db.php");
 
+$query = "SELECT * FROM faq";
+$sql = mysqli_query($db, $query);
 
-<section class="cd-faq js-cd-faq container max-width-md margin-top-lg margin-bottom-lg">
-	<ul class="cd-faq__categories">
-		<li><a class="cd-faq__category cd-faq__category-selected truncate" href="#basics">Atendimento</a></li>
-		<li><a class="cd-faq__category truncate" href="#os">OS</a></li>
-		<li><a class="cd-faq__category truncate" href="#usuario">Usuários</a></li>
-		<li><a class="cd-faq__category truncate" href="#cliente">Clientes</a></li>
-		<li><a class="cd-faq__category truncate" href="#frequente">Frequentes</a></li>
-		<li><a class="cd-faq__category truncate" href="#visualizacao">Visualização</a></li>
-	</ul> <!-- cd-faq__categories -->
 
-	<div class="cd-faq__items">
-		<ul id="basics" class="cd-faq__group">
-			<li class="cd-faq__title"><h2>Atendimento</h2></li>
+$cont = mysqli_num_rows($sql);//Verifica os registro do banco
 
-			<?php
-
-							
-				$query = "select * from Faq where id = 6";
-				$result = mysqli_query($db,$query);
-
-
-
-				for ($i=0; $i < mysqli_num_rows($result); $i++)
-				{
-					$row = mysqli_fetch_array($result);
-				
-				?>
-
-					<li class="cd-faq__item">
-						<a class="cd-faq__trigger" href="#0"><span><?php echo $row['titulo'];?></span></a>
-						<div class="cd-faq__content">
-						<div class="text-component">
-							<p><?php echo $row['descricao'];?></p>
-						</div>
-						</div> <!-- cd-faq__content -->
-					</li>
-
-							<?php
-
-				}
-
-				
-
-				?>
-
-
-</ul> <!-- cd-faq__group -->
-			
-
-		<ul id="os" class="cd-faq__group">
-			<li class="cd-faq__title"><h2>Ordem de serviço</h2></li>
-
-			<?php
-
-							
-				$query = "select * from Faq where id = 7";
-				$result = mysqli_query($db,$query);
-
-
-
-				for ($i=0; $i < mysqli_num_rows($result); $i++)
-				{
-					$row = mysqli_fetch_array($result);
-				
-				?>
-
-					<li class="cd-faq__item">
-						<a class="cd-faq__trigger" href="#0"><span><?php echo $row['titulo'];?></span></a>
-						<div class="cd-faq__content">
-						<div class="text-component">
-							<p><?php echo $row['descricao'];?></p>
-						</div>
-						</div> <!-- cd-faq__content -->
-					</li>
-
-							<?php
-
-				}
-
-				
-
-				?>
-
-
-			
-		</ul> <!-- cd-faq__group -->
-
-		<ul id="usuario" class="cd-faq__group">
-			<li class="cd-faq__title"><h2>Usuarios</h2></li>
-			
-			<?php
-
-							
-				$query = "select * from Faq id = 7";
-				$result = mysqli_query($db,$query);
-
-
-
-				for ($i=0; $i < mysqli_num_rows($result); $i++)
-				{
-					$row = mysqli_fetch_array($result);
-				
-				?>
-
-					<li class="cd-faq__item">
-						<a class="cd-faq__trigger" href="#0"><span><?php echo $row['titulo'];?></span></a>
-						<div class="cd-faq__content">
-						<div class="text-component">
-							<p><?php echo $row['descricao'];?></p>
-						</div>
-						</div> <!-- cd-faq__content -->
-					</li>
-
-							<?php
-
-				}
-
-				
-
-				?>
-
-		<ul id="cliente" class="cd-faq__group">
-			<li class="cd-faq__title"><h2>Clientes</h2></li>
-			<?php
-
-							
-				$query = "select * from Faq where id = 9";
-				$result = mysqli_query($db,$query);
-
-
-
-				for ($i=0; $i < mysqli_num_rows($result); $i++)
-				{
-					$row = mysqli_fetch_array($result);
-				
-				?>
-
-					<li class="cd-faq__item">
-						<a class="cd-faq__trigger" href="#0"><span><?php echo $row['titulo'];?></span></a>
-						<div class="cd-faq__content">
-						<div class="text-component">
-							<p><?php echo $row['descricao'];?></p>
-						</div>
-						</div> <!-- cd-faq__content -->
-					</li>
-
-							<?php
-
-				}
-
-				
-
-				?>
-
-		<ul id="frequente" class="cd-faq__group">
-			<li class="cd-faq__title"><h2>Frequentes</h2></li>
-			<?php
-
-							
-				$query = "select * from Faq where tipo_faq_id = 5";
-				$result = mysqli_query($db,$query);
-
-
-
-				for ($i=0; $i < mysqli_num_rows($result); $i++)
-				{
-					$row = mysqli_fetch_array($result);
-				
-				?>
-
-					<li class="cd-faq__item">
-						<a class="cd-faq__trigger" href="#0"><span><?php echo $row['titulo'];?></span></a>
-						<div class="cd-faq__content">
-						<div class="text-component">
-							<p><?php echo $row['descricao'];?></p>
-						</div>
-						</div> <!-- cd-faq__content -->
-					</li>
-
-							<?php
-
-				}
-
-				
-
-				?>
-
-
-		<ul id="visualizacao" class="cd-faq__group">
-			<li class="cd-faq__title"><h2>Visualização</h2></li>
-			<?php
-
-							
-				$query = "select * from Faq where tipo_faq_id = 8";
-				$result = mysqli_query($db,$query);
-
-
-
-				for ($i=0; $i < mysqli_num_rows($result); $i++)
-				{
-					$row = mysqli_fetch_array($result);
-				
-				?>
-
-					<li class="cd-faq__item">
-						<a class="cd-faq__trigger" href="#0"><span><?php echo $row['titulo'];?></span></a>
-						<div class="cd-faq__content">
-						<div class="text-component">
-							<p><?php echo $row['descricao'];?></p>
-						</div>
-						</div> <!-- cd-faq__content -->
-					</li>
-
-							<?php
-
-				}
-
-				mysqli_close ($db);
-
-				?>
-
-	</div> <!-- cd-faq__items -->
-
-<?php
-
-//mysqli_close ($db);
 
 ?>
 
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Ordem-S : FAQ do sistema</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css" />
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
 
-	<a href="#0" class="cd-faq__close-panel text-replace">Close</a>
-  
-  <div class="cd-faq__overlay" aria-hidden="true"></div>
-</section> <!-- cd-faq -->
-<script src="assets/js/util.js"></script> <!-- util functions included in the CodyHouse framework -->
-<script src="assets/js/main.js"></script> 
+<div class="container">
+
+<div class="page-header">
+    <h1><a href="../index.html">Ordem-S </a><small>FAQ do sistema</small></h1>
+</div>
+
+<!-- Bootstrap FAQ - START -->
+<div class="container">
+
+    <div class="panel-group" id="accordion">
+        <div class="faqHeader">Questões gerais</div>
+<?php
+//Se não houver registros:
+if($cont == 0){
+	
+	echo"Nenhum faq cadastrado";//Mensagem de erro, caso não ache nada
+}
+
+//Caso haja resultados 
+else{
+
+		
+	while($faq = mysqli_fetch_array($sql))
+	{
+?>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#<?php echo $faq['id']; ?>"><?php echo"<h3>".$faq['titulo']."</h3>";?></a>
+                </h4>
+            </div>
+            <div id="<?php echo $faq['id'];?>" class="panel-collapse collapse in">
+                <div class="panel-body"><?php echo"<p>".$faq['descricao']."</p>";?>
+                </div>
+            </div>
+        </div>
+<?php	} 
+	
+}
+?>
+    </div>
+</div>
+
+<style>
+    .faqHeader {
+        font-size: 24px;
+        margin: 30px;
+    }
+
+    .panel-heading [data-toggle="collapse"]:before {
+        font-family: 'Glyphicons Halflings';
+        content: "\e072"; /* "play" icon */
+        float: right;
+        color: #23f5f2;
+        font-size: 18px;
+        line-height: 22px;
+        /* rotate "play" icon from > (right arrow) to down arrow */
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+    }
+
+    .panel-heading [data-toggle="collapse"].collapsed:before {
+        /* rotate "play" icon from > (right arrow) to ^ (up arrow) */
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        transform: rotate(90deg);
+        color: #454444;
+    }
+</style>
+
+<!-- Bootstrap FAQ - END -->
+
+</div>
+
 </body>
 </html>
