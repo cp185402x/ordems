@@ -25,6 +25,7 @@ public class SobreView extends JFrame implements ActionListener{
 
 	    public SobreView() { // construtor da view Usuario.
 			super("Sobre o Sistema");
+			setAlwaysOnTop(true);
 			setTitle("Sobre o Sistema");
 			setResizable(false);
 					                

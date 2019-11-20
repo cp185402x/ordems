@@ -3,13 +3,10 @@ package view;
 //Importando os componentes
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-
-import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -21,12 +18,10 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
-
-import controller.ClienteController;
-import controller.PecaController;
-import model.Cliente;
-import model.Peca;
 import javax.swing.border.LineBorder;
+
+import controller.PecaController;
+import model.Peca;
 import java.awt.Color;
 
 //Declarando a classe na janela
