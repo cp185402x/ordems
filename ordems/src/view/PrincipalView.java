@@ -36,7 +36,7 @@ public class PrincipalView extends JFrame implements ActionListener{
 	
 	//Construtores
 	public PrincipalView() {
-		setTitle(":. Ordem-S .::. v1.3.86");
+		setTitle(":. Ordem-S .:. VEC System .:");
 		this.inicializarCadastro();
 		this.inicializarRelatorio();
 		this.inicializarAjuda();
@@ -117,11 +117,11 @@ public class PrincipalView extends JFrame implements ActionListener{
 		
 		menuBar = new JMenuBar();		
 		menuAjuda = new JMenu("Ajuda");
-		
-		menuitemFAQ = new JMenuItem("Guia do Usuário");
+		/*
+		menuitemFAQ = new JMenuItem("FAQ do sistema");
 		menuitemFAQ.addActionListener(this);
-		menuitemFAQ.setActionCommand("guiaUsuario");
-		
+		menuitemFAQ.setActionCommand("faqSistema");
+		*/
 		menuitemSobre = new JMenuItem("Sobre");
 		menuitemSobre.addActionListener(this);
 		menuitemSobre.setActionCommand("sobreSistema");
@@ -151,7 +151,7 @@ public class PrincipalView extends JFrame implements ActionListener{
 	public void construirAjuda() {
 	
 		menuBar.add(menuAjuda);
-		menuAjuda.add(menuitemFAQ);
+		//menuAjuda.add(menuitemFAQ);
 		menuAjuda.add(menuitemSobre);
 
 	}
@@ -198,7 +198,7 @@ public class PrincipalView extends JFrame implements ActionListener{
 			this.revalidate();
 		    this.repaint();
 		}		
-		
+		//Sobre
 		if(e.getActionCommand().equals("sobreSistema")) {
 			SobreView sv = new SobreView();
 			this.getContentPane().removeAll();

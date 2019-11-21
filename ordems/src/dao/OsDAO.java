@@ -29,7 +29,7 @@ public class OsDAO {
 					"INSERT INTO Os"
 					+ "(usuario_id, cliente_id, data_previsao, data_pronto, data_entrega, tipo, modelo, marca, cor, serie, garantia, info_cliente, info_tecnico, info_entrega, info_interna, status_id) "
 					+ "VALUES "
-					+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+					+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		}
 		
 		st.setInt(1, 1007); //mudar aqui para associar o id do usuário		
@@ -63,7 +63,7 @@ public class OsDAO {
 			
 			if(conn != null) {
 				st = (PreparedStatement) conn.prepareStatement(
-						"SELECT * FROM os order by id_os desc limit 5");
+						"SELECT * FROM os ORDER BY id_os DESC LIMIT 5");
 			}
 			
 
@@ -88,5 +88,18 @@ public class OsDAO {
 			return lista;
 			
 		}
+		
+	//Deletar registro
+        public void delete(Os os) {
+            try {
+                st = (PreparedStatement) conn.prepareStatement(
+                		"DELETE FROM os WHERE id_os=?");
+                st.setLong(1, os.getId_os());
+                st.execute();
+                conn.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
 
 }
