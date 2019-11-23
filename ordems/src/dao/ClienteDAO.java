@@ -56,6 +56,39 @@ public class ClienteDAO {
 		conn.close();
 	}
 	
+	public void atualizar(Cliente cliente) throws SQLException {
+		
+		conn = (Connection) Conexao.getConexao();
+		
+		if(conn != null) {
+			st = (PreparedStatement) conn.prepareStatement(
+					"UPDATE cliente SET"
+					+ "(usuario_id = ?, nm_cliente = ?, tipo_cliente = ?, doc_num = ?, rg_ie = ?, celular = ?, fone_re = ?, email = ?, pes_contato = ?, cep = ?, endereco = ?, numero = ?, complemento = ?, bairro = ?, cidade = ?, estado = ?) "
+					+ " WHERE id_cliente = " + cliente.getId() + ";");
+		}
+		
+		st.setInt(1, 1006); //mudar aqui para associar o id do us		
+		st.setString(2, cliente.getNm_cliente());
+		st.setInt(3, cliente.getTipo());
+		st.setString(4, cliente.getDoc_num());
+		st.setString(5, cliente.getRg_ie());
+		st.setString(6, cliente.getCelular());
+		st.setString(7, cliente.getFone_re());
+		st.setString(8, cliente.getEmail());
+		st.setString(9, cliente.getPes_contato());
+		st.setString(10, cliente.getEndereco().getCep());
+		st.setString(11, cliente.getEndereco().getLogradouro());
+		st.setString(12, cliente.getEndereco().getNumero());
+		st.setString(13, cliente.getEndereco().getComplemento());
+		st.setString(14, cliente.getEndereco().getBairro());
+		st.setString(15, cliente.getEndereco().getCidade());
+		st.setString(16, cliente.getEndereco().getEstado());
+		
+		st.executeUpdate();
+		
+		conn.close();
+	}
+	
 	//Consulta Cliente
 	
 		public ArrayList<Cliente> consultar() throws SQLException {
@@ -98,6 +131,20 @@ public class ClienteDAO {
 			conn.close();
 			
 			return lista;
+			
+		}
+		
+		
+		public void excluir (int id) throws SQLException {
+			conn = (Connection) Conexao.getConexao();
+			
+			if(conn != null) {
+				st = (PreparedStatement) conn.prepareStatement(
+						"DELETE FROM cliente WHERE id_cliente = " + id + ";");
+						
+			}
+			st.execute();
+			conn.close();
 			
 		}
 

@@ -61,6 +61,10 @@ public class TabelaCliente extends AbstractTableModel{
 		System.out.println("Tam" + listaCliente.size());
 		
 	}
+	
+	public Cliente getCliente(int linha) {
+		return this.listaCliente.get(linha);
+	}
 
 }
 

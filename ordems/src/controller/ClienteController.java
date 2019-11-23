@@ -55,6 +55,15 @@ public class ClienteController {
 		
 		
 	}
+	
+	public boolean atualizarCliente(Cliente c) throws SQLException {
+		ClienteDAO clienteDAO = new ClienteDAO();
+		clienteDAO.atualizar(c);
+		
+		return true;
+		
+		
+	}
 
 
 	public ArrayList<Cliente> consultarCliente() throws SQLException {
@@ -62,7 +71,11 @@ public class ClienteController {
 		ClienteDAO clienteDAO = new ClienteDAO();
 		return clienteDAO.consultar();
 		
-		
+	}
+	
+	public void removerCliente(int id) throws SQLException {
+		ClienteDAO clienteDAO = new ClienteDAO();
+		clienteDAO.excluir(id);
 	}
 
 }

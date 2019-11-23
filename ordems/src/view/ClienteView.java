@@ -4,6 +4,7 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -31,6 +32,8 @@ import model.TabelaCliente;
 
 //Declarando a classe na janela
 public class ClienteView extends JFrame implements ActionListener{
+	//atributo para 
+	
 	//atributos globais da classe
 	JPanel painelTitulo;
 	JPanel painelCadastro;
@@ -89,9 +92,11 @@ public class ClienteView extends JFrame implements ActionListener{
     JPanel painelBotoes;
     JButton botaoSalvar;
     JButton botaoCancelar;
+    JButton botaoEditar;
+    JButton botaoExcluir;
     
     private JTable clienteTable;
-    TabelaCliente tabelaCliente;
+    private TabelaCliente tabelaCliente;
     
     private JTextField buscarField;
 
@@ -264,9 +269,10 @@ public class ClienteView extends JFrame implements ActionListener{
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         
         
-        JButton editarBtn = new JButton("Editar");
+        botaoEditar = new JButton("Editar");
         
-        JButton excluirBtn = new JButton("Excluir");
+        botaoExcluir = new JButton("Excluir");
+        
         
         buscarField = new JTextField();
         buscarField.setBackground(new Color(250, 250, 210));
@@ -288,9 +294,9 @@ public class ClienteView extends JFrame implements ActionListener{
         					.addGap(18)
         					.addComponent(buscarBtn)
         					.addGap(18)
-        					.addComponent(editarBtn)
+        					.addComponent(botaoEditar)
         					.addGap(18)
-        					.addComponent(excluirBtn))
+        					.addComponent(botaoExcluir))
         				.addComponent(clientePainel, GroupLayout.PREFERRED_SIZE, 643, GroupLayout.PREFERRED_SIZE))
         			.addGap(18))
         );
@@ -304,15 +310,15 @@ public class ClienteView extends JFrame implements ActionListener{
         			.addPreferredGap(ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
         			.addGroup(gl_painelCadastro.createParallelGroup(Alignment.BASELINE)
         				.addComponent(buscarField, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(excluirBtn)
-        				.addComponent(editarBtn)
+        				.addComponent(botaoExcluir)
+        				.addComponent(botaoEditar)
         				.addComponent(buscarBtn))
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 188, GroupLayout.PREFERRED_SIZE)
         			.addContainerGap())
         );
 
-        
+        //fazendo a ligação do modelo de tabela com o componente visual de janela
         tabelaCliente = new TabelaCliente();
         clienteTable = new JTable(tabelaCliente);
         
@@ -330,6 +336,11 @@ public class ClienteView extends JFrame implements ActionListener{
         botaoSalvar.setActionCommand("salvar");
         botaoCancelar.addActionListener(this);
         botaoCancelar.setActionCommand("cancelar");
+        botaoExcluir.addActionListener(this);
+        botaoExcluir.setActionCommand("excluir");
+        botaoEditar.addActionListener(this);
+        botaoEditar.setActionCommand("editar");
+        
 
     }
     
@@ -380,24 +391,115 @@ public class ClienteView extends JFrame implements ActionListener{
 			//estado
 			c.getEndereco().setEstado(estadoField.getText());
 			
-			ClienteController controleCliente = new ClienteController();
-			try {
-				if(controleCliente.cadastrarCliente(c) == true) {
-					JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
-					tabelaCliente.addTodos();
-					this.repaint();
+			Object[] opcoes = {"Salvar como novo cadastro", "Atualizar", "Limpar todos campos"};
+			
+			int op = JOptionPane.showOptionDialog(null, "Escolha uma opção para continuar", "Aviso",
+		          JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+		              null, opcoes, opcoes[0]);
+			
+			if(op == 0) { //salvar um novo cliente
+				ClienteController controleCliente = new ClienteController();
+				try {
+					if(controleCliente.cadastrarCliente(c) == true) {
+						JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
+						tabelaCliente.addTodos();
+						this.repaint();
+					}
+					}
+				 catch (SQLException e1) {
+					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Ops, houve um erro ao efetuar o cadastro!");
 				}
-				}
-			 catch (SQLException e1) {
-				e1.printStackTrace();
-				JOptionPane.showMessageDialog(null, "Erro ao realizar cadastro!");
+			}
+			else if(op == 1) { //ATUALIZAR O CLIENTE
+				ClienteController controleCliente = new ClienteController();
+				try {
+					if(controleCliente.atualizarCliente(c) == true) {
+						JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
+						tabelaCliente.addTodos();
+						this.repaint();
+					}
+				} catch (HeadlessException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Ops, houve um ao efetuar o cadastro!");
+				}				
+				
+			}
+			else {
+				cpfRadio.setEnabled(true);
+				
+				
+				nm_clienteField.setText("");
+				docField.setText("");
+				rgieField.setText("");
+				fone_reField.setText("");			
+				celularField.setText("");
+				emailField.setText("");
+				pes_contatoField.setText("");
+				cepField.setText("");
+				enderecoField.setText("");
+				numeroField.setText("");
+				complementoField.setText("");
+				bairroField.setText("");
+				cidadeField.setText("");
+				estadoField.setText("");
+				
 			}
 	
 	}
-			else if (e.getActionCommand().equalsIgnoreCase("cancelar")) {
+	else if (e.getActionCommand().equalsIgnoreCase("cancelar")) {
 	
 			dispose();
+	}
+	else if(e.getActionCommand().equals("excluir")) {
+		//tratar a exclusão
+		int linha = clienteTable.getSelectedRow();
+		Cliente c = tabelaCliente.getCliente(linha);
+		
+		ClienteController controleCliente = new ClienteController();
+		try {
+			controleCliente.removerCliente(c.getId());
+			JOptionPane.showMessageDialog(null, " Cadastro excluído com sucesso!");
+			tabelaCliente.addTodos();
+			this.repaint();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Erro ao efetuar a exclusão");
 		}
+		
+		
+	}
+	else if(e.getActionCommand().equals("editar")) {
+		JOptionPane.showMessageDialog(null, "Deseja realmente editar o cadastro?");
+		int linha = clienteTable.getSelectedRow();
+		Cliente c = tabelaCliente.getCliente(linha);
+		
+		//preencher os campos com os dados do cliente selecionado
+		if(c.getTipo() == 0) cpfRadio.setEnabled(true);
+		else cnpjRadio.setEnabled(true);
+		
+		nm_clienteField.setText(c.getNm_cliente());
+		docField.setText(c.getDoc_num());
+		rgieField.setText(c.getRg_ie());
+		fone_reField.setText(c.getFone_re());			
+		celularField.setText(c.getCelular());
+		emailField.setText(c.getEmail());
+		pes_contatoField.setText(c.getPes_contato());
+		cepField.setText(c.getEndereco().getCep());
+		enderecoField.setText(c.getEndereco().getLogradouro());
+		numeroField.setText(c.getEndereco().getNumero());
+		complementoField.setText(c.getEndereco().getComplemento());
+		bairroField.setText(c.getEndereco().getBairro());
+		cidadeField.setText(c.getEndereco().getCidade());
+		estadoField.setText(c.getEndereco().getEstado());
+		
+		
+	
+		
+	}
+		
 	}
 }
 //
