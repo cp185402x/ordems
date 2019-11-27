@@ -55,16 +55,32 @@ public class ClienteDAO {
 		
 		conn.close();
 	}
-	
+	 
 	public void atualizar(Cliente cliente) throws SQLException {
 		
 		conn = (Connection) Conexao.getConexao();
 		
 		if(conn != null) {
 			st = (PreparedStatement) conn.prepareStatement(
-					"UPDATE cliente SET"
-					+ "(usuario_id = ?, nm_cliente = ?, tipo_cliente = ?, doc_num = ?, rg_ie = ?, celular = ?, fone_re = ?, email = ?, pes_contato = ?, cep = ?, endereco = ?, numero = ?, complemento = ?, bairro = ?, cidade = ?, estado = ?) "
-					+ " WHERE id_cliente = " + cliente.getId() + ";");
+					"UPDATE cliente SET "
+					+ " usuario_id = ?,"
+					+ " nm_cliente = ?,"
+					+ " tipo_cliente = ?,"
+					+ " doc_num = ?,"
+					+ " rg_ie = ?,"
+					+ " celular = ?,"
+					+ " fone_re = ?,"
+					+ " email = ?,"
+					+ " pes_contato = ?,"
+					+ " cep = ?,"
+					+ " endereco = ?,"
+					+ " numero = ?,"
+					+ " complemento = ?,"
+					+ " bairro = ?,"
+					+ " cidade = ?,"
+					+ " estado = ? "
+					+ " WHERE id_cliente = " + cliente.getId() + ";"
+					);
 		}
 		
 		st.setInt(1, 1006); //mudar aqui para associar o id do us		
@@ -84,8 +100,10 @@ public class ClienteDAO {
 		st.setString(15, cliente.getEndereco().getCidade());
 		st.setString(16, cliente.getEndereco().getEstado());
 		
-		st.executeUpdate();
+		System.out.println(cliente);
 		
+		st.executeUpdate();
+
 		conn.close();
 	}
 	
@@ -147,6 +165,7 @@ public class ClienteDAO {
 			conn.close();
 			
 		}
+		
 
 }
 	    

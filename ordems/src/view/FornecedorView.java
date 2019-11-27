@@ -4,6 +4,7 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -26,7 +27,9 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.ScrollPaneConstants;
 
+import controller.ClienteController;
 import controller.FornecedorController;
+import model.Cliente;
 import model.Fornecedor;
 import model.TabelaFornecedor;
 
@@ -90,11 +93,14 @@ public class FornecedorView extends JFrame implements ActionListener{
     JPanel painelBotoes;
     JButton botaoSalvar;
     JButton botaoCancelar;
+    JButton botaoEditar;
+    JButton botaoExcluir;
     
     private JTable fornecedorTable;
     TabelaFornecedor tabelaFornecedor;
     
     private JTextField buscarField;
+	private int id;
 
 	public FornecedorView() { // construtor da view Fornecedor.
         super("Cadastro de Fornecedor");
@@ -265,9 +271,9 @@ public class FornecedorView extends JFrame implements ActionListener{
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         
         
-        JButton editarBtn = new JButton("Editar");
+        JButton botaoEditar = new JButton("Editar");
         
-        JButton excluirBtn = new JButton("Excluir");
+        JButton botaoExcluir = new JButton("Excluir");
         
         buscarField = new JTextField();
         buscarField.setBackground(new Color(250, 250, 210));
@@ -289,9 +295,9 @@ public class FornecedorView extends JFrame implements ActionListener{
         					.addGap(18)
         					.addComponent(buscarBtn)
         					.addGap(18)
-        					.addComponent(editarBtn)
+        					.addComponent(botaoEditar)
         					.addGap(18)
-        					.addComponent(excluirBtn))
+        					.addComponent(botaoExcluir))
         				.addComponent(fornecedorPainel, GroupLayout.PREFERRED_SIZE, 643, GroupLayout.PREFERRED_SIZE))
         			.addGap(18))
         );
@@ -305,8 +311,8 @@ public class FornecedorView extends JFrame implements ActionListener{
         			.addPreferredGap(ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
         			.addGroup(gl_painelCadastro.createParallelGroup(Alignment.BASELINE)
         				.addComponent(buscarField, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(excluirBtn)
-        				.addComponent(editarBtn)
+        				.addComponent(botaoExcluir)
+        				.addComponent(botaoEditar)
         				.addComponent(buscarBtn))
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 188, GroupLayout.PREFERRED_SIZE)
@@ -331,6 +337,10 @@ public class FornecedorView extends JFrame implements ActionListener{
         botaoSalvar.setActionCommand("salvar");
         botaoCancelar.addActionListener(this);
         botaoCancelar.setActionCommand("cancelar");
+        botaoExcluir.addActionListener(this);
+        botaoExcluir.setActionCommand("excluir");
+        botaoEditar.addActionListener(this);
+        botaoEditar.setActionCommand("editar");
 
     }
    
@@ -379,27 +389,119 @@ public class FornecedorView extends JFrame implements ActionListener{
 			f.getEndereco().setCidade(cidadeField.getText());
 			//estado
 			f.getEndereco().setEstado(estadoField.getText());
+			
+			Object[] opcoes = {"Salvar como novo cadastro", "Atualizar", "Limpar todos campos"};
 	
+			
+			int op = JOptionPane.showOptionDialog(null, "Escolha uma opção para continuar", "Aviso",
+			          JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+			              null, opcoes, opcoes[0]);
+				
+				if(op == 0) { //salvar um novo cliente
+					FornecedorController controleCliente = new FornecedorController();
+					try {
+						if(controleCliente.cadastrarFornecedor(f) == true) {
+							JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
+							tabelaFornecedor.addTodos();
+							this.repaint();
+						}
+						}
+					 catch (SQLException e1) {
+						e1.printStackTrace();
+						JOptionPane.showMessageDialog(null, "Ops, houve um erro ao efetuar o cadastro!");
+					}
+				}
+				else if(op == 1) { //ATUALIZAR O CLIENTE
+					f.setId(this.id);
+					FornecedorController controleFornecedor = new FornecedorController();
+					try {
+						if(controleFornecedor.atualizarFornecedor(f) == true) {
+							JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
+							tabelaFornecedor.addTodos();
+							this.repaint();
+						}
+					} catch (HeadlessException | SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+						JOptionPane.showMessageDialog(null, "Ops, houve um ao efetuar o cadastro!");
+					}				
+					
+				}
+				else {
+					cpfRadio.setEnabled(true);
+					
+					
+					nm_fornecedorField.setText("");
+					docField.setText("");
+					rgieField.setText("");
+					fone_reField.setText("");			
+					celularField.setText("");
+					emailField.setText("");
+					pes_contatoField.setText("");
+					cepField.setText("");
+					enderecoField.setText("");
+					numeroField.setText("");
+					complementoField.setText("");
+					bairroField.setText("");
+					cidadeField.setText("");
+					estadoField.setText("");
+					
+				}
+		
+		}
+		else if (e.getActionCommand().equalsIgnoreCase("cancelar")) {
+		
+				dispose();
+		}
+		else if(e.getActionCommand().equals("excluir")) {
+			//tratar a exclusão
+			int linha = fornecedorTable.getSelectedRow();
+			Fornecedor f = tabelaFornecedor.getFornecedor(linha);
 			
 			FornecedorController controleFornecedor = new FornecedorController();
 			try {
-				if(controleFornecedor.cadastrarFornecedor(f) == true) {
-					JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
-					tabelaFornecedor.addTodos();
-					this.repaint();
-				}
-				}
-			 catch (SQLException e1) {
+				controleFornecedor.removerFornecedor(f.getId());
+				JOptionPane.showMessageDialog(null, " Cadastro excluído com sucesso!");
+				tabelaFornecedor.addTodos();
+				this.repaint();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
 				e1.printStackTrace();
-				JOptionPane.showMessageDialog(null, "Erro ao realizar cadastro!");
+				JOptionPane.showMessageDialog(null, "Erro ao efetuar a exclusão");
 			}
-	
-	}
-			else if (e.getActionCommand().equalsIgnoreCase("cancelar")) {
-	
-			dispose();
+			
+			
+		}
+		else if(e.getActionCommand().equals("editar")) {
+			JOptionPane.showMessageDialog(null, "Deseja realmente editar o cadastro?");
+			int linha = fornecedorTable.getSelectedRow();
+			Fornecedor f = tabelaFornecedor.getFornecedor(linha);
+			
+			//preencher os campos com os dados do cliente selecionado
+			if(f.getTipo() == 0) cpfRadio.setEnabled(true);
+			else cnpjRadio.setEnabled(true);
+			
+			this.id =f.getId(); 
+			nm_fornecedorField.setText(f.getNm_fornecedor());
+			docField.setText(f.getDoc_num());
+			rgieField.setText(f.getRg_ie());
+			fone_reField.setText(f.getFone_re());			
+			celularField.setText(f.getCelular());
+			emailField.setText(f.getEmail());
+			pes_contatoField.setText(f.getPes_contato());
+			cepField.setText(f.getEndereco().getCep());
+			enderecoField.setText(f.getEndereco().getLogradouro());
+			numeroField.setText(f.getEndereco().getNumero());
+			complementoField.setText(f.getEndereco().getComplemento());
+			bairroField.setText(f.getEndereco().getBairro());
+			cidadeField.setText(f.getEndereco().getCidade());
+			estadoField.setText(f.getEndereco().getEstado());
+			
+			
+		
+			
+		}
+			
 		}
 	}
-}
-//
 

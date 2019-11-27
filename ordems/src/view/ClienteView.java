@@ -32,7 +32,8 @@ import model.TabelaCliente;
 
 //Declarando a classe na janela
 public class ClienteView extends JFrame implements ActionListener{
-	//atributo para 
+	//atributo para controle
+	private int id;
 	
 	//atributos globais da classe
 	JPanel painelTitulo;
@@ -412,6 +413,7 @@ public class ClienteView extends JFrame implements ActionListener{
 				}
 			}
 			else if(op == 1) { //ATUALIZAR O CLIENTE
+				c.setId(this.id);
 				ClienteController controleCliente = new ClienteController();
 				try {
 					if(controleCliente.atualizarCliente(c) == true) {
@@ -480,6 +482,7 @@ public class ClienteView extends JFrame implements ActionListener{
 		if(c.getTipo() == 0) cpfRadio.setEnabled(true);
 		else cnpjRadio.setEnabled(true);
 		
+		this.id =c.getId(); 
 		nm_clienteField.setText(c.getNm_cliente());
 		docField.setText(c.getDoc_num());
 		rgieField.setText(c.getRg_ie());

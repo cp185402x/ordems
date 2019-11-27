@@ -4,7 +4,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import dao.FornecedorDAO;
+
+
 import dao.Conexao;
+
 import model.Fornecedor;
 
 
@@ -55,6 +58,15 @@ public class FornecedorController {
 		
 	}
 
+	public boolean atualizarFornecedor(Fornecedor f) throws SQLException {
+		System.out.println("ID = " + f.getId());
+		FornecedorDAO fornecedorDAO = new FornecedorDAO();
+		fornecedorDAO.atualizar(f);
+		
+		return true;
+		
+		
+	}
 
 	public ArrayList<Fornecedor> consultarFornecedor() throws SQLException {
 		//System.out.println("Cheguei no consultar fornecedor");
@@ -63,7 +75,11 @@ public class FornecedorController {
 	
 		
 	}
+	public void removerFornecedor(int id) throws SQLException {
+		FornecedorDAO fornecedorDAO = new FornecedorDAO();
+		fornecedorDAO.excluir(id);
 
 
 	
+}
 }

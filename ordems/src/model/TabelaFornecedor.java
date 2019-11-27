@@ -62,6 +62,10 @@ public class TabelaFornecedor extends AbstractTableModel{
 		
 	}
 
+	public Fornecedor getFornecedor(int linha) {
+		return this.listaFornecedor.get(linha);
+	}
+
 }
 
 //

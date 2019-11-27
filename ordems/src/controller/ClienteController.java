@@ -57,6 +57,7 @@ public class ClienteController {
 	}
 	
 	public boolean atualizarCliente(Cliente c) throws SQLException {
+		System.out.println("ID = " + c.getId());
 		ClienteDAO clienteDAO = new ClienteDAO();
 		clienteDAO.atualizar(c);
 		

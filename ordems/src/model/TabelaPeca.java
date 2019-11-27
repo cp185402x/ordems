@@ -59,5 +59,8 @@ public class TabelaPeca {
 		System.out.println("Tam" + listaPeca.size());
 		
 	}
+	public Cliente getCliente(int linha) {
+		return this.listaCliente.get(linha);
+	}
 
 }
