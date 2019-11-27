@@ -1,3 +1,13 @@
+<?php
+if(!isset ($_SESSION)){
+	session_start();
+}
+
+
+require_once "../login/chk_login.php";
+
+?>
+
 <!DOCTYPE html>
     <html >
     <head>
@@ -38,7 +48,9 @@
 			<div class="table-responsive">
 				<br />
 				<div align="right">
-					<button type="button" id="add_button" data-toggle="modal" data-target="#userModal" class="btn btn-info btn-lg">+ Adicionar novo FAQ</button>
+				    <button type="button" id="add_button" data-toggle="modal" data-target="#userModal" class="btn btn-info btn-lg">+ Adicionar novo FAQ</button>
+				    <button type="button" id="add_sair" data-toggle="modal" onclick="window.location.href='/ordems/login/index.php'" class="btn btn-info btn-lg" >Sair</button>
+					
 				</div>
 				<br /><br />
 				<table id="user_data" class="table table-bordered table-striped">

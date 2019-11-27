@@ -53,7 +53,7 @@ else{
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#<?php echo $faq['id']; ?>"><?php echo"<h3>".$faq['titulo']."</h3>";?></a>
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#<?php echo $faq['id']; ?>"><?php echo"<h3>".$faq['titulo']."</h3>";?></a>
                 </h4>
             </div>
             <div id="<?php echo $faq['id'];?>" class="panel-collapse collapse in">
