@@ -22,46 +22,69 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.ScrollPaneConstants;
 
+import controller.ClienteController;
 import controller.UsuarioController;
-import model.TabelaUsuario;
 import model.Usuario;
+import model.TabelaUsuario;
 
 //Declarando a classe na janela
 public class UsuarioView extends JFrame implements ActionListener{
-	private static final TableModel TabelaUsuario = null;
 	//atributos globais da classe
 	JPanel painelTitulo;
 	JPanel painelCadastro;
 	JLabel titulo;
 	
-	JRadioButton cnpjRadio;
-	JRadioButton cpfRadio;
-	ButtonGroup tipoGrupo;
+	//JRadioButton cnpjRadio;
+	//JRadioButton cpfRadio;
+	//ButtonGroup tipoGrupo;
 	
     JLabel nm_usuarioLabel;
     JTextField nm_usuarioField;
     
+    //JLabel dataNascLabel;
+    //JTextField dataNascField;
+    
+    //JTextField docField;
+    
+    //JLabel rgieLabel;
+    //JTextField rgieField;
+
+    JLabel departamentoLabel;
+    JTextField departamentoField;
+    
     JLabel cargoLabel;
     JTextField cargoField;
-    
+        
     JLabel matriculaLabel;
     JTextField matriculaField;
     
-    JLabel departamentoLabel;
-    JTextField departamentoField;
-
     JLabel loginLabel;
     JTextField loginField;
     
     JLabel senhaLabel;
     JTextField senhaField;
-        
     
+    //JLabel enderecoLabel;
+    //JTextField enderecoField;
+    
+    //JLabel numeroLabel;
+    //JTextField numeroField;
+    
+    JLabel statusLabel;
+    JTextField statusField;
+    
+    //JLabel bairroLabel;
+    //JTextField bairroField;
+    
+    //JLabel cidadeLabel;
+    //JTextField cidadeField;
+    
+    //JLabel estadoLabel;
+    //JTextField estadoField;
     
     //Inicia o painel dos botoes
     JPanel painelBotoes;
@@ -72,8 +95,6 @@ public class UsuarioView extends JFrame implements ActionListener{
     TabelaUsuario tabelaUsuario;
     
     private JTextField buscarField;
-	private JTable usuarioTable;
-	private TabelaUsuario tabelaUsuario;
 
 	public UsuarioView() { // construtor da view Usuario.
         super("Cadastro de Usuario");
@@ -94,7 +115,7 @@ public class UsuarioView extends JFrame implements ActionListener{
         painelTitulo = new JPanel();
         painelTitulo.setLayout(new FlowLayout());
         
-        titulo = new JLabel("Cadastro de Usuario");
+        titulo = new JLabel("Cadastro de Uusuario");
         titulo.setFont(new Font("Arial", Font.BOLD, 14));
         
         painelTitulo.add(titulo);
@@ -115,57 +136,98 @@ public class UsuarioView extends JFrame implements ActionListener{
         usuarioPainel.setBorder(new LineBorder(Color.LIGHT_GRAY));
         usuarioPainel.setLayout(null);
         
-        nm_usuarioField = new JTextField(20);
-        nm_usuarioField.setBounds(447, 137, 186, 20);
-        usuarioPainel.add(nm_usuarioField);        
-        nm_usuarioLabel = new JLabel("Nome Usuario");
-        nm_usuarioLabel.setBounds(447, 125, 166, 14);
-        usuarioPainel.add(nm_usuarioLabel);
-        
-        cargoField = new JTextField(40);
-        cargoField.setBounds(10, 138, 427, 20);
-        usuarioPainel.add(cargoField);        
-        cargoLabel = new JLabel("cargo");
-        cargoLabel.setBounds(10, 126, 368, 14);
-        usuarioPainel.add(cargoLabel);
-        
-        
-       
-        departamentoLabel = new JLabel("departamento");
-        departamentoLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-        departamentoLabel.setBounds(323, 10, 50, 14);
-        usuarioPainel.add(departamentoLabel);
-        departamentoField = new JTextField(20);
-        departamentoField.setBounds(373, 7, 186, 20);
-        usuarioPainel.add(departamentoField);
-        
-        loginLabel = new JLabel("login");
-        loginLabel.setBounds(10, 37, 338, 14);
+        loginField = new JTextField(20);
+        loginField.setBounds(206, 137, 186, 20);
+        usuarioPainel.add(loginField);        
+        loginLabel = new JLabel("Login");
+        loginLabel.setBounds(206, 125, 166, 14);
         usuarioPainel.add(loginLabel);
-        loginField = new JTextField(40);
-        loginField.setBounds(10, 51, 427, 20);
-        usuarioPainel.add(loginField);
-        
-        senhaField = new JTextField(20);
-        senhaField.setBounds(447, 50, 186, 20);
-        usuarioPainel.add(senhaField);        
-        senhaLabel = new JLabel("senha");
-        senhaLabel.setBounds(447, 35, 156, 14);
-        usuarioPainel.add(senhaLabel);
         
         matriculaField = new JTextField(20);
-        matriculaField.setBounds(447, 50, 186, 20);
+        matriculaField.setBounds(10, 138, 186, 20);
         usuarioPainel.add(matriculaField);        
         matriculaLabel = new JLabel("Matricula");
-        matriculaLabel.setBounds(447, 35, 156, 14);
+        matriculaLabel.setBounds(10, 126, 368, 14);
         usuarioPainel.add(matriculaLabel);
+        
                
+        nm_usuarioLabel = new JLabel("Usuário");
+        nm_usuarioLabel.setBounds(10, 37, 338, 14);
+        usuarioPainel.add(nm_usuarioLabel);
+        nm_usuarioField = new JTextField(50);
+        nm_usuarioField.setBounds(10, 51, 427, 20);
+        usuarioPainel.add(nm_usuarioField);
+        
+                      
+        cargoField = new JTextField(20);
+        cargoField.setBounds(10, 95, 186, 20);
+        usuarioPainel.add(cargoField);        
+        JLabel cargoLabel = new JLabel("Cargo");
+        cargoLabel.setBounds(10, 82, 166, 14);
+        usuarioPainel.add(cargoLabel);
+        
+        departamentoField = new JTextField(20);
+        departamentoField.setBounds(206, 95, 186, 20);
+        usuarioPainel.add(departamentoField);        
+        departamentoLabel = new JLabel("Departamento");
+        departamentoLabel.setBounds(206, 82, 162, 14);
+        usuarioPainel.add(departamentoLabel);
         
         JPanel panel = new JPanel();
         panel.setBorder(new LineBorder(Color.LIGHT_GRAY));
         panel.setLayout(null); 
         
+        senhaField = new JTextField(10);
+        senhaField.setBounds(10, 25, 186, 20);
+        panel.add(senhaField);        
+        senhaLabel = new JLabel("Senha");
+        senhaLabel.setBounds(10, 11, 86, 14);
+        panel.add(senhaLabel);
         
+        /*
+        enderecoField = new JTextField(40);
+        enderecoField.setBounds(175, 25, 369, 20);
+        panel.add(enderecoField);        
+        enderecoLabel = new JLabel("Endereço");
+        enderecoLabel.setBounds(175, 11, 369, 14);
+        panel.add(enderecoLabel);
+        
+        numeroField = new JTextField(10);
+        numeroField.setBounds(554, 25, 79, 20);
+        panel.add(numeroField);        
+        numeroLabel = new JLabel("Número");
+        numeroLabel.setBounds(554, 11, 65, 14);
+        panel.add(numeroLabel);
+        */
+        statusField = new JTextField(20);
+        statusField.setBounds(10, 69, 186, 20);
+        panel.add(statusField);        
+        statusLabel = new JLabel("Status");
+        statusLabel.setBounds(10, 56, 127, 14);
+        panel.add(statusLabel);
+        
+        /*
+        bairroField = new JTextField(20);
+        bairroField.setBounds(175, 69, 180, 20);
+        panel.add(bairroField);               
+        bairroLabel = new JLabel("Bairro");
+        bairroLabel.setBounds(175, 56, 166, 14);
+        panel.add(bairroLabel);
+        
+        cidadeField = new JTextField(20);
+        cidadeField.setBounds(365, 69, 179, 20);
+        panel.add(cidadeField);        
+        cidadeLabel = new JLabel("Cidade");
+        cidadeLabel.setBounds(365, 56, 166, 14);
+        panel.add(cidadeLabel);
+        
+        estadoLabel = new JLabel("Estado");
+        estadoLabel.setBounds(554, 56, 65, 14);
+        panel.add(estadoLabel);
+        estadoField = new JTextField(10);
+        estadoField.setBounds(554, 69, 79, 20);
+        panel.add(estadoField);
+        */
         
         //Criando a Tabela com os dados do banco
         JScrollPane scrollPane = new JScrollPane();
@@ -224,7 +286,7 @@ public class UsuarioView extends JFrame implements ActionListener{
 
         
         tabelaUsuario = new TabelaUsuario();
-        usuarioTable = new JTable(TabelaUsuario);
+        usuarioTable = new JTable(tabelaUsuario);
         
              
         scrollPane.setViewportView(usuarioTable);
@@ -244,7 +306,7 @@ public class UsuarioView extends JFrame implements ActionListener{
     }
     
     
-	public void actionPerformed(ActionEvent e, Usuario u) {
+	public void actionPerformed(ActionEvent e) {
 		
 		if(e.getActionCommand().equalsIgnoreCase("salvar")) {
 			
@@ -252,9 +314,8 @@ public class UsuarioView extends JFrame implements ActionListener{
 			
 			//Tratar a ação de salvar o cliente
 			
-			//Trata o radio do tipo de cliente
-			
-			}
+			//Tipo
+			//System.out.println("cargo: " +u.getCargo());
 			//nome
 			u.setNm_usuario(nm_usuarioField.getText());			
 			//documento
@@ -262,44 +323,37 @@ public class UsuarioView extends JFrame implements ActionListener{
 			//RGIE
 			u.setDepartamento(departamentoField.getText());
 			//fone fixo
-			
-			u.setDepartamento(matriculaField.getText());
-			
-			u.setLogin(loginField.getText());
+			u.setMatricula(matriculaField.getText());
 			//celular
+			u.setLogin(loginField.getText());
+			//email
 			u.setSenha(senhaField.getText());
+			//pessoa contato
+			u.setStatus(statusField.getText());
 			
 			
 			
+				
 			
 			UsuarioController controleUsuario = new UsuarioController();
 			try {
 				if(controleUsuario.cadastrarUsuario(u) == true) {
 					JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
-					tabelaCliente.addTodos();
+					tabelaUsuario.addTodos();
 					this.repaint();
 				}
-				}
+			}
 			 catch (SQLException e1) {
 				e1.printStackTrace();
 				JOptionPane.showMessageDialog(null, "Erro ao realizar cadastro!");
 			}
 	
-	}
-			else if (e.getActionCommand().equalsIgnoreCase("cancelar")) {
-	
-			dispose();
 		}
-	
-
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+		else if (e.getActionCommand().equalsIgnoreCase("cancelar")) {
 		
+				dispose();
+		}
 	}
-	
 }
-}
-
 //
 

@@ -3,16 +3,18 @@ package model;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.swing.table.AbstractTableModel;
+
 import dao.UsuarioDAO;
 
-public class TabelaUsuario {
+public class TabelaUsuario extends AbstractTableModel {
 	
 	
 	private ArrayList<Usuario> listaUsuario = new ArrayList<Usuario>();
 	private String [] colunas = {
 			
-			"Nm_usuario", "Matricula", "Cargo", "Departamento", "Status"
-	};
+			"Nm_usuario", "Matricula", "Cargo", "Departamento", "Status", "Senha", "Login"
+			};
 	
 	
 	///construtor
@@ -42,6 +44,9 @@ public class TabelaUsuario {
 			case 2: return listaUsuario.get(rowIndex).getCargo();
 			case 3: return listaUsuario.get(rowIndex).getDepartamento();
 			case 4: return listaUsuario.get(rowIndex).getStatus();
+			case 5: return listaUsuario.get(rowIndex).getLogin();
+			case 6: return listaUsuario.get(rowIndex).getSenha();
+			
 		
 		}
 		return null;

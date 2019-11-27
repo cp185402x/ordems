@@ -57,6 +57,10 @@ public class Usuario {
 	public void setMatricula(String matricula) {
 		this.matricula = matricula;
 	}
+	public void setStatus(String text) {
+		// TODO Auto-generated method stub
+		
+	}
 		
 	
 	
