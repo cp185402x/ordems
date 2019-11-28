@@ -4,6 +4,7 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -26,6 +27,7 @@ import javax.swing.JTextArea;
 import javax.swing.JCheckBox;
 
 import controller.OsController;
+
 import model.Os;
 import model.TabelaOs;
 
@@ -87,13 +89,15 @@ public class OsView extends JFrame implements ActionListener{
     JPanel painelBotoes;
     JButton botaoSalvar;
     JButton botaoCancelar;
+    JButton botaoEditar;
+    JButton botaoExcluir;
     
     private JTable osTable;
-    TabelaOs tabelaOs;
+    private TabelaOs tabelaOs;
     
     private JTextField buscarField;
 
-	public OsView() { // construtor da view Cliente.
+	public OsView() { // construtor da view OS.
         super("Cadastro de Ordem de Serviço");
         setType(Type.UTILITY);
                 
@@ -271,9 +275,8 @@ public class OsView extends JFrame implements ActionListener{
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         
-        JButton editarBtn = new JButton("Editar");
-        
-        JButton excluirBtn = new JButton("Excluir");
+        botaoEditar = new JButton("Editar");
+        botaoExcluir = new JButton("Excluir");
         
         buscarField = new JTextField();
         buscarField.setBackground(new Color(250, 250, 210));
@@ -295,9 +298,9 @@ public class OsView extends JFrame implements ActionListener{
         							.addPreferredGap(ComponentPlacement.RELATED)
         							.addComponent(buscarBtn, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE)
         							.addPreferredGap(ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
-        							.addComponent(editarBtn, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
+        							.addComponent(botaoEditar, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
         							.addGap(18)
-        							.addComponent(excluirBtn, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE))
+        							.addComponent(botaoExcluir, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE))
         						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
         						.addComponent(clientePainel, GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE))
         					.addGap(20))
@@ -316,8 +319,8 @@ public class OsView extends JFrame implements ActionListener{
         			.addGroup(gl_painelCadastro.createParallelGroup(Alignment.BASELINE)
         				.addComponent(buscarField, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
         				.addComponent(buscarBtn, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(excluirBtn, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(editarBtn, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
+        				.addComponent(botaoExcluir, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(botaoEditar, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
         			.addContainerGap())
@@ -345,43 +348,196 @@ public class OsView extends JFrame implements ActionListener{
     }
     
     
-	private JTable JTable(TableModel tabelaOs) {
-		
-		return null;
-	}
-
-	public void actionPerformed(ActionEvent e) {
+//	private JTable JTable(TableModel tabelaOs) {
+//		
+//		return null;
+//	}
+//
+//	public void actionPerformed(ActionEvent e) {
+//		
+//		if(e.getActionCommand().equalsIgnoreCase("salvar")) {
+//			Os o = new Os();
+//			
+//			//Tratar a ação de salvar OS
+//						
+//			//tipo
+//			o.setTipo(tipoField.getText());			
+//			//modelo
+//			o.setModelo(modeloField.getText());			
+//			//marca
+//			o.setMarca(marcaField.getText());
+//			//cor
+//			o.setCor(corField.getText());
+//			//serie
+//			o.setSerie(serieField.getText());
+//
+//			OsController controleOs = new OsController();
+//			try {
+//				if(controleOs.cadastrarOs(o) == true) {
+//					JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
+//				}
+//			} catch (SQLException e1) {
+//				e1.printStackTrace();
+//				JOptionPane.showMessageDialog(null, "Erro ao realizar cadastro!");
+//			}
+//		}
+//		else if(e.getActionCommand().equalsIgnoreCase("cancelar")) {
+// 
+//			dispose();
+//		}
+    
+    
+    
+public void actionPerformed(ActionEvent e) {
 		
 		if(e.getActionCommand().equalsIgnoreCase("salvar")) {
+			
 			Os o = new Os();
 			
-			//Tratar a ação de salvar OS
-						
-			//tipo
-			o.setTipo(tipoField.getText());			
-			//modelo
-			o.setModelo(modeloField.getText());			
-			//marca
-			o.setMarca(marcaField.getText());
-			//cor
-			o.setCor(corField.getText());
-			//serie
-			o.setSerie(serieField.getText());
-
-			OsController controleOs = new OsController();
-			try {
-				if(controleOs.cadastrarOs(o) == true) {
-					JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
-				}
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-				JOptionPane.showMessageDialog(null, "Erro ao realizar cadastro!");
+			
 			}
-		}
-		else if(e.getActionCommand().equalsIgnoreCase("cancelar")) {
- 
+			//Tipo
+			System.out.println("Tipo: " +o.getTipo());
+			//nome
+			.setNm_cliente(nm_clienteField.getText());			
+			//documento
+			c.setDoc_num(docField.getText());			
+			//RGIE
+			c.setRg_ie(rgieField.getText());
+			//fone fixo
+			c.setFone_re(fone_reField.getText());
+			//celular
+			c.setCelular(celularField.getText());
+			//email
+			c.setEmail(emailField.getText());
+			//pessoa contato
+			c.setPes_contato(pes_contatoField.getText());
+			//Logradouro
+			c.getEndereco().setCep(cepField.getText());
+			//Logradouro
+			c.getEndereco().setLogradouro(enderecoField.getText());
+			//numero
+			c.getEndereco().setNumero(numeroField.getText());
+			//complemento
+			c.getEndereco().setComplemento(complementoField.getText());
+			//bairro
+			c.getEndereco().setBairro(bairroField.getText());
+			//cidade
+			c.getEndereco().setCidade(cidadeField.getText());
+			//estado
+			c.getEndereco().setEstado(estadoField.getText());
+			
+			Object[] opcoes = {"Salvar como novo cadastro", "Atualizar", "Limpar todos campos"};
+			
+			int op = JOptionPane.showOptionDialog(null, "Escolha uma opção para continuar", "Aviso",
+		          JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+		              null, opcoes, opcoes[0]);
+			
+			if(op == 0) { //salvar um novo cliente
+				ClienteController controleCliente = new ClienteController();
+				try {
+					if(controleCliente.cadastrarCliente(c) == true) {
+						JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
+						tabelaCliente.addTodos();
+						this.repaint();
+					}
+					}
+				 catch (SQLException e1) {
+					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Ops, houve um erro ao efetuar o cadastro!");
+				}
+			}
+			else if(op == 1) { //ATUALIZAR O CLIENTE
+				c.setId(this.id);
+				ClienteController controleCliente = new ClienteController();
+				try {
+					if(controleCliente.atualizarCliente(c) == true) {
+						JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
+						tabelaCliente.addTodos();
+						this.repaint();
+					}
+				} catch (HeadlessException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Ops, houve um ao efetuar o cadastro!");
+				}				
+				
+			}
+			else {
+				cpfRadio.setEnabled(true);
+				
+				
+				nm_clienteField.setText("");
+				docField.setText("");
+				rgieField.setText("");
+				fone_reField.setText("");			
+				celularField.setText("");
+				emailField.setText("");
+				pes_contatoField.setText("");
+				cepField.setText("");
+				enderecoField.setText("");
+				numeroField.setText("");
+				complementoField.setText("");
+				bairroField.setText("");
+				cidadeField.setText("");
+				estadoField.setText("");
+				
+			}
+	
+	}
+	else if (e.getActionCommand().equalsIgnoreCase("cancelar")) {
+	
 			dispose();
+	}
+	else if(e.getActionCommand().equals("excluir")) {
+		//tratar a exclusão
+		int linha = osTable.getSelectedRow();
+		Os o = tabelaOs.getOs(linha);
+		
+		OsController controleOs = new OsController();
+		try {
+			controleOs.removerOs(o.getId());
+			JOptionPane.showMessageDialog(null, " Cadastro excluído com sucesso!");
+			tabelaOs.addTodos();
+			this.repaint();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Erro ao efetuar a exclusão");
 		}
+		
+		
+	}
+	else if(e.getActionCommand().equals("editar")) {
+		JOptionPane.showMessageDialog(null, "Deseja realmente editar o cadastro?");
+		int linha = clienteTable.getSelectedRow();
+		Cliente c = tabelaCliente.getCliente(linha);
+		
+		//preencher os campos com os dados do cliente selecionado
+		if(c.getTipo() == 0) cpfRadio.setEnabled(true);
+		else cnpjRadio.setEnabled(true);
+		
+		this.id =c.getId(); 
+		nm_clienteField.setText(c.getNm_cliente());
+		docField.setText(c.getDoc_num());
+		rgieField.setText(c.getRg_ie());
+		fone_reField.setText(c.getFone_re());			
+		celularField.setText(c.getCelular());
+		emailField.setText(c.getEmail());
+		pes_contatoField.setText(c.getPes_contato());
+		cepField.setText(c.getEndereco().getCep());
+		enderecoField.setText(c.getEndereco().getLogradouro());
+		numeroField.setText(c.getEndereco().getNumero());
+		complementoField.setText(c.getEndereco().getComplemento());
+		bairroField.setText(c.getEndereco().getBairro());
+		cidadeField.setText(c.getEndereco().getCidade());
+		estadoField.setText(c.getEndereco().getEstado());
+		
+		
+	
+		
+	}
+		
 	}
 }
 

@@ -90,16 +90,22 @@ public class OsDAO {
 		}
 		
 	//Deletar registro
-        public void delete(Os os) {
-            try {
-                st = (PreparedStatement) conn.prepareStatement(
-                		"DELETE FROM os WHERE id_os=?");
-                st.setLong(1, os.getId_os());
-                st.execute();
-                conn.close();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
+		public void excluir (int id) throws SQLException {
+			conn = (Connection) Conexao.getConexao();
+			
+			if(conn != null) {
+				st = (PreparedStatement) conn.prepareStatement(
+						"DELETE FROM os WHERE id_os = " + id + ";");
+						
+			}
+			st.execute();
+			conn.close();
+			
+		}
+
+		public void atualizar(Os o) {
+			// TODO Auto-generated method stub
+			
+		}
         }
 
-}

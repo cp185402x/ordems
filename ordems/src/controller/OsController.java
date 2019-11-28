@@ -1,6 +1,7 @@
 package controller;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import dao.OsDAO;
 import dao.Conexao;
@@ -49,8 +50,30 @@ public class OsController {
 		osDAO.inserir(o);
 		
 		return true;
-		
+	}
+		public boolean atualizarOs(Os o) throws SQLException {
+			System.out.println("ID = " + o.getId_os());
+			OsDAO osDAO = new OsDAO();
+			osDAO.atualizar(o);
+			
+			return true;
+			
+			
 		
 	}
+	public ArrayList<Os> consultarOs() throws SQLException {
+		//System.out.println("Cheguei no consultar os");
+		OsDAO osDAO = new OsDAO();
+		return osDAO.consultar();
+		
+	}
+	
+	public void removerOs(int id) throws SQLException {
+		OsDAO osDAO = new OsDAO();
+		osDAO.excluir(id);
 
 }
+
+
+	
+	}
