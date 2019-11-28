@@ -3,15 +3,17 @@ package model;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.swing.table.AbstractTableModel;
+
 import dao.PecaDAO;
 
-public class TabelaPeca {
+public class TabelaPeca extends AbstractTableModel{
 	
 	
 	private ArrayList<Peca> listaPeca = new ArrayList<Peca>();
 	private String [] colunas = {
 			
-			"Nm_peca", "vl_custo", "vl_venda"
+			"NOME", "CUSTO", "VENDA"
 	};
 
 	
@@ -59,8 +61,8 @@ public class TabelaPeca {
 		System.out.println("Tam" + listaPeca.size());
 		
 	}
-	public Cliente getCliente(int linha) {
-		return this.listaCliente.get(linha);
+	public Peca getPeca(int linha) {
+		return this.listaPeca.get(linha);
 	}
 
 }

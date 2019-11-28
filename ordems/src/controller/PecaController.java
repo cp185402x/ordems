@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import dao.Conexao;
 import dao.PecaDAO;
+
 import model.Peca;
 
 public class PecaController {
@@ -42,13 +43,28 @@ public class PecaController {
 		
 		
 	}
+	
+	public boolean atualizarPeca(Peca p) throws SQLException {
+		System.out.println("ID = " + p.getId());
+		PecaDAO pecaDAO = new PecaDAO();
+		pecaDAO.atualizar(p);
+		
+		return true;
+		
+		
+	}
+
+
 	public ArrayList<Peca> consultarPeca() throws SQLException {
 		//System.out.println("Cheguei no consultar peca");
 		PecaDAO pecaDAO = new PecaDAO();
 		return pecaDAO.consultar();
 		
-		
 	}
-
+	
+	public void removerPeca(int id) throws SQLException {
+		PecaDAO pecaDAO = new PecaDAO();
+		pecaDAO.excluir(id);
+	}
 
 }

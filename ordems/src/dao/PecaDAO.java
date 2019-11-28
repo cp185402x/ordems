@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
-
 import model.Peca;
 import dao.Conexao;
 
@@ -20,7 +19,7 @@ public class PecaDAO {
 	Connection conn = null;
 	PreparedStatement st = null;
 	
-	
+	//Teste
 	public void inserir(Peca peca) throws SQLException {
 				
 		conn = (Connection) Conexao.getConexao();
@@ -32,17 +31,43 @@ public class PecaDAO {
 					+ "VALUES "
 					+ "(?, ?, ?)");
 		}
-		st.setString(2, peca.getNm_peca());
-		st.setString(3, peca.getVl_custo());
-		st.setString(4, peca.getVl_venda());
+		st.setString(1, peca.getNm_peca());
+		st.setString(2, peca.getVl_custo());
+		st.setString(3, peca.getVl_venda());
 		
 		st.execute();
 		
 		conn.close();
 		
 		
+		
 	}
-	//Consulta Cliente
+	
+	public void atualizar(Peca peca) throws SQLException {
+		
+		conn = (Connection) Conexao.getConexao();
+		
+		if(conn != null) {
+			st = (PreparedStatement) conn.prepareStatement(
+					"UPDATE peca SET "
+					+ " nm_peca = ?,"
+					+ " vl_custo = ?,"
+					+ " vl_venda = ?,"					
+					+ " WHERE id_peca = " + peca.getId() + ";"
+					);
+		}
+			
+		st.setString(1, peca.getNm_peca());
+		st.setString(2, peca.getVl_custo());
+		st.setString(3, peca.getVl_venda());
+		
+		System.out.println(peca);
+		
+		st.executeUpdate();
+
+		conn.close();
+	}
+	//Consulta Peca
 	
 			public ArrayList<Peca> consultar() throws SQLException {
 				
@@ -75,6 +100,18 @@ public class PecaDAO {
 				
 			}
 
+			public void excluir (int id) throws SQLException {
+				conn = (Connection) Conexao.getConexao();
+				
+				if(conn != null) {
+					st = (PreparedStatement) conn.prepareStatement(
+							"DELETE FROM peca WHERE id_peca = " + id + ";");
+							
+				}
+				st.execute();
+				conn.close();
+				
+			}
 	}
 		    
 

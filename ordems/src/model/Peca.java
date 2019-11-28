@@ -38,4 +38,6 @@ public String toString() {
 		
 		return "Peca [id=" + id + ", nm_peca=" + nm_peca + ", vl_custo=" + vl_custo + ", vl_venda=" + vl_venda + "]";
 	}
+
 }
+
