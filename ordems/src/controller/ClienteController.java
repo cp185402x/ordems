@@ -7,7 +7,7 @@ import dao.ClienteDAO;
 import dao.Conexao;
 import model.Cliente;
 
-
+//teste
 public class ClienteController {
 	///Metodo para receber os dados,tratar e chamar o metodo insere do ClienteDAO
 	private Conexao bd;
