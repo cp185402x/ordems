@@ -1,4 +1,4 @@
-package view;
+package view.rel;
 
 //Importando os componentes
 import java.awt.BorderLayout;
@@ -6,51 +6,40 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.JTable;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.table.TableModel;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.JTextArea;
-import javax.swing.JCheckBox;
 
-import controller.OsController;
-import model.Os;
-import model.TabelaOs;
+import model.TabelaPeca;
 import javax.swing.SwingConstants;
 
 //Declarando a classe na janela
-public class RelOsView extends JFrame implements ActionListener{
+public class RelPecaView extends JFrame implements ActionListener{
 	//atributos globais da classe
 	JPanel painelTitulo;
 	JPanel painelCadastro;
 	JLabel titulo;
-    JTextArea 	info_clienteTA;
-    JTextArea 	info_tecnicoTA;
-    JTextArea 	info_entregaTA;
-    JTextArea 	info_internaTA;
+    
     
     //Inicia o painel dos botoes
     JPanel painelBotoes;
     JButton botaoImprimir;
     JButton botaoCancelar;
     
-    private JTable osTable;
-    TabelaOs tabelaOs;
+    private JTable pecaTable;
+    TabelaPeca tabelaPeca;
 
-	public RelOsView() { // construtor da view Cliente.
-        super("Cadastro de Ordem de Servi\u00E7os");
+	public RelPecaView() { // construtor da view Peca.
+        super("Relatório de Pecas");
         setType(Type.UTILITY);
                 
         criaFormulario();
@@ -68,7 +57,7 @@ public class RelOsView extends JFrame implements ActionListener{
         painelTitulo = new JPanel();
         painelTitulo.setLayout(new FlowLayout());
         
-        titulo = new JLabel("Cadastro de O.S");
+        titulo = new JLabel("Relatório de Pecas");
         titulo.setFont(new Font("Arial", Font.BOLD, 14));
         
         painelTitulo.add(titulo);
@@ -91,36 +80,39 @@ public class RelOsView extends JFrame implements ActionListener{
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         
-        JLabel lblRelatrrioDeOrdens = new JLabel("Relatr\u00F3rio de Ordens de Servi\u00E7os Cadastradas");
-        lblRelatrrioDeOrdens.setHorizontalAlignment(SwingConstants.CENTER);
-        lblRelatrrioDeOrdens.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        JPanel panelTitulo = new JPanel();
         
         GroupLayout gl_painelCadastro = new GroupLayout(painelCadastro);
         gl_painelCadastro.setHorizontalGroup(
         	gl_painelCadastro.createParallelGroup(Alignment.TRAILING)
         		.addGroup(gl_painelCadastro.createSequentialGroup()
-        			.addGroup(gl_painelCadastro.createParallelGroup(Alignment.LEADING)
-        				.addComponent(lblRelatrrioDeOrdens, GroupLayout.PREFERRED_SIZE, 666, GroupLayout.PREFERRED_SIZE)
+        			.addGroup(gl_painelCadastro.createParallelGroup(Alignment.TRAILING)
         				.addGroup(gl_painelCadastro.createSequentialGroup()
         					.addGap(10)
-        					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)))
-        			.addContainerGap())
+        					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE))
+        				.addComponent(panelTitulo, GroupLayout.DEFAULT_SIZE, 666, Short.MAX_VALUE))
+        			.addGap(18))
         );
         gl_painelCadastro.setVerticalGroup(
-        	gl_painelCadastro.createParallelGroup(Alignment.LEADING)
-        		.addGroup(gl_painelCadastro.createSequentialGroup()
-        			.addComponent(lblRelatrrioDeOrdens, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-        			.addPreferredGap(ComponentPlacement.UNRELATED)
-        			.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 473, Short.MAX_VALUE)
+        	gl_painelCadastro.createParallelGroup(Alignment.TRAILING)
+        		.addGroup(Alignment.LEADING, gl_painelCadastro.createSequentialGroup()
+        			.addComponent(panelTitulo, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
         			.addContainerGap())
         );
+        panelTitulo.setLayout(null);
         
+        JLabel lblRelatorioDePecas = new JLabel("Relatório de Pecas Cadastradas");
+        lblRelatorioDePecas.setHorizontalAlignment(SwingConstants.CENTER);
+        lblRelatorioDePecas.setBounds(0, 0, 666, 33);
+        lblRelatorioDePecas.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        panelTitulo.add(lblRelatorioDePecas);
         
-        tabelaOs = new TabelaOs();
-        osTable = new JTable(tabelaOs);
-        
+        tabelaPeca = new TabelaPeca();
+        pecaTable = new JTable(tabelaPeca);
              
-        scrollPane.setViewportView(osTable);
+        scrollPane.setViewportView(pecaTable);
         
         painelCadastro.setLayout(gl_painelCadastro);
         
@@ -130,18 +122,17 @@ public class RelOsView extends JFrame implements ActionListener{
         painelBotoes.add(botaoCancelar);
         
         botaoImprimir.addActionListener(this);
-        botaoImprimir.setActionCommand("salvar");
+        botaoImprimir.setActionCommand("imprimir");
         botaoCancelar.addActionListener(this);
         botaoCancelar.setActionCommand("cancelar");
 
     }
-
+    
 	public void actionPerformed(ActionEvent e) {
-		
- if(e.getActionCommand().equalsIgnoreCase("cancelar")) {
- 
+
+		if (e.getActionCommand().equalsIgnoreCase("cancelar")) {
+	
 			dispose();
 		}
 	}
 }
-

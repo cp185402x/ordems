@@ -1,4 +1,4 @@
-package view;
+package view.rel;
 
 //Importando os componentes
 import java.awt.BorderLayout;
@@ -11,21 +11,19 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
-import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.LineBorder;
-
 import java.awt.Color;
 import javax.swing.ScrollPaneConstants;
 
-import model.TabelaCliente;
+import model.TabelaUsuario;
 import javax.swing.SwingConstants;
 
 //Declarando a classe na janela
-public class RelClienteView extends JFrame implements ActionListener{
+public class RelUsuarioView extends JFrame implements ActionListener{
 	//atributos globais da classe
 	JPanel painelTitulo;
 	JPanel painelCadastro;
@@ -37,11 +35,11 @@ public class RelClienteView extends JFrame implements ActionListener{
     JButton botaoImprimir;
     JButton botaoCancelar;
     
-    private JTable clienteTable;
-    TabelaCliente tabelaCliente;
+    private JTable usuarioTable;
+    TabelaUsuario tabelaUsuario;
 
-	public RelClienteView() { // construtor da view Cliente.
-        super("Relatório de Clientes");
+	public RelUsuarioView() { // construtor da view Usuario.
+        super("Relatório de Usuarios");
         setType(Type.UTILITY);
                 
         criaFormulario();
@@ -59,7 +57,7 @@ public class RelClienteView extends JFrame implements ActionListener{
         painelTitulo = new JPanel();
         painelTitulo.setLayout(new FlowLayout());
         
-        titulo = new JLabel("Relatório de Clientes");
+        titulo = new JLabel("Relatório de Usuarios");
         titulo.setFont(new Font("Arial", Font.BOLD, 14));
         
         painelTitulo.add(titulo);
@@ -105,16 +103,16 @@ public class RelClienteView extends JFrame implements ActionListener{
         );
         panelTitulo.setLayout(null);
         
-        JLabel lblRelatrrioDeClientes = new JLabel("Relatório de Clientes Cadastrados");
-        lblRelatrrioDeClientes.setHorizontalAlignment(SwingConstants.CENTER);
-        lblRelatrrioDeClientes.setBounds(0, 0, 666, 33);
-        lblRelatrrioDeClientes.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        panelTitulo.add(lblRelatrrioDeClientes);
+        JLabel lblRelatorioDeUsuarios = new JLabel("Relatório de Usuarios Cadastradas");
+        lblRelatorioDeUsuarios.setHorizontalAlignment(SwingConstants.CENTER);
+        lblRelatorioDeUsuarios.setBounds(0, 0, 666, 33);
+        lblRelatorioDeUsuarios.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        panelTitulo.add(lblRelatorioDeUsuarios);
         
-        tabelaCliente = new TabelaCliente();
-        clienteTable = new JTable(tabelaCliente);
+        tabelaUsuario = new TabelaUsuario();
+        usuarioTable = new JTable(tabelaUsuario);
              
-        scrollPane.setViewportView(clienteTable);
+        scrollPane.setViewportView(usuarioTable);
         
         painelCadastro.setLayout(gl_painelCadastro);
         
@@ -124,7 +122,7 @@ public class RelClienteView extends JFrame implements ActionListener{
         painelBotoes.add(botaoCancelar);
         
         botaoImprimir.addActionListener(this);
-        botaoImprimir.setActionCommand("salvar");
+        botaoImprimir.setActionCommand("imprimir");
         botaoCancelar.addActionListener(this);
         botaoCancelar.setActionCommand("cancelar");
 
@@ -138,4 +136,3 @@ public class RelClienteView extends JFrame implements ActionListener{
 		}
 	}
 }
-

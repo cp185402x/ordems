@@ -7,6 +7,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import view.rel.*;
+
 public class PrincipalView extends JFrame implements ActionListener{
 
 	//Cria a barra de menus
@@ -117,11 +119,6 @@ public class PrincipalView extends JFrame implements ActionListener{
 		
 		menuBar = new JMenuBar();		
 		menuAjuda = new JMenu("Ajuda");
-		/*
-		menuitemFAQ = new JMenuItem("FAQ do sistema");
-		menuitemFAQ.addActionListener(this);
-		menuitemFAQ.setActionCommand("faqSistema");
-		*/
 		menuitemSobre = new JMenuItem("Sobre");
 		menuitemSobre.addActionListener(this);
 		menuitemSobre.setActionCommand("sobreSistema");
@@ -151,7 +148,6 @@ public class PrincipalView extends JFrame implements ActionListener{
 	public void construirAjuda() {
 	
 		menuBar.add(menuAjuda);
-		//menuAjuda.add(menuitemFAQ);
 		menuAjuda.add(menuitemSobre);
 
 	}
@@ -162,7 +158,7 @@ public class PrincipalView extends JFrame implements ActionListener{
 		if(e.getActionCommand().equals("cadastrarCliente")) {
 			ClienteView cv = new ClienteView();
 			this.getContentPane().removeAll();
-			//this.getContentPane().add(cv);
+			this.getContentPane().add(cv);
 			this.revalidate();
 		    this.repaint();
 		}
@@ -170,7 +166,7 @@ public class PrincipalView extends JFrame implements ActionListener{
 		if(e.getActionCommand().equals("cadastrarFornecedor")) {
 			FornecedorView fv = new FornecedorView();
 			this.getContentPane().removeAll();
-			//this.getContentPane().add(fv);
+			this.getContentPane().add(fv);
 			this.revalidate();
 		    this.repaint();
 		}
@@ -178,7 +174,7 @@ public class PrincipalView extends JFrame implements ActionListener{
 		if(e.getActionCommand().equals("cadastrarOs")) {
 			OsView ov = new OsView();
 			this.getContentPane().removeAll();
-			//this.getContentPane().add(ov);
+			this.getContentPane().add(ov);
 			this.revalidate();
 		    this.repaint();
 		}
@@ -186,7 +182,7 @@ public class PrincipalView extends JFrame implements ActionListener{
 		if(e.getActionCommand().equals("cadastrarPeca")) {
 			PecaView pv = new PecaView();
 			this.getContentPane().removeAll();
-			//this.getContentPane().add(pv);
+			this.getContentPane().add(pv);
 			this.revalidate();
 		    this.repaint();
 		}
@@ -194,7 +190,7 @@ public class PrincipalView extends JFrame implements ActionListener{
 		if(e.getActionCommand().equals("cadastrarUsuario")) {
 			UsuarioView uv = new UsuarioView();
 			this.getContentPane().removeAll();
-			//this.getContentPane().add(uv);
+			this.getContentPane().add(uv);
 			this.revalidate();
 		    this.repaint();
 		}		
@@ -210,10 +206,10 @@ public class PrincipalView extends JFrame implements ActionListener{
 		//Menu Relatórios
 		if(e.getActionCommand().equals("relatorioCliente")) {
 			RelClienteView rc = new RelClienteView();
-			//this.getContentPane().removeAll();
-			//this.getContentPane().add(rc);
-			//this.revalidate();
-		    //this.repaint();
+			this.getContentPane().removeAll();
+			this.getContentPane().add(rc);
+			this.revalidate();
+		    this.repaint();
 		}
 		if(e.getActionCommand().equals("relatorioFornecedor")) {
 			RelFornecedorView rf = new RelFornecedorView();
@@ -226,6 +222,20 @@ public class PrincipalView extends JFrame implements ActionListener{
 			RelOsView ro = new RelOsView();
 			this.getContentPane().removeAll();
 			this.getContentPane().add(ro);
+			this.revalidate();
+		    this.repaint();
+		}
+		if(e.getActionCommand().equals("relatorioUsuario")) {
+			RelUsuarioView ru = new RelUsuarioView();
+			this.getContentPane().removeAll();
+			this.getContentPane().add(ru);
+			this.revalidate();
+		    this.repaint();
+		}
+		if(e.getActionCommand().equals("relatorioPeca")) {
+			RelPecaView rp = new RelPecaView();
+			this.getContentPane().removeAll();
+			this.getContentPane().add(rp);
 			this.revalidate();
 		    this.repaint();
 		}
