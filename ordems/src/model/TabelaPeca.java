@@ -9,11 +9,10 @@ import dao.PecaDAO;
 
 public class TabelaPeca extends AbstractTableModel{
 	
-	
 	private ArrayList<Peca> listaPeca = new ArrayList<Peca>();
 	private String [] colunas = {
 			
-			"NOME", "CUSTO", "VENDA"
+			"Cod", "None", "Custo", "Venda"
 	};
 
 	
@@ -22,7 +21,7 @@ public class TabelaPeca extends AbstractTableModel{
 		addTodos();
 	}
 
-	public String getColumnNn_usuario(int column) {
+	public String getColumnName(int column) {
 
 		return colunas[column];
 	}
@@ -39,9 +38,10 @@ public class TabelaPeca extends AbstractTableModel{
 	
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		switch(columnIndex) {
-			case 0: return listaPeca.get(rowIndex).getNm_peca();
-			case 1: return listaPeca.get(rowIndex).getVl_custo();
-			case 2: return listaPeca.get(rowIndex).getVl_venda();
+			case 0: return listaPeca.get(rowIndex).getId();
+			case 1: return listaPeca.get(rowIndex).getNm_peca();
+			case 2: return listaPeca.get(rowIndex).getVl_custo();
+			case 3: return listaPeca.get(rowIndex).getVl_venda();
 		
 		
 		}

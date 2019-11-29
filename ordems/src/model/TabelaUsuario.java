@@ -13,7 +13,7 @@ public class TabelaUsuario extends AbstractTableModel {
 	private ArrayList<Usuario> listaUsuario = new ArrayList<Usuario>();
 	private String [] colunas = {
 			
-			"Nm_usuario", "Matricula", "Cargo", "Departamento", "Status", "Senha", "Login"
+			"Nome", "Matrícula", "Cargo","Login", "Status"
 			};
 	
 	
@@ -22,7 +22,7 @@ public class TabelaUsuario extends AbstractTableModel {
 		addTodos();
 	}
 
-	public String getColumnNn_usuario(int column) {
+	public String getColumnName(int column) {
 
 		return colunas[column];
 	}
@@ -42,10 +42,8 @@ public class TabelaUsuario extends AbstractTableModel {
 			case 0: return listaUsuario.get(rowIndex).getNm_usuario();
 			case 1: return listaUsuario.get(rowIndex).getMatricula();
 			case 2: return listaUsuario.get(rowIndex).getCargo();
-			case 3: return listaUsuario.get(rowIndex).getDepartamento();
-			case 4: return listaUsuario.get(rowIndex).getStatus();
-			case 5: return listaUsuario.get(rowIndex).getLogin();
-			case 6: return listaUsuario.get(rowIndex).getSenha();
+			case 4: return listaUsuario.get(rowIndex).getLogin();
+			case 3: return listaUsuario.get(rowIndex).getStatus();
 			
 		
 		}

@@ -33,6 +33,7 @@ import model.Peca;
 import model.TabelaPeca;
 
 import java.awt.Color;
+import javax.swing.table.DefaultTableModel;
 
 //Declarando a classe na janela
 public class PecaView extends JFrame implements ActionListener{
@@ -60,14 +61,15 @@ public class PecaView extends JFrame implements ActionListener{
     JPanel 	painelBotoes;
     JButton botaoSalvar;
     JButton botaoCancelar;
+    JButton botaoBuscar;
     JButton botaoEditar;
     JButton botaoExcluir;
     
     
     private JTable pecaTable;
-    private JTextField buscarField;
 	private TabelaPeca tabelaPeca;
 	private int id;
+	private JTextField textField;
     
     public PecaView() { // construtor da view OS.
         super("Cadastro de peça");
@@ -75,7 +77,7 @@ public class PecaView extends JFrame implements ActionListener{
         
         criaFormulario();
     	this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    	this.setSize(630, 600);
+    	this.setSize(640, 600);
     	this.setVisible(true);
     	this.setLocationRelativeTo(null);
 
@@ -88,7 +90,7 @@ public class PecaView extends JFrame implements ActionListener{
         painelTitulo = new JPanel();
         painelTitulo.setLayout(new FlowLayout());
         
-        titulo = new JLabel("Cadastro de Peca");
+        titulo = new JLabel("Cadastro de Pea");
         titulo.setFont(new Font("Arial", Font.BOLD, 14));
         
         painelTitulo.add(titulo);
@@ -111,101 +113,89 @@ public class PecaView extends JFrame implements ActionListener{
         
 
         skuField = new JTextField(20);
-        skuField.setBounds(447, 137, 186, 20);
+        skuField.setBounds(251, 64, 186, 20);
         pecaPainel.add(skuField);        
         skuLabel = new JLabel("SKU");
-        skuLabel.setBounds(447, 125, 166, 14);
+        skuLabel.setBounds(252, 49, 166, 14);
         pecaPainel.add(skuLabel);
         
         nm_pecaField = new JTextField(40);
-        nm_pecaField.setBounds(10, 138, 427, 20);
+        nm_pecaField.setBounds(10, 13, 427, 20);
         pecaPainel.add(nm_pecaField);        
         nm_pecaLabel = new JLabel("Nome da Peca");
-        nm_pecaLabel.setBounds(10, 126, 368, 14);
+        nm_pecaLabel.setBounds(10, 0, 368, 14);
         pecaPainel.add(nm_pecaLabel);
        
         
-        vl_custoLabel = new JLabel("valor de custo");
-        vl_custoLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-        vl_custoLabel.setBounds(323, 10, 50, 14);
+        vl_custoLabel = new JLabel("Valor de custo");
+        vl_custoLabel.setHorizontalAlignment(SwingConstants.LEFT);
+        vl_custoLabel.setBounds(10, 49, 80, 14);
         pecaPainel.add(vl_custoLabel);
         vl_custoField = new JTextField(20);
-        vl_custoField.setBounds(373, 7, 186, 20);
+        vl_custoField.setBounds(10, 64, 186, 20);
         pecaPainel.add(vl_custoField);
         
         vl_vendaLabel = new JLabel("Valor de venda");
-        vl_vendaLabel.setBounds(10, 37, 338, 14);
+        vl_vendaLabel.setBounds(10, 105, 338, 14);
         pecaPainel.add(vl_vendaLabel);
         vl_vendaField = new JTextField(40);
-        vl_vendaField.setBounds(10, 51, 427, 20);
+        vl_vendaField.setBounds(10, 119, 186, 20);
         pecaPainel.add(vl_vendaField);
-        
-       
-        JPanel panel = new JPanel();
-        panel.setBorder(new LineBorder(Color.LIGHT_GRAY));
-        panel.setLayout(null); 
         
        
         
         //Criando a Tabela com os dados do banco
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setViewportBorder(new LineBorder(Color.LIGHT_GRAY));
+        scrollPane.setViewportBorder(new LineBorder(new Color(192, 192, 192)));
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-        
-        
-        botaoEditar = new JButton("Editar");
-        
+
+        botaoBuscar = new JButton("Buscar");        
+        botaoEditar = new JButton("Editar");        
         botaoExcluir = new JButton("Excluir");
         
-        
-        buscarField = new JTextField();
-        buscarField.setBackground(new Color(200, 250, 210));
-        buscarField.setFont(new Font("Tahoma", Font.PLAIN, 12));
-        buscarField.setColumns(10);
-    
-        JButton buscarBtn = new JButton("Buscar");
+        textField = new JTextField();
+        textField.setFont(new Font("Tahoma", Font.PLAIN, 12));
+        textField.setColumns(10);
+        textField.setBackground(new Color(250, 250, 210));
         
         GroupLayout gl_painelCadastro = new GroupLayout(painelCadastro);
         gl_painelCadastro.setHorizontalGroup(
         	gl_painelCadastro.createParallelGroup(Alignment.TRAILING)
         		.addGroup(gl_painelCadastro.createSequentialGroup()
         			.addContainerGap()
-        			.addGroup(gl_painelCadastro.createParallelGroup(Alignment.LEADING)
-        				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
-        				.addComponent(scrollPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
-        				.addGroup(Alignment.TRAILING, gl_painelCadastro.createSequentialGroup()
-        					.addComponent(buscarField, GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
-        					.addGap(18)
-        					.addComponent(buscarBtn)
-        					.addGap(18)
-        					.addComponent(botaoEditar)
-        					.addGap(18)
-        					.addComponent(botaoExcluir))
-        				.addComponent(pecaPainel, GroupLayout.PREFERRED_SIZE, 673, GroupLayout.PREFERRED_SIZE))
+        			.addGroup(gl_painelCadastro.createParallelGroup(Alignment.TRAILING, false)
+        				.addComponent(scrollPane, Alignment.LEADING)
+        				.addGroup(Alignment.LEADING, gl_painelCadastro.createParallelGroup(Alignment.TRAILING, false)
+        					.addComponent(pecaPainel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        					.addGroup(Alignment.LEADING, gl_painelCadastro.createSequentialGroup()
+        						.addComponent(textField, GroupLayout.PREFERRED_SIZE, 380, GroupLayout.PREFERRED_SIZE)
+        						.addPreferredGap(ComponentPlacement.RELATED)
+        						.addComponent(botaoBuscar, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
+        						.addPreferredGap(ComponentPlacement.RELATED)
+        						.addComponent(botaoEditar)
+        						.addPreferredGap(ComponentPlacement.RELATED)
+        						.addComponent(botaoExcluir))))
         			.addGap(18))
         );
         gl_painelCadastro.setVerticalGroup(
         	gl_painelCadastro.createParallelGroup(Alignment.TRAILING)
-        		.addGroup(gl_painelCadastro.createSequentialGroup()
+        		.addGroup(Alignment.LEADING, gl_painelCadastro.createSequentialGroup()
         			.addContainerGap()
         			.addComponent(pecaPainel, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(panel, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-        			.addPreferredGap(ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
         			.addGroup(gl_painelCadastro.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(buscarField, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(botaoExcluir)
+        				.addComponent(textField, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(botaoBuscar)
         				.addComponent(botaoEditar)
-        				.addComponent(buscarBtn))
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 190, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(botaoExcluir))
+        			.addPreferredGap(ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+        			.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 298, GroupLayout.PREFERRED_SIZE)
         			.addContainerGap())
         );
       //fazendo a ligação do modelo de tabela com o componente visual de janela
         tabelaPeca = new TabelaPeca();
         pecaTable = new JTable(tabelaPeca);
-        
              
         scrollPane.setViewportView(pecaTable);
         
@@ -227,35 +217,7 @@ public class PecaView extends JFrame implements ActionListener{
         
 
     }
-    
-       
-//	public void actionPerformed(ActionEvent e) {
-//		
-//		if(e.getActionCommand().equalsIgnoreCase("salvar")) {
-//			Peca p = new Peca();
-//			
-//			//Nome da peça
-//			p.setNm_peca(nm_pecaField.getText());			
-//			//Valor de custo
-//			p.setVl_custo(vl_custoField.getText());			
-//			//Valor de venda
-//			p.setVl_venda(vl_vendaField .getText());
-//
-//			
-//			PecaController controlePeca = new PecaController();
-//			try {
-//				if(controlePeca.cadastrarPeca(p) == true) {
-//					JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
-//				}
-//			} catch (SQLException e1) {
-//				e1.printStackTrace();
-//				JOptionPane.showMessageDialog(null, "Erro ao realizar cadastro!");
-//			}
-//		}
-//		else if(e.getActionCommand().equalsIgnoreCase("cancelar")) {
-// 
-//			dispose();
-    
+        
     	public void actionPerformed(ActionEvent e) {
 		
 		if(e.getActionCommand().equalsIgnoreCase("salvar")) {
@@ -263,8 +225,6 @@ public class PecaView extends JFrame implements ActionListener{
 			Peca p = new Peca();
 			
 			//Tratar a ação de salvar o peca
-			
-			//Tipo
 			
 			//nome
 			p.setNm_peca(nm_pecaField.getText());			
@@ -295,7 +255,7 @@ public class PecaView extends JFrame implements ActionListener{
 				}
 			}
 			else if(op == 1)
-			{ //ATUALIZAR O Peca
+			{ //Atualizar peça
 				p.setId(this.id);
 				PecaController controlePeca = new PecaController();
 				try {
@@ -305,7 +265,6 @@ public class PecaView extends JFrame implements ActionListener{
 						this.repaint();
 					}
 				} catch (HeadlessException | SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 					JOptionPane.showMessageDialog(null, "Ops, houve um ao efetuar o cadastro!");
 				}				
@@ -351,19 +310,14 @@ public class PecaView extends JFrame implements ActionListener{
 		Peca p = tabelaPeca.getPeca(linha);
 		
 		//preencher os campos com os dados do peca selecionado
-		
-		
 		this.id =p.getId(); 
 		nm_pecaField.setText(p.getNm_peca());
 		vl_vendaField.setText(p.getVl_venda());
 		vl_custoField.setText(p.getVl_custo());
+
+		}
 		
-		
-	
-		
-	}
-		
-	}
+    }
 }
 	 
 

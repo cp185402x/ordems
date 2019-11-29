@@ -23,7 +23,6 @@ public class UsuarioDAO {
 	Connection conn = null;
 	PreparedStatement st = null;
 	
-	
 	public void inserir(Usuario usuario) throws SQLException {
 				
 		conn = (Connection) Conexao.getConexao();
@@ -35,7 +34,6 @@ public class UsuarioDAO {
 					+ "VALUES "
 					+ "(?, ?, ?, ?, ?, ?, ?)");
 		}
-		//st.setInt(1, 1006);
 		st.setString(1, usuario.getNm_usuario());
 		st.setString(2, usuario.getCargo());
 		st.setString(3, usuario.getDepartamento());
@@ -59,7 +57,7 @@ public class UsuarioDAO {
 				
 				if(conn != null) {
 					st = (PreparedStatement) conn.prepareStatement(
-							"SELECT * FROM usuario order by id_usuario desc limit 25");
+							"SELECT * FROM usuario ORDER BY id_usuario DESC LIMIT 100");
 				}
 				
 
@@ -70,9 +68,9 @@ public class UsuarioDAO {
 		            Usuario usuario = new Usuario();
 
 		           usuario.setNm_usuario(rs.getString("nm_usuario"));
-		           usuario.setMatricula(rs.getString("matricula"));
 		           usuario.setCargo(rs.getString("cargo"));
 		           usuario.setDepartamento(rs.getString("departamento"));
+		           usuario.setMatricula(rs.getString("matricula"));
 		           usuario.setStatus(rs.getInt("status"));
 		          
 		           lista.add(usuario);

@@ -34,7 +34,6 @@ public class Usuario {
 		return matricula;
 	}
 	
-	
 	public String getLogin() {
 		return login;
 	}
@@ -58,17 +57,8 @@ public class Usuario {
 		this.matricula = matricula;
 	}
 	public void setStatus(String text) {
-		// TODO Auto-generated method stub
 		
 	}
-		
-	
 	
 }
-
-    
-    //Construtor
-   
-		
-	
     

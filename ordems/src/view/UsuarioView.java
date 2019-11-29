@@ -13,20 +13,15 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.JRadioButton;
-import javax.swing.SwingConstants;
 import javax.swing.JTable;
-import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.ScrollPaneConstants;
 
-import controller.ClienteController;
 import controller.UsuarioController;
 import model.Usuario;
 import model.TabelaUsuario;
@@ -38,20 +33,8 @@ public class UsuarioView extends JFrame implements ActionListener{
 	JPanel painelCadastro;
 	JLabel titulo;
 	
-	//JRadioButton cnpjRadio;
-	//JRadioButton cpfRadio;
-	//ButtonGroup tipoGrupo;
-	
     JLabel nm_usuarioLabel;
     JTextField nm_usuarioField;
-    
-    //JLabel dataNascLabel;
-    //JTextField dataNascField;
-    
-    //JTextField docField;
-    
-    //JLabel rgieLabel;
-    //JTextField rgieField;
 
     JLabel departamentoLabel;
     JTextField departamentoField;
@@ -68,26 +51,14 @@ public class UsuarioView extends JFrame implements ActionListener{
     JLabel senhaLabel;
     JTextField senhaField;
     
-    //JLabel enderecoLabel;
-    //JTextField enderecoField;
-    
-    //JLabel numeroLabel;
-    //JTextField numeroField;
-    
     JLabel statusLabel;
     JTextField statusField;
     
-    //JLabel bairroLabel;
-    //JTextField bairroField;
-    
-    //JLabel cidadeLabel;
-    //JTextField cidadeField;
-    
-    //JLabel estadoLabel;
-    //JTextField estadoField;
-    
     //Inicia o painel dos botoes
     JPanel painelBotoes;
+    JButton botaoBuscar;
+    JButton botaoEditar;
+    JButton botaoExcluir;
     JButton botaoSalvar;
     JButton botaoCancelar;
     
@@ -97,7 +68,7 @@ public class UsuarioView extends JFrame implements ActionListener{
     private JTextField buscarField;
 
 	public UsuarioView() { // construtor da view Usuario.
-        super("Cadastro de Usuario");
+        super("Cadastro de Usuário");
         setType(Type.UTILITY);
                 
         criaFormulario();
@@ -115,7 +86,7 @@ public class UsuarioView extends JFrame implements ActionListener{
         painelTitulo = new JPanel();
         painelTitulo.setLayout(new FlowLayout());
         
-        titulo = new JLabel("Cadastro de Uusuario");
+        titulo = new JLabel("Cadastro de Usuário");
         titulo.setFont(new Font("Arial", Font.BOLD, 14));
         
         painelTitulo.add(titulo);
@@ -148,16 +119,14 @@ public class UsuarioView extends JFrame implements ActionListener{
         usuarioPainel.add(matriculaField);        
         matriculaLabel = new JLabel("Matricula");
         matriculaLabel.setBounds(10, 126, 368, 14);
-        usuarioPainel.add(matriculaLabel);
-        
+        usuarioPainel.add(matriculaLabel);        
                
         nm_usuarioLabel = new JLabel("Usuário");
         nm_usuarioLabel.setBounds(10, 37, 338, 14);
         usuarioPainel.add(nm_usuarioLabel);
         nm_usuarioField = new JTextField(50);
         nm_usuarioField.setBounds(10, 51, 427, 20);
-        usuarioPainel.add(nm_usuarioField);
-        
+        usuarioPainel.add(nm_usuarioField);        
                       
         cargoField = new JTextField(20);
         cargoField.setBounds(10, 95, 186, 20);
@@ -171,64 +140,22 @@ public class UsuarioView extends JFrame implements ActionListener{
         usuarioPainel.add(departamentoField);        
         departamentoLabel = new JLabel("Departamento");
         departamentoLabel.setBounds(206, 82, 162, 14);
-        usuarioPainel.add(departamentoLabel);
+        usuarioPainel.add(departamentoLabel);   
         
-        JPanel panel = new JPanel();
-        panel.setBorder(new LineBorder(Color.LIGHT_GRAY));
-        panel.setLayout(null); 
+        statusField = new JTextField(20);
+        statusField.setBounds(402, 95, 186, 20);
+        usuarioPainel.add(statusField);
+        statusLabel = new JLabel("Status");
+        statusLabel.setBounds(402, 82, 186, 14);
+        usuarioPainel.add(statusLabel);
         
         senhaField = new JTextField(10);
-        senhaField.setBounds(10, 25, 186, 20);
-        panel.add(senhaField);        
+        senhaField.setBounds(402, 137, 188, 20);
+        usuarioPainel.add(senhaField);
         senhaLabel = new JLabel("Senha");
-        senhaLabel.setBounds(10, 11, 86, 14);
-        panel.add(senhaLabel);
-        
-        /*
-        enderecoField = new JTextField(40);
-        enderecoField.setBounds(175, 25, 369, 20);
-        panel.add(enderecoField);        
-        enderecoLabel = new JLabel("Endereço");
-        enderecoLabel.setBounds(175, 11, 369, 14);
-        panel.add(enderecoLabel);
-        
-        numeroField = new JTextField(10);
-        numeroField.setBounds(554, 25, 79, 20);
-        panel.add(numeroField);        
-        numeroLabel = new JLabel("Número");
-        numeroLabel.setBounds(554, 11, 65, 14);
-        panel.add(numeroLabel);
-        */
-        statusField = new JTextField(20);
-        statusField.setBounds(10, 69, 186, 20);
-        panel.add(statusField);        
-        statusLabel = new JLabel("Status");
-        statusLabel.setBounds(10, 56, 127, 14);
-        panel.add(statusLabel);
-        
-        /*
-        bairroField = new JTextField(20);
-        bairroField.setBounds(175, 69, 180, 20);
-        panel.add(bairroField);               
-        bairroLabel = new JLabel("Bairro");
-        bairroLabel.setBounds(175, 56, 166, 14);
-        panel.add(bairroLabel);
-        
-        cidadeField = new JTextField(20);
-        cidadeField.setBounds(365, 69, 179, 20);
-        panel.add(cidadeField);        
-        cidadeLabel = new JLabel("Cidade");
-        cidadeLabel.setBounds(365, 56, 166, 14);
-        panel.add(cidadeLabel);
-        
-        estadoLabel = new JLabel("Estado");
-        estadoLabel.setBounds(554, 56, 65, 14);
-        panel.add(estadoLabel);
-        estadoField = new JTextField(10);
-        estadoField.setBounds(554, 69, 79, 20);
-        panel.add(estadoField);
-        */
-        
+        senhaLabel.setBounds(402, 123, 188, 14);
+        usuarioPainel.add(senhaLabel);
+
         //Criando a Tabela com os dados do banco
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setViewportBorder(new LineBorder(Color.LIGHT_GRAY));
@@ -236,53 +163,50 @@ public class UsuarioView extends JFrame implements ActionListener{
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         
         
-        JButton editarBtn = new JButton("Editar");
-        
-        JButton excluirBtn = new JButton("Excluir");
+        botaoBuscar = new JButton("Buscar");        
+        botaoEditar = new JButton("Editar");
+        botaoExcluir = new JButton("Excluir");
         
         buscarField = new JTextField();
         buscarField.setBackground(new Color(250, 250, 210));
         buscarField.setFont(new Font("Tahoma", Font.PLAIN, 12));
         buscarField.setColumns(10);
-        
-        JButton buscarBtn = new JButton("Buscar");
+
         
         GroupLayout gl_painelCadastro = new GroupLayout(painelCadastro);
         gl_painelCadastro.setHorizontalGroup(
         	gl_painelCadastro.createParallelGroup(Alignment.TRAILING)
-        		.addGroup(gl_painelCadastro.createSequentialGroup()
+        		.addGroup(Alignment.LEADING, gl_painelCadastro.createSequentialGroup()
         			.addContainerGap()
         			.addGroup(gl_painelCadastro.createParallelGroup(Alignment.LEADING)
-        				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
-        				.addComponent(scrollPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
-        				.addGroup(Alignment.TRAILING, gl_painelCadastro.createSequentialGroup()
-        					.addComponent(buscarField, GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
+        				.addComponent(scrollPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE)
+        				.addComponent(usuarioPainel, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 643, GroupLayout.PREFERRED_SIZE)
+        				.addGroup(gl_painelCadastro.createSequentialGroup()
+        					.addComponent(buscarField, GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         					.addGap(18)
-        					.addComponent(buscarBtn)
+        					.addComponent(botaoBuscar)
         					.addGap(18)
-        					.addComponent(editarBtn)
+        					.addComponent(botaoEditar)
         					.addGap(18)
-        					.addComponent(excluirBtn))
-        				.addComponent(usuarioPainel, GroupLayout.PREFERRED_SIZE, 643, GroupLayout.PREFERRED_SIZE))
+        					.addComponent(botaoExcluir)))
         			.addGap(18))
         );
         gl_painelCadastro.setVerticalGroup(
         	gl_painelCadastro.createParallelGroup(Alignment.TRAILING)
-        		.addGroup(gl_painelCadastro.createSequentialGroup()
+        		.addGroup(Alignment.LEADING, gl_painelCadastro.createSequentialGroup()
         			.addContainerGap()
         			.addComponent(usuarioPainel, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(panel, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-        			.addPreferredGap(ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
         			.addGroup(gl_painelCadastro.createParallelGroup(Alignment.BASELINE)
         				.addComponent(buscarField, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(excluirBtn)
-        				.addComponent(editarBtn)
-        				.addComponent(buscarBtn))
+        				.addComponent(botaoExcluir)
+        				.addComponent(botaoEditar)
+        				.addComponent(botaoBuscar))
         			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 188, GroupLayout.PREFERRED_SIZE)
+        			.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
         			.addContainerGap())
         );
+
 
         
         tabelaUsuario = new TabelaUsuario();
@@ -313,9 +237,7 @@ public class UsuarioView extends JFrame implements ActionListener{
 			Usuario u = new Usuario();
 			
 			//Tratar a ação de salvar o cliente
-			
-			//Tipo
-			//System.out.println("cargo: " +u.getCargo());
+
 			//nome
 			u.setNm_usuario(nm_usuarioField.getText());			
 			//documento
@@ -330,10 +252,6 @@ public class UsuarioView extends JFrame implements ActionListener{
 			u.setSenha(senhaField.getText());
 			//pessoa contato
 			u.setStatus(statusField.getText());
-			
-			
-			
-				
 			
 			UsuarioController controleUsuario = new UsuarioController();
 			try {
@@ -355,5 +273,3 @@ public class UsuarioView extends JFrame implements ActionListener{
 		}
 	}
 }
-//
-
