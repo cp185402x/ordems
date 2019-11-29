@@ -19,7 +19,7 @@ public class OsDAO {
 	Connection conn = null;
 	PreparedStatement st = null;
 	
-	
+	//.
 	public void inserir(Os os) throws SQLException {
 				
 		conn = (Connection) Conexao.getConexao();
@@ -75,7 +75,7 @@ public class OsDAO {
 
 	           os.setId_os(rs.getInt("id_os"));
 	           os.setData_os(rs.getString("data_os"));
-	           os.setCliente_id(rs.getInt("cliente_id"));
+	           os.getCliente().setId(rs.getInt("cliente_id"));
 	           os.setMarca(rs.getString("marca"));
 	           os.setModelo(rs.getString("modelo"));
 	           lista.add(os);

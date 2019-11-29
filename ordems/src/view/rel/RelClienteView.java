@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.GroupLayout;
@@ -19,7 +20,10 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.ScrollPaneConstants;
 
+import model.Cliente;
 import model.TabelaCliente;
+import view.OsView;
+import model.Os;
 import javax.swing.SwingConstants;
 
 //Declarando a classe na janela
@@ -32,24 +36,27 @@ public class RelClienteView extends JFrame implements ActionListener{
     
     //Inicia o painel dos botoes
     JPanel painelBotoes;
-    JButton botaoImprimir;
+    JButton botao;
     JButton botaoCancelar;
     
     private JTable clienteTable;
     TabelaCliente tabelaCliente;
+    
+    private Os ordemServico;
 
-	public RelClienteView() { // construtor da view Cliente.
-        super("Relatório de Clientes");
+	public RelClienteView(String nomeBotao, Os os) { // construtor da view Cliente.
+		super("Relatório de Clientes");
         setType(Type.UTILITY);
-                
-        criaFormulario();
+        this.ordemServico = os;
+        
+        criaFormulario(nomeBotao);
     	this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     	this.setSize(680, 600);
     	this.setVisible(true);
     	this.setLocationRelativeTo(null);
     }
     
-    private void criaFormulario() {
+    private void criaFormulario(String nomeBotao) {
         
         getContentPane().setLayout(new BorderLayout());
         
@@ -68,9 +75,6 @@ public class RelClienteView extends JFrame implements ActionListener{
         //Inicia o painel dos botoes
         painelBotoes = new JPanel();
         painelBotoes.setLayout(new FlowLayout());
-        
-        botaoImprimir = new JButton("Imprimir");
-        botaoCancelar = new JButton("Cancelar");
         
         getContentPane().add(painelCadastro, BorderLayout.WEST);
         
@@ -118,11 +122,20 @@ public class RelClienteView extends JFrame implements ActionListener{
         
         getContentPane().add(painelBotoes, BorderLayout.SOUTH);
         
-        painelBotoes.add(botaoImprimir);
+        if(nomeBotao.equalsIgnoreCase("imprimir")) {
+        	botao = new JButton("Imprimir");
+        	botao.setActionCommand("imprimir");
+        }
+        else if(nomeBotao.equalsIgnoreCase("selecionar")) {
+        	botao = new JButton("Selecionar");
+        	botao.setActionCommand("selecionar");
+        }
+        botao.addActionListener(this);
+        botaoCancelar = new JButton("Cancelar");
+        
+        painelBotoes.add(botao);
         painelBotoes.add(botaoCancelar);
         
-        botaoImprimir.addActionListener(this);
-        botaoImprimir.setActionCommand("salvar");
         botaoCancelar.addActionListener(this);
         botaoCancelar.setActionCommand("cancelar");
 
@@ -133,6 +146,20 @@ public class RelClienteView extends JFrame implements ActionListener{
 		if (e.getActionCommand().equalsIgnoreCase("cancelar")) {
 	
 			dispose();
+		}
+		else if(e.getActionCommand().equalsIgnoreCase("selecionar")) {
+			JOptionPane.showMessageDialog(null, "No selecionar");
+			int linha = clienteTable.getSelectedRow();
+			this.ordemServico.setCliente(tabelaCliente.getCliente(linha));
+			this.setVisible(false);
+			this.dispose();
+			
+			OsView ov = new OsView(this.ordemServico);
+			this.getContentPane().removeAll();
+			this.getContentPane().add(ov);
+			this.revalidate();
+		    this.repaint();
+			
 		}
 	}
 }

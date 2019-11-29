@@ -4,7 +4,7 @@ public class Os {
 	
 	///Atributos
 
-	private int cliente_id;
+	private Cliente cliente;
 	private int usuario_id;
     private String data_os;
     private String data_previsao;
@@ -23,17 +23,21 @@ public class Os {
     private String status_id;
     private int id_os;
     
+    public Os() {
+    	this.cliente = new Cliente();
+    }
+    
 	public int getId_os() {
 		return id_os;
 	}
 	public void setId_os(int id_os) {
 		this.id_os = id_os;
 	}
-	public int getCliente_id() {
-		return cliente_id;
+	public Cliente getCliente() {
+		return cliente;
 	}
-	public void setCliente_id(int cliente_id) {
-		this.cliente_id = cliente_id;
+	public void setCliente(Cliente cliente_id) {
+		this.cliente = cliente_id;
 	}
 	public int getUsuario_id() {
 		return usuario_id;

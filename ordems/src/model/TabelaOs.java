@@ -40,7 +40,7 @@ public class TabelaOs extends AbstractTableModel{
 		switch(columnIndex) {
 			case 0: return listaOs.get(rowIndex).getId_os();
 			case 1: return listaOs.get(rowIndex).getData_os();
-			case 2: return listaOs.get(rowIndex).getCliente_id();
+			case 2: return listaOs.get(rowIndex).getCliente().getId();
 			case 3: return listaOs.get(rowIndex).getMarca();
 			case 4: return listaOs.get(rowIndex).getModelo();
 		
@@ -51,9 +51,9 @@ public class TabelaOs extends AbstractTableModel{
 	
 	public void addTodos() {
 		this.listaOs.clear();
-		OsDAO cd = new OsDAO();
+		OsDAO od = new OsDAO();
 		try {
-			this.listaOs.addAll(cd.consultar());
+			this.listaOs.addAll(od.consultar());
 		} catch (SQLException e) {
 			
 			e.printStackTrace();

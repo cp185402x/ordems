@@ -172,7 +172,7 @@ public class PrincipalView extends JFrame implements ActionListener{
 		}
 
 		if(e.getActionCommand().equals("cadastrarOs")) {
-			OsView ov = new OsView();
+			OsView ov = new OsView(null);
 			this.getContentPane().removeAll();
 			this.getContentPane().add(ov);
 			this.revalidate();
@@ -205,7 +205,7 @@ public class PrincipalView extends JFrame implements ActionListener{
 		
 		//Menu Relatórios
 		if(e.getActionCommand().equals("relatorioCliente")) {
-			RelClienteView rc = new RelClienteView();
+			RelClienteView rc = new RelClienteView("imprimir", null);
 			this.getContentPane().removeAll();
 			this.getContentPane().add(rc);
 			this.revalidate();

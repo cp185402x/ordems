@@ -52,7 +52,7 @@ public class PecaDAO {
 					"UPDATE peca SET "
 					+ " nm_peca = ?,"
 					+ " vl_custo = ?,"
-					+ " vl_venda = ?,"					
+					+ " vl_venda = ?"					
 					+ " WHERE id_peca = " + peca.getId() + ";"
 					);
 		}
