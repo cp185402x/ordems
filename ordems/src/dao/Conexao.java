@@ -17,8 +17,20 @@ public class Conexao {
 		try {
 			//Class.forName(driverName);
 			
-			/*String databasehost = "localhost:3307";*/
+			//Bancod de dados em localhost	
 			
+			String databasehost = "191.252.119.241:3306";
+			
+			String database = "link8_ordems_db";
+			
+			String url = "jdbc:mysql://" + databasehost + "/" + database;
+			
+			String userName = "link8_ordems";
+			
+			String password = "h^QoUJzte#n{";
+			
+			/* Banco de dados no google cloud plataform
+			 * 
 			String databasehost = "35.247.221.35:3306";
 			
 			String database = "ordems_db";
@@ -29,6 +41,7 @@ public class Conexao {
 			
 			String password = "100";
 			
+			 */
 			conn = DriverManager.getConnection(url,userName,password);
 			
 			if(conn != null)
@@ -38,13 +51,13 @@ public class Conexao {
 				System.out.println("Não conectado.");
 			}
 			return conn;
-			
+	
 		} 
 		catch (SQLException e) {
 
 			//System.out.println("Erro ao conectar-se com o banco de dados.");
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Erro ao conectar-se com o banco de dados, contate o suporte!");
+			JOptionPane.showMessageDialog(null, "Falha ao conectar-se com o banco de dados, contate o suporte!", "Error!", JOptionPane.ERROR_MESSAGE);
 			
 			return null;
 		}
