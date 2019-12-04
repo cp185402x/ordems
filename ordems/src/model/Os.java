@@ -6,6 +6,7 @@ public class Os {
 
 	private Cliente cliente;
 	private int usuario_id;
+	private int cliente_id;
     private String data_os;
     private String data_previsao;
     private String data_pronto;
@@ -138,6 +139,14 @@ public class Os {
 	public String getId() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public int getCliente_id() {
+		return cliente_id;
+	}
+
+	public void setCliente_id(int cliente_id) {
+		this.cliente_id = cliente_id;
 	}
     
     }

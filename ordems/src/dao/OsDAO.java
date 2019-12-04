@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
+import model.Cliente;
 import model.Os;
 import dao.Conexao;
 
@@ -48,7 +49,7 @@ public class OsDAO {
 		st.setString(14, os.getInfo_entrega());
 		st.setString(15, os.getInfo_interna());
 		st.setString(16, os.getStatus_id());
-		
+		System.out.println(os);
 		st.execute();
 		
 		conn.close();
@@ -89,6 +90,59 @@ public class OsDAO {
 			
 		}
 		
+		public void atualizar(Os os) throws SQLException {
+			
+			conn = (Connection) Conexao.getConexao();
+			
+			if(conn != null) {
+				st = (PreparedStatement) conn.prepareStatement(
+						"UPDATE os SET "
+						+ " usuario_id = ?,"
+						+ " cliente_id = ?,"
+						+ " data_os = ?,"
+						+ " data_previsao = ?,"
+						+ " data_pronto = ?,"
+						+ " data_entrega = ?,"
+						+ " tipo = ?,"
+						+ " modelo = ?,"
+						+ " marca = ?,"
+						+ " cor = ?,"
+						+ " serie = ?,"
+						+ " garantia = ?,"
+						+ " info_cliente = ?,"
+						+ " info_tecnico = ?,"
+						+ " info_entrega = ?,"
+						+ " info_interna = ? "
+						+ " status_id = ? "
+						+ " WHERE id_os = " + os.getId() + ";"
+						);
+			}
+			
+			
+			st.setInt(1, os.getUsuario_id());
+			st.setInt(2, os.getCliente_id());
+			st.setString(3, os.getData_os());
+			st.setString(4, os.getData_previsao());
+			st.setString(5, os.getData_pronto());
+			st.setString(6, os.getData_entrega());
+			st.setString(7, os.getTipo());
+			st.setString(8, os.getModelo());
+			st.setString(9, os.getMarca());
+			st.setString(10, os.getCor());
+			st.setString(11, os.getSerie());
+			st.setInt(12, os.getGarantia());
+			st.setString(13, os.getInfo_cliente());
+			st.setString(14, os.getInfo_tecnico());
+			st.setString(15, os.getInfo_entrega());
+			st.setString(16, os.getInfo_interna());
+			st.setString(16, os.getStatus_id());
+			System.out.println(os);
+			
+			st.executeUpdate();
+
+			conn.close();
+		}
+		
 	//Deletar registro
 		public void excluir (int id) throws SQLException {
 			conn = (Connection) Conexao.getConexao();
@@ -103,9 +157,8 @@ public class OsDAO {
 			
 		}
 
-		public void atualizar(Os o) {
-			// TODO Auto-generated method stub
+	
 			
 		}
-        }
+        
 
