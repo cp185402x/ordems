@@ -146,7 +146,7 @@ public class OsDAO {
 	//Deletar registro
 		public void excluir (int id) throws SQLException {
 			conn = (Connection) Conexao.getConexao();
-			
+			System.out.println(id);
 			if(conn != null) {
 				st = (PreparedStatement) conn.prepareStatement(
 						"DELETE FROM os WHERE id_os = " + id + ";");

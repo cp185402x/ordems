@@ -373,7 +373,7 @@ public class OsView extends JFrame implements ActionListener{
     
 	
 		
-	
+	//Salvar (Cadastro)
 
 	public void actionPerformed(ActionEvent e) {
 		
@@ -431,16 +431,16 @@ public class OsView extends JFrame implements ActionListener{
 			
 			
     
-    
-//public void actionPerformed(ActionEvent e) {
+    //Salvar(Editar)
+
 		
 		else if(e.getActionCommand().equalsIgnoreCase("salvar")) {
 			
 			Os o = new Os();
 			
 			
-			}
-			Os o;
+			
+			 
 			//Tipo
 			System.out.println("Tipo: " +o.getTipo());
 			//documento
@@ -514,7 +514,7 @@ public class OsView extends JFrame implements ActionListener{
 	else if(e.getActionCommand().equals("excluir")) {
 				//tratar a exclusão
 				int linha = osTable.getSelectedRow();
-				Os o = tabelaOs.getOs(linha);
+				o = tabelaOs.getOs(linha);
 		
 		OsController controleOs = new OsController();
 	try {
@@ -533,7 +533,7 @@ public class OsView extends JFrame implements ActionListener{
 	else if(e.getActionCommand().equals("editar")) {
 		JOptionPane.showMessageDialog(null, "Deseja realmente editar o cadastro?");
 		int linha = osTable.getSelectedRow();
-		Os o = tabelaOs.getOs(linha);
+		 o = tabelaOs.getOs(linha);
 		
 		//preencher os campos com os dados do cliente selecionado
 		//if(c.getTipo() == 0) cpfRadio.setEnabled(true);
@@ -561,4 +561,5 @@ public class OsView extends JFrame implements ActionListener{
 		
 	}
 
+}
 }
