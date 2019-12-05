@@ -27,14 +27,14 @@ public class OsDAO {
 		
 		if(conn != null) {
 			st = (PreparedStatement) conn.prepareStatement(
-					"INSERT INTO Os"
+					"INSERT INTO os"
 					+ "(usuario_id, cliente_id, data_previsao, data_pronto, data_entrega, tipo, modelo, marca, cor, serie, garantia, info_cliente, info_tecnico, info_entrega, info_interna, status_id) "
 					+ "VALUES "
 					+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		}
 		
-		st.setInt(1, 1007); //mudar aqui para associar o id do usuário		
-		st.setInt(2, 1);
+		st.setInt(1,os.getUsuario_id());
+		st.setInt(2, os.getCliente_id());
 		st.setString(3, os.getData_previsao());
 		st.setString(4, os.getData_pronto());
 		st.setString(5, os.getData_entrega());
@@ -74,7 +74,7 @@ public class OsDAO {
 			while (rs.next()) {
 	            Os os = new Os();
 
-	           os.setId_os(rs.getInt("id_os"));
+	           os.setId(rs.getInt("id_os"));
 	           os.setData_os(rs.getString("data_os"));
 	           os.getCliente().setId(rs.getInt("cliente_id"));
 	           os.setMarca(rs.getString("marca"));

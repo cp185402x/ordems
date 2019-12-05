@@ -38,7 +38,7 @@ public class TabelaOs extends AbstractTableModel{
 	
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		switch(columnIndex) {
-			case 0: return listaOs.get(rowIndex).getId_os();
+			case 0: return listaOs.get(rowIndex).getId();
 			case 1: return listaOs.get(rowIndex).getData_os();
 			case 2: return listaOs.get(rowIndex).getCliente().getId();
 			case 3: return listaOs.get(rowIndex).getMarca();

@@ -52,7 +52,7 @@ public class OsController {
 		return true;
 	}
 		public boolean atualizarOs(Os o) throws SQLException {
-			System.out.println("ID = " + o.getId_os());
+			System.out.println("ID = " + o.getId());
 			OsDAO osDAO = new OsDAO();
 			osDAO.atualizar(o);
 			

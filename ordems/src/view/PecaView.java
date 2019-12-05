@@ -57,6 +57,8 @@ public class PecaView extends JFrame implements ActionListener{
 	JLabel		vl_vendaLabel;
 	JTextField 	vl_vendaField;	
 	
+	
+	
     //Inicia o painel dos botoes
     JPanel 	painelBotoes;
     JButton botaoSalvar;
@@ -232,6 +234,8 @@ public class PecaView extends JFrame implements ActionListener{
 			p.setVl_venda(vl_vendaField.getText());			
 			//RGIE
 			p.setVl_custo(vl_custoField.getText());
+			//sku
+			p.setSku(skuField.getText());
 			
 			
 			Object[] opcoes = {"Salvar como novo cadastro", "Atualizar", "Limpar todos campos"};
@@ -276,7 +280,7 @@ public class PecaView extends JFrame implements ActionListener{
 				nm_pecaField.setText("");
 				vl_vendaField.setText("");
 				vl_custoField.setText("");
-				
+				skuField.setText("");
 				
 			}
 	
@@ -314,7 +318,7 @@ public class PecaView extends JFrame implements ActionListener{
 		nm_pecaField.setText(p.getNm_peca());
 		vl_vendaField.setText(p.getVl_venda());
 		vl_custoField.setText(p.getVl_custo());
-
+		skuField.setText(p.getSku());
 		}
 		
     }

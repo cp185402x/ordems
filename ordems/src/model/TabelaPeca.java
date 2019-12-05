@@ -12,7 +12,7 @@ public class TabelaPeca extends AbstractTableModel{
 	private ArrayList<Peca> listaPeca = new ArrayList<Peca>();
 	private String [] colunas = {
 			
-			"Cod", "None", "Custo", "Venda"
+			"Cod", "None", "Custo", "Venda","Sku"
 	};
 
 	
@@ -42,7 +42,7 @@ public class TabelaPeca extends AbstractTableModel{
 			case 1: return listaPeca.get(rowIndex).getNm_peca();
 			case 2: return listaPeca.get(rowIndex).getVl_custo();
 			case 3: return listaPeca.get(rowIndex).getVl_venda();
-		
+			case 4: return listaPeca.get(rowIndex).getSku();
 		
 		}
 		return null;

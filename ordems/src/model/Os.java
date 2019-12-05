@@ -3,7 +3,7 @@ package model;
 public class Os {
 	
 	///Atributos
-
+	private int id;
 	private Cliente cliente;
 	private int usuario_id;
 	private int cliente_id;
@@ -22,18 +22,13 @@ public class Os {
     private String info_entrega;
     private String info_interna;
     private String status_id;
-    private int id_os;
+
     
     public Os() {
     	this.cliente = new Cliente();
     }
-    
-	public int getId_os() {
-		return id_os;
-	}
-	public void setId_os(int id_os) {
-		this.id_os = id_os;
-	}
+   
+	
 	public Cliente getCliente() {
 		return cliente;
 	}
@@ -136,10 +131,7 @@ public class Os {
 	public void setStatus_id(String status_id) {
 		this.status_id = status_id;
 	}
-	public String getId() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	public int getCliente_id() {
 		return cliente_id;
@@ -148,5 +140,18 @@ public class Os {
 	public void setCliente_id(int cliente_id) {
 		this.cliente_id = cliente_id;
 	}
+
+
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+	
     
     }

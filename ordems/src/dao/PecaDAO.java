@@ -27,14 +27,14 @@ public class PecaDAO {
 		if(conn != null) {
 			st = (PreparedStatement) conn.prepareStatement(
 					"INSERT INTO peca"
-					+ "( nm_peca, vl_custo, vl_venda) "
+					+ "( nm_peca, vl_custo, vl_venda,sku) "
 					+ "VALUES "
-					+ "(?, ?, ?)");
+					+ "(?, ?, ?, ?)");
 		}
 		st.setString(1, peca.getNm_peca());
 		st.setString(2, peca.getVl_custo());
 		st.setString(3, peca.getVl_venda());
-		
+		st.setString(4, peca.getSku());
 		st.execute();
 		
 		conn.close();
@@ -52,7 +52,8 @@ public class PecaDAO {
 					"UPDATE peca SET "
 					+ " nm_peca = ?,"
 					+ " vl_custo = ?,"
-					+ " vl_venda = ?"					
+					+ " vl_venda = ?,"
+					+ "sku = ?"
 					+ " WHERE id_peca = " + peca.getId() + ";"
 					);
 		}
@@ -60,6 +61,7 @@ public class PecaDAO {
 		st.setString(1, peca.getNm_peca());
 		st.setString(2, peca.getVl_custo());
 		st.setString(3, peca.getVl_venda());
+		st.setString(4, peca.getSku());
 		
 		System.out.println(peca);
 		
@@ -89,6 +91,7 @@ public class PecaDAO {
 		           peca.setNm_peca(rs.getString("nm_peca"));
 		           peca.setVl_custo(rs.getString("vl_custo"));
 		           peca.setVl_venda(rs.getString("vl_venda"));
+		           peca.setSku(rs.getString("sku"));
 		           lista.add(peca);
 
 		           

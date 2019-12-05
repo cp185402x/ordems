@@ -7,7 +7,14 @@ public class Peca {
 	private String nm_peca;
     private String vl_custo;
     private String vl_venda;
-	
+    private String sku;
+    
+	public String getSku() {
+		return sku;
+	}
+	public void setSku(String sku) {
+		this.sku = sku;
+	}
 	public  String getNm_peca() {
 		return nm_peca;
 	}

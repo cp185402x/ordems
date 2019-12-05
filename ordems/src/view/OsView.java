@@ -105,6 +105,7 @@ public class OsView extends JFrame implements ActionListener{
     
     private Os ordemServico;
 	private int id_os;
+	private int id;
     
     
     public OsView(Os os) { // construtor da view OS.
@@ -392,80 +393,19 @@ public class OsView extends JFrame implements ActionListener{
 			o.setCor(corField.getText());
 			//serie
 			o.setSerie(serieField.getText());
-
-			OsController controleOs = new OsController();
-			try {
-				if(controleOs.cadastrarOs(o) == true) {
-					JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
-				}
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-				JOptionPane.showMessageDialog(null, "Erro ao realizar cadastro!");
-			}
-		}
-		else if(e.getActionCommand().equalsIgnoreCase("cancelar")) {
- 
-			dispose();
-		}
-		else if(e.getActionCommand().equals("listar")) {
-			RelClienteView rcv = new RelClienteView("Selecionar", this.ordemServico);
-			this.ordemServico.setInfo_cliente(info_clienteTA.getText());
-			this.ordemServico.setInfo_entrega(info_entregaTA.getText());
-			this.ordemServico.setInfo_interna(info_internaTA.getText());
-			this.ordemServico.setData_previsao(data_previsaoField.getText());
-			this.ordemServico.setData_entrega(data_entregaField.getText());
-			this.ordemServico.setData_pronto(data_prontoField.getText());
-			//this.ordemServico.setUsuario_id(usuario_idField.getText());
-			//this.ordemServico.setGarantia(garantiaField.getText());
-			this.ordemServico.setCor(corField.getText());
-			this.ordemServico.setMarca(marcaField.getText());
-			this.ordemServico.setModelo(modeloField.getText());
-			this.ordemServico.setSerie(serieField.getText());
-		
-			this.setVisible(false);
-			this.dispose();
-			
-			
-		}
-		
-			
-			
-    
-    //Salvar(Editar)
-
-		
-		else if(e.getActionCommand().equalsIgnoreCase("salvar")) {
-			
-			Os o = new Os();
-			
-			
-			
-			 
-			//Tipo
-			System.out.println("Tipo: " +o.getTipo());
-			//documento
+			//data de previsao
 			o.setData_previsao(data_previsaoField.getText());			
-			//RGIE
+			//data que ficara pronto
 			o.setData_pronto(data_prontoField.getText());
-			//fone fixo
+			//data de entraga
 			o.setData_entrega(data_entregaField.getText());
-			//celular
-			//o.setGarantia(garantiaField.get;
-			//email
-			o.setTipo(tipoField.getText());
-			//pessoa contato
-			o.setModelo(modeloField.getText());
-			//Logradouro
-			o.setMarca(marcaField.getText());
-			//Logradouro
-			o.setCor(corField.getText());
-			//numero
+			//informaçao do cliente
 			o.setInfo_cliente(info_clienteTA.getText());
-			//complemento
+			//informaçao do tecnico
 			o.setInfo_tecnico(info_tecnicoTA.getText());
-			//bairro
+			//informaçao da entrega
 			o.setInfo_entrega(info_entregaTA.getText());
-			//cidade
+			//informaçao interna
 			o.setInfo_interna(info_internaTA.getText());
 			
 			Object[] opcoes = {"Salvar como novo cadastro", "Atualizar", "Limpar todos campos"};
@@ -489,7 +429,7 @@ public class OsView extends JFrame implements ActionListener{
 				}
 			}
 			else if(op == 1) { //ATUALIZAR O CLIENTE
-				o.setId_os(this.id_os);
+				o.setId(this.id);
 				OsController controleOs = new OsController();
 				try {
 					if(controleOs.atualizarOs(o) == true) {
@@ -502,23 +442,54 @@ public class OsView extends JFrame implements ActionListener{
 					e1.printStackTrace();
 					JOptionPane.showMessageDialog(null, "Ops, houve um ao efetuar o cadastro!");
 				}				
-				
 			}
 			
 	
+	}
+		else if (e.getActionCommand().equalsIgnoreCase("cancelar")) {
 	
-			else if (e.getActionCommand().equalsIgnoreCase("cancelar")) {
-				
 			dispose();
 	}
-	else if(e.getActionCommand().equals("excluir")) {
+			
+			
+			
+			
+		
+		else if(e.getActionCommand().equals("listar")) {
+			RelClienteView rcv = new RelClienteView("Selecionar", this.ordemServico);
+			this.ordemServico.setInfo_cliente(info_clienteTA.getText());
+			this.ordemServico.setInfo_entrega(info_entregaTA.getText());
+			this.ordemServico.setInfo_interna(info_internaTA.getText());
+			this.ordemServico.setData_previsao(data_previsaoField.getText());
+			this.ordemServico.setData_entrega(data_entregaField.getText());
+			this.ordemServico.setData_pronto(data_prontoField.getText());
+			//this.ordemServico.setUsuario_id(usuario_idField.getText());
+			//this.ordemServico.setGarantia(garantiaField.getText());
+			this.ordemServico.setCor(corField.getText());
+			this.ordemServico.setMarca(marcaField.getText());
+			this.ordemServico.setModelo(modeloField.getText());
+			this.ordemServico.setSerie(serieField.getText());
+		
+			this.setVisible(false);
+			this.dispose();
+			
+			
+			
+		}
+
+			
+			
+				
+			
+			
+	 if(e.getActionCommand().equals("excluir")) {
 				//tratar a exclusão
 				int linha = osTable.getSelectedRow();
-				o = tabelaOs.getOs(linha);
+			  Os o = tabelaOs.getOs(linha);
 		
 		OsController controleOs = new OsController();
 	try {
-			controleOs.removerOs(o.getId_os());
+			controleOs.removerOs(o.getId());
 			JOptionPane.showMessageDialog(null, " Cadastro excluído com sucesso!");
 			tabelaOs.addTodos();
 			this.repaint();
@@ -533,17 +504,17 @@ public class OsView extends JFrame implements ActionListener{
 	else if(e.getActionCommand().equals("editar")) {
 		JOptionPane.showMessageDialog(null, "Deseja realmente editar o cadastro?");
 		int linha = osTable.getSelectedRow();
-		 o = tabelaOs.getOs(linha);
+		Os o = tabelaOs.getOs(linha);
 		
 		//preencher os campos com os dados do cliente selecionado
 		//if(c.getTipo() == 0) cpfRadio.setEnabled(true);
 		//else cnpjRadio.setEnabled(true);
 		
-		this.id_os =o.getId_os(); 
+		this.id =o.getId(); 
 		data_previsaoField.setText(o.getData_previsao());
 		data_prontoField.setText(o.getData_pronto());
 		data_entregaField.setText(o.getData_entrega());
-		//garantiaField.setint(o.getGarantia());			
+		//garantiaField.setText(o.getGarantia());			
 		tipoField.setText(o.getTipo());
 		modeloField.setText(o.getModelo());
 		marcaField.setText(o.getMarca());
@@ -559,7 +530,7 @@ public class OsView extends JFrame implements ActionListener{
 		
 	}
 		
+	
+		
 	}
-
-}
 }
