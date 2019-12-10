@@ -1,10 +1,13 @@
 package controller;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 import dao.UsuarioDAO;
+import dao.ClienteDAO;
 import dao.Conexao;
+import model.Cliente;
 import model.Usuario;
 
 
@@ -35,14 +38,38 @@ public class UsuarioController  {
 	public void setBd(Conexao bd) {
 		this.bd = bd;
 	}
+
+
 	public boolean cadastrarUsuario(Usuario u) throws SQLException {
-		// toda validação dos campos
-		if(true) {
-			UsuarioDAO usuarioDAO = new UsuarioDAO();
-			usuarioDAO.inserir(u);
-			
-			return true;
-		} else
-			return false;
+		UsuarioDAO usuarioDAO = new UsuarioDAO();
+		usuarioDAO.inserir(u);
+		
+		return true;
+		
+		
 	}
+	
+	public boolean atualizarUsuario(Usuario u) throws SQLException {
+		System.out.println("ID = " + u.getId());
+		UsuarioDAO usuarioDAO = new UsuarioDAO();
+		usuarioDAO.atualizar(u);
+		
+		return true;
+		
+		
+	}
+
+
+	public ArrayList<Usuario> consultarUsuario() throws SQLException {
+		//System.out.println("Cheguei no consultar usaurio");
+		UsuarioDAO usuarioDAO = new UsuarioDAO();
+		return usuarioDAO.consultar();
+		
+	}
+	
+	public void removerUsuario(int id) throws SQLException {
+		UsuarioDAO usuarioDAO = new UsuarioDAO();
+		usuarioDAO.excluir(id);
+	}
+
 }

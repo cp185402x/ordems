@@ -4,6 +4,7 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -22,12 +23,15 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.ScrollPaneConstants;
 
+import controller.ClienteController;
 import controller.UsuarioController;
 import model.Usuario;
+import model.Cliente;
 import model.TabelaUsuario;
 
 //Declarando a classe na janela
 public class UsuarioView extends JFrame implements ActionListener{
+	private int id;
 	//atributos globais da classe
 	JPanel painelTitulo;
 	JPanel painelCadastro;
@@ -63,7 +67,7 @@ public class UsuarioView extends JFrame implements ActionListener{
     JButton botaoCancelar;
     
     private JTable usuarioTable;
-    TabelaUsuario tabelaUsuario;
+    private TabelaUsuario tabelaUsuario;
     
     private JTextField buscarField;
 
@@ -226,6 +230,10 @@ public class UsuarioView extends JFrame implements ActionListener{
         botaoSalvar.setActionCommand("salvar");
         botaoCancelar.addActionListener(this);
         botaoCancelar.setActionCommand("cancelar");
+        botaoExcluir.addActionListener(this);
+        botaoExcluir.setActionCommand("excluir");
+        botaoEditar.addActionListener(this);
+        botaoEditar.setActionCommand("editar");
 
     }
     
@@ -253,23 +261,104 @@ public class UsuarioView extends JFrame implements ActionListener{
 			//pessoa contato
 			u.setStatus(statusField.getText());
 			
-			UsuarioController controleUsuario = new UsuarioController();
-			try {
-				if(controleUsuario.cadastrarUsuario(u) == true) {
-					JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
-					tabelaUsuario.addTodos();
-					this.repaint();
+			Object[] opcoes = {"Salvar como novo cadastro", "Atualizar", "Limpar todos campos"};
+			
+			int op = JOptionPane.showOptionDialog(null, "Escolha uma opção para continuar", "Aviso",
+		          JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+		              null, opcoes, opcoes[0]);
+			
+			if(op == 0) { //salvar um novo cliente
+				UsuarioController controleUsuario = new UsuarioController();
+				try {
+					if(controleUsuario.cadastrarUsuario(u) == true) {
+						JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
+						tabelaUsuario.addTodos();
+						this.repaint();
+					}
+					}
+				 catch (SQLException e1) {
+					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Ops, houve um erro ao efetuar o cadastro!");
 				}
 			}
-			 catch (SQLException e1) {
-				e1.printStackTrace();
-				JOptionPane.showMessageDialog(null, "Erro ao realizar cadastro!");
+			
+			else if(op == 1) { //ATUALIZAR O CLIENTE
+				u.setId(this.id);
+				UsuarioController controleUsuario = new UsuarioController();
+				try {
+					if(controleUsuario.atualizarUsuario(u) == true) {
+						JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
+						tabelaUsuario.addTodos();
+						this.repaint();
+					}
+				} catch (HeadlessException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Ops, houve um ao efetuar o cadastro!");
+				}				
+				
+			}
+			else {
+				
+				
+				nm_usuarioField.setText("");
+				departamentoField.setText("");
+				cargoField.setText("");
+				matriculaField.setText("");			
+				loginField.setText("");
+				senhaField.setText("");
+				statusField.setText("");
+				
+				
 			}
 	
-		}
-		else if (e.getActionCommand().equalsIgnoreCase("cancelar")) {
-		
-				dispose();
-		}
 	}
+	
+		
+		else if (e.getActionCommand().equalsIgnoreCase("cancelar")) {
+			
+			dispose();
+	}
+		else if(e.getActionCommand().equals("excluir")) {
+		//tratar a exclusão
+		int linha = usuarioTable.getSelectedRow();
+		Usuario u = tabelaUsuario.getUsuario(linha);
+		
+		UsuarioController controleUsuario = new UsuarioController();
+		try {
+			controleUsuario.removerUsuario(u.getId());
+			JOptionPane.showMessageDialog(null, " Cadastro excluído com sucesso!");
+			tabelaUsuario.addTodos();
+			this.repaint();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Erro ao efetuar a exclusão");
+		}
+		
+		
+	}
+		else if(e.getActionCommand().equals("editar")) {
+		JOptionPane.showMessageDialog(null, "Deseja realmente editar o cadastro?");
+		int linha = usuarioTable.getSelectedRow();
+		Usuario u = tabelaUsuario.getUsuario(linha);
+		
+		//preencher os campos com os dados do cliente selecionado
+		
+		
+		this.id =u.getId(); 
+		nm_usuarioField.setText(u.getNm_usuario());
+		departamentoField.setText(u.getDepartamento());
+		cargoField.setText(u.getCargo());
+		matriculaField.setText(u.getMatricula());			
+		loginField.setText(u.getLogin());
+		senhaField.setText(u.getSenha());
+		
+		
+		
+		
+	
+		
+	}
+		}
 }

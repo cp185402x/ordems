@@ -28,8 +28,10 @@ import javax.swing.JCheckBox;
 
 import controller.ClienteController;
 import controller.OsController;
+import controller.PecaController;
 import model.Cliente;
 import model.Os;
+import model.Peca;
 import model.TabelaCliente;
 import model.TabelaOs;
 import view.rel.RelClienteView;
@@ -104,7 +106,6 @@ public class OsView extends JFrame implements ActionListener{
     private JTextField buscarField;
     
     private Os ordemServico;
-	private int id_os;
 	private int id;
     
     
@@ -372,90 +373,11 @@ public class OsView extends JFrame implements ActionListener{
     
     
     
-	
-		
-	//Salvar (Cadastro)
 
 	public void actionPerformed(ActionEvent e) {
-		
-		if(e.getActionCommand().equalsIgnoreCase("salvar")) {
-			Os o = new Os();
-			//ordemServico
-			//Tratar a ação de salvar OS
-						
-			//tipo
-			o.setTipo(tipoField.getText());			
-			//modelo
-			o.setModelo(modeloField.getText());			
-			//marca
-			o.setMarca(marcaField.getText());
-			//cor
-			o.setCor(corField.getText());
-			//serie
-			o.setSerie(serieField.getText());
-			//data de previsao
-			o.setData_previsao(data_previsaoField.getText());			
-			//data que ficara pronto
-			o.setData_pronto(data_prontoField.getText());
-			//data de entraga
-			o.setData_entrega(data_entregaField.getText());
-			//informaçao do cliente
-			o.setInfo_cliente(info_clienteTA.getText());
-			//informaçao do tecnico
-			o.setInfo_tecnico(info_tecnicoTA.getText());
-			//informaçao da entrega
-			o.setInfo_entrega(info_entregaTA.getText());
-			//informaçao interna
-			o.setInfo_interna(info_internaTA.getText());
-			
-			Object[] opcoes = {"Salvar como novo cadastro", "Atualizar", "Limpar todos campos"};
-			
-			int op = JOptionPane.showOptionDialog(null, "Escolha uma opção para continuar", "Aviso",
-		          JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
-		              null, opcoes, opcoes[0]);
-			
-			if(op == 0) { //salvar um novo cliente
-				OsController controleOs = new OsController();
-				try {
-					if(controleOs.cadastrarOs(o) == true) {
-						JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
-						tabelaOs.addTodos();
-						this.repaint();
-					}
-					}
-				 catch (SQLException e1) {
-					e1.printStackTrace();
-					JOptionPane.showMessageDialog(null, "Ops, houve um erro ao efetuar o cadastro!");
-				}
-			}
-			else if(op == 1) { //ATUALIZAR O CLIENTE
-				o.setId(this.id);
-				OsController controleOs = new OsController();
-				try {
-					if(controleOs.atualizarOs(o) == true) {
-						JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
-						tabelaOs.addTodos();
-						this.repaint();
-					}
-				} catch (HeadlessException | SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-					JOptionPane.showMessageDialog(null, "Ops, houve um ao efetuar o cadastro!");
-				}				
-			}
-			
-	
-	}
-		else if (e.getActionCommand().equalsIgnoreCase("cancelar")) {
-	
-			dispose();
-	}
-			
-			
-			
 			
 		
-		else if(e.getActionCommand().equals("listar")) {
+		 if(e.getActionCommand().equals("listar")) {
 			RelClienteView rcv = new RelClienteView("Selecionar", this.ordemServico);
 			this.ordemServico.setInfo_cliente(info_clienteTA.getText());
 			this.ordemServico.setInfo_entrega(info_entregaTA.getText());
@@ -474,61 +396,157 @@ public class OsView extends JFrame implements ActionListener{
 			this.dispose();
 			
 			
+		 }
+		
+		 
 			
-		}
-
-			
-			
+		 if(e.getActionCommand().equalsIgnoreCase("salvar")) {
+				Os o = new Os();
+				//ordemServico
+				//Tratar a ação de salvar OS
+							
+				//tipo
+				o.setTipo(tipoField.getText());			
+				//modelo
+				o.setModelo(modeloField.getText());			
+				//marca
+				o.setMarca(marcaField.getText());
+				//cor
+				o.setCor(corField.getText());
+				//serie
+				o.setSerie(serieField.getText());
+				//data de previsao
+				o.setData_previsao(data_previsaoField.getText());			
+				//data que ficara pronto
+				o.setData_pronto(data_prontoField.getText());
+				//data de entraga
+				o.setData_entrega(data_entregaField.getText());
+				//informaçao do cliente
+				o.setInfo_cliente(info_clienteTA.getText());
+				//informaçao do tecnico
+				o.setInfo_tecnico(info_tecnicoTA.getText());
+				//informaçao da entrega
+				o.setInfo_entrega(info_entregaTA.getText());
+				//informaçao interna
+				o.setInfo_interna(info_internaTA.getText());
 				
-			
-			
-	 if(e.getActionCommand().equals("excluir")) {
-				//tratar a exclusão
-				int linha = osTable.getSelectedRow();
-			  Os o = tabelaOs.getOs(linha);
+				Object[] opcoes = {"Salvar como novo cadastro", "Atualizar", "Limpar todos campos"};
+				
+				int op = JOptionPane.showOptionDialog(null, "Escolha uma opção para continuar", "Aviso",
+			          JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+			              null, opcoes, opcoes[0]);
+				
+				if(op == 0) { //salvar um novo cliente
+					OsController controleOs = new OsController();
+					try {
+						if(controleOs.cadastrarOs(o) == true) {
+							JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
+							tabelaOs.addTodos();
+							this.repaint();
+						}
+						}
+					 catch (SQLException e1) {
+						e1.printStackTrace();
+						JOptionPane.showMessageDialog(null, "Ops, houve um erro ao efetuar o cadastro!");
+					}
+					
+				}
+				else if(op == 1) { //ATUALIZAR O CLIENTE
+					o.setId(this.id);
+					OsController controleOs = new OsController();
+					try {
+						if(controleOs.atualizarOs(o) == true) {
+							JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
+							tabelaOs.addTodos();
+							this.repaint();
+						}
+					} catch (HeadlessException | SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+						JOptionPane.showMessageDialog(null, "Ops, houve um ao efetuar o cadastro!");
+					}				
+				}
+				else {
+					
+					
+					cilente_idField.setText("");
+					nm_cilenteField.setText("");
+					usuario_idField.setText("");
+					data_previsaoField.setText("");
+					data_prontoField.setText("");
+					data_entregaField.setText("");
+					garantiaField.setText("");
+					tipoField.setText("");
+					modeloField.setText("");
+					marcaField.setText("");
+					corField.setText("");
+					serieField.setText("");
+					info_clienteTA.setText("");
+					info_tecnicoTA.setText("");
+					info_entregaTA.setText("");
+					info_clienteTA.setText("");
+					info_internaTA.setText("");
+					
+				}
+				
 		
-		OsController controleOs = new OsController();
-	try {
-			controleOs.removerOs(o.getId());
-			JOptionPane.showMessageDialog(null, " Cadastro excluído com sucesso!");
-			tabelaOs.addTodos();
-			this.repaint();
-	}catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Erro ao efetuar a exclusão");
 		}
+		else if (e.getActionCommand().equalsIgnoreCase("cancelar")) {
 		
-		
-	}
-	else if(e.getActionCommand().equals("editar")) {
-		JOptionPane.showMessageDialog(null, "Deseja realmente editar o cadastro?");
-		int linha = osTable.getSelectedRow();
-		Os o = tabelaOs.getOs(linha);
-		
-		//preencher os campos com os dados do cliente selecionado
-		//if(c.getTipo() == 0) cpfRadio.setEnabled(true);
-		//else cnpjRadio.setEnabled(true);
-		
-		this.id =o.getId(); 
-		data_previsaoField.setText(o.getData_previsao());
-		data_prontoField.setText(o.getData_pronto());
-		data_entregaField.setText(o.getData_entrega());
-		//garantiaField.setText(o.getGarantia());			
-		tipoField.setText(o.getTipo());
-		modeloField.setText(o.getModelo());
-		marcaField.setText(o.getMarca());
-		corField.setText(o.getCor());
-		serieField.setText(o.getSerie());
-		info_clienteTA.setText(o.getInfo_cliente());
-		info_tecnicoTA.setText(o.getInfo_tecnico());
-		info_entregaTA.setText(o.getInfo_entrega());
-		info_internaTA.setText(o.getInfo_interna());
-		
-		
+				dispose();
+		}
+		if(e.getActionCommand().equals("excluir")) {
+			//tratar a exclusão
+			int linha = osTable.getSelectedRow();
+		  Os o = tabelaOs.getOs(linha);
 	
+	OsController controleOs = new OsController();
+try {
+		controleOs.removerOs(o.getId());
 		
+		JOptionPane.showMessageDialog(null, " Cadastro excluído com sucesso!");
+		tabelaOs.addTodos();
+		this.repaint();
+}catch (SQLException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+		JOptionPane.showMessageDialog(null, "Erro ao efetuar a exclusão");
 	}
+	
+			
+		}
+		else if(e.getActionCommand().equals("editar")) {
+			JOptionPane.showMessageDialog(null, "Deseja realmente editar o cadastro?");
+			int linha = osTable.getSelectedRow();
+			Os o = tabelaOs.getOs(linha);
+			
+			//preencher os campos com os dados do cliente selecionado
+			//if(c.getTipo() == 0) cpfRadio.setEnabled(true);
+			//else cnpjRadio.setEnabled(true);
+			
+			this.id =o.getId(); 
+			data_previsaoField.setText(o.getData_previsao());
+			data_prontoField.setText(o.getData_pronto());
+			data_entregaField.setText(o.getData_entrega());
+			//garantiaField.setText(o.getGarantia());			
+			tipoField.setText(o.getTipo());
+			modeloField.setText(o.getModelo());
+			marcaField.setText(o.getMarca());
+			corField.setText(o.getCor());
+			serieField.setText(o.getSerie());
+			info_clienteTA.setText(o.getInfo_cliente());
+			info_tecnicoTA.setText(o.getInfo_tecnico());
+			info_entregaTA.setText(o.getInfo_entrega());
+			info_internaTA.setText(o.getInfo_interna());
+			
+			
+		
+			
+		}
+			
+			
+		
+
 		
 	
 		

@@ -63,7 +63,9 @@ public class TabelaUsuario extends AbstractTableModel {
 		System.out.println("Tam" + listaUsuario.size());
 		
 	}
-
+	public Usuario getUsuario(int linha) {
+		return this.listaUsuario.get(linha);
+	}
 }
 
 //

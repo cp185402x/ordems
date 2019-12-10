@@ -3,7 +3,8 @@ package model;
 public class Usuario {
 	
 	///Atributos
-    private String nm_usuario;
+	private int id;
+	private String nm_usuario;
 	private String cargo;
     private String departamento;
     private String matricula;
@@ -55,6 +56,12 @@ public class Usuario {
 	}
 	public void setMatricula(String matricula) {
 		this.matricula = matricula;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 	public void setStatus(String text) {
 		
