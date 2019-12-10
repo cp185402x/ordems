@@ -19,22 +19,16 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.table.TableModel;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JTextArea;
 import javax.swing.JCheckBox;
 
-import controller.ClienteController;
 import controller.OsController;
-import controller.PecaController;
-import model.Cliente;
 import model.Os;
-import model.Peca;
-import model.TabelaCliente;
 import model.TabelaOs;
-import view.rel.RelClienteView;
+import view.rel.RelOsView;
 
 //Declarando a classe na janela
 public class OsView extends JFrame implements ActionListener{
@@ -102,8 +96,6 @@ public class OsView extends JFrame implements ActionListener{
     
     private JTable osTable;
     private TabelaOs tabelaOs;
-    
-    private JTextField buscarField;
     
     private Os ordemServico;
 	private int id;
@@ -208,8 +200,8 @@ public class OsView extends JFrame implements ActionListener{
         garantiaLabel.setBounds(311, 55, 85, 15);
         clientePainel.add(garantiaLabel);
         
-        botaoListar = new JButton("Listar");
-        botaoListar.setBounds(420, 22, 74, 25);
+        botaoListar = new JButton("...");
+        botaoListar.setBounds(418, 23, 35, 23);
         clientePainel.add(botaoListar);
         
         JCheckBox garantiaCkBox = new JCheckBox(" Sim");
@@ -291,37 +283,19 @@ public class OsView extends JFrame implements ActionListener{
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         
-        botaoEditar = new JButton("Editar");
-        botaoExcluir = new JButton("Excluir");
-        
-        buscarField = new JTextField();
-        buscarField.setBackground(new Color(250, 250, 210));
-        buscarField.setFont(new Font("Tahoma", Font.PLAIN, 12));
-        buscarField.setColumns(10);
-        
-        JButton buscarBtn = new JButton("Buscar");
-        
         GroupLayout gl_painelCadastro = new GroupLayout(painelCadastro);
         gl_painelCadastro.setHorizontalGroup(
         	gl_painelCadastro.createParallelGroup(Alignment.TRAILING)
-        		.addGroup(gl_painelCadastro.createSequentialGroup()
+        		.addGroup(Alignment.LEADING, gl_painelCadastro.createSequentialGroup()
         			.addContainerGap()
         			.addGroup(gl_painelCadastro.createParallelGroup(Alignment.LEADING)
+        				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
         				.addGroup(gl_painelCadastro.createSequentialGroup()
         					.addGroup(gl_painelCadastro.createParallelGroup(Alignment.LEADING)
         						.addGroup(gl_painelCadastro.createSequentialGroup()
-        							.addComponent(buscarField, GroupLayout.PREFERRED_SIZE, 290, GroupLayout.PREFERRED_SIZE)
-        							.addPreferredGap(ComponentPlacement.RELATED)
-        							.addComponent(buscarBtn, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE)
-        							.addPreferredGap(ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
-        							.addComponent(botaoEditar, GroupLayout.PREFERRED_SIZE, 70, GroupLayout.PREFERRED_SIZE)
-        							.addGap(18)
-        							.addComponent(botaoExcluir, GroupLayout.PREFERRED_SIZE, 76, GroupLayout.PREFERRED_SIZE))
-        						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
-        						.addComponent(clientePainel, GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE))
-        					.addGap(20))
-        				.addGroup(gl_painelCadastro.createSequentialGroup()
-        					.addComponent(equipamentoPanel, GroupLayout.PREFERRED_SIZE, 641, GroupLayout.PREFERRED_SIZE)
+        							.addComponent(clientePainel, GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
+        							.addGap(80))
+        						.addComponent(equipamentoPanel, GroupLayout.PREFERRED_SIZE, 641, GroupLayout.PREFERRED_SIZE))
         					.addContainerGap(20, Short.MAX_VALUE))))
         );
         gl_painelCadastro.setVerticalGroup(
@@ -332,13 +306,7 @@ public class OsView extends JFrame implements ActionListener{
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(equipamentoPanel, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.UNRELATED)
-        			.addGroup(gl_painelCadastro.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(buscarField, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(buscarBtn, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(botaoExcluir, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(botaoEditar, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+        			.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
         			.addContainerGap())
         );
         
@@ -357,55 +325,30 @@ public class OsView extends JFrame implements ActionListener{
         getContentPane().add(painelBotoes, BorderLayout.SOUTH);
         
         painelBotoes.add(botaoSalvar);
+        
+        botaoEditar = new JButton("Editar");
+        painelBotoes.add(botaoEditar);
+        botaoEditar.addActionListener(this);
+        botaoEditar.setActionCommand("editar");
+        botaoExcluir = new JButton("Excluir");
+        painelBotoes.add(botaoExcluir);
+        botaoExcluir.addActionListener(this);
+        botaoExcluir.setActionCommand("excluir");
         painelBotoes.add(botaoCancelar);
         
         botaoSalvar.addActionListener(this);
         botaoSalvar.setActionCommand("salvar");
         botaoCancelar.addActionListener(this);
         botaoCancelar.setActionCommand("cancelar");
-        botaoExcluir.addActionListener(this);
-        botaoExcluir.setActionCommand("excluir");
-        botaoEditar.addActionListener(this);
-        botaoEditar.setActionCommand("editar");
         
     }
 
-    
-    
-    
-
-	public void actionPerformed(ActionEvent e) {
-			
-		
-		 if(e.getActionCommand().equals("listar")) {
-			RelClienteView rcv = new RelClienteView("Selecionar", this.ordemServico);
-			this.ordemServico.setInfo_cliente(info_clienteTA.getText());
-			this.ordemServico.setInfo_entrega(info_entregaTA.getText());
-			this.ordemServico.setInfo_interna(info_internaTA.getText());
-			this.ordemServico.setData_previsao(data_previsaoField.getText());
-			this.ordemServico.setData_entrega(data_entregaField.getText());
-			this.ordemServico.setData_pronto(data_prontoField.getText());
-			//this.ordemServico.setUsuario_id(usuario_idField.getText());
-			//this.ordemServico.setGarantia(garantiaField.getText());
-			this.ordemServico.setCor(corField.getText());
-			this.ordemServico.setMarca(marcaField.getText());
-			this.ordemServico.setModelo(modeloField.getText());
-			this.ordemServico.setSerie(serieField.getText());
-		
-			this.setVisible(false);
-			this.dispose();
-			
-			
-		 }
-		
-		 
+	public void actionPerformed(ActionEvent e) {		 
 			
 		 if(e.getActionCommand().equalsIgnoreCase("salvar")) {
 				Os o = new Os();
-				//ordemServico
-				//Tratar a ação de salvar OS
-							
-				//tipo
+				
+				//Tipo de equipamento
 				o.setTipo(tipoField.getText());			
 				//modelo
 				o.setModelo(modeloField.getText());			
@@ -436,7 +379,8 @@ public class OsView extends JFrame implements ActionListener{
 			          JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
 			              null, opcoes, opcoes[0]);
 				
-				if(op == 0) { //salvar um novo cliente
+				if(op == 0) { //Salvar nova OS
+					
 					OsController controleOs = new OsController();
 					try {
 						if(controleOs.cadastrarOs(o) == true) {
@@ -451,7 +395,7 @@ public class OsView extends JFrame implements ActionListener{
 					}
 					
 				}
-				else if(op == 1) { //ATUALIZAR O CLIENTE
+				else if(op == 1) { //Atualizar OS
 					o.setId(this.id);
 					OsController controleOs = new OsController();
 					try {
@@ -461,7 +405,7 @@ public class OsView extends JFrame implements ActionListener{
 							this.repaint();
 						}
 					} catch (HeadlessException | SQLException e1) {
-						// TODO Auto-generated catch block
+
 						e1.printStackTrace();
 						JOptionPane.showMessageDialog(null, "Ops, houve um ao efetuar o cadastro!");
 					}				
@@ -495,34 +439,28 @@ public class OsView extends JFrame implements ActionListener{
 		
 				dispose();
 		}
-		if(e.getActionCommand().equals("excluir")) {
+		else if(e.getActionCommand().equals("excluir")) {
 			//tratar a exclusão
 			int linha = osTable.getSelectedRow();
-		  Os o = tabelaOs.getOs(linha);
-	
-	OsController controleOs = new OsController();
-try {
-		controleOs.removerOs(o.getId());
-		
-		JOptionPane.showMessageDialog(null, " Cadastro excluído com sucesso!");
-		tabelaOs.addTodos();
-		this.repaint();
-}catch (SQLException e1) {
-		// TODO Auto-generated catch block
-		e1.printStackTrace();
-		JOptionPane.showMessageDialog(null, "Erro ao efetuar a exclusão");
-	}
-	
+			Os o = tabelaOs.getOs(linha);
+				
+			OsController controleOs = new OsController();
+			try {
+					controleOs.removerOs(o.getId());
+					
+					JOptionPane.showMessageDialog(null, " Cadastro excluído com sucesso!");
+					tabelaOs.addTodos();
+					this.repaint();
+			}catch (SQLException e1) {
+					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Erro ao efetuar a exclusão");
+				}
 			
 		}
 		else if(e.getActionCommand().equals("editar")) {
 			JOptionPane.showMessageDialog(null, "Deseja realmente editar o cadastro?");
 			int linha = osTable.getSelectedRow();
 			Os o = tabelaOs.getOs(linha);
-			
-			//preencher os campos com os dados do cliente selecionado
-			//if(c.getTipo() == 0) cpfRadio.setEnabled(true);
-			//else cnpjRadio.setEnabled(true);
 			
 			this.id =o.getId(); 
 			data_previsaoField.setText(o.getData_previsao());
@@ -544,11 +482,5 @@ try {
 			
 		}
 			
-			
-		
-
-		
-	
-		
 	}
 }

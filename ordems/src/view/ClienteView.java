@@ -98,8 +98,6 @@ public class ClienteView extends JFrame implements ActionListener{
     
     private JTable clienteTable;
     private TabelaCliente tabelaCliente;
-    
-    private JTextField buscarField;
 
 	public ClienteView() { // construtor da view Cliente.
         super("Cadastro de Clientes");
@@ -133,27 +131,20 @@ public class ClienteView extends JFrame implements ActionListener{
         painelBotoes.setLayout(new FlowLayout());
         
         botaoSalvar = new JButton("Salvar");
+        botaoEditar = new JButton("Editar");
+        botaoExcluir = new JButton("Excluir");
         botaoCancelar = new JButton("Cancelar");
         
         getContentPane().add(painelCadastro, BorderLayout.WEST);
         
+        //Início do painel cliente
         JPanel clientePainel = new JPanel();
         clientePainel.setBorder(new LineBorder(Color.LIGHT_GRAY));
         clientePainel.setLayout(null);
-        
-        pes_contatoField = new JTextField(20);
-        pes_contatoField.setBounds(447, 137, 186, 20);
-        clientePainel.add(pes_contatoField);        
-        pes_contatoLabel = new JLabel("Pessoa de Contato");
-        pes_contatoLabel.setBounds(447, 125, 166, 14);
-        clientePainel.add(pes_contatoLabel);
-        
-        emailField = new JTextField(40);
-        emailField.setBounds(10, 138, 427, 20);
-        clientePainel.add(emailField);        
-        emailLabel = new JLabel("Email");
-        emailLabel.setBounds(10, 126, 368, 14);
-        clientePainel.add(emailLabel);
+
+        tipoGrupo = new ButtonGroup();
+        tipoGrupo.add(cpfRadio);
+        tipoGrupo.add(cnpjRadio);
         
         cpfRadio = new JRadioButton("CPF");
         cpfRadio.setSelected(true);
@@ -164,11 +155,6 @@ public class ClienteView extends JFrame implements ActionListener{
         cnpjRadio.setHorizontalAlignment(SwingConstants.RIGHT);
         cnpjRadio.setBounds(58, 7, 56, 23);
         clientePainel.add(cnpjRadio);
-        tipoGrupo = new ButtonGroup();
-        
-        tipoGrupo.add(cpfRadio);
-        tipoGrupo.add(cnpjRadio);
-        
         
         docField = new JTextField(20);
         docField.setBounds(114, 8, 199, 20);
@@ -208,8 +194,23 @@ public class ClienteView extends JFrame implements ActionListener{
         clientePainel.add(celularField);        
         celularLabel = new JLabel("Celular");
         celularLabel.setBounds(206, 82, 162, 14);
-        clientePainel.add(celularLabel);
+        clientePainel.add(celularLabel);   
         
+        pes_contatoField = new JTextField(20);
+        pes_contatoField.setBounds(402, 94, 186, 20);
+        clientePainel.add(pes_contatoField);        
+        pes_contatoLabel = new JLabel("Pessoa de Contato");
+        pes_contatoLabel.setBounds(402, 82, 166, 14);
+        clientePainel.add(pes_contatoLabel);
+        
+        emailField = new JTextField(40);
+        emailField.setBounds(10, 138, 427, 20);
+        clientePainel.add(emailField);        
+        emailLabel = new JLabel("Email");
+        emailLabel.setBounds(10, 126, 368, 14);
+        clientePainel.add(emailLabel);
+        
+        //Inicio do painel endereço
         JPanel panel = new JPanel();
         panel.setBorder(new LineBorder(Color.LIGHT_GRAY));
         panel.setLayout(null); 
@@ -262,60 +263,33 @@ public class ClienteView extends JFrame implements ActionListener{
         estadoField = new JTextField(10);
         estadoField.setBounds(554, 69, 79, 20);
         panel.add(estadoField);
-        
+
         //Criando a Tabela com os dados do banco
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setViewportBorder(new LineBorder(Color.LIGHT_GRAY));
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-        
-        
-        botaoEditar = new JButton("Editar");
-        
-        botaoExcluir = new JButton("Excluir");
-        
-        
-        buscarField = new JTextField();
-        buscarField.setBackground(new Color(250, 250, 210));
-        buscarField.setFont(new Font("Tahoma", Font.PLAIN, 12));
-        buscarField.setColumns(10);
-        
-        JButton buscarBtn = new JButton("Buscar");
-        
+
         GroupLayout gl_painelCadastro = new GroupLayout(painelCadastro);
         gl_painelCadastro.setHorizontalGroup(
         	gl_painelCadastro.createParallelGroup(Alignment.TRAILING)
-        		.addGroup(gl_painelCadastro.createSequentialGroup()
+        		.addGroup(Alignment.LEADING, gl_painelCadastro.createSequentialGroup()
         			.addContainerGap()
         			.addGroup(gl_painelCadastro.createParallelGroup(Alignment.LEADING)
-        				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
-        				.addComponent(scrollPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
-        				.addGroup(Alignment.TRAILING, gl_painelCadastro.createSequentialGroup()
-        					.addComponent(buscarField, GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
-        					.addGap(18)
-        					.addComponent(buscarBtn)
-        					.addGap(18)
-        					.addComponent(botaoEditar)
-        					.addGap(18)
-        					.addComponent(botaoExcluir))
-        				.addComponent(clientePainel, GroupLayout.PREFERRED_SIZE, 643, GroupLayout.PREFERRED_SIZE))
+        				.addComponent(scrollPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE)
+        				.addComponent(panel, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE)
+        				.addComponent(clientePainel, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 643, GroupLayout.PREFERRED_SIZE))
         			.addGap(18))
         );
         gl_painelCadastro.setVerticalGroup(
         	gl_painelCadastro.createParallelGroup(Alignment.TRAILING)
-        		.addGroup(gl_painelCadastro.createSequentialGroup()
+        		.addGroup(Alignment.LEADING, gl_painelCadastro.createSequentialGroup()
         			.addContainerGap()
         			.addComponent(clientePainel, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(panel, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-        			.addPreferredGap(ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-        			.addGroup(gl_painelCadastro.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(buscarField, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(botaoExcluir)
-        				.addComponent(botaoEditar)
-        				.addComponent(buscarBtn))
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 188, GroupLayout.PREFERRED_SIZE)
+        			.addPreferredGap(ComponentPlacement.UNRELATED)
+        			.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
         			.addContainerGap())
         );
 
@@ -330,17 +304,22 @@ public class ClienteView extends JFrame implements ActionListener{
         
         getContentPane().add(painelBotoes, BorderLayout.SOUTH);
         
-        painelBotoes.add(botaoSalvar);
+        painelBotoes.add(botaoSalvar);        
+        painelBotoes.add(botaoEditar);
+        painelBotoes.add(botaoExcluir);
         painelBotoes.add(botaoCancelar);
-        
+		        
         botaoSalvar.addActionListener(this);
         botaoSalvar.setActionCommand("salvar");
-        botaoCancelar.addActionListener(this);
-        botaoCancelar.setActionCommand("cancelar");
-        botaoExcluir.addActionListener(this);
-        botaoExcluir.setActionCommand("excluir");
+		
         botaoEditar.addActionListener(this);
         botaoEditar.setActionCommand("editar");
+		
+        botaoExcluir.addActionListener(this);
+        botaoExcluir.setActionCommand("excluir");
+		
+        botaoCancelar.addActionListener(this);
+        botaoCancelar.setActionCommand("cancelar");
         
 
     }

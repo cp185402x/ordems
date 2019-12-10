@@ -22,14 +22,11 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.ScrollPaneConstants;
 
-import controller.ClienteController;
 import controller.FornecedorController;
-import model.Cliente;
 import model.Fornecedor;
 import model.TabelaFornecedor;
 
@@ -98,8 +95,6 @@ public class FornecedorView extends JFrame implements ActionListener{
     
     private JTable fornecedorTable;
     TabelaFornecedor tabelaFornecedor;
-    
-    private JTextField buscarField;
 	private int id;
 
 	public FornecedorView() { // construtor da view Fornecedor.
@@ -134,6 +129,8 @@ public class FornecedorView extends JFrame implements ActionListener{
         painelBotoes.setLayout(new FlowLayout());
         
         botaoSalvar = new JButton("Salvar");
+        botaoEditar = new JButton("Editar");
+        botaoExcluir = new JButton("Excluir");
         botaoCancelar = new JButton("Cancelar");
         
         getContentPane().add(painelCadastro, BorderLayout.WEST);
@@ -270,52 +267,26 @@ public class FornecedorView extends JFrame implements ActionListener{
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         
-        
-        JButton botaoEditar = new JButton("Editar");
-        
-        JButton botaoExcluir = new JButton("Excluir");
-        
-        buscarField = new JTextField();
-        buscarField.setBackground(new Color(250, 250, 210));
-        buscarField.setFont(new Font("Tahoma", Font.PLAIN, 12));
-        buscarField.setColumns(10);
-        
-        JButton buscarBtn = new JButton("Buscar");
-        
         GroupLayout gl_painelCadastro = new GroupLayout(painelCadastro);
         gl_painelCadastro.setHorizontalGroup(
         	gl_painelCadastro.createParallelGroup(Alignment.TRAILING)
-        		.addGroup(gl_painelCadastro.createSequentialGroup()
+        		.addGroup(Alignment.LEADING, gl_painelCadastro.createSequentialGroup()
         			.addContainerGap()
         			.addGroup(gl_painelCadastro.createParallelGroup(Alignment.LEADING)
-        				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
-        				.addComponent(scrollPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
-        				.addGroup(Alignment.TRAILING, gl_painelCadastro.createSequentialGroup()
-        					.addComponent(buscarField, GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
-        					.addGap(18)
-        					.addComponent(buscarBtn)
-        					.addGap(18)
-        					.addComponent(botaoEditar)
-        					.addGap(18)
-        					.addComponent(botaoExcluir))
-        				.addComponent(fornecedorPainel, GroupLayout.PREFERRED_SIZE, 643, GroupLayout.PREFERRED_SIZE))
+        				.addComponent(scrollPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE)
+        				.addComponent(panel, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE)
+        				.addComponent(fornecedorPainel, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 643, GroupLayout.PREFERRED_SIZE))
         			.addGap(18))
         );
         gl_painelCadastro.setVerticalGroup(
         	gl_painelCadastro.createParallelGroup(Alignment.TRAILING)
-        		.addGroup(gl_painelCadastro.createSequentialGroup()
+        		.addGroup(Alignment.LEADING, gl_painelCadastro.createSequentialGroup()
         			.addContainerGap()
         			.addComponent(fornecedorPainel, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(panel, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-        			.addPreferredGap(ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-        			.addGroup(gl_painelCadastro.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(buscarField, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(botaoExcluir)
-        				.addComponent(botaoEditar)
-        				.addComponent(buscarBtn))
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 188, GroupLayout.PREFERRED_SIZE)
+        			.addPreferredGap(ComponentPlacement.UNRELATED)
+        			.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
         			.addContainerGap())
         );
 
@@ -330,17 +301,22 @@ public class FornecedorView extends JFrame implements ActionListener{
         
         getContentPane().add(painelBotoes, BorderLayout.SOUTH);
         
-        painelBotoes.add(botaoSalvar);
+        painelBotoes.add(botaoSalvar);        
+        painelBotoes.add(botaoEditar);
+        painelBotoes.add(botaoExcluir);
         painelBotoes.add(botaoCancelar);
-        
+		        
         botaoSalvar.addActionListener(this);
         botaoSalvar.setActionCommand("salvar");
-        botaoCancelar.addActionListener(this);
-        botaoCancelar.setActionCommand("cancelar");
-        botaoExcluir.addActionListener(this);
-        botaoExcluir.setActionCommand("excluir");
+		
         botaoEditar.addActionListener(this);
         botaoEditar.setActionCommand("editar");
+		
+        botaoExcluir.addActionListener(this);
+        botaoExcluir.setActionCommand("excluir");
+		
+        botaoCancelar.addActionListener(this);
+        botaoCancelar.setActionCommand("cancelar");
 
     }
    

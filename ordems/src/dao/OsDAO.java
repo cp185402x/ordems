@@ -64,7 +64,7 @@ public class OsDAO {
 			
 			if(conn != null) {
 				st = (PreparedStatement) conn.prepareStatement(
-						"SELECT * FROM os ORDER BY id_os DESC LIMIT 5");
+						"SELECT * FROM os ORDER BY id_os DESC LIMIT 1000");
 			}
 			
 

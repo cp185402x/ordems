@@ -2,38 +2,33 @@ package view;
 
 //Importando os componentes
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import java.sql.SQLException;
 
-
 import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-
 import javax.swing.border.LineBorder;
 
 import controller.PecaController;
 import model.Peca;
 import model.TabelaPeca;
-
-import java.awt.Color;
-import javax.swing.table.DefaultTableModel;
 
 //Declarando a classe na janela
 public class PecaView extends JFrame implements ActionListener{
@@ -63,7 +58,6 @@ public class PecaView extends JFrame implements ActionListener{
     JPanel 	painelBotoes;
     JButton botaoSalvar;
     JButton botaoCancelar;
-    JButton botaoBuscar;
     JButton botaoEditar;
     JButton botaoExcluir;
     
@@ -71,7 +65,6 @@ public class PecaView extends JFrame implements ActionListener{
     private JTable pecaTable;
 	private TabelaPeca tabelaPeca;
 	private int id;
-	private JTextField textField;
     
     public PecaView() { // construtor da view OS.
         super("Cadastro de peça");
@@ -92,7 +85,7 @@ public class PecaView extends JFrame implements ActionListener{
         painelTitulo = new JPanel();
         painelTitulo.setLayout(new FlowLayout());
         
-        titulo = new JLabel("Cadastro de Pea");
+        titulo = new JLabel("Cadastro de Peça");
         titulo.setFont(new Font("Arial", Font.BOLD, 14));
         
         painelTitulo.add(titulo);
@@ -105,7 +98,10 @@ public class PecaView extends JFrame implements ActionListener{
         painelBotoes.setLayout(new FlowLayout());
         
         botaoSalvar = new JButton("Salvar");
+        botaoEditar = new JButton("Editar");
+        botaoExcluir = new JButton("Excluir");
         botaoCancelar = new JButton("Cancelar");
+        
         
         getContentPane().add(painelCadastro, BorderLayout.WEST);
         
@@ -151,48 +147,24 @@ public class PecaView extends JFrame implements ActionListener{
         scrollPane.setViewportBorder(new LineBorder(new Color(192, 192, 192)));
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-
-        botaoBuscar = new JButton("Buscar");        
-        botaoEditar = new JButton("Editar");        
-        botaoExcluir = new JButton("Excluir");
-        
-        textField = new JTextField();
-        textField.setFont(new Font("Tahoma", Font.PLAIN, 12));
-        textField.setColumns(10);
-        textField.setBackground(new Color(250, 250, 210));
         
         GroupLayout gl_painelCadastro = new GroupLayout(painelCadastro);
         gl_painelCadastro.setHorizontalGroup(
         	gl_painelCadastro.createParallelGroup(Alignment.TRAILING)
         		.addGroup(gl_painelCadastro.createSequentialGroup()
         			.addContainerGap()
-        			.addGroup(gl_painelCadastro.createParallelGroup(Alignment.TRAILING, false)
+        			.addGroup(gl_painelCadastro.createParallelGroup(Alignment.TRAILING)
         				.addComponent(scrollPane, Alignment.LEADING)
-        				.addGroup(Alignment.LEADING, gl_painelCadastro.createParallelGroup(Alignment.TRAILING, false)
-        					.addComponent(pecaPainel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        					.addGroup(Alignment.LEADING, gl_painelCadastro.createSequentialGroup()
-        						.addComponent(textField, GroupLayout.PREFERRED_SIZE, 380, GroupLayout.PREFERRED_SIZE)
-        						.addPreferredGap(ComponentPlacement.RELATED)
-        						.addComponent(botaoBuscar, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
-        						.addPreferredGap(ComponentPlacement.RELATED)
-        						.addComponent(botaoEditar)
-        						.addPreferredGap(ComponentPlacement.RELATED)
-        						.addComponent(botaoExcluir))))
-        			.addGap(18))
+        				.addComponent(pecaPainel, GroupLayout.PREFERRED_SIZE, 602, GroupLayout.PREFERRED_SIZE))
+        			.addContainerGap())
         );
         gl_painelCadastro.setVerticalGroup(
-        	gl_painelCadastro.createParallelGroup(Alignment.TRAILING)
-        		.addGroup(Alignment.LEADING, gl_painelCadastro.createSequentialGroup()
+        	gl_painelCadastro.createParallelGroup(Alignment.LEADING)
+        		.addGroup(gl_painelCadastro.createSequentialGroup()
         			.addContainerGap()
         			.addComponent(pecaPainel, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addGroup(gl_painelCadastro.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(textField, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(botaoBuscar)
-        				.addComponent(botaoEditar)
-        				.addComponent(botaoExcluir))
-        			.addPreferredGap(ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-        			.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 298, GroupLayout.PREFERRED_SIZE)
+        			.addPreferredGap(ComponentPlacement.UNRELATED)
+        			.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
         			.addContainerGap())
         );
       //fazendo a ligação do modelo de tabela com o componente visual de janela
@@ -205,17 +177,22 @@ public class PecaView extends JFrame implements ActionListener{
         
         getContentPane().add(painelBotoes, BorderLayout.SOUTH);
         
-        painelBotoes.add(botaoSalvar);
+        painelBotoes.add(botaoSalvar);        
+        painelBotoes.add(botaoEditar);
+        painelBotoes.add(botaoExcluir);
         painelBotoes.add(botaoCancelar);
-        
+		        
         botaoSalvar.addActionListener(this);
         botaoSalvar.setActionCommand("salvar");
-        botaoCancelar.addActionListener(this);
-        botaoCancelar.setActionCommand("cancelar");
-        botaoExcluir.addActionListener(this);
-        botaoExcluir.setActionCommand("excluir");
+		
         botaoEditar.addActionListener(this);
         botaoEditar.setActionCommand("editar");
+		
+        botaoExcluir.addActionListener(this);
+        botaoExcluir.setActionCommand("excluir");
+		
+        botaoCancelar.addActionListener(this);
+        botaoCancelar.setActionCommand("cancelar");
         
 
     }

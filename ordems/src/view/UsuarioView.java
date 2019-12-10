@@ -2,36 +2,35 @@ package view;
 
 //Importando os componentes
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import java.sql.SQLException;
+
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.JTable;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.border.LineBorder;
-import java.awt.Color;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.border.LineBorder;
 
-import controller.ClienteController;
 import controller.UsuarioController;
-import model.Usuario;
-import model.Cliente;
 import model.TabelaUsuario;
+import model.Usuario;
 
 //Declarando a classe na janela
 public class UsuarioView extends JFrame implements ActionListener{
-	private int id;
 	//atributos globais da classe
 	JPanel painelTitulo;
 	JPanel painelCadastro;
@@ -65,32 +64,32 @@ public class UsuarioView extends JFrame implements ActionListener{
     JButton botaoExcluir;
     JButton botaoSalvar;
     JButton botaoCancelar;
+	
+	private JTable usuarioTable;
+	private TabelaUsuario tabelaUsuario;
+	private int id;
     
-    private JTable usuarioTable;
-    private TabelaUsuario tabelaUsuario;
-    
-    private JTextField buscarField;
-
-	public UsuarioView() { // construtor da view Usuario.
-        super("Cadastro de Usuário");
+    public UsuarioView() { // construtor da view OS.
+        super("Cadastro de Usuario");
+        setTitle("Cadastro de Usi\u00E1rios");
         setType(Type.UTILITY);
-                
+        
         criaFormulario();
     	this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    	this.setSize(680, 600);
+    	this.setSize(640, 600);
     	this.setVisible(true);
     	this.setLocationRelativeTo(null);
+
     }
     
     private void criaFormulario() {
         
         getContentPane().setLayout(new BorderLayout());
         
-        //Inicia o painel de título    
         painelTitulo = new JPanel();
         painelTitulo.setLayout(new FlowLayout());
         
-        titulo = new JLabel("Cadastro de Usuário");
+        titulo = new JLabel("Cadastro de Usuario");
         titulo.setFont(new Font("Arial", Font.BOLD, 14));
         
         painelTitulo.add(titulo);
@@ -102,7 +101,9 @@ public class UsuarioView extends JFrame implements ActionListener{
         painelBotoes = new JPanel();
         painelBotoes.setLayout(new FlowLayout());
         
-        botaoSalvar = new JButton("Salvar");
+        botaoSalvar = new JButton("Salvar");		
+        botaoEditar = new JButton("Editar");
+        botaoExcluir = new JButton("Excluir");
         botaoCancelar = new JButton("Cancelar");
         
         getContentPane().add(painelCadastro, BorderLayout.WEST);
@@ -110,255 +111,228 @@ public class UsuarioView extends JFrame implements ActionListener{
         JPanel usuarioPainel = new JPanel();
         usuarioPainel.setBorder(new LineBorder(Color.LIGHT_GRAY));
         usuarioPainel.setLayout(null);
+		
+		
+        
+        JLabel label = new JLabel("Nome do usuário");
+        label.setBounds(10, 11, 338, 14);
+        usuarioPainel.add(label);        
+        nm_usuarioField = new JTextField(50);
+        nm_usuarioField.setBounds(10, 25, 529, 20);
+        usuarioPainel.add(nm_usuarioField);
+        
+        cargoField = new JTextField(20);
+        cargoField.setBounds(10, 69, 186, 20);
+        usuarioPainel.add(cargoField);        
+        JLabel label_1 = new JLabel("Cargo");
+        label_1.setBounds(10, 56, 166, 14);
+        usuarioPainel.add(label_1);
+        
+        JLabel label_2 = new JLabel("Departamento");
+        label_2.setBounds(206, 56, 162, 14);
+        usuarioPainel.add(label_2);        
+        departamentoField = new JTextField(20);
+        departamentoField.setBounds(206, 69, 186, 20);
+        usuarioPainel.add(departamentoField);
+        
+        JLabel label_3 = new JLabel("Status");
+        label_3.setBounds(402, 56, 137, 14);
+        usuarioPainel.add(label_3);        
+        statusField = new JTextField(20);
+        statusField.setBounds(402, 69, 137, 20);
+        usuarioPainel.add(statusField);
+        
+        JLabel label_4 = new JLabel("Senha");
+        label_4.setBounds(402, 97, 137, 14);
+        usuarioPainel.add(label_4);        
+        senhaField = new JTextField(10);
+        senhaField.setBounds(402, 111, 137, 20);
+        usuarioPainel.add(senhaField);
         
         loginField = new JTextField(20);
-        loginField.setBounds(206, 137, 186, 20);
+        loginField.setBounds(206, 111, 186, 20);
         usuarioPainel.add(loginField);        
-        loginLabel = new JLabel("Login");
-        loginLabel.setBounds(206, 125, 166, 14);
-        usuarioPainel.add(loginLabel);
+        JLabel label_5 = new JLabel("Login");
+        label_5.setBounds(206, 99, 166, 14);
+        usuarioPainel.add(label_5);
         
+        JLabel label_6 = new JLabel("Matricula");
+        label_6.setBounds(10, 100, 368, 14);
+        usuarioPainel.add(label_6);        
         matriculaField = new JTextField(20);
-        matriculaField.setBounds(10, 138, 186, 20);
-        usuarioPainel.add(matriculaField);        
-        matriculaLabel = new JLabel("Matricula");
-        matriculaLabel.setBounds(10, 126, 368, 14);
-        usuarioPainel.add(matriculaLabel);        
-               
-        nm_usuarioLabel = new JLabel("Usuário");
-        nm_usuarioLabel.setBounds(10, 37, 338, 14);
-        usuarioPainel.add(nm_usuarioLabel);
-        nm_usuarioField = new JTextField(50);
-        nm_usuarioField.setBounds(10, 51, 427, 20);
-        usuarioPainel.add(nm_usuarioField);        
-                      
-        cargoField = new JTextField(20);
-        cargoField.setBounds(10, 95, 186, 20);
-        usuarioPainel.add(cargoField);        
-        JLabel cargoLabel = new JLabel("Cargo");
-        cargoLabel.setBounds(10, 82, 166, 14);
-        usuarioPainel.add(cargoLabel);
-        
-        departamentoField = new JTextField(20);
-        departamentoField.setBounds(206, 95, 186, 20);
-        usuarioPainel.add(departamentoField);        
-        departamentoLabel = new JLabel("Departamento");
-        departamentoLabel.setBounds(206, 82, 162, 14);
-        usuarioPainel.add(departamentoLabel);   
-        
-        statusField = new JTextField(20);
-        statusField.setBounds(402, 95, 186, 20);
-        usuarioPainel.add(statusField);
-        statusLabel = new JLabel("Status");
-        statusLabel.setBounds(402, 82, 186, 14);
-        usuarioPainel.add(statusLabel);
-        
-        senhaField = new JTextField(10);
-        senhaField.setBounds(402, 137, 188, 20);
-        usuarioPainel.add(senhaField);
-        senhaLabel = new JLabel("Senha");
-        senhaLabel.setBounds(402, 123, 188, 14);
-        usuarioPainel.add(senhaLabel);
-
-        //Criando a Tabela com os dados do banco
-        JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setViewportBorder(new LineBorder(Color.LIGHT_GRAY));
+        matriculaField.setBounds(10, 112, 186, 20);
+        usuarioPainel.add(matriculaField);		
+		
+        //Criando a Tabela com os dados do banco        
+		JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setViewportBorder(new LineBorder(new Color(192, 192, 192)));
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-        
-        
-        botaoBuscar = new JButton("Buscar");        
-        botaoEditar = new JButton("Editar");
-        botaoExcluir = new JButton("Excluir");
-        
-        buscarField = new JTextField();
-        buscarField.setBackground(new Color(250, 250, 210));
-        buscarField.setFont(new Font("Tahoma", Font.PLAIN, 12));
-        buscarField.setColumns(10);
 
         
         GroupLayout gl_painelCadastro = new GroupLayout(painelCadastro);
         gl_painelCadastro.setHorizontalGroup(
         	gl_painelCadastro.createParallelGroup(Alignment.TRAILING)
-        		.addGroup(Alignment.LEADING, gl_painelCadastro.createSequentialGroup()
+        		.addGroup(gl_painelCadastro.createSequentialGroup()
         			.addContainerGap()
-        			.addGroup(gl_painelCadastro.createParallelGroup(Alignment.LEADING)
-        				.addComponent(scrollPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE)
-        				.addComponent(usuarioPainel, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 643, GroupLayout.PREFERRED_SIZE)
-        				.addGroup(gl_painelCadastro.createSequentialGroup()
-        					.addComponent(buscarField, GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-        					.addGap(18)
-        					.addComponent(botaoBuscar)
-        					.addGap(18)
-        					.addComponent(botaoEditar)
-        					.addGap(18)
-        					.addComponent(botaoExcluir)))
-        			.addGap(18))
+        			.addGroup(gl_painelCadastro.createParallelGroup(Alignment.TRAILING)
+        				.addComponent(scrollPane, Alignment.LEADING)
+        				.addComponent(usuarioPainel, GroupLayout.PREFERRED_SIZE, 599, GroupLayout.PREFERRED_SIZE))
+        			.addContainerGap())
         );
         gl_painelCadastro.setVerticalGroup(
-        	gl_painelCadastro.createParallelGroup(Alignment.TRAILING)
-        		.addGroup(Alignment.LEADING, gl_painelCadastro.createSequentialGroup()
+        	gl_painelCadastro.createParallelGroup(Alignment.LEADING)
+        		.addGroup(gl_painelCadastro.createSequentialGroup()
         			.addContainerGap()
         			.addComponent(usuarioPainel, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addGroup(gl_painelCadastro.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(buscarField, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(botaoExcluir)
-        				.addComponent(botaoEditar)
-        				.addComponent(botaoBuscar))
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
-        			.addContainerGap())
+        			.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE))
         );
-
-
-        
+      
+		//fazendo a ligação do modelo de tabela com o componente visual de janela
         tabelaUsuario = new TabelaUsuario();
         usuarioTable = new JTable(tabelaUsuario);
-        
              
         scrollPane.setViewportView(usuarioTable);
         
         painelCadastro.setLayout(gl_painelCadastro);
         
         getContentPane().add(painelBotoes, BorderLayout.SOUTH);
-        
-        painelBotoes.add(botaoSalvar);
+		
+        painelBotoes.add(botaoSalvar);        
+        painelBotoes.add(botaoEditar);
+        painelBotoes.add(botaoExcluir);
         painelBotoes.add(botaoCancelar);
-        
+		        
         botaoSalvar.addActionListener(this);
         botaoSalvar.setActionCommand("salvar");
-        botaoCancelar.addActionListener(this);
-        botaoCancelar.setActionCommand("cancelar");
-        botaoExcluir.addActionListener(this);
-        botaoExcluir.setActionCommand("excluir");
+		
         botaoEditar.addActionListener(this);
         botaoEditar.setActionCommand("editar");
+		
+        botaoExcluir.addActionListener(this);
+        botaoExcluir.setActionCommand("excluir");
+		
+        botaoCancelar.addActionListener(this);
+        botaoCancelar.setActionCommand("cancelar");
+        
 
     }
-    
+
     
 	public void actionPerformed(ActionEvent e) {
 		
-		if(e.getActionCommand().equalsIgnoreCase("salvar")) {
-			
-			Usuario u = new Usuario();
-			
-			//Tratar a ação de salvar o cliente
+			if(e.getActionCommand().equalsIgnoreCase("salvar")) {
+				
+				Usuario u = new Usuario();
+				
+				//Tratar a ação de salvar
 
-			//nome
-			u.setNm_usuario(nm_usuarioField.getText());			
-			//documento
-			u.setCargo(cargoField.getText());			
-			//RGIE
-			u.setDepartamento(departamentoField.getText());
-			//fone fixo
-			u.setMatricula(matriculaField.getText());
-			//celular
-			u.setLogin(loginField.getText());
-			//email
-			u.setSenha(senhaField.getText());
-			//pessoa contato
-			u.setStatus(statusField.getText());
-			
-			Object[] opcoes = {"Salvar como novo cadastro", "Atualizar", "Limpar todos campos"};
-			
-			int op = JOptionPane.showOptionDialog(null, "Escolha uma opção para continuar", "Aviso",
-		          JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
-		              null, opcoes, opcoes[0]);
-			
-			if(op == 0) { //salvar um novo cliente
-				UsuarioController controleUsuario = new UsuarioController();
-				try {
-					if(controleUsuario.cadastrarUsuario(u) == true) {
-						JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
-						tabelaUsuario.addTodos();
-						this.repaint();
+				//nome
+				u.setNm_usuario(nm_usuarioField.getText());			
+				//Cargo
+				u.setCargo(cargoField.getText());			
+				//Depatamento
+				u.setDepartamento(departamentoField.getText());
+				//Matricula
+				u.setMatricula(matriculaField.getText());
+				//Login (email)
+				u.setLogin(loginField.getText());
+				//Senha
+				u.setSenha(senhaField.getText());
+				//Status(ativo ou inativo)
+				u.setStatus(statusField.getText());
+				
+				Object[] opcoes = {"Salvar como novo cadastro", "Atualizar", "Limpar todos campos"};
+				
+				int op = JOptionPane.showOptionDialog(null, "Escolha uma opção para continuar", "Aviso",
+					  JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+						  null, opcoes, opcoes[0]);
+				
+				if(op == 0) { //salvar um novo cliente
+					UsuarioController controleUsuario = new UsuarioController();
+					try {
+						if(controleUsuario.cadastrarUsuario(u) == true) {
+							JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
+							tabelaUsuario.addTodos();
+							this.repaint();
+						}
+						}
+					 catch (SQLException e1) {
+						e1.printStackTrace();
+						JOptionPane.showMessageDialog(null, "Ops, houve um erro ao efetuar o cadastro!");
 					}
-					}
-				 catch (SQLException e1) {
-					e1.printStackTrace();
-					JOptionPane.showMessageDialog(null, "Ops, houve um erro ao efetuar o cadastro!");
 				}
-			}
-			
-			else if(op == 1) { //ATUALIZAR O CLIENTE
-				u.setId(this.id);
-				UsuarioController controleUsuario = new UsuarioController();
-				try {
-					if(controleUsuario.atualizarUsuario(u) == true) {
-						JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
-						tabelaUsuario.addTodos();
-						this.repaint();
-					}
-				} catch (HeadlessException | SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-					JOptionPane.showMessageDialog(null, "Ops, houve um ao efetuar o cadastro!");
-				}				
 				
-			}
-			else {
-				
-				
-				nm_usuarioField.setText("");
-				departamentoField.setText("");
-				cargoField.setText("");
-				matriculaField.setText("");			
-				loginField.setText("");
-				senhaField.setText("");
-				statusField.setText("");
-				
-				
-			}
-	
-	}
-	
+				else if(op == 1) { //Atualizar
+					u.setId(this.id);
+					UsuarioController controleUsuario = new UsuarioController();
+					try {
+						if(controleUsuario.atualizarUsuario(u) == true) {
+							JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
+							tabelaUsuario.addTodos();
+							this.repaint();
+						}
+					} catch (HeadlessException | SQLException e1) {
+						e1.printStackTrace();
+						JOptionPane.showMessageDialog(null, "Ops, houve um ao efetuar o cadastro!");
+					}				
+					
+				}
+				else {
+					
+					
+					nm_usuarioField.setText("");
+					departamentoField.setText("");
+					cargoField.setText("");
+					matriculaField.setText("");			
+					loginField.setText("");
+					senhaField.setText("");
+					statusField.setText("");
+					
+					
+				}
 		
-		else if (e.getActionCommand().equalsIgnoreCase("cancelar")) {
-			
-			dispose();
-	}
-		else if(e.getActionCommand().equals("excluir")) {
-		//tratar a exclusão
-		int linha = usuarioTable.getSelectedRow();
-		Usuario u = tabelaUsuario.getUsuario(linha);
-		
-		UsuarioController controleUsuario = new UsuarioController();
-		try {
-			controleUsuario.removerUsuario(u.getId());
-			JOptionPane.showMessageDialog(null, " Cadastro excluído com sucesso!");
-			tabelaUsuario.addTodos();
-			this.repaint();
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Erro ao efetuar a exclusão");
 		}
 		
-		
-	}
-		else if(e.getActionCommand().equals("editar")) {
-		JOptionPane.showMessageDialog(null, "Deseja realmente editar o cadastro?");
-		int linha = usuarioTable.getSelectedRow();
-		Usuario u = tabelaUsuario.getUsuario(linha);
-		
-		//preencher os campos com os dados do cliente selecionado
-		
-		
-		this.id =u.getId(); 
-		nm_usuarioField.setText(u.getNm_usuario());
-		departamentoField.setText(u.getDepartamento());
-		cargoField.setText(u.getCargo());
-		matriculaField.setText(u.getMatricula());			
-		loginField.setText(u.getLogin());
-		senhaField.setText(u.getSenha());
-		
-		
-		
-		
-	
-		
-	}
+			
+			else if (e.getActionCommand().equalsIgnoreCase("cancelar")) {
+				
+				dispose();
 		}
+			else if(e.getActionCommand().equals("excluir")) {
+			//Excluir
+			int linha = usuarioTable.getSelectedRow();
+			Usuario u = tabelaUsuario.getUsuario(linha);
+			
+			UsuarioController controleUsuario = new UsuarioController();
+			try {
+				controleUsuario.removerUsuario(u.getId());
+				JOptionPane.showMessageDialog(null, " Cadastro excluído com sucesso!");
+				tabelaUsuario.addTodos();
+				this.repaint();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+				JOptionPane.showMessageDialog(null, "Erro ao efetuar a exclusão");
+			}
+			
+			
+		}
+			else if(e.getActionCommand().equals("editar")) {
+			JOptionPane.showMessageDialog(null, "Deseja realmente editar o cadastro?");
+			int linha = usuarioTable.getSelectedRow();
+			Usuario u = tabelaUsuario.getUsuario(linha);
+			
+			//preencher os campos com os dados do cliente selecionado
+			this.id =u.getId(); 
+			nm_usuarioField.setText(u.getNm_usuario());
+			departamentoField.setText(u.getDepartamento());
+			cargoField.setText(u.getCargo());
+			matriculaField.setText(u.getMatricula());			
+			loginField.setText(u.getLogin());
+			senhaField.setText(u.getSenha());
+		
+		}
+	
+	}
 }
