@@ -13,11 +13,7 @@ import model.Cliente;
 import dao.Conexao;
 
 public class ClienteDAO {
-	//Metodo inserir
-	//metodo consultar
-	//deletar 
-	//atualizar
-	//metodos sempre recebem objeto
+
 	Connection conn = null;
 	PreparedStatement st = null;
 	
@@ -29,16 +25,16 @@ public class ClienteDAO {
 		if(conn != null) {
 			st = (PreparedStatement) conn.prepareStatement(
 					"INSERT INTO cliente"
-					+ "(usuario_id, nm_cliente, tipo_cliente, doc_num, rg_ie, celular, fone_re, email, pes_contato, cep, endereco, numero, complemento, bairro, cidade, estado) "
+					+ "(usuario_id, nm_cliente, data_nasc, tipo_cliente, doc_num, celular, fone_re, email, pes_contato, cep, endereco, numero, complemento, bairro, cidade, estado, rg_ie) "
 					+ "VALUES "
-					+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+					+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		}
 		
 		st.setInt(1, 1006); //mudar aqui para associar o id do us		
 		st.setString(2, cliente.getNm_cliente());
-		st.setInt(3, cliente.getTipo());
-		st.setString(4, cliente.getDoc_num());
-		st.setString(5, cliente.getRg_ie());
+		st.setString(3, cliente.getData_nasc());
+		st.setInt(4, cliente.getTipo());
+		st.setString(5, cliente.getDoc_num());
 		st.setString(6, cliente.getCelular());
 		st.setString(7, cliente.getFone_re());
 		st.setString(8, cliente.getEmail());
@@ -50,6 +46,7 @@ public class ClienteDAO {
 		st.setString(14, cliente.getEndereco().getBairro());
 		st.setString(15, cliente.getEndereco().getCidade());
 		st.setString(16, cliente.getEndereco().getEstado());
+		st.setString(17, cliente.getRg_ie());
 		
 		st.execute();
 		
@@ -65,9 +62,9 @@ public class ClienteDAO {
 					"UPDATE cliente SET "
 					+ " usuario_id = ?,"
 					+ " nm_cliente = ?,"
+					+ " data_nasc = ?,"
 					+ " tipo_cliente = ?,"
 					+ " doc_num = ?,"
-					+ " rg_ie = ?,"
 					+ " celular = ?,"
 					+ " fone_re = ?,"
 					+ " email = ?,"
@@ -78,16 +75,17 @@ public class ClienteDAO {
 					+ " complemento = ?,"
 					+ " bairro = ?,"
 					+ " cidade = ?,"
-					+ " estado = ? "
+					+ " estado = ?,"
+					+ " rg_ie = ?"
 					+ " WHERE id_cliente = " + cliente.getId() + ";"
 					);
 		}
 		
 		st.setInt(1, 1006); //mudar aqui para associar o id do us		
 		st.setString(2, cliente.getNm_cliente());
-		st.setInt(3, cliente.getTipo());
-		st.setString(4, cliente.getDoc_num());
-		st.setString(5, cliente.getRg_ie());
+		st.setString(3, cliente.getData_nasc());
+		st.setInt(4, cliente.getTipo());
+		st.setString(5, cliente.getDoc_num());
 		st.setString(6, cliente.getCelular());
 		st.setString(7, cliente.getFone_re());
 		st.setString(8, cliente.getEmail());
@@ -99,6 +97,7 @@ public class ClienteDAO {
 		st.setString(14, cliente.getEndereco().getBairro());
 		st.setString(15, cliente.getEndereco().getCidade());
 		st.setString(16, cliente.getEndereco().getEstado());
+		st.setString(17, cliente.getRg_ie());
 		
 		System.out.println(cliente);
 		
@@ -127,6 +126,7 @@ public class ClienteDAO {
 
 	           cliente.setId(rs.getInt("id_cliente"));
 	           cliente.setNm_cliente(rs.getString("nm_cliente"));
+	           cliente.setData_nasc(rs.getString("data_nasc"));
 	           cliente.setEmail(rs.getString("email"));
 	           cliente.setCelular(rs.getString("celular"));
 	           cliente.setFone_re(rs.getString("fone_re"));

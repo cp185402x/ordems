@@ -9,17 +9,18 @@ import model.Cliente;
 
 //teste
 public class ClienteController {
-	///Metodo para receber os dados,tratar e chamar o metodo insere do ClienteDAO
+	///Metodo para receber os dados, tratar e chamar o metodo insere do ClienteDAO
 	private Conexao bd;
 	public void ClienteContoller() {
 		setBd(new Conexao());
 	}
 	
 	
-	public void validaCampos (String nome, String documento, String rgie, String data, String fone_re, String celular, String email, String contato, String cep, String endereco, String numero, String complemento, String bairro, String cidade, String estado) {
+	public void validaCampos (String nome, String documento, String data_nasc, String rgie, String data, String fone_re, String celular, String email, String contato, String cep, String endereco, String numero, String complemento, String bairro, String cidade, String estado) {
 		
 		System.out.println("contoller" + nome);
 		System.out.println("contoller" + documento);
+		System.out.println("contoller" + data_nasc);
 		System.out.println("contoller" + rgie);
 		System.out.println("contoller" + data);
 		System.out.println("contoller" + fone_re);
@@ -68,7 +69,6 @@ public class ClienteController {
 
 
 	public ArrayList<Cliente> consultarCliente() throws SQLException {
-		//System.out.println("Cheguei no consultar cliente");
 		ClienteDAO clienteDAO = new ClienteDAO();
 		return clienteDAO.consultar();
 		

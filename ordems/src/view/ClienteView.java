@@ -47,8 +47,8 @@ public class ClienteView extends JFrame implements ActionListener{
     JLabel nm_clienteLabel;
     JTextField nm_clienteField;
     
-    JLabel dataNascLabel;
-    JTextField dataNascField;
+    JLabel data_nascLabel;
+    JTextField data_nascField;
     
     JTextField docField;
     
@@ -175,12 +175,12 @@ public class ClienteView extends JFrame implements ActionListener{
         nm_clienteField.setBounds(10, 51, 427, 20);
         clientePainel.add(nm_clienteField);
         
-        dataNascField = new JTextField(20);
-        dataNascField.setBounds(447, 50, 186, 20);
-        clientePainel.add(dataNascField);        
-        dataNascLabel = new JLabel("Data Nascimento");
-        dataNascLabel.setBounds(447, 35, 156, 14);
-        clientePainel.add(dataNascLabel);
+        data_nascField = new JTextField(20);
+        data_nascField.setBounds(447, 50, 186, 20);
+        clientePainel.add(data_nascField);        
+        data_nascLabel = new JLabel("Data Nascimento");
+        data_nascLabel.setBounds(447, 35, 156, 14);
+        clientePainel.add(data_nascLabel);
                
         fone_reField = new JTextField(20);
         fone_reField.setBounds(10, 95, 186, 20);
@@ -343,7 +343,9 @@ public class ClienteView extends JFrame implements ActionListener{
 			//Tipo
 			System.out.println("Tipo: " +c.getTipo());
 			//nome
-			c.setNm_cliente(nm_clienteField.getText());			
+			c.setNm_cliente(nm_clienteField.getText());	
+			//data nasc
+			c.setData_nasc(data_nascField.getText());		
 			//documento
 			c.setDoc_num(docField.getText());			
 			//RGIE
@@ -412,6 +414,7 @@ public class ClienteView extends JFrame implements ActionListener{
 				
 				
 				nm_clienteField.setText("");
+				data_nascField.setText("");
 				docField.setText("");
 				rgieField.setText("");
 				fone_reField.setText("");			
@@ -463,6 +466,7 @@ public class ClienteView extends JFrame implements ActionListener{
 		
 		this.id =c.getId(); 
 		nm_clienteField.setText(c.getNm_cliente());
+		data_nascField.setText(c.getData_nasc());
 		docField.setText(c.getDoc_num());
 		rgieField.setText(c.getRg_ie());
 		fone_reField.setText(c.getFone_re());			

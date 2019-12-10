@@ -5,6 +5,7 @@ public class Cliente {
 	///Atributos
 	private int id;
     private String nm_cliente;
+    private String data_nasc;
     private String doc_num;
     private String rg_ie;
     private String celular;
@@ -36,6 +37,14 @@ public class Cliente {
 
 	public void setNm_cliente(String nm_cliente) {
 		this.nm_cliente = nm_cliente;
+	}
+
+	public String getData_nasc() {
+		return data_nasc;
+	}
+
+	public void setData_nasc(String data_nasc) {
+		this.data_nasc = data_nasc;
 	}
 
 	public String getDoc_num() {
@@ -114,7 +123,7 @@ public class Cliente {
 
 	public String toString() {
 		
-		return "Cliente [id=" + id + ", nm_cliente=" + nm_cliente + ", doc_num=" + doc_num + ", rg_ie=" + rg_ie
+		return "Cliente [id=" + id + ", nm_cliente=" + nm_cliente + ", data_nasc=" + data_nasc + ", doc_num=" + doc_num + ", rg_ie=" + rg_ie
 				+ ", celular=" + celular + ", fone_re=" + fone_re + ", email=" + email + ", pes_contato=" + pes_contato
 				+ ", endereco=" + endereco + ", tipo_cliente=" + tipo_cliente + "]";
 	}
