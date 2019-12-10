@@ -21,7 +21,6 @@ Inicialmente neste README iremos tratar basicamente do desenvolvimento Java.
 			ao importar o arquivo sql será criado o banco de dados "ordems_db"
 	1.2 - Usuário "root" e senha "" vazia.
 	
-2 - 
 
 # Java
 
