@@ -34,6 +34,7 @@ public class UsuarioView extends JFrame implements ActionListener{
 	//atributos globais da classe
 	JPanel painelTitulo;
 	JPanel painelCadastro;
+	JPanel usuarioPainel;
 	JLabel titulo;
 	
     JLabel nm_usuarioLabel;
@@ -218,6 +219,21 @@ public class UsuarioView extends JFrame implements ActionListener{
         
 
     }
+    
+    //método para limpar tela
+    private void limpaCampos() {
+
+		nm_usuarioField.setText("");
+		departamentoField.setText("");
+		cargoField.setText("");
+		matriculaField.setText("");			
+		loginField.setText("");
+		senhaField.setText("");
+		statusField.setText("");
+		
+		this.painelCadastro.repaint();
+		this.usuarioPainel.repaint();
+    }
 
     
 	public void actionPerformed(ActionEvent e) {
@@ -255,6 +271,7 @@ public class UsuarioView extends JFrame implements ActionListener{
 						if(controleUsuario.cadastrarUsuario(u) == true) {
 							JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
 							tabelaUsuario.addTodos();
+							limpaCampos();
 							this.repaint();
 						}
 						}
@@ -271,6 +288,7 @@ public class UsuarioView extends JFrame implements ActionListener{
 						if(controleUsuario.atualizarUsuario(u) == true) {
 							JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
 							tabelaUsuario.addTodos();
+							limpaCampos();
 							this.repaint();
 						}
 					} catch (HeadlessException | SQLException e1) {

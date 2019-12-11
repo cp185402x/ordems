@@ -13,7 +13,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
+import javax.swing.text.LabelView;
+
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 
 //Declarando a classe na janela
@@ -77,7 +80,7 @@ public class SobreView extends JFrame implements ActionListener{
         lblSistemaParaGerenciamento.setBounds(214, 34, 290, 41);
         painelSobre.add(lblSistemaParaGerenciamento);
         
-        JLabel lblVerso = new JLabel("Vers\u00E3o 1.3 ( Build id:  86)");
+        JLabel lblVerso = new JLabel("Versão 1.3 ( Build id:  117)");
         lblVerso.setFont(new Font("Tahoma", Font.PLAIN, 11));
         lblVerso.setBounds(214, 101, 290, 41);
         painelSobre.add(lblVerso);
@@ -102,9 +105,6 @@ public class SobreView extends JFrame implements ActionListener{
         panelLogo.setBorder(new LineBorder(Color.LIGHT_GRAY));
         panelLogo.setBounds(10, 11, 190, 140);
         painelSobre.add(panelLogo);
-        
-        //ImageIcon icon = new ImageIcon(“caminho/logo.gif”);
-        //JLabel label = new JLabel(icon);
         
        
         getContentPane().add(painelBotoes, BorderLayout.SOUTH);

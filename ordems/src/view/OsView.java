@@ -39,9 +39,8 @@ public class OsView extends JFrame implements ActionListener{
 	//atributos globais da classe
 	JPanel painelTitulo;
 	JPanel painelCadastro;
-	JPanel clientePainel;
 	JPanel equipamentoPanel;
-	
+	JPanel clientePainel;
 	JLabel titulo;
     
     JLabel 		cliente_idLabel;
@@ -116,7 +115,7 @@ public class OsView extends JFrame implements ActionListener{
         
         criaFormulario();
     	this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    	this.setSize(680, 600);
+    	this.setSize(780, 600);
     	this.setVisible(true);
     	this.setLocationRelativeTo(null);
     }
@@ -173,6 +172,7 @@ public class OsView extends JFrame implements ActionListener{
         nm_cilenteField.setBounds(84, 24, 326, 20);
         clientePainel.add(nm_cilenteField);
         
+        //Verifica se existe cliente cadastrado
         if(this.cliente != null) {
 			cilente_idField.setText(""+cliente.getId());
 			nm_cilenteField.setText(cliente.getNm_cliente());

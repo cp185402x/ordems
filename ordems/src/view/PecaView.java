@@ -35,6 +35,7 @@ public class PecaView extends JFrame implements ActionListener{
 	//atributos globais da classe
 	JPanel painelTitulo;
 	JPanel painelCadastro;
+	JPanel pecaPainel;
 	JLabel titulo;
 	
 	JLabel		buscaLabel;
@@ -196,6 +197,18 @@ public class PecaView extends JFrame implements ActionListener{
         
 
     }
+    
+    //método para limpar tela
+    private void limpaCampos() {
+
+		nm_pecaField.setText("");
+		vl_vendaField.setText("");
+		vl_custoField.setText("");
+		skuField.setText("");
+		
+		this.painelCadastro.repaint();
+		this.pecaPainel.repaint();
+    }
         
     	public void actionPerformed(ActionEvent e) {
 		
@@ -227,6 +240,7 @@ public class PecaView extends JFrame implements ActionListener{
 					if(controlePeca.cadastrarPeca(p) == true) {
 						JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
 						tabelaPeca.addTodos();
+						limpaCampos();
 						this.repaint();
 					}
 					}
@@ -243,6 +257,7 @@ public class PecaView extends JFrame implements ActionListener{
 					if(controlePeca.atualizarPeca(p) == true) {
 						JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
 						tabelaPeca.addTodos();
+						limpaCampos();
 						this.repaint();
 					}
 				} catch (HeadlessException | SQLException e1) {
@@ -277,6 +292,7 @@ public class PecaView extends JFrame implements ActionListener{
 			JOptionPane.showMessageDialog(null, " Cadastro excluído com sucesso!");
 			tabelaPeca.addTodos();
 			this.repaint();
+			
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
