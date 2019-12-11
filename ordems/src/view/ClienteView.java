@@ -38,6 +38,7 @@ public class ClienteView extends JFrame implements ActionListener{
 	//atributos globais da classe
 	JPanel painelTitulo;
 	JPanel painelCadastro;
+	JPanel clientePainel;
 	JLabel titulo;
 	
 	JRadioButton cnpjRadio;
@@ -322,6 +323,28 @@ public class ClienteView extends JFrame implements ActionListener{
         botaoCancelar.setActionCommand("cancelar");
         
 
+    }    
+    
+    //método para limpar tela
+    private void limpaCampos() {
+		nm_clienteField.setText("");
+		data_nascField.setText("");
+		docField.setText("");
+		rgieField.setText("");
+		fone_reField.setText("");			
+		celularField.setText("");
+		emailField.setText("");
+		pes_contatoField.setText("");
+		cepField.setText("");
+		enderecoField.setText("");
+		numeroField.setText("");
+		complementoField.setText("");
+		bairroField.setText("");
+		cidadeField.setText("");
+		estadoField.setText("");
+		
+		this.painelCadastro.repaint();
+		this.clientePainel.repaint();
     }
     
     
@@ -385,7 +408,8 @@ public class ClienteView extends JFrame implements ActionListener{
 					if(controleCliente.cadastrarCliente(c) == true) {
 						JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
 						tabelaCliente.addTodos();
-						this.repaint();
+						limpaCampos();
+						//this.repaint();
 					}
 					}
 				 catch (SQLException e1) {
@@ -400,7 +424,8 @@ public class ClienteView extends JFrame implements ActionListener{
 					if(controleCliente.atualizarCliente(c) == true) {
 						JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
 						tabelaCliente.addTodos();
-						this.repaint();
+						limpaCampos();
+						//this.repaint();
 					}
 				} catch (HeadlessException | SQLException e1) {
 					// TODO Auto-generated catch block

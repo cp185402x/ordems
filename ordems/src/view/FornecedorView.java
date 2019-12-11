@@ -35,6 +35,7 @@ public class FornecedorView extends JFrame implements ActionListener{
 	//atributos globais da classe
 	JPanel painelTitulo;
 	JPanel painelCadastro;
+	JPanel fornecedorPainel;
 	JLabel titulo;
 	
 	JRadioButton cnpjRadio;
@@ -319,6 +320,28 @@ public class FornecedorView extends JFrame implements ActionListener{
         botaoCancelar.setActionCommand("cancelar");
 
     }
+    
+    //método para limpar tela
+    private void limpaCampos() {
+
+		nm_fornecedorField.setText("");
+		docField.setText("");
+		rgieField.setText("");
+		fone_reField.setText("");			
+		celularField.setText("");
+		emailField.setText("");
+		pes_contatoField.setText("");
+		cepField.setText("");
+		enderecoField.setText("");
+		numeroField.setText("");
+		complementoField.setText("");
+		bairroField.setText("");
+		cidadeField.setText("");
+		estadoField.setText("");
+    	
+		this.painelCadastro.repaint();
+		this.fornecedorPainel.repaint();
+    }
    
 	public void actionPerformed(ActionEvent e) {
 		
@@ -379,6 +402,7 @@ public class FornecedorView extends JFrame implements ActionListener{
 						if(controleCliente.cadastrarFornecedor(f) == true) {
 							JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
 							tabelaFornecedor.addTodos();
+							limpaCampos();
 							this.repaint();
 						}
 						}
@@ -394,6 +418,7 @@ public class FornecedorView extends JFrame implements ActionListener{
 						if(controleFornecedor.atualizarFornecedor(f) == true) {
 							JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
 							tabelaFornecedor.addTodos();
+							limpaCampos();
 							this.repaint();
 						}
 					} catch (HeadlessException | SQLException e1) {

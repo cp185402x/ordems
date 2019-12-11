@@ -361,7 +361,7 @@ public class OsView extends JFrame implements ActionListener{
         botaoListar.setActionCommand("listar");
     }
     
-    //método para limpartela
+    //método para limpar tela
     private void limpaCampos() {
     	cilente_idField.setText("");
 		nm_cilenteField.setText("");
@@ -441,19 +441,7 @@ public class OsView extends JFrame implements ActionListener{
 					
 				}
 				else if(op == 1) { //Atualizar OS
-					/*o.setId(this.id);
-					OsController controleOs = new OsController();
-					try {
-						if(controleOs.atualizarOs(o) == true) {
-							JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
-							tabelaOs.addTodos();
-							this.repaint();
-						}
-					} catch (HeadlessException | SQLException e1) {
-
-						e1.printStackTrace();
-						JOptionPane.showMessageDialog(null, "Ops, houve um ao efetuar o cadastro!");
-					}*/				
+				
 				}
 				else {
 					
@@ -473,13 +461,14 @@ public class OsView extends JFrame implements ActionListener{
 			int linha = osTable.getSelectedRow();
 			Os o = tabelaOs.getOs(linha);
 			
-			JOptionPane.showMessageDialog(null, o.getId());
+			//JOptionPane.showMessageDialog(null, o.getId());
+			JOptionPane.showMessageDialog(null, "Deseja realmente excluir a O.S. selecionada?");
 				
 			OsController controleOs = new OsController();
 			try {
 				System.out.println(o);
 				controleOs.removerOs(o.getId());
-				JOptionPane.showMessageDialog(null, " Cadastro excluído com sucesso!");
+				JOptionPane.showMessageDialog(null, "Cadastro excluído com sucesso!");
 				tabelaOs.addTodos();
 				this.repaint();
 			}catch (SQLException e1) {

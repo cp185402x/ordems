@@ -42,8 +42,8 @@ public class TabelaUsuario extends AbstractTableModel {
 			case 0: return listaUsuario.get(rowIndex).getNm_usuario();
 			case 1: return listaUsuario.get(rowIndex).getMatricula();
 			case 2: return listaUsuario.get(rowIndex).getCargo();
-			case 4: return listaUsuario.get(rowIndex).getLogin();
-			case 3: return listaUsuario.get(rowIndex).getStatus();
+			case 3: return listaUsuario.get(rowIndex).getLogin();
+			case 4: return listaUsuario.get(rowIndex).getStatus();
 			
 		
 		}
