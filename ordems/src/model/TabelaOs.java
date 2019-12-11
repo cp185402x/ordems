@@ -64,7 +64,7 @@ public class TabelaOs extends AbstractTableModel{
 
 	public Os getOs(int linha) {
 		// TODO Auto-generated method stub
-		return null;
+		return listaOs.get(linha);
 	}
 
 }

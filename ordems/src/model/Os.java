@@ -6,7 +6,6 @@ public class Os {
 	private int id;
 	private Cliente cliente;
 	private int usuario_id;
-	private int cliente_id;
     private String data_os;
     private String data_previsao;
     private String data_pronto;
@@ -132,16 +131,6 @@ public class Os {
 		this.status_id = status_id;
 	}
 	
-
-	public int getCliente_id() {
-		return cliente_id;
-	}
-
-	public void setCliente_id(int cliente_id) {
-		this.cliente_id = cliente_id;
-	}
-
-
 	public int getId() {
 		return id;
 	}
@@ -152,6 +141,17 @@ public class Os {
 	}
 
 
+	@Override
+	public String toString() {
+		return "Os [id=" + id + ", cliente=" + cliente + ", usuario_id=" + usuario_id + ", cliente_id=" + cliente.getId()
+				+ ", data_os=" + data_os + ", data_previsao=" + data_previsao + ", data_pronto=" + data_pronto
+				+ ", data_entrega=" + data_entrega + ", tipo=" + tipo + ", modelo=" + modelo + ", marca=" + marca
+				+ ", cor=" + cor + ", serie=" + serie + ", garantia=" + garantia + ", info_cliente=" + info_cliente
+				+ ", info_tecnico=" + info_tecnico + ", info_entrega=" + info_entrega + ", info_interna=" + info_interna
+				+ ", status_id=" + status_id + "]";
+	}
+
+	
 	
     
     }

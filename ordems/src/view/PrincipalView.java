@@ -205,7 +205,7 @@ public class PrincipalView extends JFrame implements ActionListener{
 		
 		//Menu Relatórios
 		if(e.getActionCommand().equals("relatorioCliente")) {
-			RelClienteView rc = new RelClienteView("imprimir", null);
+			RelClienteView rc = new RelClienteView("imprimir");
 			this.getContentPane().removeAll();
 			this.getContentPane().add(rc);
 			this.revalidate();

@@ -26,8 +26,11 @@ import javax.swing.JTextArea;
 import javax.swing.JCheckBox;
 
 import controller.OsController;
+import model.Cliente;
 import model.Os;
+import model.TabelaCliente;
 import model.TabelaOs;
+import view.rel.RelClienteView;
 import view.rel.RelOsView;
 
 //Declarando a classe na janela
@@ -36,6 +39,9 @@ public class OsView extends JFrame implements ActionListener{
 	//atributos globais da classe
 	JPanel painelTitulo;
 	JPanel painelCadastro;
+	JPanel clientePainel;
+	JPanel equipamentoPanel;
+	
 	JLabel titulo;
     
     JLabel 		cliente_idLabel;
@@ -86,6 +92,8 @@ public class OsView extends JFrame implements ActionListener{
     JLabel 		info_internaLabel;
     JTextArea 	info_internaTA;
     
+    JCheckBox garantiaCkBox;
+    
     //Inicia o painel dos botoes
     JPanel painelBotoes;
     JButton botaoSalvar;
@@ -98,16 +106,14 @@ public class OsView extends JFrame implements ActionListener{
     private TabelaOs tabelaOs;
     
     private Os ordemServico;
-	private int id;
-    
-    
-    public OsView(Os os) { // construtor da view OS.
+	private Cliente cliente;
+	
+	public OsView(Cliente c) { // construtor da view OS.
 		super("Cadastro de Ordem de Serviço");
         setType(Type.UTILITY);
         
-        if(os == null) this.ordemServico = new Os();
-        else this.ordemServico = os;
-                
+        this.cliente = c;
+        
         criaFormulario();
     	this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     	this.setSize(680, 600);
@@ -137,14 +143,17 @@ public class OsView extends JFrame implements ActionListener{
         
         botaoSalvar = new JButton("Salvar");
         botaoCancelar = new JButton("Cancelar");
+        botaoExcluir = new JButton("Excluir");
+        botaoEditar = new JButton("Editar");
+        botaoListar = new JButton("Listar");
         
         getContentPane().add(painelCadastro, BorderLayout.WEST);
         
-        JPanel clientePainel = new JPanel();
+        clientePainel = new JPanel();
         clientePainel.setBorder(new LineBorder(Color.LIGHT_GRAY));
         clientePainel.setLayout(null);
         
-        JPanel equipamentoPanel = new JPanel();
+        equipamentoPanel = new JPanel();
         equipamentoPanel.setBorder(new LineBorder(Color.LIGHT_GRAY));
         equipamentoPanel.setLayout(null);
         
@@ -163,6 +172,11 @@ public class OsView extends JFrame implements ActionListener{
         clientePainel.add(nm_clienteLabel);
         nm_cilenteField.setBounds(84, 24, 326, 20);
         clientePainel.add(nm_cilenteField);
+        
+        if(this.cliente != null) {
+			cilente_idField.setText(""+cliente.getId());
+			nm_cilenteField.setText(cliente.getNm_cliente());
+		}
         
         usuario_idLabel = new JLabel("Usuário");
         usuario_idLabel.setBounds(504, 11, 99, 14);        
@@ -200,11 +214,11 @@ public class OsView extends JFrame implements ActionListener{
         garantiaLabel.setBounds(311, 55, 85, 15);
         clientePainel.add(garantiaLabel);
         
-        botaoListar = new JButton("...");
+        botaoListar = new JButton("Listar");
         botaoListar.setBounds(418, 23, 35, 23);
         clientePainel.add(botaoListar);
         
-        JCheckBox garantiaCkBox = new JCheckBox(" Sim");
+        garantiaCkBox = new JCheckBox(" Sim");
         garantiaCkBox.setBounds(311, 73, 52, 14);
         clientePainel.add(garantiaCkBox);
         
@@ -246,7 +260,7 @@ public class OsView extends JFrame implements ActionListener{
         info_clienteLabel = new JLabel("Informações do cliente");
         info_clienteLabel.setBounds(10, 45, 300, 14);
         equipamentoPanel.add(info_clienteLabel);        
-        JTextArea info_clienteTA = new JTextArea(3, 200);
+        info_clienteTA = new JTextArea(3, 200);
         info_clienteTA.setLineWrap(true);
         info_clienteTA.setForeground(Color.DARK_GRAY);
         info_clienteTA.setEditable(true);
@@ -256,7 +270,7 @@ public class OsView extends JFrame implements ActionListener{
         info_tecnicoLabel = new JLabel("Informações do técnico");
         info_tecnicoLabel.setBounds(322, 45, 302, 14);
         equipamentoPanel.add(info_tecnicoLabel);        
-        JTextArea info_tecnicoTA = new JTextArea(3, 200);
+        info_tecnicoTA = new JTextArea(3, 200);
         info_tecnicoTA.setForeground(Color.DARK_GRAY);
         info_tecnicoTA.setBounds(322, 60, 300, 60);
         equipamentoPanel.add(info_tecnicoTA);
@@ -264,7 +278,7 @@ public class OsView extends JFrame implements ActionListener{
         info_entregaLabel = new JLabel("Informações interna");
         info_entregaLabel.setBounds(10, 134, 310, 14);
         equipamentoPanel.add(info_entregaLabel);        
-        JTextArea info_entregaTA = new JTextArea(3, 200);
+        info_entregaTA = new JTextArea(3, 200);
         info_entregaTA.setForeground(Color.DARK_GRAY);
         info_entregaTA.setBounds(10, 150, 300, 60);
         equipamentoPanel.add(info_entregaTA);
@@ -272,7 +286,7 @@ public class OsView extends JFrame implements ActionListener{
         info_internaLabel = new JLabel("Informações da entrega");
         info_internaLabel.setBounds(322, 134, 300, 14);
         equipamentoPanel.add(info_internaLabel);        
-        JTextArea info_internaTA = new JTextArea(3, 200);
+        info_internaTA = new JTextArea(3, 200);
         info_internaTA.setForeground(Color.DARK_GRAY);
         info_internaTA.setBounds(322, 150, 300, 60);
         equipamentoPanel.add(info_internaTA);
@@ -324,28 +338,57 @@ public class OsView extends JFrame implements ActionListener{
         
         getContentPane().add(painelBotoes, BorderLayout.SOUTH);
         
-        painelBotoes.add(botaoSalvar);
-        
-        botaoEditar = new JButton("Editar");
+        painelBotoes.add(botaoSalvar);        
         painelBotoes.add(botaoEditar);
-        botaoEditar.addActionListener(this);
-        botaoEditar.setActionCommand("editar");
-        botaoExcluir = new JButton("Excluir");
         painelBotoes.add(botaoExcluir);
-        botaoExcluir.addActionListener(this);
-        botaoExcluir.setActionCommand("excluir");
         painelBotoes.add(botaoCancelar);
+        painelBotoes.add(botaoListar);
         
+        //adicionando as ações
         botaoSalvar.addActionListener(this);
         botaoSalvar.setActionCommand("salvar");
+		
+        botaoEditar.addActionListener(this);
+        botaoEditar.setActionCommand("editar");
+		
+        botaoExcluir.addActionListener(this);
+        botaoExcluir.setActionCommand("excluir");
+		
         botaoCancelar.addActionListener(this);
         botaoCancelar.setActionCommand("cancelar");
         
+        botaoListar.addActionListener(this);
+        botaoListar.setActionCommand("listar");
+    }
+    
+    //método para limpartela
+    private void limpaCampos() {
+    	cilente_idField.setText("");
+		nm_cilenteField.setText("");
+		usuario_idField.setText("");
+		garantiaCkBox.setSelected(false);
+		data_previsaoField.setText("");
+		data_prontoField.setText("");
+		data_entregaField.setText("");
+		tipoField.setText("");
+		modeloField.setText("");
+		marcaField.setText("");
+		corField.setText("");
+		serieField.setText("");
+		info_tecnicoTA.setText("");
+		info_entregaTA.setText("");
+		info_clienteTA.setText("");
+		info_internaTA.setText("");
+		
+		this.painelCadastro.repaint();
+		this.equipamentoPanel.repaint();
     }
 
+    //tratando as ações
 	public void actionPerformed(ActionEvent e) {		 
 			
 		 if(e.getActionCommand().equalsIgnoreCase("salvar")) {
+			 
 				Os o = new Os();
 				
 				//Tipo de equipamento
@@ -373,6 +416,9 @@ public class OsView extends JFrame implements ActionListener{
 				//informaçao interna
 				o.setInfo_interna(info_internaTA.getText());
 				
+				o.setCliente(cliente);
+				
+				
 				Object[] opcoes = {"Salvar como novo cadastro", "Atualizar", "Limpar todos campos"};
 				
 				int op = JOptionPane.showOptionDialog(null, "Escolha uma opção para continuar", "Aviso",
@@ -384,9 +430,8 @@ public class OsView extends JFrame implements ActionListener{
 					OsController controleOs = new OsController();
 					try {
 						if(controleOs.cadastrarOs(o) == true) {
-							JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
 							tabelaOs.addTodos();
-							this.repaint();
+							limpaCampos();
 						}
 						}
 					 catch (SQLException e1) {
@@ -396,7 +441,7 @@ public class OsView extends JFrame implements ActionListener{
 					
 				}
 				else if(op == 1) { //Atualizar OS
-					o.setId(this.id);
+					/*o.setId(this.id);
 					OsController controleOs = new OsController();
 					try {
 						if(controleOs.atualizarOs(o) == true) {
@@ -408,49 +453,35 @@ public class OsView extends JFrame implements ActionListener{
 
 						e1.printStackTrace();
 						JOptionPane.showMessageDialog(null, "Ops, houve um ao efetuar o cadastro!");
-					}				
+					}*/				
 				}
 				else {
 					
-					
-					cilente_idField.setText("");
-					nm_cilenteField.setText("");
-					usuario_idField.setText("");
-					data_previsaoField.setText("");
-					data_prontoField.setText("");
-					data_entregaField.setText("");
-					garantiaField.setText("");
-					tipoField.setText("");
-					modeloField.setText("");
-					marcaField.setText("");
-					corField.setText("");
-					serieField.setText("");
-					info_clienteTA.setText("");
-					info_tecnicoTA.setText("");
-					info_entregaTA.setText("");
-					info_clienteTA.setText("");
-					info_internaTA.setText("");
-					
+					limpaCampos();
 				}
 				
 		
 		}
+		 //ação cancelar
 		else if (e.getActionCommand().equalsIgnoreCase("cancelar")) {
 		
 				dispose();
 		}
+		//ação excluir
 		else if(e.getActionCommand().equals("excluir")) {
 			//tratar a exclusão
 			int linha = osTable.getSelectedRow();
 			Os o = tabelaOs.getOs(linha);
+			
+			JOptionPane.showMessageDialog(null, o.getId());
 				
 			OsController controleOs = new OsController();
 			try {
-					controleOs.removerOs(o.getId());
-					
-					JOptionPane.showMessageDialog(null, " Cadastro excluído com sucesso!");
-					tabelaOs.addTodos();
-					this.repaint();
+				System.out.println(o);
+				controleOs.removerOs(o.getId());
+				JOptionPane.showMessageDialog(null, " Cadastro excluído com sucesso!");
+				tabelaOs.addTodos();
+				this.repaint();
 			}catch (SQLException e1) {
 					e1.printStackTrace();
 					JOptionPane.showMessageDialog(null, "Erro ao efetuar a exclusão");
@@ -462,11 +493,15 @@ public class OsView extends JFrame implements ActionListener{
 			int linha = osTable.getSelectedRow();
 			Os o = tabelaOs.getOs(linha);
 			
-			this.id =o.getId(); 
+			System.out.println(o);
+			
+			//this.id = o.getId(); 
 			data_previsaoField.setText(o.getData_previsao());
 			data_prontoField.setText(o.getData_pronto());
 			data_entregaField.setText(o.getData_entrega());
-			//garantiaField.setText(o.getGarantia());			
+			if(o.getGarantia() == 1) {
+				garantiaCkBox.setSelected(true);
+			}
 			tipoField.setText(o.getTipo());
 			modeloField.setText(o.getModelo());
 			marcaField.setText(o.getMarca());
@@ -478,9 +513,15 @@ public class OsView extends JFrame implements ActionListener{
 			info_internaTA.setText(o.getInfo_interna());
 			
 			
-		
+		}
+		else if(e.getActionCommand().equals("listar")) {
+			RelClienteView rc = new RelClienteView("Selecionar");
+			this.setVisible(false);
+			rc.setVisible(true);
+			
 			
 		}
+		 
 			
 	}
 }

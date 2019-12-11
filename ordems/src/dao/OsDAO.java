@@ -34,7 +34,7 @@ public class OsDAO {
 		}
 		
 		st.setInt(1,os.getUsuario_id());
-		st.setInt(2, os.getCliente_id());
+		st.setInt(2, os.getCliente().getId());
 		st.setString(3, os.getData_previsao());
 		st.setString(4, os.getData_pronto());
 		st.setString(5, os.getData_entrega());
@@ -79,6 +79,21 @@ public class OsDAO {
 	           os.getCliente().setId(rs.getInt("cliente_id"));
 	           os.setMarca(rs.getString("marca"));
 	           os.setModelo(rs.getString("modelo"));
+	           os.setCor(rs.getString("cor"));
+	           os.setSerie(rs.getString("serie"));
+	           os.setGarantia(rs.getInt("garantia"));
+	           os.setInfo_cliente(rs.getString("info_cliente"));
+	           os.setInfo_tecnico(rs.getString("info_tecnico"));
+	           os.setInfo_entrega(rs.getString("info_entrega"));
+	           os.setInfo_interna(rs.getString("info_interna"));
+	           os.setData_previsao(rs.getString("data_previsao"));
+	           os.setData_pronto(rs.getString("data_pronto"));
+	           os.setData_entrega(rs.getString("data_entrega"));
+	          
+	           
+	           
+	           
+	           
 	           lista.add(os);
 
 	           
@@ -120,7 +135,7 @@ public class OsDAO {
 			
 			
 			st.setInt(1, os.getUsuario_id());
-			st.setInt(2, os.getCliente_id());
+			st.setInt(2, os.getCliente().getId());
 			st.setString(3, os.getData_os());
 			st.setString(4, os.getData_previsao());
 			st.setString(5, os.getData_pronto());

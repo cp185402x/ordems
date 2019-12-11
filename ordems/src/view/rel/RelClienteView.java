@@ -42,12 +42,10 @@ public class RelClienteView extends JFrame implements ActionListener{
     private JTable clienteTable;
     TabelaCliente tabelaCliente;
     
-    private Os ordemServico;
 
-	public RelClienteView(String nomeBotao, Os os) { // construtor da view Cliente.
+	public RelClienteView(String nomeBotao) { // construtor da view Cliente.
 		super("Relatório de Clientes");
         setType(Type.UTILITY);
-        this.ordemServico = os;
         
         criaFormulario(nomeBotao);
     	this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -150,15 +148,9 @@ public class RelClienteView extends JFrame implements ActionListener{
 		else if(e.getActionCommand().equalsIgnoreCase("selecionar")) {
 			JOptionPane.showMessageDialog(null, "No selecionar");
 			int linha = clienteTable.getSelectedRow();
-			this.ordemServico.setCliente(tabelaCliente.getCliente(linha));
-			this.setVisible(false);
-			this.dispose();
+			Cliente c = tabelaCliente.getCliente(linha);
 			
-			OsView ov = new OsView(this.ordemServico);
-			this.getContentPane().removeAll();
-			this.getContentPane().add(ov);
-			this.revalidate();
-		    this.repaint();
+			OsView os = new OsView(c);
 			
 		}
 	}
