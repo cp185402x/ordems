@@ -17,17 +17,17 @@ public class Conexao {
 		try {
 			//Class.forName(driverName);
 			
-			//Bancod de dados em localhost	
+			//Bancod de dados em cloud link8	
 			
-			String databasehost = "191.252.119.241:3306";
+			String databasehost = "162.241.39.192:3306";
 			
-			String database = "link8_ordems_db";
+			String database = "wwlink_ordems";
 			
 			String url = "jdbc:mysql://" + databasehost + "/" + database;
 			
-			String userName = "link8_ordems";
+			String userName = "wwlink_ordems";
 			
-			String password = "h^QoUJzte#n{";
+			String password = "Link8@OR2020";
 			
 			/* Banco de dados no google cloud plataform
 			 * 
