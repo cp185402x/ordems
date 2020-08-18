@@ -25,7 +25,7 @@ public class ClienteDAO {
 		if(conn != null) {
 			st = (PreparedStatement) conn.prepareStatement(
 					"INSERT INTO cliente"
-					+ "(usuario_id, nm_cliente, data_nasc, tipo_cliente, doc_num, celular, fone_re, email, pes_contato, cep, endereco, numero, complemento, bairro, cidade, estado, rg_ie) "
+					+ "(usuario_id_usuario, nm_cliente, data_nasc, tipo_cliente, doc_num, celular, fone_re, email, pes_contato, cep, endereco, numero, complemento, bairro, cidade, estado, rg_ie) "
 					+ "VALUES "
 					+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		}
@@ -60,7 +60,7 @@ public class ClienteDAO {
 		if(conn != null) {
 			st = (PreparedStatement) conn.prepareStatement(
 					"UPDATE cliente SET "
-					+ " usuario_id = ?,"
+					+ " usuario_id_usuario = ?,"
 					+ " nm_cliente = ?,"
 					+ " data_nasc = ?,"
 					+ " tipo_cliente = ?,"

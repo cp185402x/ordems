@@ -28,6 +28,7 @@ import javax.swing.border.LineBorder;
 import controller.UsuarioController;
 import model.TabelaUsuario;
 import model.Usuario;
+import javax.swing.JPasswordField;
 
 //Declarando a classe na janela
 public class UsuarioView extends JFrame implements ActionListener{
@@ -53,7 +54,7 @@ public class UsuarioView extends JFrame implements ActionListener{
     JTextField loginField;
     
     JLabel senhaLabel;
-    JTextField senhaField;
+    JPasswordField senhaField;
     
     JLabel statusLabel;
     JTextField statusField;
@@ -146,7 +147,7 @@ public class UsuarioView extends JFrame implements ActionListener{
         JLabel label_4 = new JLabel("Senha");
         label_4.setBounds(402, 97, 137, 14);
         usuarioPainel.add(label_4);        
-        senhaField = new JTextField(10);
+        senhaField = new JPasswordField(10);
         senhaField.setBounds(402, 111, 137, 20);
         usuarioPainel.add(senhaField);
         
@@ -341,7 +342,7 @@ public class UsuarioView extends JFrame implements ActionListener{
 			int linha = usuarioTable.getSelectedRow();
 			Usuario u = tabelaUsuario.getUsuario(linha);
 			
-			//preencher os campos com os dados do cliente selecionado
+			//preencher os campos com os dados do usuário selecionado
 			this.id =u.getId(); 
 			nm_usuarioField.setText(u.getNm_usuario());
 			departamentoField.setText(u.getDepartamento());

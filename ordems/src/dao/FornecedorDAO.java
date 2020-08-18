@@ -31,7 +31,7 @@ public class FornecedorDAO {
 		if(conn != null) {
 			st = (PreparedStatement) conn.prepareStatement(
 					"INSERT INTO fornecedor"
-					+ "(usuario_id, nm_fornecedor, tipo_fornecedor, doc_num, rg_ie, celular, fone_re, email, pes_contato, cep, endereco, numero, complemento, bairro, cidade, estado) "
+					+ "(usuario_id_usuario, nm_fornecedor, tipo_fornecedor, doc_num, rg_ie, celular, fone_re, email, pes_contato, cep, endereco, numero, complemento, bairro, cidade, estado) "
 					+ "VALUES "
 					+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		}
@@ -64,7 +64,7 @@ public void atualizar(Fornecedor fornecedor) throws SQLException {
 		if(conn != null) {
 			st = (PreparedStatement) conn.prepareStatement(
 					"UPDATE fornecedor SET "
-					+ " usuario_id = ?,"
+					+ " usuario_id_usuario = ?,"
 					+ " nm_fornecedor = ?,"
 					+ " tipo_fornecedor = ?,"
 					+ " doc_num = ?,"
