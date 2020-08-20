@@ -14,7 +14,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import javax.swing.UIManager;
 
-public class Login extends JFrame {
+public class LoginView extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -27,7 +27,7 @@ public class Login extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Login frame = new Login();
+					LoginView frame = new LoginView();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -39,7 +39,7 @@ public class Login extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Login() {
+	public LoginView() {
 		setTitle("OrdemS - Login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 320, 300);
@@ -83,5 +83,36 @@ public class Login extends JFrame {
 		btnLogar.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnLogar.setBounds(10, 210, 284, 29);
 		contentPane.add(btnLogar);
+	}
+	
+	protected void ingresar() {
+	
+		String usuario = txtUsuario.getText();
+		String clave = String.valueOf(txtContraseña.getPassword());
+	
+		GestionUsuario gestionUsuario = new GestionUsuario();
+	
+		Usuario usuario2 = new Usuario();
+		usuario2.setUsuario(usuario);
+		usuario2.setClave(clave);
+	
+		Usuario usu = gestionUsuario.obtenerUsuario(usuario2);
+	
+		if (usu != null) {
+			JOptionPane.showMessageDialog(contentPane, "Bienvenido");
+	
+			this.dispose();
+			
+			frmBienvenida bienvenida = new frmBienvenida();
+			bienvenida.setVisible(true);
+	
+		} else {
+			JOptionPane.showMessageDialog(contentPane, "Datos invalidos", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+	
+	}
+	
+	protected void salir() {
+		System.exit(0);
 	}
 }

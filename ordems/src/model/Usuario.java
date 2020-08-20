@@ -51,9 +51,9 @@ public class Usuario {
 	public int getStatus() {
 		return status;
 	}
-	public void setStatus(int status) {
-		this.status = status;
-	}
+	//public void setStatus(int status) {
+	//	this.status = status;
+	//}
 	public void setMatricula(String matricula) {
 		this.matricula = matricula;
 	}

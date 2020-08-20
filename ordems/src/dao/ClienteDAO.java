@@ -59,8 +59,9 @@ public class ClienteDAO {
 		
 		if(conn != null) {
 			st = (PreparedStatement) conn.prepareStatement(
+					
 					"UPDATE cliente SET "
-					+ " usuario_id_usuario = ?,"
+					//+ " usuario_id_usuario = ?,"
 					+ " nm_cliente = ?,"
 					+ " data_nasc = ?,"
 					+ " tipo_cliente = ?,"

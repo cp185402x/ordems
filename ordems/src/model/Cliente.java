@@ -13,9 +13,18 @@ public class Cliente {
     private String email;
     private String pes_contato;
     private Endereco endereco;
-    private int tipo_cliente;   
+    private int tipo_cliente;
+    private Usuario usuario;
     
-    public int getId() {
+    public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public int getId() {
 		return id;
 	}
 

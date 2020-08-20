@@ -4,10 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import dao.FornecedorDAO;
-
-
 import dao.Conexao;
-
 import model.Fornecedor;
 
 

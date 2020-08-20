@@ -414,7 +414,7 @@ public class ClienteView extends JFrame implements ActionListener{
 					}
 				 catch (SQLException e1) {
 					e1.printStackTrace();
-					JOptionPane.showMessageDialog(null, "Ops, houve um erro ao efetuar o cadastro!");
+					JOptionPane.showMessageDialog(null, "Ops, houve um erro ao efetuar o cadastro, tente novamente!");
 				}
 			}
 			else if(op == 1) { //ATUALIZAR O CLIENTE
@@ -430,7 +430,7 @@ public class ClienteView extends JFrame implements ActionListener{
 				} catch (HeadlessException | SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-					JOptionPane.showMessageDialog(null, "Ops, houve um ao efetuar o cadastro!");
+					JOptionPane.showMessageDialog(null, "Ops, houve um erro ao atualizar o cadastro, tente novamente!");
 				}				
 				
 			}
