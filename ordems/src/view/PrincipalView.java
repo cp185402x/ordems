@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
@@ -20,6 +21,7 @@ public class PrincipalView extends JFrame implements ActionListener{
 	JMenuItem menuFornecedor;
 	JMenuItem menuOs;
 	JMenuItem menuPeca;
+	JMenuItem menuRecebimento;
 	JMenuItem menuUsuario;
 	JMenuItem menuSair;
 	
@@ -78,6 +80,10 @@ public class PrincipalView extends JFrame implements ActionListener{
 		menuPeca.addActionListener(this);
 		menuPeca.setActionCommand("cadastrarPeca");
 	
+		menuRecebimento = new JMenuItem("Recebimento");
+		menuRecebimento.addActionListener(this);
+		menuRecebimento.setActionCommand("cadastrarRecebimento");
+	
 		menuUsuario = new JMenuItem("Usuário");
 		menuUsuario.addActionListener(this);
 		menuUsuario.setActionCommand("cadastrarUsuario");
@@ -132,6 +138,7 @@ public class PrincipalView extends JFrame implements ActionListener{
 		menuCadastro.add(menuFornecedor);
 		menuCadastro.add(menuOs);
 		menuCadastro.add(menuPeca);
+		menuCadastro.add(menuRecebimento);
 		menuCadastro.add(menuUsuario);
 		menuCadastro.add(menuSair);
 	}
@@ -183,6 +190,14 @@ public class PrincipalView extends JFrame implements ActionListener{
 			PecaView pv = new PecaView();
 			this.getContentPane().removeAll();
 			this.getContentPane().add(pv);
+			this.revalidate();
+		    this.repaint();
+		}
+
+		if(e.getActionCommand().equals("cadastrarRecebimento")) {
+			RecebimentoView rv = new RecebimentoView();
+			this.getContentPane().removeAll();
+			this.getContentPane().add(rv);
 			this.revalidate();
 		    this.repaint();
 		}
