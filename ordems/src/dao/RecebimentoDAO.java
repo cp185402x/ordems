@@ -23,7 +23,7 @@ public class RecebimentoDAO {
 		
 		if(conn != null) {
 			st = (PreparedStatement) conn.prepareStatement(
-					"INSERT INTO os"
+					"INSERT INTO recebimento"
 					+ "(usuario_id, cliente_id, data_previsao, status_id) "
 					+ "VALUES "
 					+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
@@ -46,7 +46,7 @@ public class RecebimentoDAO {
 			
 			if(conn != null) {
 				st = (PreparedStatement) conn.prepareStatement(
-						"SELECT * FROM os ORDER BY id_os DESC LIMIT 1000");
+						"SELECT * FROM recebimento ORDER BY id_os DESC LIMIT 1000");
 			}
 			
 
@@ -81,7 +81,7 @@ public class RecebimentoDAO {
 			
 			if(conn != null) {
 				st = (PreparedStatement) conn.prepareStatement(
-						"UPDATE os SET "
+						"UPDATE recebimento SET "
 						+ " usuario_id = ?,"
 						+ " cliente_id = ?,"
 						+ " data_os = ?,"
@@ -108,7 +108,7 @@ public class RecebimentoDAO {
 			System.out.println(id);
 			if(conn != null) {
 				st = (PreparedStatement) conn.prepareStatement(
-						"DELETE FROM os WHERE id_os = " + id + ";");
+						"DELETE FROM recebimento WHERE id_os = " + id + ";");
 						
 			}
 			st.execute();
