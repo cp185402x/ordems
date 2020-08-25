@@ -3,9 +3,9 @@ package controller;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import dao.OsDAO;
+import dao.RecebimentoDAO;
 import dao.Conexao;
-import model.Os;
+import model.Recebimento;
 
 public class RecebimentoController {
 	///Metodo para receber os dados,tratar e chamar o metodo insere do ClienteDAO
@@ -15,22 +15,11 @@ public class RecebimentoController {
 	}
 	
 	
-	public void validaCampos (int cliente_id, int usuario_id, String data_previsao, String data_pronto, String data_entrega, String tipo, String modelo, String marca, String cor, String serie, int garantia, String info_cliente, String info_tecnico, String info_entrega, String info_interna,String status_id  ) {
+	public void validaCampos (int cliente_id, int usuario_id, String data_previsao, String status_id  ) {
 		
 		System.out.println("contoller" + cliente_id);
 		System.out.println("contoller" + usuario_id);
 		System.out.println("contoller" + data_previsao);
-		System.out.println("contoller" + data_pronto);
-		System.out.println("contoller" + data_entrega);
-		System.out.println("contoller" + tipo);
-		System.out.println("contoller" + modelo);
-		System.out.println("contoller" + marca);
-		System.out.println("contoller" + cor);
-		System.out.println("contoller" + serie);
-		System.out.println("contoller" + garantia);
-		System.out.println("contoller" + info_cliente);
-		System.out.println("contoller" + info_tecnico);
-		System.out.println("contoller" + info_entrega);
 		System.out.println("contoller" + status_id);
 	}
 
@@ -45,32 +34,32 @@ public class RecebimentoController {
 	}
 
 
-	public boolean cadastrarOs(Os o) throws SQLException {
-		OsDAO osDAO = new OsDAO();
-		osDAO.inserir(o);
+	public boolean cadastrarRec(Recebimento r) throws SQLException {
+		RecebimentoDAO osDAO = new RecebimentoDAO();
+		recebimentoDAO.inserir(r);
 		
 		return true;
 	}
-		public boolean atualizarOs(Os o) throws SQLException {
-			System.out.println("ID = " + o.getId());
-			OsDAO osDAO = new OsDAO();
-			osDAO.atualizar(o);
+		public boolean atualizarRec(Recebimento r) throws SQLException {
+			System.out.println("ID = " + r.getId());
+			RecebimentoDAO recebimentoDAO = new RecebimentoDAO();
+			recebimentoDAO.atualizar(r);
 			
 			return true;
 			
 			
 		
 	}
-	public ArrayList<Os> consultarOs() throws SQLException {
+	public ArrayList<Recebimento> consultarRec() throws SQLException {
 		//System.out.println("Cheguei no consultar os");
-		OsDAO osDAO = new OsDAO();
-		return osDAO.consultar();
+		RecebimentoDAO recebimentoDAO = new RecebimentoDAO();
+		return recebimentoDAO.consultar();
 		
 	}
 	
-	public void removerOs(int id) throws SQLException {
-		OsDAO osDAO = new OsDAO();
-		osDAO.excluir(id);
+	public void removerRec(int id) throws SQLException {
+		RecebimentoDAO recebimentoDAO = new RecebimentoDAO();
+		recebimentoDAO.excluir(id);
 
 }
 
