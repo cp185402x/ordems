@@ -25,12 +25,13 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.JTextArea;
 import javax.swing.JCheckBox;
 
+import controller.RecebimentoController;
 import controller.OsController;
 import model.Cliente;
 import model.Os;
 import model.Recebimento;
 import model.TabelaCliente;
-import model.TabelaOs;
+//import model.TabelaOs;
 
 //Declarando a classe na janela
 public class RecebimentoView extends JFrame implements ActionListener{
@@ -45,11 +46,24 @@ public class RecebimentoView extends JFrame implements ActionListener{
     JLabel 		cliente_idLabel;
     JTextField 	cilente_idField;
     
-    JLabel 		nm_clienteLabel;
-    JTextField 	nm_cilenteField;
-    
     JLabel 		usuario_idLabel;
     JTextField 	usuario_idField;
+    
+    JLabel 		os_idLabel;
+    JTextField 	os_idField;
+    
+    JLabel 		pecaLabel;
+    JTextField 	pecaField;
+    
+    JLabel 		iformaPagamentoLabel;
+    JTextField 	iformaPagamentoField;
+    
+    JLabel 		valorRecebimentoLabel;
+    JTextField 	valorRecebimentoField;
+    
+    JLabel 		statusRecebimentoLabel;
+    JTextField 	statusRecebimentoField;
+    
 
     //Inicia o painel dos botoes
     JPanel painelBotoes;
@@ -179,11 +193,11 @@ public class RecebimentoView extends JFrame implements ActionListener{
 
        
         //fazendo a ligação do modelo de tabela com o componente visual de janela
-        tabelaOs = new TabelaOs();
-        osTable = new JTable(tabelaOs);
+        //tabelaOs = new TabelaOs();
+        //osTable = new JTable(tabelaOs);
         
              
-        scrollPane.setViewportView(osTable);
+        //scrollPane.setViewportView(osTable);
         
         painelCadastro.setLayout(gl_painelCadastro);
         
@@ -211,8 +225,12 @@ public class RecebimentoView extends JFrame implements ActionListener{
     //método para limpar tela
     private void limpaCampos() {
     	cilente_idField.setText("");
-		nm_cilenteField.setText("");
 		usuario_idField.setText("");
+    	os_idField.setText("");
+		pecaField.setText("");
+		iformaPagamentoField.setText("");
+		valorRecebimentoField.setText("");
+		statusRecebimentoField.setText("");
 		
 		this.painelCadastro.repaint();
 		this.equipamentoPanel.repaint();
@@ -223,15 +241,15 @@ public class RecebimentoView extends JFrame implements ActionListener{
 			
 		 if(e.getActionCommand().equalsIgnoreCase("salvar")) {
 			 
-				Os o = new Os();
+				Recebimento r = new Recebimento();
 				
 				//Tipo de equipamento
-				o.setTipo(tipoField.getText());			
+				r.setCilente(cilente_idField.getText());			
 				//modelo
-				o.setModelo(modeloField.getText());			
+				r.setUsuario_id(usuario_idField.getText());			
 				//marca
-				o.setMarca(marcaField.getText());
-				o.setCliente(cliente);
+				r.setOs_id(os_idField.getText());
+				r.setCliente(cliente);
 				
 				
 				Object[] opcoes = {"Salvar como novo cadastro", "Atualizar", "Limpar todos campos"};
@@ -242,10 +260,10 @@ public class RecebimentoView extends JFrame implements ActionListener{
 				
 				if(op == 0) { //Salvar nova OS
 					
-					OsController controleOs = new OsController();
+					RecebimentoController controleRecebimento = new RecebimentoController();
 					try {
-						if(controleOs.cadastrarOs(o) == true) {
-							tabelaOs.addTodos();
+						if(controleRecebimento.cadastrarRecebimento(r) == true) {
+							tabelaRecebimento.addTodos();
 							limpaCampos();
 						}
 						}
@@ -273,18 +291,18 @@ public class RecebimentoView extends JFrame implements ActionListener{
 		//ação excluir
 		else if(e.getActionCommand().equals("excluir")) {
 			//tratar a exclusão
-			int linha = osTable.getSelectedRow();
-			Os o = tabelaOs.getOs(linha);
+			//int linha = osTable.getSelectedRow();
+			//Os o = tabelaOs.getOs(linha);
 			
 			//JOptionPane.showMessageDialog(null, o.getId());
 			JOptionPane.showMessageDialog(null, "Deseja realmente excluir a O.S. selecionada?");
 				
-			OsController controleOs = new OsController();
+			RecebimentoController controleRecebimento = new RecebimentoController();
 			try {
-				System.out.println(o);
-				controleOs.removerOs(o.getId());
+				System.out.println(r);
+				controleRecebimento.removerRecebimento(r.getId());
 				JOptionPane.showMessageDialog(null, "Cadastro excluído com sucesso!");
-				tabelaOs.addTodos();
+				//tabelaOs.addTodos();
 				this.repaint();
 			}catch (SQLException e1) {
 					e1.printStackTrace();
@@ -294,17 +312,17 @@ public class RecebimentoView extends JFrame implements ActionListener{
 		}
 		else if(e.getActionCommand().equals("editar")) {
 			JOptionPane.showMessageDialog(null, "Deseja realmente editar o cadastro?");
-			int linha = osTable.getSelectedRow();
-			Os o = tabelaOs.getOs(linha);
+			//int linha = osTable.getSelectedRow();
+			//Os o = tabelaOs.getOs(linha);
 			
-			System.out.println(o);
+			System.out.println(rv);
 			
 			//this.id = o.getId(); 
-			data_previsaoField.setText(o.getData_previsao());
-			data_prontoField.setText(o.getData_pronto());
-			data_entregaField.setText(o.getData_entrega());
-			if(o.getGarantia() == 1) {
-				garantiaCkBox.setSelected(true);
+			//data_previsaoField.setText(o.getData_previsao());
+			//data_prontoField.setText(o.getData_pronto());
+			//data_entregaField.setText(o.getData_entrega());
+			//if(o.getGarantia() == 1) {
+				//garantiaCkBox.setSelected(true);
 			}
 			
 			
