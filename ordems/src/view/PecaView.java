@@ -41,9 +41,6 @@ public class PecaView extends JFrame implements ActionListener{
 	JLabel		buscaLabel;
 	JTextField 	buscaField;
 	
-	JLabel		skuLabel;
-	JTextField  skuField;
-	
 	JLabel		nm_pecaLabel;
 	JTextField 	nm_pecaField;
 	
@@ -109,14 +106,6 @@ public class PecaView extends JFrame implements ActionListener{
         JPanel pecaPainel = new JPanel();
         pecaPainel.setBorder(new LineBorder(Color.LIGHT_GRAY));
         pecaPainel.setLayout(null);
-        
-
-        skuField = new JTextField(20);
-        skuField.setBounds(251, 64, 186, 20);
-        pecaPainel.add(skuField);        
-        skuLabel = new JLabel("SKU");
-        skuLabel.setBounds(252, 49, 166, 14);
-        pecaPainel.add(skuLabel);
         
         nm_pecaField = new JTextField(40);
         nm_pecaField.setBounds(10, 13, 427, 20);
@@ -204,7 +193,6 @@ public class PecaView extends JFrame implements ActionListener{
 		nm_pecaField.setText("");
 		vl_vendaField.setText("");
 		vl_custoField.setText("");
-		skuField.setText("");
 		
 		this.painelCadastro.repaint();
 		this.pecaPainel.repaint();
@@ -224,8 +212,6 @@ public class PecaView extends JFrame implements ActionListener{
 			p.setVl_venda(vl_vendaField.getText());			
 			//RGIE
 			p.setVl_custo(vl_custoField.getText());
-			//sku
-			p.setSku(skuField.getText());
 			
 			
 			Object[] opcoes = {"Salvar como novo cadastro", "Atualizar", "Limpar todos campos"};
@@ -272,7 +258,6 @@ public class PecaView extends JFrame implements ActionListener{
 				nm_pecaField.setText("");
 				vl_vendaField.setText("");
 				vl_custoField.setText("");
-				skuField.setText("");
 				
 			}
 	
@@ -311,7 +296,6 @@ public class PecaView extends JFrame implements ActionListener{
 		nm_pecaField.setText(p.getNm_peca());
 		vl_vendaField.setText(p.getVl_venda());
 		vl_custoField.setText(p.getVl_custo());
-		skuField.setText(p.getSku());
 		}
 		
     }

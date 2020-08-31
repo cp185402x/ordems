@@ -17,12 +17,11 @@ public class PecaController {
 	}
 	
 	
-	public void validaCampos (String nm_peca, String vl_custo, String vl_venda, String sku ) {
+	public void validaCampos (String nm_peca, String vl_custo, String vl_venda) {
 		
 		System.out.println("contoller" + nm_peca);
 		System.out.println("contoller" + vl_custo);
 		System.out.println("contoller" + vl_venda);
-		System.out.println("contoller" + sku);
 	}
 
 

@@ -35,7 +35,7 @@ public class RecebimentoController {
 
 
 	public boolean cadastrarRec(Recebimento r) throws SQLException {
-		RecebimentoDAO osDAO = new RecebimentoDAO();
+		RecebimentoDAO recebimentoDAO = new RecebimentoDAO();
 		recebimentoDAO.inserir(r);
 		
 		return true;
