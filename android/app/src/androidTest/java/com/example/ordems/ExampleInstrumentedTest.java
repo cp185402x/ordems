@@ -1,4 +1,4 @@
-package com.exemple.exercicio1;
+package com.example.ordems;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.exemple.exercicio1", appContext.getPackageName());
+        assertEquals("com.example.ordems", appContext.getPackageName());
     }
 }

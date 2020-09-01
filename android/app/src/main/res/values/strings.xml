@@ -1,3 +1,19 @@
 <resources>
-    <string name="app_name">Exercicio1</string>
+    <string name="app_name">OrdemS</string>
+
+    <string name="image_name">logoos</string>
+
+    <string name="tv_digite">Digite seu CPf.</string>
+
+    <string name="tv_ordem">Ordems</string>
+
+    <string name="et_cpf" />
+
+    <string name="tv_vec">VEC System</string>
+
+    <string name="tv_versao">1.4.20</string>
+
+    <string name="btn_ver">Verificar</string>
+
+
 </resources>

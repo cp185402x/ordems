@@ -1,4 +1,4 @@
-package com.exemple.exercicio1;
+package com.example.ordems;
 
 import org.junit.Test;
 
