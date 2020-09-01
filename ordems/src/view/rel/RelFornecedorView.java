@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.GroupLayout;
@@ -19,7 +20,12 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.ScrollPaneConstants;
 
+import model.Cliente;
+import model.Fornecedor;
 import model.TabelaFornecedor;
+import view.OsView;
+import view.PecaView;
+
 import javax.swing.SwingConstants;
 
 //Declarando a classe na janela
@@ -38,18 +44,18 @@ public class RelFornecedorView extends JFrame implements ActionListener{
     private JTable fornecedorTable;
     TabelaFornecedor tabelaFornecedor;
 
-	public RelFornecedorView() { // construtor da view Fornecedor.
+	public RelFornecedorView(String nomeBotao) { // construtor da view Fornecedor.
         super("Relatório de Fornecedores");
         setType(Type.UTILITY);
                 
-        criaFormulario();
+        criaFormulario(nomeBotao);
     	this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     	this.setSize(680, 600);
     	this.setVisible(true);
     	this.setLocationRelativeTo(null);
     }
     
-    private void criaFormulario() {
+    private void criaFormulario(String nomeBotao) {
         
         getContentPane().setLayout(new BorderLayout());
         
@@ -133,7 +139,16 @@ public class RelFornecedorView extends JFrame implements ActionListener{
 		if (e.getActionCommand().equalsIgnoreCase("cancelar")) {
 	
 			dispose();
+			
 		}
+		else if(e.getActionCommand().equalsIgnoreCase("selecionar")) {
+			JOptionPane.showMessageDialog(null, "No selecionar");
+			int linha = fornecedorTable.getSelectedRow();
+			Fornecedor f = tabelaFornecedor.getFornecedor(linha);
+			
+			PecaView peca = new PecaView(f);
+	}
+	
 	}
 }
 

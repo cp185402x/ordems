@@ -4,6 +4,7 @@ public class Peca {
 
 	///Atributos
 	private int id;
+	private Fornecedor fornecedor;
 	private String nm_peca;
     private String vl_custo;
     private String vl_venda;
@@ -34,10 +35,17 @@ public class Peca {
 			this.id = id;
 		}
 	
+
+public Fornecedor getFornecedor() {
+	return fornecedor;
+}
+public void setFornecedor(Fornecedor fornecedor) {
+	this.fornecedor = fornecedor;
+}
 public String toString() {
-		
-		return "Peca [id=" + id + ", nm_peca=" + nm_peca + ", vl_custo=" + vl_custo + ", vl_venda=" + vl_venda + "]";
-	}
+	
+	return "Peca [id=" + id + ", nm_peca=" + nm_peca + ", vl_custo=" + vl_custo + ", vl_venda=" + vl_venda + "]";
+}
 
 }
 

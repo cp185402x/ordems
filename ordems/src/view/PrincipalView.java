@@ -187,7 +187,7 @@ public class PrincipalView extends JFrame implements ActionListener{
 		}
 
 		if(e.getActionCommand().equals("cadastrarPeca")) {
-			PecaView pv = new PecaView();
+			PecaView pv = new PecaView(null);
 			this.getContentPane().removeAll();
 			this.getContentPane().add(pv);
 			this.revalidate();
@@ -227,7 +227,7 @@ public class PrincipalView extends JFrame implements ActionListener{
 		    this.repaint();
 		}
 		if(e.getActionCommand().equals("relatorioFornecedor")) {
-			RelFornecedorView rf = new RelFornecedorView();
+			RelFornecedorView rf = new RelFornecedorView("imprimir");
 			this.getContentPane().removeAll();
 			this.getContentPane().add(rf);
 			this.revalidate();

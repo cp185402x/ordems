@@ -27,8 +27,13 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import controller.PecaController;
+import model.Cliente;
+import model.Fornecedor;
+import model.Os;
 import model.Peca;
 import model.TabelaPeca;
+import view.rel.RelClienteView;
+import view.rel.RelFornecedorView;
 
 //Declarando a classe na janela
 public class PecaView extends JFrame implements ActionListener{
@@ -58,15 +63,21 @@ public class PecaView extends JFrame implements ActionListener{
     JButton botaoCancelar;
     JButton botaoEditar;
     JButton botaoExcluir;
+    JButton botaoListar;
     
     
     private JTable pecaTable;
 	private TabelaPeca tabelaPeca;
 	private int id;
+	
+	private Peca peca;
+	private Fornecedor fornecedor;
     
-    public PecaView() { // construtor da view OS.
+    public PecaView(Fornecedor f) { // construtor da view OS.
         super("Cadastro de peça");
         setType(Type.UTILITY);
+        
+        this.fornecedor = f;
         
         criaFormulario();
     	this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -99,7 +110,7 @@ public class PecaView extends JFrame implements ActionListener{
         botaoEditar = new JButton("Editar");
         botaoExcluir = new JButton("Excluir");
         botaoCancelar = new JButton("Cancelar");
-        
+        botaoListar = new JButton("Listar");
         
         getContentPane().add(painelCadastro, BorderLayout.WEST);
         
@@ -171,7 +182,8 @@ public class PecaView extends JFrame implements ActionListener{
         painelBotoes.add(botaoEditar);
         painelBotoes.add(botaoExcluir);
         painelBotoes.add(botaoCancelar);
-		        
+        painelBotoes.add(botaoListar);
+        
         botaoSalvar.addActionListener(this);
         botaoSalvar.setActionCommand("salvar");
 		
@@ -184,6 +196,8 @@ public class PecaView extends JFrame implements ActionListener{
         botaoCancelar.addActionListener(this);
         botaoCancelar.setActionCommand("cancelar");
         
+        botaoListar.addActionListener(this);
+        botaoListar.setActionCommand("listar");
 
     }
     
@@ -298,7 +312,13 @@ public class PecaView extends JFrame implements ActionListener{
 		vl_custoField.setText(p.getVl_custo());
 		}
 		
+	else if(e.getActionCommand().equals("listar")) {
+		RelFornecedorView rf = new RelFornecedorView("Selecionar");
+		this.setVisible(false);
+		rf.setVisible(true);
+		
+		
     }
 }
 	 
-
+}
