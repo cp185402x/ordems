@@ -6,8 +6,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/PICHAU/ordems/ordems/jgoodies-forms-1.8.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/PICHAU/ordems/ordems/miglayout15-swing.jar"/>
-	<classpathentry kind="lib" path="C:/Users/PICHAU/ordems/ordems/mysql-connector-java-5.1.15-bin.jar"/>
+	<classpathentry kind="lib" path="mysql-connector-java-5.1.15-bin.jar"/>
+	<classpathentry kind="lib" path="miglayout15-swing.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

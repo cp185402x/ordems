@@ -72,6 +72,7 @@ public class PecaView extends JFrame implements ActionListener{
 	
 	private Peca peca;
 	private Fornecedor fornecedor;
+	private JTextField fornecedorfield;
     
     public PecaView(Fornecedor f) { // construtor da view OS.
         super("Cadastro de peça");
@@ -168,6 +169,15 @@ public class PecaView extends JFrame implements ActionListener{
         			.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
         			.addContainerGap())
         );
+        
+        fornecedorfield = new JTextField(20);
+        fornecedorfield.setBounds(251, 64, 186, 20);
+        pecaPainel.add(fornecedorfield);
+        
+        JLabel lblFordecedor = new JLabel("Fordecedor");
+        lblFordecedor.setHorizontalAlignment(SwingConstants.LEFT);
+        lblFordecedor.setBounds(251, 49, 80, 14);
+        pecaPainel.add(lblFordecedor);
       //fazendo a ligação do modelo de tabela com o componente visual de janela
         tabelaPeca = new TabelaPeca();
         pecaTable = new JTable(tabelaPeca);
@@ -320,5 +330,4 @@ public class PecaView extends JFrame implements ActionListener{
 		
     }
 }
-	 
 }
