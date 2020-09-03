@@ -4,8 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
-
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
@@ -31,12 +29,12 @@ public class FornecedorDAO {
 		if(conn != null) {
 			st = (PreparedStatement) conn.prepareStatement(
 					"INSERT INTO fornecedor"
-					+ "(usuario_id_usuario, nm_fornecedor, tipo_fornecedor, doc_num, rg_ie, celular, fone_re, email, pes_contato, cep, endereco, numero, complemento, bairro, cidade, estado) "
+					+ "(usuario_id, nm_fornecedor, tipo_fornecedor, doc_num, rg_ie, celular, fone_re, email, pes_contato, cep, endereco, numero, complemento, bairro, cidade, estado) "
 					+ "VALUES "
 					+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		}
 		
-		st.setInt(1, 1006); //mudar aqui para associar o id do us		
+		st.setInt(1, 1019); //mudar aqui para associar o id do us		
 		st.setString(2, fornecedor.getNm_fornecedor());
 		st.setInt(3, fornecedor.getTipo());
 		st.setString(4, fornecedor.getDoc_num());
@@ -45,13 +43,13 @@ public class FornecedorDAO {
 		st.setString(7, fornecedor.getFone_re());
 		st.setString(8, fornecedor.getEmail());
 		st.setString(9, fornecedor.getPes_contato());
-		st.setString(10, fornecedor.getEndereco().getCep());
-		st.setString(11, fornecedor.getEndereco().getLogradouro());
+		st.setString(10, fornecedor.getEndereco().getTCEP());
+		st.setString(11, fornecedor.getEndereco().getTRUA());
 		st.setString(12, fornecedor.getEndereco().getNumero());
 		st.setString(13, fornecedor.getEndereco().getComplemento());
-		st.setString(14, fornecedor.getEndereco().getBairro());
-		st.setString(15, fornecedor.getEndereco().getCidade());
-		st.setString(16, fornecedor.getEndereco().getEstado());
+		st.setString(14, fornecedor.getEndereco().getTBAIRRO());
+		st.setString(15, fornecedor.getEndereco().getTCIDADE());
+		st.setString(16, fornecedor.getEndereco().getCESTADO());
 		
 		st.execute();
 		
@@ -64,7 +62,7 @@ public void atualizar(Fornecedor fornecedor) throws SQLException {
 		if(conn != null) {
 			st = (PreparedStatement) conn.prepareStatement(
 					"UPDATE fornecedor SET "
-					+ " usuario_id_usuario = ?,"
+					+ " usuario_id = ?,"
 					+ " nm_fornecedor = ?,"
 					+ " tipo_fornecedor = ?,"
 					+ " doc_num = ?,"
@@ -84,7 +82,7 @@ public void atualizar(Fornecedor fornecedor) throws SQLException {
 					);
 		}
 		
-		st.setInt(1, 1006); //mudar aqui para associar o id do us		
+		st.setInt(1, 1019); //mudar aqui para associar o id do us		
 		st.setString(2, fornecedor.getNm_fornecedor());
 		st.setInt(3, fornecedor.getTipo());
 		st.setString(4, fornecedor.getDoc_num());
@@ -93,13 +91,13 @@ public void atualizar(Fornecedor fornecedor) throws SQLException {
 		st.setString(7, fornecedor.getFone_re());
 		st.setString(8, fornecedor.getEmail());
 		st.setString(9, fornecedor.getPes_contato());
-		st.setString(10, fornecedor.getEndereco().getCep());
-		st.setString(11, fornecedor.getEndereco().getLogradouro());
+		st.setString(10, fornecedor.getEndereco().getTCEP());
+		st.setString(11, fornecedor.getEndereco().getTRUA());
 		st.setString(12, fornecedor.getEndereco().getNumero());
 		st.setString(13, fornecedor.getEndereco().getComplemento());
-		st.setString(14, fornecedor.getEndereco().getBairro());
-		st.setString(15, fornecedor.getEndereco().getCidade());
-		st.setString(16, fornecedor.getEndereco().getEstado());
+		st.setString(14, fornecedor.getEndereco().getTBAIRRO());
+		st.setString(15, fornecedor.getEndereco().getTCIDADE());
+		st.setString(16, fornecedor.getEndereco().getCESTADO());
 		
 		System.out.println(fornecedor);
 		
@@ -137,11 +135,11 @@ public void atualizar(Fornecedor fornecedor) throws SQLException {
            fornecedor.setPes_contato(rs.getString("pes_contato"));
            fornecedor.setTipo_fornecedor(rs.getInt("tipo_fornecedor"));
          
-           fornecedor.getEndereco().setCep(rs.getString("cep"));
-           fornecedor.getEndereco().setLogradouro(rs.getString("endereco"));
-           fornecedor.getEndereco().setBairro(rs.getString("Bairro"));
-           fornecedor.getEndereco().setCidade(rs.getString("Cidade"));
-           fornecedor.getEndereco().setEstado(rs.getString("Estado"));
+           fornecedor.getEndereco().setTCEP(rs.getString("cep"));
+           fornecedor.getEndereco().setTRUA(rs.getString("endereco"));
+           fornecedor.getEndereco().setTBAIRRO(rs.getString("Bairro"));
+           fornecedor.getEndereco().setTCIDADE(rs.getString("Cidade"));
+           fornecedor.getEndereco().setCESTADO(rs.getString("Estado"));
            fornecedor.getEndereco().setNumero(rs.getString("Numero"));
            lista.add(fornecedor);
 

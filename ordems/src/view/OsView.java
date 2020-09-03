@@ -30,6 +30,7 @@ import model.Cliente;
 import model.Os;
 import model.TabelaCliente;
 import model.TabelaOs;
+import model.Usuario;
 import view.rel.RelClienteView;
 import view.rel.RelOsView;
 
@@ -106,6 +107,7 @@ public class OsView extends JFrame implements ActionListener{
     
     private Os ordemServico;
 	private Cliente cliente;
+	private Usuario usuario;
 	
 	public OsView(Cliente c) { // construtor da view OS.
 		super("Cadastro de Ordem de Serviço");

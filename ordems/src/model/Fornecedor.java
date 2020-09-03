@@ -1,5 +1,7 @@
 package model;
 
+import com.mysql.jdbc.StatementImpl;
+
 public class Fornecedor {
 	
 	///Atributos
@@ -128,20 +130,13 @@ public class Fornecedor {
 			this.endereco = endereco;
 		}
 
+
 	public String toString() {
 		
-		return "Cliente [id=" + id + ", nm_fornecedor=" + nm_fornecedor + ", doc_num=" + doc_num + ", rg_ie=" + rg_ie
+		return "Fornecedor [id=" + id + ", nm_fornecedor=" + nm_fornecedor + ", doc_num=" + doc_num + ", rg_ie=" + rg_ie
 				+ ", celular=" + celular + ", fone_re=" + fone_re + ", email=" + email + ", pes_contato=" + pes_contato
 				+ ", endereco=" + endereco + ", tipo_fornecedor=" + tipo_fornecedor + "]";
 	}
-
-
-
-
-
-	
-	
-	 
 		
 	
 

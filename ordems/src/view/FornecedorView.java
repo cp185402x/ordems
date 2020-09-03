@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -29,12 +30,13 @@ import javax.swing.ScrollPaneConstants;
 import controller.FornecedorController;
 import model.Fornecedor;
 import model.TabelaFornecedor;
+import java.awt.SystemColor;
 
 //Declarando a classe na janela
 public class FornecedorView extends JFrame implements ActionListener{
 	//atributos globais da classe
 	JPanel painelTitulo;
-	JPanel painelCadastro;
+	JPanel cadastroPanel;
 	JPanel fornecedorPainel;
 	JLabel titulo;
 	
@@ -44,9 +46,6 @@ public class FornecedorView extends JFrame implements ActionListener{
 	
     JLabel nm_fornecedorLabel;
     JTextField nm_fornecedorField;
-    
-    JLabel dataNascLabel;
-    JTextField dataNascField;
     
     JTextField docField;
     
@@ -66,10 +65,10 @@ public class FornecedorView extends JFrame implements ActionListener{
     JTextField pes_contatoField;
     
     JLabel cepLabel;
-    JTextField cepField;
+    JTextField TCEP;
     
     JLabel enderecoLabel;
-    JTextField enderecoField;
+    JTextField TRUA;
     
     JLabel numeroLabel;
     JTextField numeroField;
@@ -78,13 +77,13 @@ public class FornecedorView extends JFrame implements ActionListener{
     JTextField complementoField;
     
     JLabel bairroLabel;
-    JTextField bairroField;
+    JTextField TBAIRRO;
     
     JLabel cidadeLabel;
-    JTextField cidadeField;
+    JTextField TCIDADE;
     
     JLabel estadoLabel;
-    JTextField estadoField;
+    JComboBox CESTADO;
     
     
     //Inicia o painel dos botoes
@@ -123,7 +122,7 @@ public class FornecedorView extends JFrame implements ActionListener{
         painelTitulo.add(titulo);
         
         //Inicia o painel dos campos digitáveis        
-        painelCadastro = new JPanel();
+        cadastroPanel = new JPanel();
         
         //Inicia o painel dos botoes
         painelBotoes = new JPanel();
@@ -134,35 +133,35 @@ public class FornecedorView extends JFrame implements ActionListener{
         botaoExcluir = new JButton("Excluir");
         botaoCancelar = new JButton("Cancelar");
         
-        getContentPane().add(painelCadastro, BorderLayout.WEST);
+        getContentPane().add(cadastroPanel, BorderLayout.WEST);
         
-        JPanel fornecedorPainel = new JPanel();
-        fornecedorPainel.setBorder(new LineBorder(Color.LIGHT_GRAY));
-        fornecedorPainel.setLayout(null);
+        JPanel fornecedorPanel = new JPanel();
+        fornecedorPanel.setBorder(new LineBorder(Color.LIGHT_GRAY));
+        fornecedorPanel.setLayout(null);
         
         pes_contatoField = new JTextField(20);
-        pes_contatoField.setBounds(447, 137, 186, 20);
-        fornecedorPainel.add(pes_contatoField);        
+        pes_contatoField.setBounds(436, 51, 186, 20);
+        fornecedorPanel.add(pes_contatoField);        
         pes_contatoLabel = new JLabel("Pessoa de Contato");
-        pes_contatoLabel.setBounds(447, 125, 166, 14);
-        fornecedorPainel.add(pes_contatoLabel);
+        pes_contatoLabel.setBounds(436, 37, 166, 14);
+        fornecedorPanel.add(pes_contatoLabel);
         
         emailField = new JTextField(40);
-        emailField.setBounds(10, 138, 427, 20);
-        fornecedorPainel.add(emailField);        
+        emailField.setBounds(10, 138, 382, 20);
+        fornecedorPanel.add(emailField);        
         emailLabel = new JLabel("Email");
         emailLabel.setBounds(10, 126, 368, 14);
-        fornecedorPainel.add(emailLabel);
+        fornecedorPanel.add(emailLabel);
         
         cpfRadio = new JRadioButton("CPF");
-        cpfRadio.setSelected(true);
         cpfRadio.setHorizontalAlignment(SwingConstants.RIGHT);
         cpfRadio.setBounds(6, 7, 50, 23);
-        fornecedorPainel.add(cpfRadio);        
+        fornecedorPanel.add(cpfRadio);        
         cnpjRadio = new JRadioButton("CNPJ");
+        cnpjRadio.setSelected(true);
         cnpjRadio.setHorizontalAlignment(SwingConstants.RIGHT);
         cnpjRadio.setBounds(58, 7, 56, 23);
-        fornecedorPainel.add(cnpjRadio);
+        fornecedorPanel.add(cnpjRadio);
         tipoGrupo = new ButtonGroup();
         
         tipoGrupo.add(cpfRadio);
@@ -171,121 +170,117 @@ public class FornecedorView extends JFrame implements ActionListener{
         
         docField = new JTextField(20);
         docField.setBounds(114, 8, 199, 20);
-        fornecedorPainel.add(docField);
+        fornecedorPanel.add(docField);
         
         rgieLabel = new JLabel("RG/IE");
         rgieLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         rgieLabel.setBounds(323, 10, 50, 14);
-        fornecedorPainel.add(rgieLabel);
+        fornecedorPanel.add(rgieLabel);
         rgieField = new JTextField(20);
         rgieField.setBounds(373, 7, 186, 20);
-        fornecedorPainel.add(rgieField);
+        fornecedorPanel.add(rgieField);
         
-        nm_fornecedorLabel = new JLabel("Nome");
+        nm_fornecedorLabel = new JLabel("Nome / Raz\u00E3o");
         nm_fornecedorLabel.setBounds(10, 37, 338, 14);
-        fornecedorPainel.add(nm_fornecedorLabel);
+        fornecedorPanel.add(nm_fornecedorLabel);
         nm_fornecedorField = new JTextField(40);
-        nm_fornecedorField.setBounds(10, 51, 427, 20);
-        fornecedorPainel.add(nm_fornecedorField);
-        
-        dataNascField = new JTextField(20);
-        dataNascField.setBounds(447, 50, 186, 20);
-        fornecedorPainel.add(dataNascField);        
-        dataNascLabel = new JLabel("Data Nascimento");
-        dataNascLabel.setBounds(447, 35, 156, 14);
-        fornecedorPainel.add(dataNascLabel);
+        nm_fornecedorField.setBounds(10, 51, 382, 20);
+        fornecedorPanel.add(nm_fornecedorField);
                
         fone_reField = new JTextField(20);
         fone_reField.setBounds(10, 95, 186, 20);
-        fornecedorPainel.add(fone_reField);        
-        JLabel fone_reLabel = new JLabel("Fone Fixo");
+        fornecedorPanel.add(fone_reField);        
+        JLabel fone_reLabel = new JLabel("Telefone");
         fone_reLabel.setBounds(10, 82, 166, 14);
-        fornecedorPainel.add(fone_reLabel);
+        fornecedorPanel.add(fone_reLabel);
         
         celularField = new JTextField(20);
         celularField.setBounds(206, 95, 186, 20);
-        fornecedorPainel.add(celularField);        
+        fornecedorPanel.add(celularField);        
         celularLabel = new JLabel("Celular");
         celularLabel.setBounds(206, 82, 162, 14);
-        fornecedorPainel.add(celularLabel);
+        fornecedorPanel.add(celularLabel);
         
-        JPanel panel = new JPanel();
-        panel.setBorder(new LineBorder(Color.LIGHT_GRAY));
-        panel.setLayout(null); 
+        JPanel enderecoPanel = new JPanel();
+        enderecoPanel.setBorder(new LineBorder(Color.LIGHT_GRAY));
+        enderecoPanel.setLayout(null); 
         
-        cepField = new JTextField(10);
-        cepField.setBounds(10, 25, 155, 20);
-        panel.add(cepField);        
+        TCEP = new JTextField(10);
+        TCEP.setBackground(SystemColor.info);
+        TCEP.setBounds(10, 25, 155, 20);
+        enderecoPanel.add(TCEP);        
         cepLabel = new JLabel("CEP");
         cepLabel.setBounds(10, 11, 86, 14);
-        panel.add(cepLabel);
+        enderecoPanel.add(cepLabel);
         
-        enderecoField = new JTextField(40);
-        enderecoField.setBounds(175, 25, 369, 20);
-        panel.add(enderecoField);        
+        TRUA = new JTextField(40);
+        TRUA.setBounds(175, 25, 369, 20);
+        enderecoPanel.add(TRUA);        
         enderecoLabel = new JLabel("Endereço");
         enderecoLabel.setBounds(175, 11, 369, 14);
-        panel.add(enderecoLabel);
+        enderecoPanel.add(enderecoLabel);
         
         numeroField = new JTextField(10);
         numeroField.setBounds(554, 25, 79, 20);
-        panel.add(numeroField);        
+        enderecoPanel.add(numeroField);        
         numeroLabel = new JLabel("Número");
         numeroLabel.setBounds(554, 11, 65, 14);
-        panel.add(numeroLabel);
+        enderecoPanel.add(numeroLabel);
         
         complementoField = new JTextField(20);
         complementoField.setBounds(10, 69, 155, 20);
-        panel.add(complementoField);        
+        enderecoPanel.add(complementoField);        
         complementoLabel = new JLabel("Complemento");
         complementoLabel.setBounds(10, 56, 127, 14);
-        panel.add(complementoLabel);
+        enderecoPanel.add(complementoLabel);
         
-        bairroField = new JTextField(20);
-        bairroField.setBounds(175, 69, 180, 20);
-        panel.add(bairroField);               
+        TBAIRRO = new JTextField(20);
+        TBAIRRO.setBounds(175, 69, 180, 20);
+        enderecoPanel.add(TBAIRRO);               
         bairroLabel = new JLabel("Bairro");
         bairroLabel.setBounds(175, 56, 166, 14);
-        panel.add(bairroLabel);
+        enderecoPanel.add(bairroLabel);
         
-        cidadeField = new JTextField(20);
-        cidadeField.setBounds(365, 69, 179, 20);
-        panel.add(cidadeField);        
+        TCIDADE = new JTextField(20);
+        TCIDADE.setBounds(365, 69, 179, 20);
+        enderecoPanel.add(TCIDADE);        
         cidadeLabel = new JLabel("Cidade");
         cidadeLabel.setBounds(365, 56, 166, 14);
-        panel.add(cidadeLabel);
-        
+        enderecoPanel.add(cidadeLabel);
+
+        CESTADO = new JComboBox();
+        CESTADO.setBounds(554, 69, 79, 20);
         estadoLabel = new JLabel("Estado");
+        enderecoPanel.add(CESTADO);
         estadoLabel.setBounds(554, 56, 65, 14);
-        panel.add(estadoLabel);
-        estadoField = new JTextField(10);
-        estadoField.setBounds(554, 69, 79, 20);
-        panel.add(estadoField);
+        enderecoPanel.add(CESTADO);
         
+        CESTADO.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG", "MS", "MT", "PA", "PB", "PE", "PI", "PR", "RJ", "RN", "RO", "RR", "RS", "SC", "SE", "SP", "TO" }));
+
         //Criando a Tabela com os dados do banco
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setViewportBorder(new LineBorder(Color.LIGHT_GRAY));
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         
-        GroupLayout gl_painelCadastro = new GroupLayout(painelCadastro);
-        gl_painelCadastro.setHorizontalGroup(
-        	gl_painelCadastro.createParallelGroup(Alignment.TRAILING)
-        		.addGroup(Alignment.LEADING, gl_painelCadastro.createSequentialGroup()
+        GroupLayout gl_cadastroPanel = new GroupLayout(cadastroPanel);
+        gl_cadastroPanel.setHorizontalGroup(
+        	gl_cadastroPanel.createParallelGroup(Alignment.TRAILING)
+        		.addGroup(Alignment.LEADING, gl_cadastroPanel.createSequentialGroup()
         			.addContainerGap()
-        			.addGroup(gl_painelCadastro.createParallelGroup(Alignment.LEADING)
+        			.addGroup(gl_cadastroPanel.createParallelGroup(Alignment.LEADING)
         				.addComponent(scrollPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE)
-        				.addComponent(panel, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE)
-        				.addComponent(fornecedorPainel, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 643, GroupLayout.PREFERRED_SIZE))
+        				.addComponent(enderecoPanel, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE)
+        				.addComponent(fornecedorPanel, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 643, GroupLayout.PREFERRED_SIZE))
         			.addGap(18))
         );
-        gl_painelCadastro.setVerticalGroup(
-        	gl_painelCadastro.createParallelGroup(Alignment.TRAILING)
-        		.addGroup(Alignment.LEADING, gl_painelCadastro.createSequentialGroup()
+        gl_cadastroPanel.setVerticalGroup(
+        	gl_cadastroPanel.createParallelGroup(Alignment.TRAILING)
+        		.addGroup(Alignment.LEADING, gl_cadastroPanel.createSequentialGroup()
         			.addContainerGap()
-        			.addComponent(fornecedorPainel, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
+        			.addComponent(fornecedorPanel, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(panel, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+        			.addComponent(enderecoPanel, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
         			.addPreferredGap(ComponentPlacement.UNRELATED)
         			.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
         			.addContainerGap())
@@ -298,7 +293,7 @@ public class FornecedorView extends JFrame implements ActionListener{
              
         scrollPane.setViewportView(fornecedorTable);
         
-        painelCadastro.setLayout(gl_painelCadastro);
+        cadastroPanel.setLayout(gl_cadastroPanel);
         
         getContentPane().add(painelBotoes, BorderLayout.SOUTH);
         
@@ -331,15 +326,15 @@ public class FornecedorView extends JFrame implements ActionListener{
 		celularField.setText("");
 		emailField.setText("");
 		pes_contatoField.setText("");
-		cepField.setText("");
-		enderecoField.setText("");
+		TCEP.setText("");
+		TRUA.setText("");
 		numeroField.setText("");
 		complementoField.setText("");
-		bairroField.setText("");
-		cidadeField.setText("");
-		estadoField.setText("");
+		TBAIRRO.setText("");
+		TCIDADE.setText("");
+		CESTADO.setToolTipText("");
     	
-		this.painelCadastro.repaint();
+		this.cadastroPanel.repaint();
 		this.fornecedorPainel.repaint();
     }
    
@@ -375,19 +370,19 @@ public class FornecedorView extends JFrame implements ActionListener{
 			//pessoa contato
 			f.setPes_contato(pes_contatoField.getText());
 			//Logradouro
-			f.getEndereco().setCep(cepField.getText());
+			f.getEndereco().setTCEP(TCEP.getText());
 			//Logradouro
-			f.getEndereco().setLogradouro(enderecoField.getText());
+			f.getEndereco().setTRUA(TRUA.getText());
 			//numero
 			f.getEndereco().setNumero(numeroField.getText());
 			//complemento
 			f.getEndereco().setComplemento(complementoField.getText());
 			//bairro
-			f.getEndereco().setBairro(bairroField.getText());
+			f.getEndereco().setTBAIRRO(TBAIRRO.getText());
 			//cidade
-			f.getEndereco().setCidade(cidadeField.getText());
+			f.getEndereco().setTCIDADE(TCIDADE.getText());
 			//estado
-			f.getEndereco().setEstado(estadoField.getText());
+			f.getEndereco().setCESTADO(CESTADO.getToolTipText());
 			
 			Object[] opcoes = {"Salvar como novo cadastro", "Atualizar", "Limpar todos campos"};
 	
@@ -411,12 +406,12 @@ public class FornecedorView extends JFrame implements ActionListener{
 						JOptionPane.showMessageDialog(null, "Ops, houve um erro ao efetuar o cadastro!");
 					}
 				}
-				else if(op == 1) { //ATUALIZAR O CLIENTE
+				else if(op == 1) { //ATUALIZAR
 					f.setId(this.id);
 					FornecedorController controleFornecedor = new FornecedorController();
 					try {
 						if(controleFornecedor.atualizarFornecedor(f) == true) {
-							JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
+							JOptionPane.showMessageDialog(null, "Cadastro atualizado com sucesso!");
 							tabelaFornecedor.addTodos();
 							limpaCampos();
 							this.repaint();
@@ -430,8 +425,7 @@ public class FornecedorView extends JFrame implements ActionListener{
 				}
 				else {
 					cpfRadio.setEnabled(true);
-					
-					
+								
 					nm_fornecedorField.setText("");
 					docField.setText("");
 					rgieField.setText("");
@@ -439,13 +433,13 @@ public class FornecedorView extends JFrame implements ActionListener{
 					celularField.setText("");
 					emailField.setText("");
 					pes_contatoField.setText("");
-					cepField.setText("");
-					enderecoField.setText("");
+					TCEP.setText("");
+					TRUA.setText("");
 					numeroField.setText("");
 					complementoField.setText("");
-					bairroField.setText("");
-					cidadeField.setText("");
-					estadoField.setText("");
+					TBAIRRO.setText("");
+					TCIDADE.setText("");
+					CESTADO.setToolTipText("");
 					
 				}
 		
@@ -490,16 +484,14 @@ public class FornecedorView extends JFrame implements ActionListener{
 			celularField.setText(f.getCelular());
 			emailField.setText(f.getEmail());
 			pes_contatoField.setText(f.getPes_contato());
-			cepField.setText(f.getEndereco().getCep());
-			enderecoField.setText(f.getEndereco().getLogradouro());
+			TCEP.setText(f.getEndereco().getTCEP());
+			TRUA.setText(f.getEndereco().getTRUA());
 			numeroField.setText(f.getEndereco().getNumero());
 			complementoField.setText(f.getEndereco().getComplemento());
-			bairroField.setText(f.getEndereco().getBairro());
-			cidadeField.setText(f.getEndereco().getCidade());
-			estadoField.setText(f.getEndereco().getEstado());
+			TBAIRRO.setText(f.getEndereco().getTBAIRRO());
+			TCIDADE.setText(f.getEndereco().getTCIDADE());
+			CESTADO.setToolTipText(f.getEndereco().getCESTADO());
 			
-			
-		
 			
 		}
 			

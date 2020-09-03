@@ -1,11 +1,13 @@
 package model;
 
+import com.mysql.jdbc.StatementImpl;
+
 public class Os {
 	
 	///Atributos
 	private int id;
 	private Cliente cliente;
-	private int usuario_id;
+	private Usuario usuario;
     private String data_os;
     private String data_previsao;
     private String data_pronto;
@@ -25,6 +27,7 @@ public class Os {
     
     public Os() {
     	this.cliente = new Cliente();
+    	this.usuario = new Usuario();
     }
    
 	
@@ -34,11 +37,11 @@ public class Os {
 	public void setCliente(Cliente cliente_id) {
 		this.cliente = cliente_id;
 	}
-	public int getUsuario_id() {
-		return usuario_id;
+	public Usuario getUsuario() {
+		return usuario;
 	}
-	public void setUsuario_id(int usuario_id) {
-		this.usuario_id = usuario_id;
+	public void setUsuario(Usuario usuario_id) {
+		this.usuario = usuario_id;
 	}
 	public String getData_os() {
 		return data_os;
@@ -143,13 +146,14 @@ public class Os {
 
 	@Override
 	public String toString() {
-		return "Os [id=" + id + ", cliente=" + cliente + ", usuario_id=" + usuario_id + ", cliente_id=" + cliente.getId()
+		return "Os [id=" + id + ", cliente=" + cliente + ", usuario_id=" + usuario.getId() + ", cliente_id=" + cliente.getId()
 				+ ", data_os=" + data_os + ", data_previsao=" + data_previsao + ", data_pronto=" + data_pronto
 				+ ", data_entrega=" + data_entrega + ", tipo=" + tipo + ", modelo=" + modelo + ", marca=" + marca
 				+ ", cor=" + cor + ", serie=" + serie + ", garantia=" + garantia + ", info_cliente=" + info_cliente
 				+ ", info_tecnico=" + info_tecnico + ", info_entrega=" + info_entrega + ", info_interna=" + info_interna
 				+ ", status_id=" + status_id + "]";
 	}
+
 
 	
 	
