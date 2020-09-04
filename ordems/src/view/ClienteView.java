@@ -382,19 +382,19 @@ public class ClienteView extends JFrame implements ActionListener{
 			//pessoa contato
 			c.setPes_contato(pes_contatoField.getText());
 			//Logradouro
-			c.getEndereco().setCep(cepField.getText());
+			c.getEndereco().setTCEP(cepField.getText());
 			//Logradouro
-			c.getEndereco().setLogradouro(enderecoField.getText());
+			c.getEndereco().setTRUA(enderecoField.getText());
 			//numero
 			c.getEndereco().setNumero(numeroField.getText());
 			//complemento
 			c.getEndereco().setComplemento(complementoField.getText());
 			//bairro
-			c.getEndereco().setBairro(bairroField.getText());
+			c.getEndereco().setTBAIRRO(bairroField.getText());
 			//cidade
-			c.getEndereco().setCidade(cidadeField.getText());
+			c.getEndereco().setTCIDADE(cidadeField.getText());
 			//estado
-			c.getEndereco().setEstado(estadoField.getText());
+			c.getEndereco().setCESTADO(estadoField.getText());
 			
 			Object[] opcoes = {"Salvar como novo cadastro", "Atualizar", "Limpar todos campos"};
 			
@@ -498,13 +498,13 @@ public class ClienteView extends JFrame implements ActionListener{
 		celularField.setText(c.getCelular());
 		emailField.setText(c.getEmail());
 		pes_contatoField.setText(c.getPes_contato());
-		cepField.setText(c.getEndereco().getCep());
-		enderecoField.setText(c.getEndereco().getLogradouro());
+		cepField.setText(c.getEndereco().getTCEP());
+		enderecoField.setText(c.getEndereco().getTRUA());
 		numeroField.setText(c.getEndereco().getNumero());
 		complementoField.setText(c.getEndereco().getComplemento());
-		bairroField.setText(c.getEndereco().getBairro());
-		cidadeField.setText(c.getEndereco().getCidade());
-		estadoField.setText(c.getEndereco().getEstado());
+		bairroField.setText(c.getEndereco().getTBAIRRO());
+		cidadeField.setText(c.getEndereco().getTCIDADE());
+		estadoField.setText(c.getEndereco().getCESTADO());
 		
 		
 	

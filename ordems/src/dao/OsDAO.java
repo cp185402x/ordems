@@ -134,7 +134,7 @@ public class OsDAO {
 			}
 			
 			
-			st.setInt(1, os.getUsuario().getId());
+			st.setInt(1, 1019);
 			st.setInt(2, os.getCliente().getId());
 			st.setString(3, os.getData_os());
 			st.setString(4, os.getData_previsao());

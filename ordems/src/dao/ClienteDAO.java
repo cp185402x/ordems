@@ -25,28 +25,27 @@ public class ClienteDAO {
 		if(conn != null) {
 			st = (PreparedStatement) conn.prepareStatement(
 					"INSERT INTO cliente"
-					+ "(usuario_id_usuario, nm_cliente, data_nasc, tipo_cliente, doc_num, celular, fone_re, email, pes_contato, cep, endereco, numero, complemento, bairro, cidade, estado, rg_ie) "
+					+ "(usuario_id, nm_cliente, data_nasc, tipo_cliente, doc_num, celular, fone_re, email, pes_contato, cep, endereco, numero, complemento, bairro, cidade, estado, rg_ie) "
 					+ "VALUES "
 					+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		}
 		
-		st.setInt(1, 1006); //mudar aqui para associar o id do us		
-		st.setString(2, cliente.getNm_cliente());
-		st.setString(3, cliente.getData_nasc());
-		st.setInt(4, cliente.getTipo());
-		st.setString(5, cliente.getDoc_num());
-		st.setString(6, cliente.getCelular());
+		st.setInt(1, 1019); //mudar aqui para associar o id do us
+		st.setInt(2, cliente.getTipo());
+		st.setString(3, cliente.getDoc_num());
+		st.setString(4, cliente.getRg_ie());		
+		st.setString(5, cliente.getNm_cliente());
+		st.setString(6, cliente.getData_nasc());
 		st.setString(7, cliente.getFone_re());
 		st.setString(8, cliente.getEmail());
 		st.setString(9, cliente.getPes_contato());
-		st.setString(10, cliente.getEndereco().getCep());
-		st.setString(11, cliente.getEndereco().getLogradouro());
+		st.setString(10, cliente.getEndereco().getTCEP());
+		st.setString(11, cliente.getEndereco().getTRUA());
 		st.setString(12, cliente.getEndereco().getNumero());
 		st.setString(13, cliente.getEndereco().getComplemento());
-		st.setString(14, cliente.getEndereco().getBairro());
-		st.setString(15, cliente.getEndereco().getCidade());
-		st.setString(16, cliente.getEndereco().getEstado());
-		st.setString(17, cliente.getRg_ie());
+		st.setString(14, cliente.getEndereco().getTBAIRRO());
+		st.setString(15, cliente.getEndereco().getTCIDADE());
+		st.setString(16, cliente.getEndereco().getCESTADO());
 		
 		st.execute();
 		
@@ -61,7 +60,7 @@ public class ClienteDAO {
 			st = (PreparedStatement) conn.prepareStatement(
 					
 					"UPDATE cliente SET "
-					//+ " usuario_id_usuario = ?,"
+					+ " usuario_id = ?,"
 					+ " nm_cliente = ?,"
 					+ " data_nasc = ?,"
 					+ " tipo_cliente = ?,"
@@ -82,7 +81,7 @@ public class ClienteDAO {
 					);
 		}
 		
-		st.setInt(1, 1006); //mudar aqui para associar o id do us		
+		st.setInt(1, 1019); //mudar aqui para associar o id do us		
 		st.setString(2, cliente.getNm_cliente());
 		st.setString(3, cliente.getData_nasc());
 		st.setInt(4, cliente.getTipo());
@@ -91,13 +90,13 @@ public class ClienteDAO {
 		st.setString(7, cliente.getFone_re());
 		st.setString(8, cliente.getEmail());
 		st.setString(9, cliente.getPes_contato());
-		st.setString(10, cliente.getEndereco().getCep());
-		st.setString(11, cliente.getEndereco().getLogradouro());
+		st.setString(10, cliente.getEndereco().getTCEP());
+		st.setString(11, cliente.getEndereco().getTRUA());
 		st.setString(12, cliente.getEndereco().getNumero());
 		st.setString(13, cliente.getEndereco().getComplemento());
-		st.setString(14, cliente.getEndereco().getBairro());
-		st.setString(15, cliente.getEndereco().getCidade());
-		st.setString(16, cliente.getEndereco().getEstado());
+		st.setString(14, cliente.getEndereco().getTBAIRRO());
+		st.setString(15, cliente.getEndereco().getTCIDADE());
+		st.setString(16, cliente.getEndereco().getCESTADO());
 		st.setString(17, cliente.getRg_ie());
 		
 		System.out.println(cliente);
@@ -115,7 +114,7 @@ public class ClienteDAO {
 			
 			if(conn != null) {
 				st = (PreparedStatement) conn.prepareStatement(
-						"SELECT * FROM cliente order by id_cliente desc limit 1000");
+						"SELECT * FROM cliente order by id_cliente desc limit 500");
 			}
 			
 
@@ -136,11 +135,11 @@ public class ClienteDAO {
 	           cliente.setPes_contato(rs.getString("pes_contato"));
 	           cliente.setTipo_cliente(rs.getInt("tipo_cliente"));
 	         
-	           cliente.getEndereco().setCep(rs.getString("cep"));
-	           cliente.getEndereco().setLogradouro(rs.getString("endereco"));
-	           cliente.getEndereco().setBairro(rs.getString("Bairro"));
-	           cliente.getEndereco().setCidade(rs.getString("Cidade"));
-	           cliente.getEndereco().setEstado(rs.getString("Estado"));
+	           cliente.getEndereco().setTCEP(rs.getString("cep"));
+	           cliente.getEndereco().setTRUA(rs.getString("endereco"));
+	           cliente.getEndereco().setTBAIRRO(rs.getString("Bairro"));
+	           cliente.getEndereco().setTCIDADE(rs.getString("Cidade"));
+	           cliente.getEndereco().setCESTADO(rs.getString("Estado"));
 	           cliente.getEndereco().setNumero(rs.getString("Numero"));
 	           lista.add(cliente);
 
