@@ -24,14 +24,18 @@ public class RecebimentoDAO {
 		if(conn != null) {
 			st = (PreparedStatement) conn.prepareStatement(
 					"INSERT INTO recebimento"
-					+ "(usuario_id, cliente_id, data_previsao, status_id) "
+					+ "(usuario_id, cliente_id, os_id, peca_id, formaPagamento, valorRecebimento, statusRecebimento) "
 					+ "VALUES "
-					+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+					+ "(?, ?, ?, ?, ?, ?, ?)");
 		}
 		
 		st.setInt(1,recebimento.getUsuario().getId());
-		st.setInt(2, recebimento.getCliente().getId());
-		st.setString(16, recebimento.getStatusRecebimento());
+		st.setInt(1,recebimento.getCliente().getId());
+		st.setInt(3, recebimento.getOs().getId());
+		st.setInt(4,recebimento.getPeca().getId());
+		st.setString(5,recebimento.getformaPagamento());
+		st.setFloat(6,recebimento.getValorRecebimento());
+		st.setInt(7,recebimento.getStatusRecebimento());
 		System.out.println(recebimento);
 		st.execute();
 		
@@ -40,7 +44,7 @@ public class RecebimentoDAO {
 		
 	}
 	
-		public ArrayList<Os> consultar() throws SQLException {
+		public ArrayList<Recebimento> consultar() throws SQLException {
 			
 			conn = (Connection) Conexao.getConexao();
 			
@@ -50,21 +54,24 @@ public class RecebimentoDAO {
 			}
 			
 
-			ArrayList<Os> lista = new ArrayList<Os>();
+			ArrayList<Recebimento> lista = new ArrayList<Recebimento>();
 			ResultSet rs = st.executeQuery();
 			
 			while (rs.next()) {
-	            Os os = new Os();
+	            Recebimento recebimento = new Recebimento();
 
-	           os.setId(rs.getInt("id_os"));
-	           os.setData_os(rs.getString("data_os"));
-	           os.getCliente().setId(rs.getInt("cliente_id"));
-	          
+	            recebimento.setId(rs.getInt("id_recibemento"));
+	            recebimento.getUsuario().setId(rs.getInt("usuario_id"));
+	            recebimento.getCliente().setId(rs.getInt("cliente_id"));
+	            recebimento.getOs().setId(rs.getInt("os_id"));
+	            recebimento.getPeca().setId(rs.getInt("peca_id"));
+	            recebimento.setformaPagamento(rs.getString("formaPagamento"));
+	            recebimento.setValorRecebimento(rs.getFloat("valorRecebimento"));
+	            recebimento.setStatusRecebimento(rs.getInt("statusRecebimeto"));
 	           
 	           
 	           
-	           
-	           lista.add(os);
+	           lista.add(recebimento);
 
 	           
 	        }
@@ -75,6 +82,11 @@ public class RecebimentoDAO {
 			
 		}
 		
+		private void .setId(int int1) {
+			// TODO Auto-generated method stub
+			
+		}
+
 		public void atualizar(Os os) throws SQLException {
 			
 			conn = (Connection) Conexao.getConexao();
