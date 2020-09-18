@@ -10,11 +10,11 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 /**
- * Ferramenta de busca de CEP, veja o m?todo {@link WebServiceCep#searchCep(String)} para
+ * Ferramenta de busca de CEP, veja o m?todo {@link APIConsultaCEP#searchCep(String)} para
  * maiores informa??es.
  * <BR>
- * <BR>Constroi um objeto {@link WebServiceCep} com os dados XML encapsulados, a partir
- * da chamada do m?todo estatico {@link WebServiceCep#searchCep(String)}.
+ * <BR>Constroi um objeto {@link APIConsultaCEP} com os dados XML encapsulados, a partir
+ * da chamada do m?todo estatico {@link APIConsultaCEP#searchCep(String)}.
  * <BR>
  * <BR>Objeto contem todas as informa??es do XML, al?m de informa??es referente ao
  * resultado da pesquisa.
@@ -24,7 +24,7 @@ import org.dom4j.io.SAXReader;
  * <a href="http://www.dom4j.org/dom4j-1.6.1/download.html" target="_blank">dom4j.org</a>
  * <BR>
  * <BR>Exemplo de uso:
- * <BR><tt>{@link WebServiceCep} cep = {@link WebServiceCep}.searchCep("13345-325");
+ * <BR><tt>{@link APIConsultaCEP} cep = {@link APIConsultaCEP}.searchCep("13345-325");
  * 
  * <BR>//caso a busca ocorra bem, imprime os resultados.
  * <BR>if (cep.wasSuccessful()) {
@@ -49,61 +49,61 @@ import org.dom4j.io.SAXReader;
  * <BR>Ultima revis?o: 09/01/2009
  * @author Tomaz Lavieri
  */
-public final class WebServiceCep {
+public final class APIConsultaCEP {
 	
 /* Classes Internas, que auxiliam na busca do CEP */
 	/**
 	 * Enumeration para setar os parametros do XML, cada constante conhece o seu m?todo
 	 * correspondente, invocando a partir de um atalho comum
-	 * {@link Xml#setCep(String, WebServiceCep)}.
+	 * {@link Xml#setCep(String, APIConsultaCEP)}.
 	 * @author Tomaz Lavieri
 	 */
 	private enum Xml {
 		CIDADE {
-			@Override public void setCep(String text, WebServiceCep webServiceCep) {
+			@Override public void setCep(String text, APIConsultaCEP webServiceCep) {
 				webServiceCep.setCidade(text);
 			}
 		}, 
 		BAIRRO {
-			@Override public void setCep(String text, WebServiceCep webServiceCep) {
+			@Override public void setCep(String text, APIConsultaCEP webServiceCep) {
 				webServiceCep.setBairro(text);
 			}
 		},
 		TIPO_LOGRADOURO {
-			@Override public void setCep(String text, WebServiceCep webServiceCep) {
+			@Override public void setCep(String text, APIConsultaCEP webServiceCep) {
 				webServiceCep.setLogradouroType(text);
 			}
 		},
 		LOGRADOURO {
-			@Override public void setCep(String text, WebServiceCep webServiceCep) {
+			@Override public void setCep(String text, APIConsultaCEP webServiceCep) {
 				webServiceCep.setLogradouro(text);
 			}
 		},
 		RESULTADO {
-			@Override public void setCep(String text, WebServiceCep webServiceCep) {
+			@Override public void setCep(String text, APIConsultaCEP webServiceCep) {
 				webServiceCep.setResulCode(Integer.parseInt(text));
 			}
 		},
 		RESULTADO_TXT {
-			@Override public void setCep(String text, WebServiceCep webServiceCep) {
+			@Override public void setCep(String text, APIConsultaCEP webServiceCep) {
 				webServiceCep.setResultText(text);
 			}
 		},
 		UF {
-			@Override public void setCep(String text, WebServiceCep webServiceCep) {
+			@Override public void setCep(String text, APIConsultaCEP webServiceCep) {
 				webServiceCep.setUf(text);
 			}
 		}
 		;
 		/**
 		 * Seta o texto enviado no parametro <tt>text</tt> no objeto
-		 * {@link WebServiceCep} no seu parametro correspondente. Cada constante do enum
+		 * {@link APIConsultaCEP} no seu parametro correspondente. Cada constante do enum
 		 * conhece o seu parametro a passar.
 		 * @param text {@link String} contendo o texto a ser inserido.
-		 * @param webServiceCep {@link WebServiceCep} referencia do objeto para inserir
+		 * @param webServiceCep {@link APIConsultaCEP} referencia do objeto para inserir
 		 * 		  o parametro text.
 		 */
-		public abstract void setCep(String text,WebServiceCep webServiceCep);
+		public abstract void setCep(String text,APIConsultaCEP webServiceCep);
 	}
 	/**
 	 * Classe utilit?ria apenas encapsula o Iterator de elements da root dentro de um
@@ -213,7 +213,7 @@ public final class WebServiceCep {
 	 * Faz uma busca a partir do cep enviado, no site 
 	 * <a href="http://www.republicavirtual.com.br" 
 	 * target="_blank">republicavirtual.com.br</a>, retornando o resultado em um objeto
-	 * {@link WebServiceCep}.
+	 * {@link APIConsultaCEP}.
 	 * <BR>
 	 * <BR>N?o se faz necess?rio formata??es, a string pode ser enviada em qualquer
 	 * formata??o, pois s? ser?o consideradas os primeiros 8 numeros da string.
@@ -225,13 +225,13 @@ public final class WebServiceCep {
 	 * @param	cep N?mero do cep a ser carregado. S? ser?o considerados os primeiros 8 
 	 * 			n?meros da {@link String} enviada. Todos os caracters n?o num?ricos ser?o
 	 * 			removidos, e a string ser? truncada caso seja maior que 8 caracters.
-	 * @return {@link WebServiceCep} contendo as informa??es da pesquisa.
+	 * @return {@link APIConsultaCEP} contendo as informa??es da pesquisa.
 	 */
-	public static WebServiceCep searchCep(String cep) {
+	public static APIConsultaCEP searchCep(String cep) {
 		cep = cep.replaceAll( "\\D*", "" ); //To numeric digits only
 		if (cep.length() > 8)
 			cep = cep.substring(0, 8);
-		WebServiceCep loadCep = new WebServiceCep(cep);
+		APIConsultaCEP loadCep = new APIConsultaCEP(cep);
 		try {
 			XmlEnums enums = new XmlEnums();
 			for (Element e : getElements(cep))
@@ -275,7 +275,7 @@ public final class WebServiceCep {
 	 * Privado para que seja invocado apenas atrav?s de {@link #searchCep(String)}
 	 * @param cep
 	 */
-    private WebServiceCep(String cep) {
+    private APIConsultaCEP(String cep) {
     	this.cep = cep;
     }
 	

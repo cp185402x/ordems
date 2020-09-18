@@ -1,16 +1,20 @@
 /*
  * To change this template, choose Tools | Templates
+
+
  * and open the template in the editor.
  */
 
 /*
- * CEP.java
+ * CepView.java
  *
  * Created on 03/10/2016, 14:47:58
+ * Fonte e créditos.
+ * https://www.republicavirtual.com.br/cep/index.php
  */
 package view;
 
-import dao.WebServiceCep;
+import dao.APIConsultaCEP;
 import javax.swing.JOptionPane;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
@@ -20,10 +24,10 @@ import javax.swing.LayoutStyle.ComponentPlacement;
  *
  * @author ADM
  */
-public class CepView extends javax.swing.JFrame {
+public class CepViewModelo extends javax.swing.JFrame {
 
     /** Creates new form CEP */
-    public CepView() {
+    public CepViewModelo() {
     	setTitle("Consulta Logradouro");
         initComponents();
     }
@@ -183,13 +187,13 @@ private void TCEPKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCE
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CepView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CepViewModelo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CepView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CepViewModelo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CepView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CepViewModelo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CepView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CepViewModelo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -197,7 +201,7 @@ private void TCEPKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCE
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new CepView().setVisible(true);
+                new CepViewModelo().setVisible(true);
             }
         });
     }
@@ -220,7 +224,7 @@ public  void correio() {
     
                 String cep =  cepField.getText();
 		
-                WebServiceCep webServiceCep = WebServiceCep.searchCep(cep);
+                APIConsultaCEP webServiceCep = APIConsultaCEP.searchCep(cep);
 
 		if (webServiceCep.wasSuccessful()) {
                        
