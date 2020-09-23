@@ -31,9 +31,10 @@ import controller.FornecedorController;
 import model.Fornecedor;
 import model.TabelaFornecedor;
 import java.awt.SystemColor;
+import dao.APIConsultaCEP;
 
 //Declarando a classe na janela
-public class FornecedorView extends JFrame implements ActionListener{
+public class old_FornecedorView extends JFrame implements ActionListener{
 	//atributos globais da classe
 	JPanel painelTitulo;
 	JPanel cadastroPanel;
@@ -64,7 +65,7 @@ public class FornecedorView extends JFrame implements ActionListener{
     JLabel pes_contatoLabel;
     JTextField pes_contatoField;
     
-    JLabel cepLabel;
+    JLabel cepLabel1;
     JTextField TCEP;
     
     JLabel enderecoLabel;
@@ -76,10 +77,10 @@ public class FornecedorView extends JFrame implements ActionListener{
     JLabel complementoLabel;
     JTextField complementoField;
     
-    JLabel bairroLabel;
+    JLabel bairroLabel1;
     JTextField TBAIRRO;
     
-    JLabel cidadeLabel;
+    JLabel cidadeLabel1;
     JTextField TCIDADE;
     
     JLabel estadoLabel;
@@ -97,7 +98,7 @@ public class FornecedorView extends JFrame implements ActionListener{
     TabelaFornecedor tabelaFornecedor;
 	private int id;
 
-	public FornecedorView() { // construtor da view Fornecedor.
+	public old_FornecedorView() { // construtor da view Fornecedor.
         super("Cadastro de Fornecedor");
         setType(Type.UTILITY);
                 
@@ -109,6 +110,7 @@ public class FornecedorView extends JFrame implements ActionListener{
     }
     
     private void criaFormulario() {
+        initComponents();
         
         getContentPane().setLayout(new BorderLayout());
         
@@ -123,15 +125,6 @@ public class FornecedorView extends JFrame implements ActionListener{
         
         //Inicia o painel dos campos digitáveis        
         cadastroPanel = new JPanel();
-        
-        //Inicia o painel dos botoes
-        painelBotoes = new JPanel();
-        painelBotoes.setLayout(new FlowLayout());
-        
-        botaoSalvar = new JButton("Salvar");
-        botaoEditar = new JButton("Editar");
-        botaoExcluir = new JButton("Excluir");
-        botaoCancelar = new JButton("Cancelar");
         
         getContentPane().add(cadastroPanel, BorderLayout.WEST);
         
@@ -263,37 +256,14 @@ public class FornecedorView extends JFrame implements ActionListener{
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         
-        GroupLayout gl_cadastroPanel = new GroupLayout(cadastroPanel);
-        gl_cadastroPanel.setHorizontalGroup(
-        	gl_cadastroPanel.createParallelGroup(Alignment.TRAILING)
-        		.addGroup(Alignment.LEADING, gl_cadastroPanel.createSequentialGroup()
-        			.addContainerGap()
-        			.addGroup(gl_cadastroPanel.createParallelGroup(Alignment.LEADING)
-        				.addComponent(scrollPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE)
-        				.addComponent(enderecoPanel, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE)
-        				.addComponent(fornecedorPanel, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 643, GroupLayout.PREFERRED_SIZE))
-        			.addGap(18))
-        );
-        gl_cadastroPanel.setVerticalGroup(
-        	gl_cadastroPanel.createParallelGroup(Alignment.TRAILING)
-        		.addGroup(Alignment.LEADING, gl_cadastroPanel.createSequentialGroup()
-        			.addContainerGap()
-        			.addComponent(fornecedorPanel, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(enderecoPanel, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-        			.addPreferredGap(ComponentPlacement.UNRELATED)
-        			.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
-        			.addContainerGap())
-        );
-
+        //Inicia o painel dos botoes
+        painelBotoes = new JPanel();
+        painelBotoes.setLayout(new FlowLayout());
         
-        tabelaFornecedor = new TabelaFornecedor();
-        fornecedorTable = new JTable(tabelaFornecedor);
-        
-             
-        scrollPane.setViewportView(fornecedorTable);
-        
-        cadastroPanel.setLayout(gl_cadastroPanel);
+        botaoSalvar = new JButton("Salvar");
+        botaoEditar = new JButton("Editar");
+        botaoExcluir = new JButton("Excluir");
+        botaoCancelar = new JButton("Cancelar");
         
         getContentPane().add(painelBotoes, BorderLayout.SOUTH);
         
@@ -301,20 +271,269 @@ public class FornecedorView extends JFrame implements ActionListener{
         painelBotoes.add(botaoEditar);
         painelBotoes.add(botaoExcluir);
         painelBotoes.add(botaoCancelar);
-		        
+        
         botaoSalvar.addActionListener(this);
         botaoSalvar.setActionCommand("salvar");
-		
+        
         botaoEditar.addActionListener(this);
         botaoEditar.setActionCommand("editar");
-		
+        
         botaoExcluir.addActionListener(this);
         botaoExcluir.setActionCommand("excluir");
-		
+        
         botaoCancelar.addActionListener(this);
         botaoCancelar.setActionCommand("cancelar");
+        
+        GroupLayout gl_cadastroPanel = new GroupLayout(cadastroPanel);
+        gl_cadastroPanel.setHorizontalGroup(
+        	gl_cadastroPanel.createParallelGroup(Alignment.LEADING)
+        		.addGroup(gl_cadastroPanel.createSequentialGroup()
+        			.addContainerGap()
+        			.addGroup(gl_cadastroPanel.createParallelGroup(Alignment.LEADING)
+        				.addGroup(gl_cadastroPanel.createSequentialGroup()
+        					.addGroup(gl_cadastroPanel.createParallelGroup(Alignment.LEADING)
+        						.addComponent(scrollPane, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE)
+        						.addComponent(enderecoPanel, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE)
+        						.addComponent(fornecedorPanel, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 643, GroupLayout.PREFERRED_SIZE))
+        					.addGap(18))
+        				.addGroup(gl_cadastroPanel.createSequentialGroup()
+        					.addComponent(painelBotoes, GroupLayout.PREFERRED_SIZE, 664, GroupLayout.PREFERRED_SIZE)
+        					.addContainerGap(341, Short.MAX_VALUE))))
+        );
+        gl_cadastroPanel.setVerticalGroup(
+        	gl_cadastroPanel.createParallelGroup(Alignment.LEADING)
+        		.addGroup(gl_cadastroPanel.createSequentialGroup()
+        			.addContainerGap()
+        			.addComponent(fornecedorPanel, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addComponent(enderecoPanel, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+        			.addPreferredGap(ComponentPlacement.UNRELATED)
+        			.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addComponent(painelBotoes, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        );
+        
+                
+        tabelaFornecedor = new TabelaFornecedor();
+        fornecedorTable = new JTable(tabelaFornecedor);
+        
+             
+        scrollPane.setViewportView(fornecedorTable);
+        
+        cadastroPanel.setLayout(gl_cadastroPanel);
 
     }
+    
+  //--------------------------------------------------------
+    
+    @SuppressWarnings("unchecked")
+    private void initComponents() {
+
+        enderecoPanel = new javax.swing.JPanel();
+        logradouroLabel = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        ruaField = new javax.swing.JTextField();
+        bairroLabel = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        bairroField = new javax.swing.JTextField();
+        cidadeLabel = new javax.swing.JLabel();
+        cidadeField = new javax.swing.JTextField();
+        ufLabel = new javax.swing.JLabel();
+        estadoComboBox = new javax.swing.JComboBox();
+        cepLabel = new javax.swing.JLabel();
+        cepField = new javax.swing.JFormattedTextField();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        
+
+        try {
+            cepField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        cepField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TCEPKeyReleased(evt);
+            }
+        });
+
+
+        cepLabel.setText("CEP");
+        
+        logradouroLabel.setText("Logradouro");
+
+        jTextField1.setText("jTextField1");
+
+        bairroLabel.setText("Bairro");
+
+        jTextField2.setText("jTextField2");
+
+        cidadeLabel.setText("Cidade");
+
+        ufLabel.setText("UF");
+
+        estadoComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG", "MS", "MT", "PA", "PB", "PE", "PI", "PR", "RJ", "RN", "RO", "RR", "RS", "SC", "SE", "SP", "TO" }));
+
+
+        javax.swing.GroupLayout gl_enderecoPanel = new javax.swing.GroupLayout(enderecoPanel);
+        gl_enderecoPanel.setHorizontalGroup(
+        	gl_enderecoPanel.createParallelGroup(Alignment.LEADING)
+        		.addGroup(gl_enderecoPanel.createSequentialGroup()
+        			.addContainerGap()
+        			.addGroup(gl_enderecoPanel.createParallelGroup(Alignment.TRAILING)
+        				.addComponent(cidadeLabel)
+        				.addComponent(bairroLabel)
+        				.addComponent(logradouroLabel)
+        				.addComponent(cepLabel)
+        				.addComponent(ufLabel))
+        			.addPreferredGap(ComponentPlacement.UNRELATED)
+        			.addGroup(gl_enderecoPanel.createParallelGroup(Alignment.LEADING, false)
+        				.addComponent(cidadeField)
+        				.addComponent(bairroField, GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+        				.addComponent(ruaField, GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
+        				.addComponent(cepField, GroupLayout.PREFERRED_SIZE, 171, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(estadoComboBox, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE))
+        			.addContainerGap(244, Short.MAX_VALUE))
+        );
+        gl_enderecoPanel.setVerticalGroup(
+        	gl_enderecoPanel.createParallelGroup(Alignment.LEADING)
+        		.addGroup(gl_enderecoPanel.createSequentialGroup()
+        			.addContainerGap()
+        			.addGroup(gl_enderecoPanel.createParallelGroup(Alignment.TRAILING)
+        				.addComponent(cepLabel)
+        				.addComponent(cepField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addGap(18)
+        			.addGroup(gl_enderecoPanel.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(logradouroLabel)
+        				.addComponent(ruaField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addGap(18)
+        			.addGroup(gl_enderecoPanel.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(bairroField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(bairroLabel))
+        			.addGap(18)
+        			.addGroup(gl_enderecoPanel.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(cidadeField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(cidadeLabel))
+        			.addGap(18)
+        			.addGroup(gl_enderecoPanel.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(estadoComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(ufLabel))
+        			.addContainerGap(213, Short.MAX_VALUE))
+        );
+        enderecoPanel.setLayout(gl_enderecoPanel);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        layout.setHorizontalGroup(
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addGap(20)
+        			.addComponent(enderecoPanel, GroupLayout.PREFERRED_SIZE, 479, GroupLayout.PREFERRED_SIZE)
+        			.addContainerGap(664, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addContainerGap()
+        			.addComponent(enderecoPanel, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+        			.addContainerGap())
+        );
+        getContentPane().setLayout(layout);
+
+        java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        setBounds((screenSize.width-693)/2, (screenSize.height-338)/2, 540, 300);
+    }// </editor-fold>//GEN-END:initComponents
+
+private void TCEPKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCEPKeyReleased
+    String cp = cepField.getText();
+    cp = cp.replaceAll("\\D*", ""); //ignora qualquer coisa que nÃ£o seja numero.  
+    int cont = cp.length();
+    
+    if(cont == 8){
+     try{
+     correio();
+     }
+     catch(Error e){
+     JOptionPane.showMessageDialog(null, e); 
+     }
+    }// TODO add your handling code here:
+}//GEN-LAST:event_TCEPKeyReleased
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(FornecedorView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(FornecedorView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(FornecedorView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(FornecedorView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+
+            public void run() {
+                new FornecedorView().setVisible(true);
+            }
+        });
+    }
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox estadoComboBox;
+    private javax.swing.JTextField bairroField;
+    private javax.swing.JFormattedTextField cepField;
+    private javax.swing.JTextField cidadeField;
+    private javax.swing.JTextField ruaField;
+    private javax.swing.JLabel logradouroLabel;
+    private javax.swing.JLabel bairroLabel;
+    private javax.swing.JLabel cidadeLabel;
+    private javax.swing.JLabel ufLabel;
+    private javax.swing.JLabel cepLabel;
+    private javax.swing.JPanel enderecoPanel;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    // End of variables declaration//GEN-END:variables
+public  void correio() {
+    
+                String cep =  cepField.getText();
+		
+                APIConsultaCEP webServiceCep = APIConsultaCEP.searchCep(cep);
+
+		if (webServiceCep.wasSuccessful()) {
+                       
+                        ruaField.setText(webServiceCep.getLogradouroFull()); 
+                        bairroField.setText(webServiceCep.getBairro());                        
+                        cidadeField.setText(webServiceCep.getCidade());
+                        estadoComboBox.setSelectedItem( webServiceCep.getUf());
+
+		} else {
+                         JOptionPane.showMessageDialog(null, webServiceCep.getResultText());
+                        
+		}
+			
+	}
+
+
+
+    
+    //--------------------------------------------------------
+
+
     
     //método para limpar tela
     private void limpaCampos() {

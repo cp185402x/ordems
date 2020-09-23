@@ -1,16 +1,18 @@
 package model;
 
+import dao.APIConsultaCEP;
+
 
 
 //Classe apenas do endereço
 public class Endereco {
 
+	private String TCEP;
 	private String TRUA;
 	private String TBAIRRO;
 	private String TCIDADE;
 	private String CESTADO;
 	private String complemento;
-	private String TCEP;
 	private String numero;
 
 	

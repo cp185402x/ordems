@@ -57,7 +57,7 @@ public class RecebimentoView extends JFrame implements ActionListener{
     JButton botaoCancelar;
     JButton botaoCancelarItem;
     JButton botaoCancelarVenda;
-    TabelaFornecedor tabelaFornecedor;
+    //TabelaRecebimento tabelaRecebimento;
 	private int id;
 	private JTextField idClienteField;
 	private JTextField nmClienteField;
@@ -71,8 +71,8 @@ public class RecebimentoView extends JFrame implements ActionListener{
 	private JTextField textField_4;
 	private JTextField textField_5;
 
-	public RecebimentoView() { // construtor da view Fornecedor.
-        super("Cadastro de Fornecedor");
+	public RecebimentoView() { // construtor da view Recebimento.
+        super("Cadastro de Recebimento");
         setTitle("Recebimentos e Vendas");
         setType(Type.UTILITY);
                 
@@ -91,7 +91,7 @@ public class RecebimentoView extends JFrame implements ActionListener{
         painelTitulo = new JPanel();
         painelTitulo.setLayout(new FlowLayout());
         
-        titulo = new JLabel("Cadastro de Fornecedor");
+        titulo = new JLabel("Cadastro de Recebimento");
         titulo.setFont(new Font("Arial", Font.BOLD, 14));
         
         painelTitulo.add(titulo);
@@ -241,7 +241,7 @@ public class RecebimentoView extends JFrame implements ActionListener{
                 
                 FormaPagamento.setModel(new DefaultComboBoxModel(new String[] {"Dinheiro", "Cart\u00E3o D\u00E9bito", "Cart\u00E3o Cr\u00E9dito", "Promiss\u00F3ria"}));
                 
-                JLabel lblFormaDePagamentos = new JLabel("FORMA DE PAGAMENTOS");
+                JLabel lblFormaDePagamentos = new JLabel("FORMAS DE PAGAMENTO");
                 lblFormaDePagamentos.setFont(new Font("Tahoma", Font.BOLD, 12));
                 lblFormaDePagamentos.setHorizontalAlignment(SwingConstants.CENTER);
                 lblFormaDePagamentos.setBounds(10, 11, 206, 22);
@@ -259,7 +259,7 @@ public class RecebimentoView extends JFrame implements ActionListener{
         
         botaoCancelarItem.addActionListener(this);
         botaoCancelarItem.setActionCommand("editar");
-        botaoCancelarVenda = new JButton("Cancelar Vanda");
+        botaoCancelarVenda = new JButton("Cancelar Venda");
         botaoCancelarVenda.setBounds(485, 11, 150, 23);
         pagamentoPanel.add(botaoCancelarVenda);
         
@@ -347,7 +347,7 @@ public class RecebimentoView extends JFrame implements ActionListener{
         clientePanel.add(botaoPesqCliente);
 
         
-        tabelaFornecedor = new TabelaFornecedor();
+       // tabelaRecebimento = new TabelaRecebimento();
         
         cadastroPanel.setLayout(gl_cadastroPanel);
         
@@ -370,186 +370,13 @@ public class RecebimentoView extends JFrame implements ActionListener{
         painelBotoes.add(lblVerso);
 
     }
-    
-    //método para limpar tela
-    private void limpaCampos() {
 
-		nm_fornecedorField.setText("");
-		docField.setText("");
-		rgieField.setText("");
-		fone_reField.setText("");			
-		celularField.setText("");
-		emailField.setText("");
-		pes_contatoField.setText("");
-		TCEP.setText("");
-		TRUA.setText("");
-		numeroField.setText("");
-		complementoField.setText("");
-		TBAIRRO.setText("");
-		TCIDADE.setText("");
-		FormaPagamento.setToolTipText("");
-    	
-		this.cadastroPanel.repaint();
-		this.fornecedorPainel.repaint();
-    }
-   
-	public void actionPerformed(ActionEvent e) {
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
 		
-		if(e.getActionCommand().equalsIgnoreCase("salvar")) {
-			
-			Fornecedor f = new Fornecedor();
-			
-			//Tratar a ação de salvar o cliente
-			
-			//Trata o radio do tipo de cliente
-			if(cpfRadio.isSelected()) {
-				f.setTipo(0);
-			}
-			else {
-				f.setTipo(1);
-			}
-			//Tipo
-			System.out.println("Tipo: " +f.getTipo());
-			//nome
-			f.setNm_fornecedor(nm_fornecedorField.getText());			
-			//documento
-			f.setDoc_num(docField.getText());			
-			//RGIE
-			f.setRg_ie(rgieField.getText());
-			//fone fixo
-			f.setFone_re(fone_reField.getText());
-			//celular
-			f.setCelular(celularField.getText());
-			//email
-			f.setEmail(emailField.getText());
-			//pessoa contato
-			f.setPes_contato(pes_contatoField.getText());
-			//Logradouro
-			f.getEndereco().setTCEP(TCEP.getText());
-			//Logradouro
-			f.getEndereco().setTRUA(TRUA.getText());
-			//numero
-			f.getEndereco().setNumero(numeroField.getText());
-			//complemento
-			f.getEndereco().setComplemento(complementoField.getText());
-			//bairro
-			f.getEndereco().setTBAIRRO(TBAIRRO.getText());
-			//cidade
-			f.getEndereco().setTCIDADE(TCIDADE.getText());
-			//estado
-			f.getEndereco().setCESTADO(FormaPagamento.getToolTipText());
-			
-			Object[] opcoes = {"Salvar como novo cadastro", "Atualizar", "Limpar todos campos"};
-	
-			
-			int op = JOptionPane.showOptionDialog(null, "Escolha uma opção para continuar", "Aviso",
-			          JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
-			              null, opcoes, opcoes[0]);
-				
-				if(op == 0) { //salvar um novo cliente
-					FornecedorController controleCliente = new FornecedorController();
-					try {
-						if(controleCliente.cadastrarFornecedor(f) == true) {
-							JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
-							tabelaFornecedor.addTodos();
-							limpaCampos();
-							this.repaint();
-						}
-						}
-					 catch (SQLException e1) {
-						e1.printStackTrace();
-						JOptionPane.showMessageDialog(null, "Ops, houve um erro ao efetuar o cadastro!");
-					}
-				}
-				else if(op == 1) { //ATUALIZAR
-					f.setId(this.id);
-					FornecedorController controleFornecedor = new FornecedorController();
-					try {
-						if(controleFornecedor.atualizarFornecedor(f) == true) {
-							JOptionPane.showMessageDialog(null, "Cadastro atualizado com sucesso!");
-							tabelaFornecedor.addTodos();
-							limpaCampos();
-							this.repaint();
-						}
-					} catch (HeadlessException | SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-						JOptionPane.showMessageDialog(null, "Ops, houve um ao efetuar o cadastro!");
-					}				
-					
-				}
-				else {
-					cpfRadio.setEnabled(true);
-								
-					nm_fornecedorField.setText("");
-					docField.setText("");
-					rgieField.setText("");
-					fone_reField.setText("");			
-					celularField.setText("");
-					emailField.setText("");
-					pes_contatoField.setText("");
-					TCEP.setText("");
-					TRUA.setText("");
-					numeroField.setText("");
-					complementoField.setText("");
-					TBAIRRO.setText("");
-					TCIDADE.setText("");
-					FormaPagamento.setToolTipText("");
-					
-				}
-		
-		}
-		else if (e.getActionCommand().equalsIgnoreCase("cancelar")) {
-		
-				dispose();
-		}
-		else if(e.getActionCommand().equals("excluir")) {
-			//tratar a exclusão
-			int linha = fornecedorTable.getSelectedRow();
-			Fornecedor f = tabelaFornecedor.getFornecedor(linha);
-			
-			FornecedorController controleFornecedor = new FornecedorController();
-			try {
-				controleFornecedor.removerFornecedor(f.getId());
-				JOptionPane.showMessageDialog(null, " Cadastro excluído com sucesso!");
-				tabelaFornecedor.addTodos();
-				this.repaint();
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-				JOptionPane.showMessageDialog(null, "Erro ao efetuar a exclusão");
-			}
-			
-			
-		}
-		else if(e.getActionCommand().equals("editar")) {
-			JOptionPane.showMessageDialog(null, "Deseja realmente editar o cadastro?");
-			int linha = fornecedorTable.getSelectedRow();
-			Fornecedor f = tabelaFornecedor.getFornecedor(linha);
-			
-			//preencher os campos com os dados do cliente selecionado
-			if(f.getTipo() == 0) cpfRadio.setEnabled(true);
-			else cnpjRadio.setEnabled(true);
-			
-			this.id =f.getId(); 
-			nm_fornecedorField.setText(f.getNm_fornecedor());
-			docField.setText(f.getDoc_num());
-			rgieField.setText(f.getRg_ie());
-			fone_reField.setText(f.getFone_re());			
-			celularField.setText(f.getCelular());
-			emailField.setText(f.getEmail());
-			pes_contatoField.setText(f.getPes_contato());
-			TCEP.setText(f.getEndereco().getTCEP());
-			TRUA.setText(f.getEndereco().getTRUA());
-			numeroField.setText(f.getEndereco().getNumero());
-			complementoField.setText(f.getEndereco().getComplemento());
-			TBAIRRO.setText(f.getEndereco().getTBAIRRO());
-			TCIDADE.setText(f.getEndereco().getTCIDADE());
-			FormaPagamento.setToolTipText(f.getEndereco().getCESTADO());
-			
-			
-		}
-			
-		}
 	}
+    
+
+}
 

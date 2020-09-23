@@ -6,7 +6,6 @@
  */
 
 /*
- * CepView.java
  *
  * Created on 03/10/2016, 14:47:58
  * Fonte e créditos.
@@ -19,16 +18,27 @@ import javax.swing.JOptionPane;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.JRadioButton;
+import javax.swing.SwingConstants;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
+import java.awt.FlowLayout;
+import javax.swing.JButton;
 
 /**
  *
  * @author ADM
  */
-public class CepViewModelo extends javax.swing.JFrame {
+public class FornecedorView extends javax.swing.JFrame {
 
     /** Creates new form CEP */
-    public CepViewModelo() {
-    	setTitle("Consulta Logradouro");
+    public FornecedorView() {
+    	setTitle("Cadastrode Fornecedores");
         initComponents();
     }
 
@@ -42,6 +52,7 @@ public class CepViewModelo extends javax.swing.JFrame {
     private void initComponents() {
 
         enderecoPanel = new javax.swing.JPanel();
+        enderecoPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
         logradouroLabel = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         ruaField = new javax.swing.JTextField();
@@ -85,6 +96,17 @@ public class CepViewModelo extends javax.swing.JFrame {
         ufLabel.setText("UF");
 
         estadoComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG", "MS", "MT", "PA", "PB", "PE", "PI", "PR", "RJ", "RN", "RO", "RR", "RS", "SC", "SE", "SP", "TO" }));
+        
+        textField_7 = new JTextField();
+        textField_7.setColumns(10);
+        
+        JLabel numeroLabel = new JLabel();
+        numeroLabel.setText("N\u00FAmero");
+        
+        textField_8 = new JTextField();
+        
+        JLabel label_6 = new JLabel();
+        label_6.setText("Bairro");
 
 
         javax.swing.GroupLayout gl_enderecoPanel = new javax.swing.GroupLayout(enderecoPanel);
@@ -92,68 +114,205 @@ public class CepViewModelo extends javax.swing.JFrame {
         	gl_enderecoPanel.createParallelGroup(Alignment.LEADING)
         		.addGroup(gl_enderecoPanel.createSequentialGroup()
         			.addContainerGap()
-        			.addGroup(gl_enderecoPanel.createParallelGroup(Alignment.TRAILING)
-        				.addComponent(cidadeLabel)
-        				.addComponent(bairroLabel)
-        				.addComponent(logradouroLabel)
-        				.addComponent(cepLabel)
-        				.addComponent(ufLabel))
-        			.addPreferredGap(ComponentPlacement.UNRELATED)
-        			.addGroup(gl_enderecoPanel.createParallelGroup(Alignment.LEADING, false)
-        				.addComponent(cidadeField)
-        				.addComponent(bairroField, GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-        				.addComponent(ruaField, GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
-        				.addComponent(cepField, GroupLayout.PREFERRED_SIZE, 171, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(estadoComboBox, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE))
-        			.addContainerGap(244, Short.MAX_VALUE))
+        			.addGroup(gl_enderecoPanel.createParallelGroup(Alignment.LEADING)
+        				.addGroup(gl_enderecoPanel.createSequentialGroup()
+        					.addComponent(bairroField, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)
+        					.addContainerGap())
+        				.addGroup(gl_enderecoPanel.createSequentialGroup()
+        					.addGroup(gl_enderecoPanel.createParallelGroup(Alignment.TRAILING)
+        						.addComponent(bairroLabel, Alignment.LEADING)
+        						.addComponent(cepLabel, Alignment.LEADING)
+        						.addComponent(cepField, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE))
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addGroup(gl_enderecoPanel.createParallelGroup(Alignment.TRAILING)
+        						.addGroup(gl_enderecoPanel.createSequentialGroup()
+        							.addGap(53)
+        							.addGroup(gl_enderecoPanel.createParallelGroup(Alignment.LEADING)
+        								.addComponent(cidadeField, GroupLayout.PREFERRED_SIZE, 254, GroupLayout.PREFERRED_SIZE)
+        								.addComponent(cidadeLabel))
+        							.addGap(10)
+        							.addGroup(gl_enderecoPanel.createParallelGroup(Alignment.LEADING)
+        								.addComponent(ufLabel)
+        								.addComponent(estadoComboBox, 0, 170, Short.MAX_VALUE)))
+        						.addGroup(Alignment.LEADING, gl_enderecoPanel.createSequentialGroup()
+        							.addGap(10)
+        							.addGroup(gl_enderecoPanel.createParallelGroup(Alignment.LEADING)
+        								.addComponent(ruaField, GroupLayout.PREFERRED_SIZE, 297, GroupLayout.PREFERRED_SIZE)
+        								.addComponent(logradouroLabel))
+        							.addPreferredGap(ComponentPlacement.RELATED)
+        							.addGroup(gl_enderecoPanel.createParallelGroup(Alignment.LEADING)
+        								.addComponent(numeroLabel, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE)
+        								.addComponent(textField_7, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE))
+        							.addGap(6)
+        							.addGroup(gl_enderecoPanel.createParallelGroup(Alignment.LEADING)
+        								.addComponent(label_6, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
+        								.addComponent(textField_8, GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE))))
+        					.addGap(10))))
         );
         gl_enderecoPanel.setVerticalGroup(
         	gl_enderecoPanel.createParallelGroup(Alignment.LEADING)
         		.addGroup(gl_enderecoPanel.createSequentialGroup()
         			.addContainerGap()
         			.addGroup(gl_enderecoPanel.createParallelGroup(Alignment.TRAILING)
-        				.addComponent(cepLabel)
-        				.addComponent(cepField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-        			.addGap(18)
+        				.addGroup(gl_enderecoPanel.createSequentialGroup()
+        					.addGroup(gl_enderecoPanel.createParallelGroup(Alignment.BASELINE)
+        						.addComponent(cepLabel)
+        						.addComponent(logradouroLabel)
+        						.addComponent(numeroLabel))
+        					.addGap(3)
+        					.addGroup(gl_enderecoPanel.createParallelGroup(Alignment.BASELINE)
+        						.addComponent(cepField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        						.addComponent(ruaField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        						.addComponent(textField_7, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+        				.addGroup(gl_enderecoPanel.createSequentialGroup()
+        					.addComponent(label_6)
+        					.addGap(6)
+        					.addComponent(textField_8, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+        			.addGap(11)
         			.addGroup(gl_enderecoPanel.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(logradouroLabel)
-        				.addComponent(ruaField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-        			.addGap(18)
+        				.addComponent(bairroLabel)
+        				.addComponent(cidadeLabel)
+        				.addComponent(ufLabel))
+        			.addGap(6)
         			.addGroup(gl_enderecoPanel.createParallelGroup(Alignment.BASELINE)
         				.addComponent(bairroField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(bairroLabel))
-        			.addGap(18)
-        			.addGroup(gl_enderecoPanel.createParallelGroup(Alignment.BASELINE)
         				.addComponent(cidadeField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(cidadeLabel))
-        			.addGap(18)
-        			.addGroup(gl_enderecoPanel.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(estadoComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(ufLabel))
-        			.addContainerGap(213, Short.MAX_VALUE))
+        				.addComponent(estadoComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addContainerGap(16, Short.MAX_VALUE))
         );
         enderecoPanel.setLayout(gl_enderecoPanel);
+        
+        JPanel panel = new JPanel();
+        panel.setLayout(null);
+        panel.setBorder(new LineBorder(Color.LIGHT_GRAY));
+        
+        textField = new JTextField(20);
+        textField.setBounds(436, 51, 186, 20);
+        panel.add(textField);
+        
+        JLabel label = new JLabel("Pessoa de Contato");
+        label.setBounds(436, 37, 166, 14);
+        panel.add(label);
+        
+        textField_1 = new JTextField(40);
+        textField_1.setBounds(10, 138, 382, 20);
+        panel.add(textField_1);
+        
+        JLabel label_1 = new JLabel("Email");
+        label_1.setBounds(10, 126, 368, 14);
+        panel.add(label_1);
+        
+        JRadioButton radioButton = new JRadioButton("CPF");
+        radioButton.setHorizontalAlignment(SwingConstants.RIGHT);
+        radioButton.setBounds(79, 7, 50, 23);
+        panel.add(radioButton);
+        
+        JRadioButton radioButton_1 = new JRadioButton("CNPJ");
+        radioButton_1.setSelected(true);
+        radioButton_1.setHorizontalAlignment(SwingConstants.RIGHT);
+        radioButton_1.setBounds(131, 7, 56, 23);
+        panel.add(radioButton_1);
+        
+        textField_2 = new JTextField(20);
+        textField_2.setBounds(193, 8, 199, 20);
+        panel.add(textField_2);
+        
+        JLabel label_2 = new JLabel("RG/IE");
+        label_2.setHorizontalAlignment(SwingConstants.RIGHT);
+        label_2.setBounds(376, 11, 50, 14);
+        panel.add(label_2);
+        
+        textField_3 = new JTextField(20);
+        textField_3.setBounds(436, 7, 186, 20);
+        panel.add(textField_3);
+        
+        JLabel label_3 = new JLabel("Nome / Raz\u00E3o");
+        label_3.setBounds(10, 37, 338, 14);
+        panel.add(label_3);
+        
+        textField_4 = new JTextField(40);
+        textField_4.setBounds(10, 51, 382, 20);
+        panel.add(textField_4);
+        
+        textField_5 = new JTextField(20);
+        textField_5.setBounds(10, 95, 186, 20);
+        panel.add(textField_5);
+        
+        JLabel label_4 = new JLabel("Telefone");
+        label_4.setBounds(10, 82, 166, 14);
+        panel.add(label_4);
+        
+        textField_6 = new JTextField(20);
+        textField_6.setBounds(206, 95, 186, 20);
+        panel.add(textField_6);
+        
+        JLabel label_5 = new JLabel("Celular");
+        label_5.setBounds(206, 82, 162, 14);
+        panel.add(label_5);
+        
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setViewportBorder(new LineBorder(Color.LIGHT_GRAY));
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        
+        JPanel panel_1 = new JPanel();
+        panel_1.setLayout(new FlowLayout());
+        
+        JButton button = new JButton("Salvar");
+        button.setActionCommand("salvar");
+        panel_1.add(button);
+        
+        JButton button_1 = new JButton("Editar");
+        button_1.setActionCommand("editar");
+        panel_1.add(button_1);
+        
+        JButton button_2 = new JButton("Excluir");
+        button_2.setActionCommand("excluir");
+        panel_1.add(button_2);
+        
+        JButton button_3 = new JButton("Cancelar");
+        button_3.setActionCommand("cancelar");
+        panel_1.add(button_3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         layout.setHorizontalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
         		.addGroup(layout.createSequentialGroup()
-        			.addGap(20)
-        			.addComponent(enderecoPanel, GroupLayout.PREFERRED_SIZE, 479, GroupLayout.PREFERRED_SIZE)
-        			.addContainerGap(25, Short.MAX_VALUE))
+        			.addContainerGap()
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addGroup(layout.createSequentialGroup()
+        					.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 644, Short.MAX_VALUE)
+        					.addContainerGap())
+        				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE)
+        				.addGroup(layout.createSequentialGroup()
+        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        						.addComponent(enderecoPanel, 0, 0, Short.MAX_VALUE)
+        						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 643, GroupLayout.PREFERRED_SIZE))
+        					.addContainerGap())))
         );
         layout.setVerticalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
         		.addGroup(layout.createSequentialGroup()
         			.addContainerGap()
-        			.addComponent(enderecoPanel, GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+        			.addComponent(panel, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addComponent(enderecoPanel, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
         			.addContainerGap())
         );
+        
+        JLabel documentolabel = new JLabel("Documento");
+        documentolabel.setBounds(10, 11, 63, 14);
+        panel.add(documentolabel);
         getContentPane().setLayout(layout);
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-693)/2, (screenSize.height-338)/2, 540, 300);
-    }// </editor-fold>//GEN-END:initComponents
+        setBounds((screenSize.width-693)/2, (screenSize.height-338)/2, 680, 640);
+    }// </editor-fold>
+    //GEN-END:initComponents
 
 private void TCEPKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCEPKeyReleased
     String cp = cepField.getText();
@@ -168,17 +327,17 @@ private void TCEPKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCE
      JOptionPane.showMessageDialog(null, e); 
      }
     }// TODO add your handling code here:
-}//GEN-LAST:event_TCEPKeyReleased
+}	//GEN-LAST:event_TCEPKeyReleased
 
     /**
      * @param args the command line arguments
-     */
+    */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+        */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -187,13 +346,13 @@ private void TCEPKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCE
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CepViewModelo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FornecedorView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CepViewModelo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FornecedorView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CepViewModelo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FornecedorView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CepViewModelo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FornecedorView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -201,11 +360,12 @@ private void TCEPKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCE
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new CepViewModelo().setVisible(true);
+                new FornecedorView().setVisible(true);
             }
         });
     }
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify
+    //GEN-BEGIN:variables
     private javax.swing.JComboBox estadoComboBox;
     private javax.swing.JTextField bairroField;
     private javax.swing.JFormattedTextField cepField;
@@ -219,6 +379,15 @@ private void TCEPKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCE
     private javax.swing.JPanel enderecoPanel;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private JTextField textField;
+    private JTextField textField_1;
+    private JTextField textField_2;
+    private JTextField textField_3;
+    private JTextField textField_4;
+    private JTextField textField_5;
+    private JTextField textField_6;
+    private JTextField textField_7;
+    private JTextField textField_8;
     // End of variables declaration//GEN-END:variables
 public  void correio() {
     
@@ -239,7 +408,4 @@ public  void correio() {
 		}
 			
 	}
-
-
-
 }

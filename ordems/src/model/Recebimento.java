@@ -6,7 +6,6 @@ public class Recebimento {
 
 	private int id;
 	private Cliente cliente;
-	private Usuario usuario;
     private Os os;
     private Peca peca;
     private String formaPagamento;
@@ -45,16 +44,6 @@ public class Recebimento {
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
-	}
-
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
 	}
 
 
@@ -100,7 +89,7 @@ public class Recebimento {
 
 	@Override
 	public String toString() {
-		return "Recebimento [id=" + id + ", cliente=" + cliente + ", usuario=" + usuario + ", cliente_id=" + cliente.getId()
+		return "Recebimento [id=" + id + ", cliente=" + cliente + ", cliente_id=" + cliente.getId()
 				+ ", os=" + os + ", id=" + os.getId() + ", peca=" + peca + ", id=" + peca.getId() + ", formaPagamento=" + formaPagamento
 				+ ", valorRecebimento=" + valorRecebimento + ",statusRecebimento= "+ statusRecebimento +"]";
 	}
