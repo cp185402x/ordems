@@ -43,13 +43,13 @@ public class FornecedorDAO {
 		st.setString(7, fornecedor.getFone_re());
 		st.setString(8, fornecedor.getEmail());
 		st.setString(9, fornecedor.getPes_contato());
-		st.setString(10, fornecedor.getEndereco().getTCEP());
-		st.setString(11, fornecedor.getEndereco().getTRUA());
-		st.setString(12, fornecedor.getEndereco().getNumero());
-		st.setString(13, fornecedor.getEndereco().getComplemento());
-		st.setString(14, fornecedor.getEndereco().getTBAIRRO());
-		st.setString(15, fornecedor.getEndereco().getTCIDADE());
-		st.setString(16, fornecedor.getEndereco().getCESTADO());
+		st.setString(10, fornecedor.getAPIConsultaCEP().getCep());
+		st.setString(11, fornecedor.getAPIConsultaCEP().getLogradouro());
+		st.setString(11, fornecedor.getNumero());
+		st.setString(13, fornecedor.getComplemento());
+		st.setString(14, fornecedor.getAPIConsultaCEP().getBairro());
+		st.setString(15, fornecedor.getAPIConsultaCEP().getCidade());
+		st.setString(16, fornecedor.getAPIConsultaCEP().getUf());
 		
 		st.execute();
 		
@@ -91,13 +91,13 @@ public void atualizar(Fornecedor fornecedor) throws SQLException {
 		st.setString(7, fornecedor.getFone_re());
 		st.setString(8, fornecedor.getEmail());
 		st.setString(9, fornecedor.getPes_contato());
-		st.setString(10, fornecedor.getEndereco().getTCEP());
-		st.setString(11, fornecedor.getEndereco().getTRUA());
-		st.setString(12, fornecedor.getEndereco().getNumero());
-		st.setString(13, fornecedor.getEndereco().getComplemento());
-		st.setString(14, fornecedor.getEndereco().getTBAIRRO());
-		st.setString(15, fornecedor.getEndereco().getTCIDADE());
-		st.setString(16, fornecedor.getEndereco().getCESTADO());
+		st.setString(10, fornecedor.getAPIConsultaCEP().getCep());
+		st.setString(11, fornecedor.getAPIConsultaCEP().getLogradouro());
+		st.setString(11, fornecedor.getNumero());
+		st.setString(13, fornecedor.getAPIConsultaCEP().getCep());
+		st.setString(14, fornecedor.getAPIConsultaCEP().getBairro());
+		st.setString(15, fornecedor.getAPIConsultaCEP().getCidade());
+		st.setString(16, fornecedor.getAPIConsultaCEP().getUf());
 		
 		System.out.println(fornecedor);
 		

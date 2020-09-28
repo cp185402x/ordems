@@ -58,7 +58,7 @@ public final class APIConsultaCEP {
 	 * {@link Xml#setCep(String, APIConsultaCEP)}.
 	 * @author Tomaz Lavieri
 	 */
-	private enum Xml {
+	public enum Xml {
 		CIDADE {
 			@Override public void setCep(String text, APIConsultaCEP webServiceCep) {
 				webServiceCep.setCidade(text);
@@ -279,6 +279,9 @@ public final class APIConsultaCEP {
     	this.cep = cep;
     }
 	
+	public APIConsultaCEP() {
+		// TODO Auto-generated constructor stub
+	}
 	/**
 	 * Exce??es lan?adas pelo {@link #searchCep(String)}.
 	 * @param ex

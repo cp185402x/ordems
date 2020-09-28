@@ -14,31 +14,45 @@
 package view;
 
 import dao.APIConsultaCEP;
+import model.Fornecedor;
+import model.TabelaFornecedor;
+
 import javax.swing.JOptionPane;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
+
+import controller.FornecedorController;
+
+import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 import java.awt.FlowLayout;
+import java.awt.HeadlessException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+
 import javax.swing.JButton;
 
 /**
  *
  * @author ADM
  */
-public class FornecedorView extends javax.swing.JFrame {
+public class FornecedorView extends javax.swing.JFrame implements ActionListener   {
 
     /** Creates new form CEP */
     public FornecedorView() {
     	setTitle("Cadastrode Fornecedores");
+    	
         initComponents();
     }
 
@@ -50,6 +64,16 @@ public class FornecedorView extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+    	
+    	painelBotoes = new JPanel();
+        painelBotoes.setLayout(new FlowLayout());
+        
+       
+        
+        getContentPane().add(painelBotoes, BorderLayout.SOUTH);
+        
+      
+
 
         enderecoPanel = new javax.swing.JPanel();
         enderecoPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -79,8 +103,7 @@ public class FornecedorView extends javax.swing.JFrame {
                 TCEPKeyReleased(evt);
             }
         });
-
-
+//        
         cepLabel.setText("CEP");
         
         logradouroLabel.setText("Logradouro");
@@ -97,13 +120,13 @@ public class FornecedorView extends javax.swing.JFrame {
 
         estadoComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG", "MS", "MT", "PA", "PB", "PE", "PI", "PR", "RJ", "RN", "RO", "RR", "RS", "SC", "SE", "SP", "TO" }));
         
-        textField_7 = new JTextField();
-        textField_7.setColumns(10);
+        complementoField = new JTextField();
+        complementoField.setColumns(10);
         
         JLabel numeroLabel = new JLabel();
         numeroLabel.setText("N\u00FAmero");
         
-        textField_8 = new JTextField();
+        numeroField = new JTextField();
         
         JLabel label_6 = new JLabel();
         label_6.setText("Bairro");
@@ -142,11 +165,11 @@ public class FornecedorView extends javax.swing.JFrame {
         							.addPreferredGap(ComponentPlacement.RELATED)
         							.addGroup(gl_enderecoPanel.createParallelGroup(Alignment.LEADING)
         								.addComponent(numeroLabel, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE)
-        								.addComponent(textField_7, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE))
+        								.addComponent(complementoField, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE))
         							.addGap(6)
         							.addGroup(gl_enderecoPanel.createParallelGroup(Alignment.LEADING)
         								.addComponent(label_6, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
-        								.addComponent(textField_8, GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE))))
+        								.addComponent(numeroField, GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE))))
         					.addGap(10))))
         );
         gl_enderecoPanel.setVerticalGroup(
@@ -163,11 +186,11 @@ public class FornecedorView extends javax.swing.JFrame {
         					.addGroup(gl_enderecoPanel.createParallelGroup(Alignment.BASELINE)
         						.addComponent(cepField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
         						.addComponent(ruaField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-        						.addComponent(textField_7, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+        						.addComponent(complementoField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
         				.addGroup(gl_enderecoPanel.createSequentialGroup()
         					.addComponent(label_6)
         					.addGap(6)
-        					.addComponent(textField_8, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+        					.addComponent(numeroField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
         			.addGap(11)
         			.addGroup(gl_enderecoPanel.createParallelGroup(Alignment.BASELINE)
         				.addComponent(bairroLabel)
@@ -186,93 +209,104 @@ public class FornecedorView extends javax.swing.JFrame {
         panel.setLayout(null);
         panel.setBorder(new LineBorder(Color.LIGHT_GRAY));
         
-        textField = new JTextField(20);
-        textField.setBounds(436, 51, 186, 20);
-        panel.add(textField);
+        pes_contatoField = new JTextField(20);
+        pes_contatoField.setBounds(436, 51, 186, 20);
+        panel.add(pes_contatoField);
         
-        JLabel label = new JLabel("Pessoa de Contato");
-        label.setBounds(436, 37, 166, 14);
-        panel.add(label);
+        JLabel pes_contatolabel = new JLabel("Pessoa de Contato");
+        pes_contatolabel.setBounds(436, 37, 166, 14);
+        panel.add(pes_contatolabel);
         
-        textField_1 = new JTextField(40);
-        textField_1.setBounds(10, 138, 382, 20);
-        panel.add(textField_1);
+        emailField = new JTextField(40);
+        emailField.setBounds(10, 138, 382, 20);
+        panel.add(emailField);
         
-        JLabel label_1 = new JLabel("Email");
-        label_1.setBounds(10, 126, 368, 14);
-        panel.add(label_1);
+        JLabel emailLabel = new JLabel("Email");
+        emailLabel.setBounds(10, 126, 368, 14);
+        panel.add(emailLabel);
         
-        JRadioButton radioButton = new JRadioButton("CPF");
-        radioButton.setHorizontalAlignment(SwingConstants.RIGHT);
-        radioButton.setBounds(79, 7, 50, 23);
-        panel.add(radioButton);
+        JRadioButton cpfRadio = new JRadioButton("CPF");
+        cpfRadio.setHorizontalAlignment(SwingConstants.RIGHT);
+        cpfRadio.setBounds(79, 7, 50, 23);
+        panel.add(cpfRadio);
         
-        JRadioButton radioButton_1 = new JRadioButton("CNPJ");
-        radioButton_1.setSelected(true);
-        radioButton_1.setHorizontalAlignment(SwingConstants.RIGHT);
-        radioButton_1.setBounds(131, 7, 56, 23);
-        panel.add(radioButton_1);
+        JRadioButton cnpjRadio = new JRadioButton("CNPJ");
+        cnpjRadio.setSelected(true);
+        cnpjRadio.setHorizontalAlignment(SwingConstants.RIGHT);
+        cnpjRadio.setBounds(131, 7, 56, 23);
+        panel.add(cnpjRadio);
         
-        textField_2 = new JTextField(20);
-        textField_2.setBounds(193, 8, 199, 20);
-        panel.add(textField_2);
+        rgieField = new JTextField(20);
+        rgieField.setBounds(193, 8, 199, 20);
+        panel.add(rgieField);
         
-        JLabel label_2 = new JLabel("RG/IE");
-        label_2.setHorizontalAlignment(SwingConstants.RIGHT);
-        label_2.setBounds(376, 11, 50, 14);
-        panel.add(label_2);
+        JLabel rgielabel = new JLabel("RG/IE");
+        rgielabel.setHorizontalAlignment(SwingConstants.RIGHT);
+        rgielabel.setBounds(376, 11, 50, 14);
+        panel.add(rgielabel);
         
-        textField_3 = new JTextField(20);
-        textField_3.setBounds(436, 7, 186, 20);
-        panel.add(textField_3);
+        nomeField = new JTextField(20);
+        nomeField.setBounds(436, 7, 186, 20);
+        panel.add(nomeField);
         
-        JLabel label_3 = new JLabel("Nome / Raz\u00E3o");
-        label_3.setBounds(10, 37, 338, 14);
-        panel.add(label_3);
+        JLabel nomelabel = new JLabel("Nome / Raz\u00E3o");
+        nomelabel.setBounds(10, 37, 338, 14);
+        panel.add(nomelabel);
         
-        textField_4 = new JTextField(40);
-        textField_4.setBounds(10, 51, 382, 20);
-        panel.add(textField_4);
+        docField = new JTextField(40);
+        docField.setBounds(10, 51, 382, 20);
+        panel.add(docField);
         
-        textField_5 = new JTextField(20);
-        textField_5.setBounds(10, 95, 186, 20);
-        panel.add(textField_5);
+        JLabel documentolabel = new JLabel("Documento");
+        documentolabel.setBounds(10, 11, 63, 14);
+        panel.add(documentolabel);
         
-        JLabel label_4 = new JLabel("Telefone");
-        label_4.setBounds(10, 82, 166, 14);
-        panel.add(label_4);
         
-        textField_6 = new JTextField(20);
-        textField_6.setBounds(206, 95, 186, 20);
-        panel.add(textField_6);
+        telefoneField = new JTextField(20);
+        telefoneField.setBounds(10, 95, 186, 20);
+        panel.add(telefoneField);
         
-        JLabel label_5 = new JLabel("Celular");
-        label_5.setBounds(206, 82, 162, 14);
-        panel.add(label_5);
+        JLabel telefonelabel = new JLabel("Telefone");
+        telefonelabel.setBounds(10, 82, 166, 14);
+        panel.add(telefonelabel);
+        
+        celularField = new JTextField(20);
+        celularField.setBounds(206, 95, 186, 20);
+        panel.add(celularField);
+        
+        JLabel celularlabel = new JLabel("Celular");
+        celularlabel.setBounds(206, 82, 162, 14);
+        panel.add(celularlabel);
         
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setViewportBorder(new LineBorder(Color.LIGHT_GRAY));
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         
-        JPanel panel_1 = new JPanel();
-        panel_1.setLayout(new FlowLayout());
+        painelBotoes = new JPanel();
+        painelBotoes.setLayout(new FlowLayout());
         
-        JButton button = new JButton("Salvar");
-        button.setActionCommand("salvar");
-        panel_1.add(button);
+        botaoSalvar = new JButton("Salvar");
+        botaoEditar = new JButton("Editar");
+        botaoExcluir = new JButton("Excluir");
+        botaoCancelar = new JButton("Cancelar");
         
-        JButton button_1 = new JButton("Editar");
-        button_1.setActionCommand("editar");
-        panel_1.add(button_1);
+        painelBotoes.add(botaoSalvar);        
+        painelBotoes.add(botaoEditar);
+        painelBotoes.add(botaoExcluir);
+        painelBotoes.add(botaoCancelar);
         
-        JButton button_2 = new JButton("Excluir");
-        button_2.setActionCommand("excluir");
-        panel_1.add(button_2);
+        botaoSalvar.addActionListener(this);
+        botaoSalvar.setActionCommand("salvar");
         
-        JButton button_3 = new JButton("Cancelar");
-        button_3.setActionCommand("cancelar");
-        panel_1.add(button_3);
+        botaoEditar.addActionListener(this);
+        botaoEditar.setActionCommand("editar");
+        
+        botaoExcluir.addActionListener(this);
+        botaoExcluir.setActionCommand("excluir");
+        
+        botaoCancelar.addActionListener(this);
+        botaoCancelar.setActionCommand("cancelar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         layout.setHorizontalGroup(
@@ -281,7 +315,7 @@ public class FornecedorView extends javax.swing.JFrame {
         			.addContainerGap()
         			.addGroup(layout.createParallelGroup(Alignment.LEADING)
         				.addGroup(layout.createSequentialGroup()
-        					.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 644, Short.MAX_VALUE)
+        					.addComponent(painelBotoes, GroupLayout.DEFAULT_SIZE, 644, Short.MAX_VALUE)
         					.addContainerGap())
         				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE)
         				.addGroup(layout.createSequentialGroup()
@@ -300,13 +334,10 @@ public class FornecedorView extends javax.swing.JFrame {
         			.addPreferredGap(ComponentPlacement.RELATED)
         			.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
         			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+        			.addComponent(painelBotoes, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
         			.addContainerGap())
         );
         
-        JLabel documentolabel = new JLabel("Documento");
-        documentolabel.setBounds(10, 11, 63, 14);
-        panel.add(documentolabel);
         getContentPane().setLayout(layout);
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
@@ -379,15 +410,28 @@ private void TCEPKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCE
     private javax.swing.JPanel enderecoPanel;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private JTextField textField;
-    private JTextField textField_1;
-    private JTextField textField_2;
-    private JTextField textField_3;
-    private JTextField textField_4;
-    private JTextField textField_5;
-    private JTextField textField_6;
-    private JTextField textField_7;
-    private JTextField textField_8;
+    private JTextField pes_contatoField;
+    
+    private JTable fornecedorTable;
+    TabelaFornecedor tabelaFornecedor;
+    
+    
+  //Inicia o painel dos botoes
+    JPanel painelBotoes;
+    JButton botaoSalvar;
+    JButton botaoCancelar;
+    JButton botaoEditar;
+    JButton botaoExcluir;
+    
+    
+    private JTextField emailField;
+    private JTextField rgieField;
+    private JTextField nomeField;
+    private JTextField docField;
+    private JTextField telefoneField;
+    private JTextField celularField;
+    private JTextField complementoField;
+    private JTextField numeroField;
     // End of variables declaration//GEN-END:variables
 public  void correio() {
     
@@ -408,4 +452,134 @@ public  void correio() {
 		}
 			
 	}
+    //método para limpar tela
+		private void limpaCampos() {
+
+			nomeField.setText("");
+			docField.setText("");
+			rgieField.setText("");
+			telefoneField.setText("");			
+			celularField.setText("");
+			emailField.setText("");
+			pes_contatoField.setText("");
+			cepField.setText("");
+			ruaField.setText("");
+			numeroField.setText("");
+			complementoField.setText("");
+			bairroField.setText("");
+			cidadeField.setText("");
+			estadoComboBox.setToolTipText("");
+	
+			this.enderecoPanel.repaint();
+			//this.fornecedorPainel.repaint();
 }
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+			if(e.getActionCommand().equalsIgnoreCase("salvar")) {
+				
+				Fornecedor f = new Fornecedor();
+				
+				//Tratar a ação de salvar o cliente
+				
+				//Trata o radio do tipo de cliente
+				
+				
+				//Tipo
+				System.out.println("Tipo: " +f.getTipo());
+				//nome
+				f.setNm_fornecedor(nomeField.getText());			
+				//documento
+				f.setDoc_num(docField.getText());			
+				//RGIE
+				f.setRg_ie(rgieField.getText());
+				//fone fixo
+				f.setFone_re(telefoneField.getText());
+				//celular
+				f.setCelular(celularField.getText());
+				//email
+				f.setEmail(emailField.getText());
+				//pessoa contato
+				f.setPes_contato(pes_contatoField.getText());
+				//Logradouro
+//				f.getApiconsutacep().setCep(cepField.getText());
+//				//Logradouro
+//				f.getEndereco().setRua(ruaField.getText());
+//				//numero
+//				f.getEndereco().setNumero(numeroField.getText());
+//				//complemento
+//				f.getEndereco().setComplemento(complementoField.getText());
+//				//bairro
+//				f.getEndereco().setTBAIRRO(TBAIRRO.getText());
+//				//cidade
+//				f.getEndereco().setTCIDADE(TCIDADE.getText());
+//				//estado
+//				f.getEndereco().setCESTADO(CESTADO.getToolTipText());
+				
+				Object[] opcoes = {"Salvar como novo cadastro", "Atualizar", "Limpar todos campos"};
+		
+				
+				int op = JOptionPane.showOptionDialog(null, "Escolha uma opção para continuar", "Aviso",
+				          JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+				              null, opcoes, opcoes[0]);
+					
+					if(op == 0) { //salvar um novo cliente
+						FornecedorController controleCliente = new FornecedorController();
+						try {
+							if(controleCliente.cadastrarFornecedor(f) == true) {
+								JOptionPane.showMessageDialog(null, "Cadastro efetuado com sucesso!");
+								tabelaFornecedor.addTodos();
+								limpaCampos();
+								this.repaint();
+							}
+							}
+						 catch (SQLException e1) {
+							e1.printStackTrace();
+							JOptionPane.showMessageDialog(null, "Ops, houve um erro ao efetuar o cadastro!");
+						}
+					}
+//					else if(op == 1) { //ATUALIZAR
+//						f.setId(this.id);
+//						FornecedorController controleFornecedor = new FornecedorController();
+//						try {
+//							if(controleFornecedor.atualizarFornecedor(f) == true) {
+//								JOptionPane.showMessageDialog(null, "Cadastro atualizado com sucesso!");
+//								tabelaFornecedor.addTodos();
+//								limpaCampos();
+//								this.repaint();
+//							}
+//						} catch (HeadlessException | SQLException e1) {
+//							// TODO Auto-generated catch block
+//							e1.printStackTrace();
+//							JOptionPane.showMessageDialog(null, "Ops, houve um ao efetuar o cadastro!");
+//						}				
+//						
+//					}
+//					else {
+//						cpfRadio.setEnabled(true);
+//									
+//						nm_fornecedorField.setText("");
+//						docField.setText("");
+//						rgieField.setText("");
+//						fone_reField.setText("");			
+//						celularField.setText("");
+//						emailField.setText("");
+//						pes_contatoField.setText("");
+//						TCEP.setText("");
+//						TRUA.setText("");
+//						numeroField.setText("");
+//						complementoField.setText("");
+//						TBAIRRO.setText("");
+//						TCIDADE.setText("");
+//						CESTADO.setToolTipText("");
+//						
+//					}
+//			
+			}
+			
+		}
+
+}
+

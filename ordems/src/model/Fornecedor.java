@@ -2,6 +2,8 @@ package model;
 
 import com.mysql.jdbc.StatementImpl;
 
+import dao.APIConsultaCEP;
+
 public class Fornecedor {
 	
 	///Atributos
@@ -13,7 +15,43 @@ public class Fornecedor {
     private String fone_re;
     private String email;
     private String pes_contato;
-    private Endereco endereco;
+    private String numero;
+    private String complemento;
+   
+    
+    
+    public String getComplemento() {
+		return complemento;
+	}
+
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+
+
+	public String getNumero() {
+		return numero;
+	}
+
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
+
+	public APIConsultaCEP getApiconsutacep() {
+		return apiconsutacep;
+	}
+
+
+	public void setApiconsutacep(APIConsultaCEP apiconsutacep) {
+		this.apiconsutacep = apiconsutacep;
+	}
+
+
+	//private Undergo endereco;
+    private APIConsultaCEP apiconsutacep;
     private int tipo_fornecedor;
     
     public int getId() {
@@ -93,14 +131,14 @@ public class Fornecedor {
 		this.pes_contato = pes_contato;
 
 	}
-	public Fornecedor(Endereco endereco) {
-		this.endereco = endereco;
+	public Fornecedor(APIConsultaCEP apiconsutacep) {
+		this.apiconsutacep = apiconsutacep;
 	}
 
 	
     //Construtor
 	 public Fornecedor(){
-	        this.endereco = new Endereco();
+	        this.apiconsutacep = new APIConsultaCEP();
 	    
 	    }
 		
@@ -122,12 +160,12 @@ public class Fornecedor {
 			this.tipo_fornecedor = tipo;
 		}
 
-		public Endereco getEndereco() {
-			return endereco;
+		public APIConsultaCEP getAPIConsultaCEP() {
+			return apiconsutacep;
 		}
 
-		public void setEndereco(Endereco endereco) {
-			this.endereco = endereco;
+		public void setAPIConsultaCEP(APIConsultaCEP endereco) {
+			this.apiconsutacep = endereco;
 		}
 
 
@@ -135,7 +173,13 @@ public class Fornecedor {
 		
 		return "Fornecedor [id=" + id + ", nm_fornecedor=" + nm_fornecedor + ", doc_num=" + doc_num + ", rg_ie=" + rg_ie
 				+ ", celular=" + celular + ", fone_re=" + fone_re + ", email=" + email + ", pes_contato=" + pes_contato
-				+ ", endereco=" + endereco + ", tipo_fornecedor=" + tipo_fornecedor + "]";
+				+ ", apiconsutacep=" + apiconsutacep + ", tipo_fornecedor=" + tipo_fornecedor + "]";
+	}
+
+
+	public String getCep() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 		
 	

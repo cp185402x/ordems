@@ -1,2 +1,5 @@
+/.classpath
+/controller/
+/dao/
 /model/
 /view/
